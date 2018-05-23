@@ -85,8 +85,23 @@ Rbcli::configurate do
 		puts 'This is a post-command hook. It executes after the command.'
 	end
 end
-
 ```
+
+#### CLI Option Declarations
+
+For the `option` parameters that you want to create, the following types are supported:
+
+* :string
+* :boolean or :flag
+* :integer
+* :float
+
+If a default value is not set, it will default to `nil`.
+
+If you want to declare more than one option, you can call it multiple times. The same goes for other items tagged with _Multiple_ in the description above.
+
+Once parsed, options will be placed in a hash where they can be accessed via their names as shown above. You can see this demonstrated in the `default_action`, `pre_hook`, and `post_hook` blocks.
+
 
 ### Command Declaration
 

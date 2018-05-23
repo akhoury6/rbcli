@@ -21,6 +21,7 @@ Commands:
 [options]:
 			EOS
 			data[:options].each do |name, opts|
+				opts[:default] = nil unless opts.key? :default
 				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default]
 			end
 			opt :json_output, 'Output result in machine-friendly JSON format', :type => :boolean, :default => false if data[:allow_json]

@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require '../lib/rbcli'
+
+Rbcli::configurate do
+	scriptname __FILE__.split('/')[-1]
+	version Rbcli::VERSION
+	description 'RBCli initialization tool'
+end
+
+class Init < Rbcli::Command
+	description 'Initialize a skeleton RBCli executable.'
+	usage 'This will generate a new file in the current folder'
+	parameter :filename, 'Name of file to generate', type: :string, required: true
+
+	action do |params, args, global_opts, config|
+		src = "#{File.dirname(__FILE__)}/../examples/mytool"
+		dest = "#{Dir.pwd}/#{params[:filename]}"
+		if File.exists? dest
+			puts "File #{params[:filename]} already exists. Please delete and try again."
+		else
+			puts "Generating file #{params[:filename]}..."
+			FileUtils.cp src, dest
+			puts "Done!"
+		end
+	end
+
+end
+
+Rbcli.parse

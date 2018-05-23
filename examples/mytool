@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+require 'rbcli'
+
+#########################
+## Configuration Block ##
+#########################
+# This block is where rbcli is configured.
+#########################
+
+Rbcli::configurate do
+	scriptname __FILE__.split('/')[-1]                                     # (Required) This line identifies the tool's executable. You can change it if needed, but this should work for most cases.
+	version '0.1.0'                                                        # (Required) The version number
+	description 'This is my test CLI tool.'                                # (Requierd) A description that will appear when the user looks at the help with -h. This can be as long as needed.
+
+	log_level :info                                                        # (Optional) Set the default log_level for users. 0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN
+	log_target 'stderr'                                                    # (Optional) Set the target for logs. Valid values are STDOUT, STDERR, or a file path (as strings)
+
+	config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false  # (Optional) Set location of user's config file. If merge_defaults=true, user settings override default settings, and if false, defaults are not loaded at all. If required=true, application will not run if file does not exist.
+	config_defaults 'defaults.yml'                                         # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
+	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
+
+	option :name, 'Give me your name', type: :string, default: 'Stranger'  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
+
+	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
+		puts "Hello, #{opts[:name]}."
+		puts "To see the help, use -h"
+	end
+
+	pre_hook do |opts|                                                     # (Optional) Allows providing a block of code that runs before any command
+		puts 'This is a pre-command hook. It executes before the command.'
+	end
+
+	post_hook do |opts|                                                    # (Optional) Allows providing a block of code that runs after any command
+		puts 'This is a post-command hook. It executes after the command.'
+	end
+end
+
+#########################
+## Command Declaration ##
+#########################
+# With rbcli, commands are declared by subclassing
+# from Rbcli::Command. The name of the class will be
+# the command that is available to the user.
+#########################
+class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
+	description 'This is a short description.'                                         # (Required) Short description for the global help
+	usage 'This is some really long usage text description!'                           # (Required) Long description for the command-specific help
+	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
+
+	config_defaults 'defaults.yml'                                                     # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
+	config_default :myopt2, description: 'Testing this again', value: true             # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
+
+	action do |params, args, global_opts, config|                                      # (Required) Block to execute if the command is called.
+		Rbcli::log.info { 'These logs can go to STDERR, STDOUT, or a file' }               # Example log. Interface is identical to Ruby's logger
+		puts "\nArgs:\n#{args}"                # Arguments that came after the command on the CLI
+		puts "Params:\n#{params}"              # Parameters, as described through the option statements above
+		puts "Global opts:\n#{global_opts}"    # Global Parameters, as descirbed in the Configurate section
+		puts "Config:\n#{config}"              # Config file values
+		puts "\nDone!!!"
+	end
+end
+
+#####################
+## Parse Statement ##
+#####################
+# When this statement is called, the CLI will be
+# parsed and code executed as
+#####################
+Rbcli.parse       # Parse CLI and execute

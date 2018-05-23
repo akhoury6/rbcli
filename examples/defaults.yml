@@ -1,0 +1,4 @@
+# Mytool custom settings
+optionA: value     # We are setting this value just because
+optionB: value2    # Same here
+optionC: value3    # You get the picture

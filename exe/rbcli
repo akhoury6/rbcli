@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require '../lib/rbcli'
+require 'rbcli'
 
 Rbcli::configurate do
 	scriptname __FILE__.split('/')[-1]

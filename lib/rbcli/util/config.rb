@@ -46,7 +46,7 @@ module Rbcli::Config
 	@loaded = false
 
 	def self.set_userfile filename, merge_defaults: false, required: false
-		@config_file = filename
+		@config_file = File.expand_path filename
 		@merge_defaults = merge_defaults
 		@userfile_required = required
 		@loaded = false
@@ -76,6 +76,7 @@ module Rbcli::Config
 	end
 
 	def self.add_defaults filename=nil, text: nil
+		filename = File.expand_path filename
 		return unless filename and File.exists? filename
 		@config_text ||= ''
 		@config_text += "\n" unless @config_text.empty?

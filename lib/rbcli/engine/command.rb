@@ -29,13 +29,15 @@ class Rbcli::Command
 	def self.action &block;        @action = block end
 	def      action;               self.class.instance_variable_get :@action end
 
-	def self.parameter name, description, type: :boolean, default: nil, required: false
+	def self.parameter name, description, type: :boolean, default: nil, required: false, permitted: nil
+		default ||= false if (type == :boolean || type == :bool || type == :flag)
 		@paramlist ||= {}
 		@paramlist[name.to_sym] = {
 				description: description,
 				type: type,
 				default: default,
-				required: required
+				required: required,
+				permitted: permitted
 		}
 	end
 	def      paramlist;               self.class.instance_variable_get :@paramlist end
@@ -100,7 +102,7 @@ Usage:
 Command-specific Parameters:
 			EOS
 			params.each do |name, opts|
-				opt name, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required]
+				opt name, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted]
 			end if params.is_a? Hash
 		end
 		optx[:args] = ARGV

@@ -4,7 +4,6 @@ PATH
     rbcli (0.1.1)
       colorize (~> 0.8)
       deep_merge (~> 1.2)
-      trollop (~> 2.1)
 
 GEM
   remote: https://rubygems.org/
@@ -13,7 +12,6 @@ GEM
     deep_merge (1.2.1)
     minitest (5.11.3)
     rake (10.5.0)
-    trollop (2.1.2)
 
 PLATFORMS
   ruby

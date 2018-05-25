@@ -70,7 +70,7 @@ Rbcli::configurate do
 	config_defaults 'defaults.yml'                                         # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
 	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
-	option :name, 'Give me your name', type: :string, default: 'Stranger'  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
+option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
 
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
@@ -85,8 +85,23 @@ Rbcli::configurate do
 		puts 'This is a post-command hook. It executes after the command.'
 	end
 end
-
 ```
+
+#### CLI Option Declarations
+
+For the `option` parameters that you want to create, the following types are supported:
+
+* :string
+* :boolean or :flag
+* :integer
+* :float
+
+If a default value is not set, it will default to `nil`.
+
+If you want to declare more than one option, you can call it multiple times. The same goes for other items tagged with _Multiple_ in the description above.
+
+Once parsed, options will be placed in a hash where they can be accessed via their names as shown above. You can see this demonstrated in the `default_action`, `pre_hook`, and `post_hook` blocks.
+
 
 ### Command Declaration
 

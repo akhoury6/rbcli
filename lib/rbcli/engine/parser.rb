@@ -1,4 +1,5 @@
-require 'trollop'
+#TODO: Change this once the changes have been merged into trollop gem proper
+require "rbcli/util/trollop"
 
 module Rbcli::Parser
 
@@ -23,7 +24,8 @@ Commands:
 			data[:options].each do |name, opts|
 				opts[:default] = nil unless opts.key? :default
 				opts[:required] = false unless opts.key? :required
-				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required]
+				opts[:permitted] = nil unless opts.key? :permitted
+				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted]
 			end
 			opt :json_output, 'Output result in machine-friendly JSON format', :type => :boolean, :default => false if data[:allow_json]
 			opt :config_file, 'Specify a config file manually', :type => :string, :default => data[:config_userfile]

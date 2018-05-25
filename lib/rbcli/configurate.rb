@@ -61,11 +61,14 @@ module Rbcli
 		@data[:allow_json] = allow_json
 	end
 
-	def self.option name, description, type: :boolean, default: false
+	def self.option name, description, type: :boolean, default: nil, required: false, permitted: nil
+		default ||= false if (type == :boolean || type == :bool || type == :flag)
 		@data[:options][name.to_sym] = {
 				description: description,
 				type: type,
-				default: default
+				default: default,
+				required: required,
+				permitted: permitted
 		}
 	end
 

@@ -136,10 +136,11 @@ class Test < Rbcli::Command                                                     
 
 	action do |params, args, global_opts, config|                                      # (Required) Block to execute if the command is called.
 		Rbcli::log.info { 'These logs can go to STDERR, STDOUT, or a file' }               # Example log. Interface is identical to Ruby's logger
-		puts "\nArgs:\n#{args}"                # Arguments that came after the command on the CLI
-		puts "Params:\n#{params}"              # Parameters, as described through the option statements above
-		puts "Global opts:\n#{global_opts}"    # Global Parameters, as descirbed in the Configurate section
-		puts "Config:\n#{config}"              # Config file values
+		puts "\nArgs:\n#{args}"                  # Arguments that came after the command on the CLI
+		puts "Params:\n#{params}"                # Parameters, as described through the option statements above
+		puts "Global opts:\n#{global_opts}"      # Global Parameters, as descirbed in the Configurate section
+		puts "Config:\n#{config}"                # Config file values
+		puts "LocalState:\n#{Rbcli.local_state}" # Local persistent state storage (when available)
 		puts "\nDone!!!"
 	end
 end

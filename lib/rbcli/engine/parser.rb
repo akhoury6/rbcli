@@ -55,14 +55,6 @@ Commands:
 
 	end
 
-	def self.opts
-		@cliopts
-	end
-
-	def self.cmd
-		@cmd
-	end
-
 end
 
 module Rbcli

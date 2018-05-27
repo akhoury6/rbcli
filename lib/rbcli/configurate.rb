@@ -1,4 +1,4 @@
-module Rbcli
+module Rbcli::Configurate
 
 	@data = {
 			scriptname: nil,
@@ -9,10 +9,12 @@ module Rbcli
 			options: {},
 			default_action: nil,
 			pre_hook: nil,
-			post_hook: nil
+			post_hook: nil,
+			first_run: nil,
+			halt_after_first_run: false
 	}
 
-	def self.configurate &block
+	def self.me &block
 		@self_before_instance_eval = eval "self", block.binding
 		instance_eval &block
 	end
@@ -84,6 +86,11 @@ module Rbcli
 		@data[:post_hook] = block
 	end
 
+	def self.first_run halt_after_running: false, &block
+		@data[:halt_after_first_run] = halt_after_running
+		@data[:first_run] = block
+	end
+
 	##
 	# Data Retrieval
 	##
@@ -91,4 +98,10 @@ module Rbcli
 		@data
 	end
 
+end
+
+module Rbcli
+	def self.configuration
+		Rbcli::Configurate::configuration
+	end
 end

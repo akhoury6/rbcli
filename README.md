@@ -10,8 +10,11 @@ Some of its key features include:
 
 * __Config File Generation__: Easily piece together a default configuration even with declarations in different parts of the code. Then the user can generate their own configuration, and it gets stored in whatever location you'd like.
 
+* __Multiple Hooks and Entry Points__: Define commands, pre-execution hooks, post-execution hooks, and first_run hooks to quickly and easily customize the flow of your application code.
+
 * __Logging__: Keep track of all instances of your tool through logging. Logs can go to STDOUT, STDERR, or a given file, making them compatible with log aggregators such as Splunk, Logstash, and many others.
 
+* __Local State Storage__: Easily manage a set of data that persists between runs. You get access to a hash that is automatically kept in-sync with a file on disk.
 
 ## Installation
 
@@ -46,9 +49,10 @@ Note that all options and parameters will have both a short and long version of 
 
 ## Getting Started
 
-Creating a new skeleton command is as easy as running `rbcli init <filename>`. It will have three key items:
+Creating a new skeleton command is as easy as running `rbcli init <filename>`. It will have these key items:
 
 * The configuration
+* Storage subsystem configuration (optional)
 * A command declaration
 * The parse command
 
@@ -70,7 +74,7 @@ Rbcli::configurate do
 	config_defaults 'defaults.yml'                                         # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
 	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
-option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
+	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
 
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
@@ -84,6 +88,10 @@ option :name, 'Give me your name', type: :string, default: 'Foo', required: fals
 	post_hook do |opts|                                                    # (Optional) Allows providing a block of code that runs after any command
 		puts 'This is a post-command hook. It executes after the command.'
 	end
+
+	first_run halt_after_running: true do                                  # (Optional) Allows providing a block of code that executes the first time that the application is run on a given system. If `halt_after_running` is set to `true` then parsing will not continue after this code is executed. All subsequent runs will not execute this code.
+		puts "This is the first time the mytool command is run! Don't forget to generate a config file with the `-g` option before continuing."
+	end
 end
 ```
 
@@ -91,10 +99,10 @@ end
 
 For the `option` parameters that you want to create, the following types are supported:
 
-* :string
-* :boolean or :flag
-* :integer
-* :float
+* `:string`
+* `:boolean` or `:flag`
+* `:integer`
+* `:float`
 
 If a default value is not set, it will default to `nil`.
 
@@ -102,6 +110,16 @@ If you want to declare more than one option, you can call it multiple times. The
 
 Once parsed, options will be placed in a hash where they can be accessed via their names as shown above. You can see this demonstrated in the `default_action`, `pre_hook`, and `post_hook` blocks.
 
+
+### Storage Configuration (optional)
+
+```ruby
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+end
+```
+
+This block configures different storage interfaces. For more details please see the [Storage Subsystems](#storage_subsystems) section below.
 
 ### Command Declaration
 
@@ -202,6 +220,48 @@ logger:
   log_level: warn              # 0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN
   log_target: stderr           # STDOUT, STDERR, or a file path
 ```
+
+## <a name="storage_subsystems"></a>Storage Subsystems
+
+```ruby
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+end
+```
+
+### Local State
+
+RBCli's local state storage gives you access to a hash that is automatically persisted to disk when changes are made.
+
+Once configured you can access it with a standard hash syntax:
+
+```ruby
+Rbcli.localstate[:yourkeyhere]
+```
+
+For performance reasons, the only methods available for use are `=` (assignment operator), `delete`, `each`, and `key?`. Also, the `clear` method has been added, which resets the data back to an empty hash. Keys are accessed via either symbols or strings indifferently.
+
+Every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.
+
+#### Configuration Parameters
+
+```ruby
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+end
+```
+
+There are three parameters to configure it with:
+* The `path` as a string (self-explanatory)
+* `force_creation`
+	* This will attempt to create the path and file if it does not exist (equivalent to an `mkdir -p` and `touch` in linux)
+* `ignore_file_errors`
+	* RBCli's default behavior is to raise an exception if the file can not be created, read, or updated at any point in time
+	* If this is set to `true`, RBCli will silence any errors pertaining to file access and will fall back to whatever data is available. Note that if this is enabled, changes made to the state may not be persisted to disk.
+		* If creation fails and file does not exist, you start with an empty hash
+		* If file exists but can't be read, you will have an empty hash
+		* If file can be read but not written, the hash will be populated with the data. Writes will be stored in memory while the application is running, but will not be persisted to disk.
+
 
 ## Development
 

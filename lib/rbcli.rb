@@ -5,6 +5,12 @@ module Rbcli end # Empty module declaration required to declare submodules freel
 require "rbcli/version"
 
 require "rbcli/util"
+
+# STATE TOOLS
+require "rbcli/stateful_systems/configuratestorage"
+require "rbcli/stateful_systems/localstorage/localstate"
+# END STATE TOOLS
+
 require "rbcli/configurate"
 
 require "rbcli/engine/command"

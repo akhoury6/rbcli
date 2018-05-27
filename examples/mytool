@@ -8,7 +8,7 @@ require 'rbcli'
 # This block is where rbcli is configured.
 #########################
 
-Rbcli::configurate do
+Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]                                     # (Required) This line identifies the tool's executable. You can change it if needed, but this should work for most cases.
 	version '0.1.0'                                                        # (Required) The version number
 	description 'This is my test CLI tool.'                                # (Requierd) A description that will appear when the user looks at the help with -h. This can be as long as needed.
@@ -34,6 +34,20 @@ Rbcli::configurate do
 	post_hook do |opts|                                                    # (Optional) Allows providing a block of code that runs after any command
 		puts 'This is a post-command hook. It executes after the command.'
 	end
+
+	first_run halt_after_running: true do                                  # (Optional) Allows providing a block of code that executes the first time that the application is run on a given system. If `halt_after_running` is set to `true` then parsing will not continue after this code is executed. All subsequent runs will not execute this code.
+		puts "This is the first time the mytool command is run! Don't forget to generate a config file with the `-g` option before continuing."
+	end
+end
+
+###############################
+## State Configuration Block ##
+###############################
+# The state-related componets
+# are configured here.
+###############################
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
 end
 
 #########################

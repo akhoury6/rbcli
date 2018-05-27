@@ -233,6 +233,10 @@ Once configured you can access it with a standard hash syntax:
 Rbcli.localstate[:yourkeyhere]
 ```
 
+For performance reasons, the only methods available for use are `=` (assignment operator), `delete`, and `each`.
+
+Note that every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.
+
 #### Configuration Parameters
 
 ```ruby
@@ -251,7 +255,6 @@ There are three parameters to configure it with:
 		* If creation fails and file does not exist, you start with an empty hash
 		* If file exists but can't be read, you will have an empty hash
 		* If file can be read but not written, the hash will be populated with the data. Writes will be stored in memory while the application is running, but will not be persisted to disk.
-
 
 
 ## Development

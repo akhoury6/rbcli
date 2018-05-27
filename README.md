@@ -12,6 +12,7 @@ Some of its key features include:
 
 * __Logging__: Keep track of all instances of your tool through logging. Logs can go to STDOUT, STDERR, or a given file, making them compatible with log aggregators such as Splunk, Logstash, and many others.
 
+* __Local State Storage__: Easily manage a set of data that persists between runs. You get access to a hash that is automatically kept in-sync with a file on disk.
 
 ## Installation
 
@@ -46,9 +47,10 @@ Note that all options and parameters will have both a short and long version of 
 
 ## Getting Started
 
-Creating a new skeleton command is as easy as running `rbcli init <filename>`. It will have three key items:
+Creating a new skeleton command is as easy as running `rbcli init <filename>`. It will have these key items:
 
 * The configuration
+* Storage subsystem configuration (optional)
 * A command declaration
 * The parse command
 
@@ -91,10 +93,10 @@ end
 
 For the `option` parameters that you want to create, the following types are supported:
 
-* :string
-* :boolean or :flag
-* :integer
-* :float
+* `:string`
+* `:boolean` or `:flag`
+* `:integer`
+* `:float`
 
 If a default value is not set, it will default to `nil`.
 
@@ -102,6 +104,16 @@ If you want to declare more than one option, you can call it multiple times. The
 
 Once parsed, options will be placed in a hash where they can be accessed via their names as shown above. You can see this demonstrated in the `default_action`, `pre_hook`, and `post_hook` blocks.
 
+
+### Storage Configuration (optional)
+
+```ruby
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+end
+```
+
+This block configures different storage interfaces. For more details please see the [Storage Subsystems](#storage_subsystems) section below.
 
 ### Command Declaration
 
@@ -202,6 +214,45 @@ logger:
   log_level: warn              # 0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN
   log_target: stderr           # STDOUT, STDERR, or a file path
 ```
+
+## <a name="storage_subsystems"></a>Storage Subsystems
+
+```ruby
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+end
+```
+
+### Local State
+
+RBCli's local state storage gives you access to a hash that is automatically persisted to disk when changes are made.
+
+Once configured you can access it with a standard hash syntax:
+
+```ruby
+Rbcli.localstate[:yourkeyhere]
+```
+
+#### Configuration Parameters
+
+```ruby
+Rbcli::Configurate.storage do
+	local_state '/var/mytool/localstate', force_creation: true, ignore_file_errors: false    # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+end
+```
+
+There are three parameters to configure it with:
+* The `path` as a string (self-explanatory)
+* `force_creation`
+	* This will attempt to create the path and file if it does not exist (equivalent to an `mkdir -p` and `touch` in linux)
+* `ignore_file_errors`
+	* RBCli's default behavior is to raise an exception if the file can not be created, read, or updated at any point in time
+	* If this is set to `true`, RBCli will silence any errors pertaining to file access and will fall back to whatever data is available. Note that if this is enabled, changes made to the state may not be persisted to disk.
+		* If creation fails and file does not exist, you start with an empty hash
+		* If file exists but can't be read, you will have an empty hash
+		* If file can be read but not written, the hash will be populated with the data. Writes will be stored in memory while the application is running, but will not be persisted to disk.
+
+
 
 ## Development
 

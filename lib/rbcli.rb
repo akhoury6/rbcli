@@ -6,9 +6,10 @@ require "rbcli/version"
 
 require "rbcli/util"
 
-# TOOLKIT
-require "rbcli/localstorage/localstate"
-# END TOOLKIT
+# STATE TOOLS
+require "rbcli/stateful_systems/configuratestorage"
+require "rbcli/stateful_systems/localstorage/localstate"
+# END STATE TOOLS
 
 require "rbcli/configurate"
 

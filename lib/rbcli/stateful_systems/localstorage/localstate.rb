@@ -1,6 +1,22 @@
 require 'fileutils'
 require 'json'
 
+## Configuration Interface
+module Rbcli::ConfigurateStorage
+	def self.local_state path, force_creation: false, ignore_file_errors: false
+		@data[:localstate] = Rbcli::LocalState.new path, force_creation: force_creation, ignore_file_errors: ignore_file_errors
+	end
+end
+
+## User Interface
+module Rbcli
+	def self.local_state
+		Rbcli::ConfigurateStorage.data[:localstate]
+	end
+end
+
+
+## Local State Class
 class Rbcli::LocalState
 
 	def initialize path, force_creation: false, ignore_file_errors: false
@@ -33,6 +49,11 @@ class Rbcli::LocalState
 		result = @data.delete key, block
 		save
 		result
+	end
+
+	def clear
+		@data = {}
+		save
 	end
 
 	def each &block

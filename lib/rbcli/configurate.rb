@@ -1,4 +1,4 @@
-module Rbcli
+module Rbcli::Configurate
 
 	@data = {
 			scriptname: nil,
@@ -12,7 +12,7 @@ module Rbcli
 			post_hook: nil
 	}
 
-	def self.configurate &block
+	def self.me &block
 		@self_before_instance_eval = eval "self", block.binding
 		instance_eval &block
 	end
@@ -91,4 +91,10 @@ module Rbcli
 		@data
 	end
 
+end
+
+module Rbcli
+	def self.configuration
+		Rbcli::Configurate::configuration
+	end
 end

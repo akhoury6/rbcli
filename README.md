@@ -62,7 +62,7 @@ Creating a new skeleton command is as easy as running `rbcli init <filename>`. I
 ```ruby
 require 'rbcli'
 
-Rbcli::configurate do
+Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]                                     # (Required) This line identifies the tool's executable. You can change it if needed, but this should work for most cases.
 	version '0.1.0'                                                        # (Required) The version number
 	description 'This is my test CLI tool.'                                # (Requierd) A description that will appear when the user looks at the help with -h. This can be as long as needed.

@@ -34,6 +34,10 @@ Rbcli::Configurate.me do
 	post_hook do |opts|                                                    # (Optional) Allows providing a block of code that runs after any command
 		puts 'This is a post-command hook. It executes after the command.'
 	end
+
+	first_run halt_after_running: true do                                  # (Optional) Allows providing a block of code that executes the first time that the application is run on a given system. If `halt_after_running` is set to `true` then parsing will not continue after this code is executed. All subsequent runs will not execute this code.
+		puts "This is the first time the mytool command is run! Don't forget to generate a config file with the `-g` option before continuing."
+	end
 end
 
 ###############################

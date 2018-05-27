@@ -59,6 +59,20 @@ end
 
 module Rbcli
 	def self.parse
-		Rbcli::Parser::parse
+		if Rbcli.configuration[:first_run]
+			if Rbcli.local_state
+				if Rbcli.local_state.rbclidata.key? :first_run
+					Rbcli::Parser::parse
+				else
+					Rbcli.configuration[:first_run].call
+					Rbcli.local_state.set_rbclidata :first_run, true
+					Rbcli::Parser::parse unless Rbcli.configuration[:halt_after_first_run]
+				end
+			else
+				raise StandardError.new "Error: Can not use `first_run` without also configuring `local_state`."
+			end
+		else
+			Rbcli::Parser::parse
+		end
 	end
 end

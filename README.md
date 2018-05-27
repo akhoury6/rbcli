@@ -10,6 +10,8 @@ Some of its key features include:
 
 * __Config File Generation__: Easily piece together a default configuration even with declarations in different parts of the code. Then the user can generate their own configuration, and it gets stored in whatever location you'd like.
 
+* __Multiple Hooks and Entry Points__: Define commands, pre-execution hooks, post-execution hooks, and first_run hooks to quickly and easily customize the flow of your application code.
+
 * __Logging__: Keep track of all instances of your tool through logging. Logs can go to STDOUT, STDERR, or a given file, making them compatible with log aggregators such as Splunk, Logstash, and many others.
 
 * __Local State Storage__: Easily manage a set of data that persists between runs. You get access to a hash that is automatically kept in-sync with a file on disk.
@@ -72,7 +74,7 @@ Rbcli::configurate do
 	config_defaults 'defaults.yml'                                         # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
 	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
-option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
+	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
 
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
@@ -85,6 +87,10 @@ option :name, 'Give me your name', type: :string, default: 'Foo', required: fals
 
 	post_hook do |opts|                                                    # (Optional) Allows providing a block of code that runs after any command
 		puts 'This is a post-command hook. It executes after the command.'
+	end
+
+	first_run halt_after_running: true do                                  # (Optional) Allows providing a block of code that executes the first time that the application is run on a given system. If `halt_after_running` is set to `true` then parsing will not continue after this code is executed. All subsequent runs will not execute this code.
+		puts "This is the first time the mytool command is run! Don't forget to generate a config file with the `-g` option before continuing."
 	end
 end
 ```
@@ -233,9 +239,9 @@ Once configured you can access it with a standard hash syntax:
 Rbcli.localstate[:yourkeyhere]
 ```
 
-For performance reasons, the only methods available for use are `=` (assignment operator), `delete`, and `each`.
+For performance reasons, the only methods available for use are `=` (assignment operator), `delete`, `each`, and `key?`. Also, the `clear` method has been added, which resets the data back to an empty hash. Keys are accessed via either symbols or strings indifferently.
 
-Note that every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.
+Every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.
 
 #### Configuration Parameters
 

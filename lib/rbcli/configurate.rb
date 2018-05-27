@@ -9,7 +9,9 @@ module Rbcli::Configurate
 			options: {},
 			default_action: nil,
 			pre_hook: nil,
-			post_hook: nil
+			post_hook: nil,
+			first_run: nil,
+			halt_after_first_run: false
 	}
 
 	def self.me &block
@@ -82,6 +84,11 @@ module Rbcli::Configurate
 
 	def self.post_hook &block
 		@data[:post_hook] = block
+	end
+
+	def self.first_run halt_after_running: false, &block
+		@data[:halt_after_first_run] = halt_after_running
+		@data[:first_run] = block
 	end
 
 	##

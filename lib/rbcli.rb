@@ -8,7 +8,9 @@ require "rbcli/util"
 
 # STATE TOOLS
 require "rbcli/stateful_systems/configuratestorage"
-require "rbcli/stateful_systems/localstorage/localstate"
+require "rbcli/stateful_systems/state_storage"
+require "rbcli/stateful_systems/storagetypes/localstate"
+#require "rbcli/stateful_systems/storagetypes/remotestate"
 # END STATE TOOLS
 
 require "rbcli/configurate"

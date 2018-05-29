@@ -114,7 +114,8 @@ module Rbcli::Config
 	end
 
 	def self.generate_userconf filename
-		filepath = "#{(filename) ? filename : "#{Dir.pwd}/config.yml"}"
+		filepath = File.expand_path "#{(filename) ? filename : "#{Dir.pwd}/config.yml"}"
+		FileUtils.touch filepath
 		File.write filepath, @config_text
 		File.open(filepath, 'a') do |f|
 			f.puts "# Individual Settings"
@@ -128,7 +129,7 @@ module Rbcli::Config
 				text += "\n# #{opts[:description]}\n"
 				text += "#{name.to_s}:\n"
 				opts[:config].each do |opt, v|
-					text += "  #{opt.to_s}: #{v[:value]}".ljust(30) + " # #{v[:description]}\n"
+					text += "  #{opt.to_s}: #{(v[:value].nil?) ? '~' : v[:value]}".ljust(30) + " # #{v[:description]}\n"
 				end
 			end
 			File.open(filepath, 'a') do |f|

@@ -6,8 +6,7 @@ module Rbcli::ConfigurateStorage
 	@data[:localstate] = nil
 
 	def self.local_state path, force_creation: false, halt_on_error: false
-		#@data[:localstate] = Rbcli::LocalState.new path, force_creation: force_creation, halt_on_error: halt_on_error
-		@data[:localstate] = Rbcli::State::StateStorage.include(Rbcli::State::LocalStorage).new(path, force_creation: force_creation, halt_on_error: halt_on_error)
+		@data[:localstate] = Rbcli::State::LocalStorage.new(path, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
 end
 
@@ -21,13 +20,17 @@ end
 ## Local State Module
 module Rbcli::State
 
-	module LocalStorage
+	class LocalStorage < StateStorage
 
-		def file_exists?
+		def state_subsystem_init
+			@path = File.expand_path @path
+		end
+
+		def state_exists?
 			File.exists? @path
 		end
 
-		def create_file
+		def create_state
 			begin
 				FileUtils.mkdir_p File.dirname(@path)
 				FileUtils.touch @path
@@ -36,7 +39,7 @@ module Rbcli::State
 			end
 		end
 
-		def load
+		def load_state
 			begin
 				@data = JSON.parse(File.read(@path)).deep_symbolize!
 			rescue Errno::ENOENT, Errno::EACCES => e
@@ -44,7 +47,7 @@ module Rbcli::State
 			end
 		end
 
-		def save
+		def save_state
 			begin
 				File.write @path, JSON.dump(@data)
 			rescue Errno::ENOENT, Errno::EACCES => e
@@ -58,7 +61,5 @@ module Rbcli::State
 
 		class LocalStateError < StandardError; end
 	end
-
-
 
 end

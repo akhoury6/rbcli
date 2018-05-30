@@ -5,6 +5,8 @@ PATH
       aws-sdk-dynamodb (~> 1.6)
       colorize (~> 0.8)
       deep_merge (~> 1.2)
+      macaddr (~> 1.7)
+      rufus-scheduler (~> 3.5)
 
 GEM
   remote: https://rubygems.org/
@@ -22,9 +24,23 @@ GEM
     aws-sigv4 (1.0.2)
     colorize (0.8.1)
     deep_merge (1.2.1)
+    et-orbi (1.1.2)
+      tzinfo
+    fugit (1.1.1)
+      et-orbi (~> 1.1, >= 1.1.1)
+      raabro (~> 1.1)
     jmespath (1.4.0)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
     minitest (5.11.3)
+    raabro (1.1.5)
     rake (10.5.0)
+    rufus-scheduler (3.5.0)
+      fugit (~> 1.1, >= 1.1.1)
+    systemu (2.6.5)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
 
 PLATFORMS
   ruby

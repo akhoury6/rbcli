@@ -1,4 +1,7 @@
 require 'aws-sdk-dynamodb'
+require 'macaddr'
+require 'digest/sha2'
+require 'rufus-scheduler'
 
 module Rbcli::State::RemoteConnectors
 	class DynamoDB
@@ -16,10 +19,13 @@ module Rbcli::State::RemoteConnectors
 			}
 		end
 
-		def initialize dynamodb_table, region, aws_access_key_id, aws_secret_access_key
+		def initialize dynamodb_table, region, aws_access_key_id, aws_secret_access_key, locking: false, lock_timeout: 60
 			@region = region
 			@dynamo_table_name = dynamodb_table
 			@item_name = Rbcli::configuration[:scriptname]
+			@locking = locking
+			@scheduler = nil
+			@lock_timeout = lock_timeout
 
 			@dynamo_client = Aws::DynamoDB::Client.new(
 					region: @region,
@@ -76,6 +82,7 @@ module Rbcli::State::RemoteConnectors
 		end
 
 		def get_object
+			lock_or_wait
 			item = @dynamo_client.get_item(
 					{
 							key: {'Script Name' => @item_name},
@@ -87,6 +94,8 @@ module Rbcli::State::RemoteConnectors
 		end
 
 		def save_object datahash
+			raise StandardError "DynamoDB has been locked by another user since the last change. Please try again later." if locked?
+			lock_or_wait
 			@dynamo_client.put_item(
 					{
 							table_name: @dynamo_table_name,
@@ -94,6 +103,108 @@ module Rbcli::State::RemoteConnectors
 					}
 			)
 		end
+
+		def lock
+			@dynamo_client.put_item(
+					{
+							table_name: @dynamo_table_name,
+							item: {
+									'Script Name' => "#{@item_name}_lock",
+									'locked' => true,
+									'locked_until' => (Time.now + @lock_timeout).getutc.strftime('%s'),
+									'locked_by' => Digest::SHA2.hexdigest(Mac.addr)
+							}
+					}
+			)
+		end
+
+		def unlock
+			@dynamo_client.put_item(
+					{
+							table_name: @dynamo_table_name,
+							item: {
+									'Script Name' => "#{@item_name}_lock",
+									'locked' => false,
+									'locked_until' => Time.now.getutc.strftime('%s'),
+									'locked_by' => false
+							}
+					}
+			)
+			@scheduler.shutdown :kill if @scheduler
+			@scheduler = nil
+		end
+
+		def locked?
+			lockdata = get_lockdata
+			(lockdata['locked']) and (lockdata['locked_until'].to_i > Time.now.getutc.to_i) and (lockdata['locked_by'] != Digest::SHA2.hexdigest(Mac.addr))
+		end
+
+		def lock_or_wait recursed = false
+			return true unless @locking
+			delay_in_seconds = 2
+			lockdata = get_lockdata
+
+			should_claim = false
+
+			# First, we identify if the lock is active
+			if lockdata['locked']
+				# If the lock is not ours, we have to check the expiration
+				if lockdata['locked_by'] != Digest::SHA2.hexdigest(Mac.addr)
+					# If the lock is not ours, and it has expired, we claim it
+					if lockdata['locked_until'].to_i < Time.now.getutc.to_i
+						should_claim = true
+						# If the lock data is not ours and has not expired, we wait and try again
+					else
+						print 'Acquiring lock on DynamoDB. Please wait..' unless recursed
+						print '.'
+						sleep delay_in_seconds
+						lock_or_wait true
+					end
+
+					# If the lock is ours, we check the expiry
+				else
+					# If the lock is ours and is close to expiry or has expired, we refresh it
+					if lockdata['locked_until'].to_i < (Time.now - (@lock_timeout / 10)).getutc.to_i
+						should_claim = true
+						# If the lock is ours and is not near expiry, do nothing
+					else
+						# Do nothing! But do finish the string that's shown to the user
+						puts 'done!' if recursed
+					end
+				end
+			else # If clearly unlocked, we claim it
+				should_claim = true
+			end
+
+
+			if should_claim
+				# We attempt to get a lock then validate our success
+				lock
+				# If we succeeded then we set up a scheduler to ensure we keep it
+				lockdata = get_lockdata
+				if (lockdata['locked_by'] == Digest::SHA2.hexdigest(Mac.addr)) and (lockdata['locked_until'].to_i > Time.now.getutc.to_i)
+					# Of course, if the scheduler already exists, we don't bother
+					unless @scheduler
+						@scheduler ||= Rufus::Scheduler.new
+						@scheduler.every "#{@lock_timeout - 2}s" do
+							lock
+						end
+						# We also make sure we release the lock at exit. In case this doesn't happen, the lock will expire on its own
+						at_exit do
+							unlock
+						end
+					end
+					puts 'done!' if recursed
+					# If we failed locking then we need to try the process all over again
+				else
+					print 'Error: Failed to lock DynamoDB. Retrying...'
+					sleep delay_in_seconds
+					lock_or_wait true
+				end
+
+			end
+
+		end # END lock_or_wait
 
 		private
 
@@ -114,6 +225,15 @@ module Rbcli::State::RemoteConnectors
 				end
 			end
 			puts "done!"
+		end
+
+		def get_lockdata
+			@dynamo_client.get_item(
+					{
+							key: {'Script Name' => "#{@item_name}_lock"},
+							table_name: @dynamo_table_name,
+					}
+			).item
 		end
 
 	end

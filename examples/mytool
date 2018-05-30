@@ -47,8 +47,8 @@ end
 # are configured here.
 ###############################
 Rbcli::Configurate.storage do
-	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                   # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
-	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true       # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
+	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                                   # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: :auto       # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state. Locking can be one of (:manual :auto :none) -- see the README for details
 end
 
 #########################

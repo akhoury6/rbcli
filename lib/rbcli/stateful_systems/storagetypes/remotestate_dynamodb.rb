@@ -3,11 +3,12 @@ module Rbcli::ConfigurateStorage
 	@data[:remotestate] = nil
 	@data[:remotestate_init_params] = nil
 
-	def self.remote_state_dynamodb table_name: nil, region: nil, force_creation: false, halt_on_error: true
+	def self.remote_state_dynamodb table_name: nil, region: nil, force_creation: false, halt_on_error: true, locking: false
 		raise StandardError "Must decalre `table_name` and `region` to use remote_state_dynamodb" if table_name.nil? or region.nil?
 		@data[:remotestate_init_params] = {
 				dynamodb_table: table_name,
-				region: region
+				region: region,
+				locking: locking
 		}
 		@data[:remotestate] = Rbcli::State::DynamoDBStorage.new(table_name, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
@@ -37,6 +38,7 @@ module Rbcli::State
 		# end
 
 		def state_subsystem_init
+			@locking = Rbcli::ConfigurateStorage::data[:remotestate_init_params][:locking]
 			dynamodb_table = Rbcli::ConfigurateStorage::data[:remotestate_init_params][:dynamodb_table]
 			region = Rbcli::ConfigurateStorage::data[:remotestate_init_params][:region]
 
@@ -44,7 +46,7 @@ module Rbcli::State
 			Rbcli::State::RemoteConnectors::DynamoDB.save_defaults
 
 			# Create DynamoDB Connector
-			@dynamodb = Rbcli::State::RemoteConnectors::DynamoDB.new dynamodb_table, region, Rbcli::config[:aws_access_key_id], Rbcli::config[:aws_secret_access_key]
+			@dynamodb = Rbcli::State::RemoteConnectors::DynamoDB.new dynamodb_table, region, Rbcli::config[:aws_access_key_id], Rbcli::config[:aws_secret_access_key], locking: Rbcli::ConfigurateStorage::data[:remotestate_init_params][:locking]
 		end
 
 		def state_exists?
@@ -68,6 +70,14 @@ module Rbcli::State
 			make_dynamo_call do
 				@dynamodb.save_object @data
 			end
+		end
+
+		def lock
+			@dynamodb.lock_or_wait if @locking
+		end
+
+		def unlock
+			@dynamodb.unlock if @locking
 		end
 
 		def error text

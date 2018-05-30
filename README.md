@@ -18,6 +18,7 @@ Some of its key features include:
 
 * __Remote State__: It works just like Local State Storage, but store the data on a remote server! It can be used in tandem with Local State Storage or on its own. Currently supports AWS DyanmoDB.  
 
+* __State Locking and Sharing__: Share remote state safely between users with built-in locking! When enabled, it makes sure that only one user is accessing the data at any given time.
 
 ## Installation
 
@@ -118,8 +119,8 @@ Once parsed, options will be placed in a hash where they can be accessed via the
 
 ```ruby
 Rbcli::Configurate.storage do
-	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                   # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.local_state[:yourkeyhere]
-	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true       # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
+	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                                     # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.local_state[:yourkeyhere]
+	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: true          # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
 end
 ```
 
@@ -231,8 +232,8 @@ logger:
 
 ```ruby
 Rbcli::Configurate.storage do
-	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                   # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.local_state[:yourkeyhere]
-	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true       # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
+	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                                   # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.local_state[:yourkeyhere]
+	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: true        # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
 end
 ```
 
@@ -269,7 +270,7 @@ There are three parameters to configure it with:
 		* If file exists but can't be read, you will have an empty hash
 		* If file can be read but not written, the hash will be populated with the data. Writes will be stored in memory while the application is running, but will not be persisted to disk.
 
-### Remote State & Sharing
+### <a name="remote_state">Remote State
 
 RBCli's remote state storage gives you access to a hash that is automatically persisted to a remote storage location when changes are made. It has locking built-in, meaning that multiple users may share remote state without any data consistency issues!
 
@@ -293,7 +294,7 @@ For more information about generating and storing AWS credentials, see [Configur
 
 ```ruby
 Rbcli::Configurate.storage do
-	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true       # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
+	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: true        # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
 end
 ```
 
@@ -307,7 +308,22 @@ These are the parameters:
 * `halt_on_error`
 	* Similar to the way [Local State](#local_state) works, setting this to `false` will silence any errors in connecting to the DynamoDB table. Instead, your application will simply have access to an empty hash that does not get persisted anywhere.
 	* This is good for use cases that involve using this storage as a cache to "pick up where you left off in case of failure", where a connection error might mean the feature doesn't work but its not important enough to interrupt the user.
+* `locking`
+	* This enables locking, for when you are sharing state between different instances of the application. For more information see the [section below](#distributed_locking).
 
+#### <a name="distributed_locking">Distributed Locking and State Sharing
+
+Distributed Locking allows a remote state to be shared among multiple users of the application without risk of data corruption. To use it, simply set the  `locking:` parameter to `true` when enabling remote state (see above).
+
+This is how locking works:
+
+1. The application attempts to acquire a lock on the remote state when it starts
+2. If the backend is locked by a different application, wait and try again
+3. If it succeeds, the lock is held and refreshed periodically
+4. When the application exits, the lock is released
+5. If the application does not refresh its lock, or fails to release it when it exits, the lock will automatically expire within 60 seconds
+6. If another application steals the lock (unlikely but possible), and the application tries to save data, a `StandardError` will be thrown
+7. You can manually attempt to lock/unlock by calling `Rbcli.remote_state.lock` or `Rbcli.remote_state.unlock`, respectively.
 
 ## Development
 

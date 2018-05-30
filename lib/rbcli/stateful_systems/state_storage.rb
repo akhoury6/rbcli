@@ -47,6 +47,10 @@ module Rbcli::State
 			result
 		end
 
+		def refresh
+			load_state
+		end
+
 		def clear
 			@data[:data] = {}
 			save_state

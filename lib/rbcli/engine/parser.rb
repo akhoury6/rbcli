@@ -48,7 +48,7 @@ Commands:
 
 			Rbcli.configuration[:pre_hook].call @cliopts unless Rbcli.configuration[:pre_hook].nil?
 			Rbcli::Command.runcmd(@cmd.shift, @cmd[0], @cliopts)
-			Rbcli.configuration[:post_hook].call @cliopts unless Rbcli.configuration[:pre_hook].nil?
+			Rbcli.configuration[:post_hook].call @cliopts unless Rbcli.configuration[:post_hook].nil?
 		else
 			Trollop::die "Unknown subcommand #{@cmd[0].inspect}"
 		end

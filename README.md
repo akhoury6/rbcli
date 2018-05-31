@@ -247,7 +247,25 @@ Once configured you can access it with a standard hash syntax:
 Rbcli.local_state[:yourkeyhere]
 ```
 
-For performance reasons, the only methods available for use are `=` (assignment operator), `delete`, `each`, and `key?`. Also, the `clear` method has been added, which resets the data back to an empty hash. Keys are accessed via either symbols or strings indifferently.
+For performance reasons, the only methods available for use are:
+
+Hash native methods:
+
+* `[]` (Regular hash syntax. Keys are accessed via either symbols or strings indifferently.)
+* `[]=` (Assignment operator)
+* `delete`
+* `each`
+* `key?`
+
+Additional methods:
+
+* `clear`
+	* Resets the data back to an empty hash.
+* `refresh`
+	* Loads the most current version of the data from the disk
+* `disconnect`
+	* Removes the data from memory and sets `Rbcli.local_state = nil`. Data will be read from disk again on next access.
+
 
 Every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.
 
@@ -281,6 +299,8 @@ Rbcli.remote_state[:yourkeyhere]
 ```
 
 This works the same way that [Local State](#local_state) does, with the same performance caveats (try not to do many writes!).
+
+Note that all state in Rbcli is __lazy-loaded__, so no connections will be made until your code attempts to access the data.
 
 #### DynamoDB Configuration
 
@@ -317,13 +337,27 @@ Distributed Locking allows a remote state to be shared among multiple users of t
 
 This is how locking works:
 
-1. The application attempts to acquire a lock on the remote state when it starts
+1. The application attempts to acquire a lock on the remote state when you first access it
 2. If the backend is locked by a different application, wait and try again
 3. If it succeeds, the lock is held and refreshed periodically
 4. When the application exits, the lock is released
 5. If the application does not refresh its lock, or fails to release it when it exits, the lock will automatically expire within 60 seconds
 6. If another application steals the lock (unlikely but possible), and the application tries to save data, a `StandardError` will be thrown
 7. You can manually attempt to lock/unlock by calling `Rbcli.remote_state.lock` or `Rbcli.remote_state.unlock`, respectively.
+
+##### Auto-locking vs Manual Locking
+
+Remember: all state in Rbcli is lazy-loaded. Therefore, RBCli wll only attempt to lock the data when you first try to access it. If you need to make sure that the data is locked before executing a block of code, use:
+
+```ruby
+Rbcli.remote_state.refresh
+```
+
+to force the lock and retrieve the latest data. You can force an unlock by calling:
+
+```ruby
+Rbcli.remote_state.disconnect
+```
 
 ## Development
 

@@ -204,7 +204,9 @@ module Rbcli::State::RemoteConnectors
 
 			end
 
-		end # END lock_or_wait
+		end
+
+		# END lock_or_wait
 
 		private
 
@@ -228,12 +230,17 @@ module Rbcli::State::RemoteConnectors
 		end
 
 		def get_lockdata
-			@dynamo_client.get_item(
+			item = @dynamo_client.get_item(
 					{
 							key: {'Script Name' => "#{@item_name}_lock"},
-							table_name: @dynamo_table_name,
+							table_name: @dynamo_table_name
 					}
 			).item
+			if item.nil?
+				lock
+				return get_lockdata
+			end
+			item
 		end
 
 	end

@@ -82,11 +82,13 @@ module Rbcli::State
 		# For framework's internal use
 
 		def rbclidata key = nil
+			state_create unless @loaded
 			return @data[:rbcli][key.to_sym] unless key.nil?
 			@data[:rbcli]
 		end
 
 		def set_rbclidata key, value
+			state_create unless @loaded
 			@data[:rbcli][key.to_sym] = value
 			save_state
 		end

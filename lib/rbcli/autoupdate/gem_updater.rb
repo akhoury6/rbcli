@@ -5,10 +5,9 @@ module Rbcli::Autoupdate
 	class GemUpdater
 		include Common
 
-		def initialize gemname, this_version, force_update
+		def initialize gemname, force_update
 			@gemname = gemname
 			@uri = URI.parse "https://rubygems.org/api/v1/versions/#{gemname}/latest.json"
-			@this_version = this_version
 			@force_update = force_update
 		end
 

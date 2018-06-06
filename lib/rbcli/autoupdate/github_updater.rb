@@ -4,9 +4,8 @@ module Rbcli::Autoupdate
 	class GithubUpdater
 		include Common
 
-		def initialize reponame, access_token, enterprise_hostname, this_version, force_update
+		def initialize reponame, access_token, enterprise_hostname, force_update
 			@reponame = reponame
-			@this_version = this_version
 			@force_update = force_update
 
 			access_token = Rbcli.config.key?(:github_updatecheck) ? (Rbcli.config[:github_updatecheck][:access_token] || access_token) : access_token

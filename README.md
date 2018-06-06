@@ -82,8 +82,8 @@ Rbcli::Configurate.me do
 
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
 
-	autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
-	autoupdate gem: 'rbcli', this_version: Rbcli::VERSION, force_update: false                                                                  # (Optional) Check for updates to this application through RubyGems.org.
+	autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
+	autoupdate gem: 'rbcli', force_update: false                                                                  # (Optional) Check for updates to this application through RubyGems.org.
 
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
@@ -374,10 +374,10 @@ Two sources are currently supported: Github (including Enterprise) and RubyGems.
 
 The GitHub update check works best when paired with GitHub's best practices on releases. See here: https://help.github.com/articles/creating-releases/
 
-RBCli will check your github repo's tags and compare that version number with one embedded into your code. In this example, we are leveraging the version number that we also use for RBCli's gemspec:
+RBCli will check your github repo's tags and compare that version number with one you configured Rbcli with.
 
 ```ruby
-autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
+autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
 ``` 
 The `github_repo` should point to the repo using the `user/repo` syntax. 
 
@@ -385,21 +385,17 @@ The `access_token` can be overridden by the user via their configuration file, s
 
 The `enterprise_hostname` setting allows you to point RBCli at a local GitHub Enterprise server.
 
-The `this_version` parameter should be set to the current version of the tool that the user is running. Here we leverage the default version location that is used for the RBCli gem itself. In your tool, you should replace this with your own version number.
-
 Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
 
 ### Rubygems.org Update Check
 
-The Rubygems update check will check if there is a new published version of the gem on Rubygems.org.
+The Rubygems update check will check if there is a new published version of the gem on Rubygems.org. The latest published version is compared to the version number you configured RBCli with.
 
 ```ruby
-autoupdate gem: 'rbcli', this_version: Rbcli::VERSION, force_update: false   # (Optional) Check for updates to this application through RubyGems.org.
+autoupdate gem: 'rbcli', force_update: false   # (Optional) Check for updates to this application through RubyGems.org.
 ```
 
 The `gem` parameter should simply state the name of the gem.
-
-The `this_version` parameter should be set to the current version of the tool that the user is running. Here we leverage the default version location that is used for the RBCli gem itself. In your tool, you should replace this with your own version number.
  
 Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
 

@@ -3,7 +3,7 @@ module Rbcli::Configurate
 		raise StandardError.new "Autoupdater can not have both a gem and git target defined. Please pick one." if gem and giturl
 		raise StandardError.new "Only one autoupdater can be defined." if @data[:autoupdater]
 		if gem
-			Rbcli::Autoupdate::GemUpdater.save_defaults
+			#Rbcli::Autoupdate::GemUpdater.save_defaults
 			@data[:autoupdater] = Rbcli::Autoupdate::GemUpdater.new gem, this_version, force_update
 		else
 			Rbcli::Autoupdate::GithubUpdater.save_defaults
@@ -42,5 +42,5 @@ module Rbcli::Autoupdate
 	end
 end
 
-#require "rbcli/autoupdate/gem_updater"
+require "rbcli/autoupdate/gem_updater"
 require "rbcli/autoupdate/github_updater"

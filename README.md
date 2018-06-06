@@ -20,6 +20,8 @@ Some of its key features include:
 
 * __State Locking and Sharing__: Share remote state safely between users with built-in locking! When enabled, it makes sure that only one user is accessing the data at any given time.
 
+* __Automatic Update Notifications__: Just provide the gem name or git repo, and RBCli will take care of notifying users!
+
 ## Installation
 
 RBCli is available on rubygems.org. You can add it to your application's `Gemrile` or `gemspec`, or install it manually via `gem install rbcli`.
@@ -79,6 +81,8 @@ Rbcli::Configurate.me do
 	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
+
+	autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
 
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
@@ -358,6 +362,30 @@ to force the lock and retrieve the latest data. You can force an unlock by calli
 ```ruby
 Rbcli.remote_state.disconnect
 ```
+
+## Automatic Update Check
+
+RBCli can automatically notify users when an update is available. If `force_update` is set (see below), RBCli can halt execution until the user updates their application.
+
+Two sources are currently supported: Github (including Enterprise) and RubyGems.
+
+### GitHub Update Check
+
+The GitHub update check works best when paired with GitHub's best practices on releases. See here: https://help.github.com/articles/creating-releases/
+
+RBCli will check your github repo's tags and compare that version number with one embedded into your code. In this example, we are leveraging the version number that we also use for RBCli's gemspec:
+
+```ruby
+autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
+``` 
+The `github_repo` should point to the repo using the `user/repo` syntax. 
+
+The `access_token` can be overridden by the user via their configuration file, so it can be left as `nil`. The token is not needed at all if using a public repo. For instructions on generating a new access token, see [here](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). 
+
+The `enterprise_hostname` setting allows you to point RBCli at a local GitHub Enterprise server.
+
+Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
+
 
 ## Development
 

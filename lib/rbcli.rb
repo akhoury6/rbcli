@@ -13,6 +13,10 @@ require "rbcli/stateful_systems/storagetypes/localstate"
 require "rbcli/stateful_systems/storagetypes/remotestate_dynamodb"
 # END STATE TOOLS
 
+# AUTOUPDATE
+require "rbcli/autoupdate/autoupdate"
+# END AUTOUPDATE
+
 require "rbcli/configurate"
 
 require "rbcli/engine/command"

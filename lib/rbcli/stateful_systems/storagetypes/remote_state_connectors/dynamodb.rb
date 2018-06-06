@@ -26,6 +26,8 @@ module Rbcli::State::RemoteConnectors
 			@locking = locking
 			@scheduler = nil
 			@lock_timeout = lock_timeout
+			@exit_code_set = false
+			@should_unlock_at_exit = false
 
 			@dynamo_client = Aws::DynamoDB::Client.new(
 					region: @region,
@@ -131,6 +133,7 @@ module Rbcli::State::RemoteConnectors
 					}
 			)
 			@scheduler.shutdown :kill if @scheduler
+			@should_unlock_at_exit = false
 			@scheduler = nil
 		end
 
@@ -190,8 +193,10 @@ module Rbcli::State::RemoteConnectors
 							lock
 						end
 						# We also make sure we release the lock at exit. In case this doesn't happen, the lock will expire on its own
-						at_exit do
-							unlock
+						@should_unlock_at_exit = true
+						unless @exit_code_set
+							at_exit {unlock if @should_unlock_at_exit}
+							@exit_code_set = true
 						end
 					end
 					puts 'done!' if recursed
@@ -204,7 +209,9 @@ module Rbcli::State::RemoteConnectors
 
 			end
 
-		end # END lock_or_wait
+		end
+
+		# END lock_or_wait
 
 		private
 
@@ -228,12 +235,17 @@ module Rbcli::State::RemoteConnectors
 		end
 
 		def get_lockdata
-			@dynamo_client.get_item(
+			item = @dynamo_client.get_item(
 					{
 							key: {'Script Name' => "#{@item_name}_lock"},
-							table_name: @dynamo_table_name,
+							table_name: @dynamo_table_name
 					}
 			).item
+			if item.nil?
+				lock
+				return get_lockdata
+			end
+			item
 		end
 
 	end

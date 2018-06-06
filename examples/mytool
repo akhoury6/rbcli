@@ -22,6 +22,9 @@ Rbcli::Configurate.me do
 
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
 
+	autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
+	autoupdate gem: 'rbcli', this_version: Rbcli::VERSION, force_update: false                                                                  # (Optional) Check for updates to this application through RubyGems.org.
+
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
 		puts "To see the help, use -h"

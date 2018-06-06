@@ -20,6 +20,8 @@ Some of its key features include:
 
 * __State Locking and Sharing__: Share remote state safely between users with built-in locking! When enabled, it makes sure that only one user is accessing the data at any given time.
 
+* __Automatic Update Notifications__: Just provide the gem name or git repo, and RBCli will take care of notifying users!
+
 ## Installation
 
 RBCli is available on rubygems.org. You can add it to your application's `Gemrile` or `gemspec`, or install it manually via `gem install rbcli`.
@@ -79,6 +81,9 @@ Rbcli::Configurate.me do
 	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
+
+	autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
+	autoupdate gem: 'rbcli', this_version: Rbcli::VERSION, force_update: false                                                                  # (Optional) Check for updates to this application through RubyGems.org.
 
 	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
 		puts "Hello, #{opts[:name]}."
@@ -247,7 +252,25 @@ Once configured you can access it with a standard hash syntax:
 Rbcli.local_state[:yourkeyhere]
 ```
 
-For performance reasons, the only methods available for use are `=` (assignment operator), `delete`, `each`, and `key?`. Also, the `clear` method has been added, which resets the data back to an empty hash. Keys are accessed via either symbols or strings indifferently.
+For performance reasons, the only methods available for use are:
+
+Hash native methods:
+
+* `[]` (Regular hash syntax. Keys are accessed via either symbols or strings indifferently.)
+* `[]=` (Assignment operator)
+* `delete`
+* `each`
+* `key?`
+
+Additional methods:
+
+* `clear`
+	* Resets the data back to an empty hash.
+* `refresh`
+	* Loads the most current version of the data from the disk
+* `disconnect`
+	* Removes the data from memory and sets `Rbcli.local_state = nil`. Data will be read from disk again on next access.
+
 
 Every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.
 
@@ -281,6 +304,8 @@ Rbcli.remote_state[:yourkeyhere]
 ```
 
 This works the same way that [Local State](#local_state) does, with the same performance caveats (try not to do many writes!).
+
+Note that all state in Rbcli is __lazy-loaded__, so no connections will be made until your code attempts to access the data.
 
 #### DynamoDB Configuration
 
@@ -317,13 +342,66 @@ Distributed Locking allows a remote state to be shared among multiple users of t
 
 This is how locking works:
 
-1. The application attempts to acquire a lock on the remote state when it starts
+1. The application attempts to acquire a lock on the remote state when you first access it
 2. If the backend is locked by a different application, wait and try again
 3. If it succeeds, the lock is held and refreshed periodically
 4. When the application exits, the lock is released
 5. If the application does not refresh its lock, or fails to release it when it exits, the lock will automatically expire within 60 seconds
 6. If another application steals the lock (unlikely but possible), and the application tries to save data, a `StandardError` will be thrown
 7. You can manually attempt to lock/unlock by calling `Rbcli.remote_state.lock` or `Rbcli.remote_state.unlock`, respectively.
+
+##### Auto-locking vs Manual Locking
+
+Remember: all state in Rbcli is lazy-loaded. Therefore, RBCli wll only attempt to lock the data when you first try to access it. If you need to make sure that the data is locked before executing a block of code, use:
+
+```ruby
+Rbcli.remote_state.refresh
+```
+
+to force the lock and retrieve the latest data. You can force an unlock by calling:
+
+```ruby
+Rbcli.remote_state.disconnect
+```
+
+## Automatic Update Check
+
+RBCli can automatically notify users when an update is available. If `force_update` is set (see below), RBCli can halt execution until the user updates their application.
+
+Two sources are currently supported: Github (including Enterprise) and RubyGems.
+
+### GitHub Update Check
+
+The GitHub update check works best when paired with GitHub's best practices on releases. See here: https://help.github.com/articles/creating-releases/
+
+RBCli will check your github repo's tags and compare that version number with one embedded into your code. In this example, we are leveraging the version number that we also use for RBCli's gemspec:
+
+```ruby
+autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, this_version: Rbcli::VERSION, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
+``` 
+The `github_repo` should point to the repo using the `user/repo` syntax. 
+
+The `access_token` can be overridden by the user via their configuration file, so it can be left as `nil`. The token is not needed at all if using a public repo. For instructions on generating a new access token, see [here](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). 
+
+The `enterprise_hostname` setting allows you to point RBCli at a local GitHub Enterprise server.
+
+The `this_version` parameter should be set to the current version of the tool that the user is running. Here we leverage the default version location that is used for the RBCli gem itself. In your tool, you should replace this with your own version number.
+
+Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
+
+### Rubygems.org Update Check
+
+The Rubygems update check will check if there is a new published version of the gem on Rubygems.org.
+
+```ruby
+autoupdate gem: 'rbcli', this_version: Rbcli::VERSION, force_update: false   # (Optional) Check for updates to this application through RubyGems.org.
+```
+
+The `gem` parameter should simply state the name of the gem.
+
+The `this_version` parameter should be set to the current version of the tool that the user is running. Here we leverage the default version location that is used for the RBCli gem itself. In your tool, you should replace this with your own version number.
+ 
+Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
 
 ## Development
 

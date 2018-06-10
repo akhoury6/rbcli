@@ -12,8 +12,12 @@ module Rbcli::Autoupdate
 		end
 
 		def get_latest_version
-			response = Net::HTTP.get(@uri)
-			JSON.parse(response)['version']
+			begin
+				response = Net::HTTP.get(@uri)
+				JSON.parse(response)['version']
+			rescue SocketError => e
+				# Capture connection errors
+			end
 		end
 
 		def update_message

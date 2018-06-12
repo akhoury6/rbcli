@@ -24,7 +24,12 @@ module Rbcli::Autoupdate
 		end
 
 		def get_latest_version
-			@client.repo(@reponame).rels[:tags].get.data.map{ |t| t[:name] }[0].sub(/^[v]*/,"")
+			begin
+				@client.repo(@reponame).rels[:tags].get.data.map{ |t| t[:name] }[0].sub(/^[v]*/,"")
+			rescue Faraday::ConnectionFailed => e
+				# This is to capture connection errors without bothering the user.
+			end
+
 		end
 
 		def update_message

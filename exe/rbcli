@@ -2,7 +2,7 @@
 
 require 'rbcli'
 
-Rbcli::configurate do
+Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]
 	version Rbcli::VERSION
 	description 'RBCli initialization tool'
@@ -16,15 +16,38 @@ class Init < Rbcli::Command
 	action do |params, args, global_opts, config|
 		src = "#{File.dirname(__FILE__)}/../examples/mytool"
 		dest = "#{Dir.pwd}/#{params[:filename]}"
-		if File.exists? dest
-			puts "File #{params[:filename]} already exists. Please delete and try again."
-		else
-			puts "Generating file #{params[:filename]}..."
-			FileUtils.cp src, dest
-			puts "Done!"
-		end
+		cp_file src, dest
 	end
+end
 
+class Script < Rbcli::Command
+	description 'Initialize a skeleton bash script to use as an RBCli command.'
+	usage 'This will generate a new file in the current folder.'
+	parameter :filename, 'Name of file to generate', type: :string, required: true
+
+	action do |params, args, global_opts, config|
+		src = "#{File.dirname(__FILE__)}/../examples/myscript.sh"
+		dest = "#{Dir.pwd}/#{params[:filename]}"
+		cp_file src, dest, template_vars: {'CMDNAME' => params[:filename].chomp('.sh')}
+	end
+end
+
+def cp_file src, dest, template_vars: nil
+	if File.exists? dest
+		puts "File #{dest} already exists. Please delete it and try again."
+	elsif template_vars
+		print "Generating file #{dest}..."
+		text = File.read src
+		template_vars.each do |k, v|
+			text.gsub! /{{\*\*#{k}\*\*}}/, v
+		end
+		File.open(dest, 'w') { |file| file.write text }
+		puts "Done!"
+	else
+		print "Generating file #{dest}..."
+		FileUtils.cp src, dest
+		puts "Done!"
+	end
 end
 
 Rbcli.parse

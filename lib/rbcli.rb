@@ -36,6 +36,10 @@ require "rbcli/stateful_systems/storagetypes/remotestate_dynamodb"
 require "rbcli/autoupdate/autoupdate"
 # END AUTOUPDATE
 
+# SCRIPT WRAPPER
+require "rbcli/scriptwrapping/scriptwrapper"
+# END SCRIPT WRAPPER
+
 # CORE
 require "rbcli/configuration/configurate"
 require "rbcli/engine/command"

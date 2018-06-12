@@ -24,9 +24,13 @@ Some of its key features include:
 
 * __Automatic Update Notifications__: Just provide the gem name or git repo, and RBCli will take care of notifying users!
 
+* __External Script Wrapping__: High-level wrapping for Bash scripts, or any other applcication you'd like to wrap into a command.
+
+
 ## Installation
 
 RBCli is available on rubygems.org. You can add it to your application's `Gemrile` or `gemspec`, or install it manually via `gem install rbcli`.
+
 
 ## The Basics
 
@@ -55,6 +59,7 @@ mytool show -l
 
 Note that all options and parameters will have both a short and long version of the parameter available for use.
 
+
 ## Getting Started
 
 Creating a new skeleton command is as easy as running `rbcli init <filename>`. It will have these key items:
@@ -63,7 +68,6 @@ Creating a new skeleton command is as easy as running `rbcli init <filename>`. I
 * Storage subsystem configuration (optional)
 * A command declaration
 * The parse command
-
 
 ### Configuration
 
@@ -121,7 +125,6 @@ If you want to declare more than one option, you can call it multiple times. The
 
 Once parsed, options will be placed in a hash where they can be accessed via their names as shown above. You can see this demonstrated in the `default_action`, `pre_hook`, and `post_hook` blocks.
 
-
 ### Storage Configuration (optional)
 
 ```ruby
@@ -146,9 +149,14 @@ class Test < Rbcli::Command                                                     
 	config_defaults 'defaults.yml'                                                     # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
 	config_default :myopt2, description: 'Testing this again', value: true             # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
-	action do |params, args, global_opts, config|                                      # (Required) Block to execute if the command is called.
-		Rbcli::log.info { 'These logs can go to STDERR, STDOUT, or a file' }               # Example log. Interface is identical to Ruby's logger
-		puts "\nArgs:\n#{args}"                    # Arguments that came after the command on the CLI
+	extern path: 'env | grep "^__PARAMS\|^__ARGS\|^__GLOBAL\|^__CONFIG"', envvars: {MYVAR: 'some_value'}     # (Required unless `action` defined) Runs a given application, with optional environment variables, when the user runs the command.
+	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
+		"echo #{params[:force].to_s}__YESSS!!!"
+	end
+
+	action do |params, args, global_opts, config|                                        # (Required unless `extern` defined) Block to execute if the command is called.
+		Rbcli::log.info { 'These logs can go to STDERR, STDOUT, or a file' }                       # Example log. Interface is identical to Ruby's logger
+		puts "\nArgs:\n#{args}"                    # Arguments that came after the command on the CLI (i.e.: `mytool test bar baz` will yield args=['bar', 'baz'])
 		puts "Params:\n#{params}"                  # Parameters, as described through the option statements above
 		puts "Global opts:\n#{global_opts}"        # Global Parameters, as descirbed in the Configurate section
 		puts "Config:\n#{config}"                  # Config file values
@@ -157,7 +165,6 @@ class Test < Rbcli::Command                                                     
 		puts "\nDone!!!"
 	end
 end
-
 ```
 
 ### Parse Command
@@ -178,6 +185,7 @@ RBCli takes actions in a specific order when `parse` is run.
 		i. If the block is defined, execute it
 		ii. Otherwise, show the help
 	b. If a command has been entered, the rest of the CLI is parsed for parameters and lineitems, and the code block for the command is called
+
 
 ## Configuration Files
 
@@ -211,6 +219,7 @@ Rbcli will determine the correct location to locate the user configuration based
 
 Users can generate configs by running `yourclitool -g`. This will generate a config file at the tool's default location specified in the DSL. A specific location can be used via the `-c` parameter. You can test how this works by running `examples/mytool -c test.yml -g`.
 
+
 ## Logging
 
 Logging with RBCli is straightforward - it looks at the config file for logging settings, and instantiates a single, globally accessible [Logger](https://ruby-doc.org/stdlib-2.4.0/libdoc/logger/rdoc/Logger.html)` object. You can access it as such:
@@ -234,6 +243,7 @@ logger:
   log_level: warn              # 0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN
   log_target: stderr           # STDOUT, STDERR, or a file path
 ```
+
 
 ## <a name="storage_subsystems"></a>Storage Subsystems
 
@@ -366,6 +376,7 @@ to force the lock and retrieve the latest data. You can force an unlock by calli
 Rbcli.remote_state.disconnect
 ```
 
+
 ## Automatic Update Check
 
 RBCli can automatically notify users when an update is available. If `force_update` is set (see below), RBCli can halt execution until the user updates their application.
@@ -401,19 +412,92 @@ The `gem` parameter should simply state the name of the gem.
  
 Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
 
+
+## External Script Wrapping
+
+RBCli has the ability to run an external application as a CLI command, passing CLI parameters and environment variables as desired. It provides two modes -- __direct path__ and __variable path__ -- which work similarly through the `extern` keyword.
+
+When an external script is defined in a command, an `action` is no longer required.
+
+To quickly generate a script that shows the environment variables passed to it, you can use RBCli's own tool: `rbcli script`
+
+### Direct Path Mode
+
+ ```ruby
+ class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
+ 	description 'This is a short description.'                                         # (Required) Short description for the global help
+ 	usage 'This is some really long usage text description!'                           # (Required) Long description for the command-specific help
+ 	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
+
+ 	extern path: 'env | grep "^__PARAMS\|^__ARGS\|^__GLOBAL\|^__CONFIG\|^MYVAR"', envvars: {MYVAR: 'some_value'}     # (Required unless `action` defined) Runs a given application, with optional environment variables, when the user runs the command.
+end
+ ```
+
+Here, we supply a string to run the command. We can optioanlly provide environment variables which will be available for the script to use.
+
+RBCli will automatically set several environment variables as well. As you may have guessed by the example above, they are prefixed with:
+
+* `__PARAMS`
+* `__ARGS`
+* `__GLOBAL`
+* `__CONFIG`
+
+These prefixes are applied to their respective properties in RBCli, similar to what you would see when using an `action`.
+
+The command in the example above will show you a list of variables, which should look something like this:
+
+```bash
+__GLOBAL_VERSION=false
+__GLOBAL_HELP=false
+__GLOBAL_GENERATE_CONFIG=false
+__GLOBAL_CONFIG_FILE="/etc/mytool/config.yml"
+__CONFIG_LOGGER={"log_level":"info","log_target":"stderr"}
+__CONFIG_MYOPT=true
+__CONFIG_GITHUB_UPDATE={"access_token":null,"enterprise_hostname":null}
+__PARAMS_FORCE=false
+__PARAMS_HELP=false
+MYVAR=some_value
+```
+
+As you can see above, items which have nested values they are passed in as JSON. If you need to parse them, [JQ](https://stedolan.github.io/jq/) is recommended.
+
+### Variable Path Mode
+
+Variable Path Mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string. This allows us to generate different commands based on the CLI parameters that the user passed:
+
+```ruby
+class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
+	description 'This is a short description.'                                         # (Required) Short description for the global help
+	usage 'This is some really long usage text description!'                           # (Required) Long description for the command-specific help
+	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
+
+	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
+		if params[:force].to_s
+			"externalapp --test-script foo --ignore-errors"
+		else
+			"externalapp"
+		end
+	end
+end
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine from source, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/akhoury6/rbcli. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
 
 ## Code of Conduct
 

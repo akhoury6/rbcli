@@ -63,7 +63,9 @@ class Rbcli::Command
 		global_opts = cliopts
 		config = Rbcli::config
 
-		@commands[cmd].action.call params, args, global_opts, config
+		raise Exception.new("Command #{cmd} has both an extern and action defined. Usage is limiated to one at a time.") if @commands[cmd].extern and @commands[cmd].action
+		@commands[cmd].extern.execute params, args, global_opts, config unless @commands[cmd].extern.nil?
+		@commands[cmd].action.call params, args, global_opts, config unless @commands[cmd].action.nil?
 	end
 
 	##

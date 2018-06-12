@@ -1,3 +1,5 @@
+RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions. 
+
 # RBCli
 
 RBCli is a framework to quickly develop advanced command-line tools in Ruby. It has been written from the ground up with the needs of the modern technologist in mind, designed to make advanced CLI tool development as painless as possible.

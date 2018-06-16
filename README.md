@@ -84,7 +84,7 @@ Rbcli::Configurate.me do
 
 	config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false  # (Optional) Set location of user's config file. If merge_defaults=true, user settings override default settings, and if false, defaults are not loaded at all. If required=true, application will not run if file does not exist.
 	config_defaults 'defaults.yml'                                         # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
-	config_default :myopt, description: 'Testing this', value: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
+	config_default :myopt, description: 'Testing this', default: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
 
@@ -147,7 +147,7 @@ class Test < Rbcli::Command                                                     
 	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
 
 	config_defaults 'defaults.yml'                                                     # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
-	config_default :myopt2, description: 'Testing this again', value: true             # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
+	config_default :myopt2, description: 'Testing this again', default: true             # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
 
 	extern path: 'env | grep "^__PARAMS\|^__ARGS\|^__GLOBAL\|^__CONFIG"', envvars: {MYVAR: 'some_value'}     # (Required unless `action` defined) Runs a given application, with optional environment variables, when the user runs the command.
 	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
@@ -202,7 +202,7 @@ The defaults chain allows you to specify sane defaults for your CLI tool through
 * DSL Statements
 	* In the DSL, you can specify options individually by providing a name, description, and default value
 	* This is good for simpler configuration, as the descriptions provided are written out as comments in the generated user config
-	* `config_default :name, description: '<description_text>', value: <default_value>` in the DSL
+	* `config_default :name, description: '<description_text>', default: <default_value>` in the DSL
 	
 Users can generate configs by running `yourclitool -g`. This will generate a config file at the tool's default location specified in the DSL. A specific location can be used via the `-c` parameter. You can test how this works by running `examples/mytool -c test.yml -g`.
  
@@ -276,6 +276,8 @@ Hash native methods:
 
 Additional methods:
 
+* `commit`
+	* Every assignment to the top level of the hash will result in a write to disk (for example: `Rbcli.local_state[:yourkey] = 'foo'`). If you are manipulating nested hashes, you can trigger a save manually by calling `commit`.
 * `clear`
 	* Resets the data back to an empty hash.
 * `refresh`

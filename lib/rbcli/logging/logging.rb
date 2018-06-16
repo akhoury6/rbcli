@@ -29,12 +29,12 @@ module Rbcli::Logger
 
 		Rbcli::Config::add_categorized_defaults :logger, 'Log Settings', {
 				log_level: {
-						description: '0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN',
-						value: @default_level || 'info'
+						description: '0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN. Set to null (~) to disable logging.',
+						value: @default_level || nil
 				},
 				log_target: {
-						description: 'STDOUT, STDERR, or a file path',
-						value: @default_target || 'stderr'
+						description: 'STDOUT, STDERR, or a file path. Set to null (~) to disable logging.',
+						value: @default_target || nil
 				}
 		}
 	end
@@ -45,9 +45,12 @@ module Rbcli::Logger
 		target = STDOUT
 	elsif Rbcli::config[:logger][:log_target].downcase == 'stderr'
 		target = STDERR
+	elsif Rbcli::config[:logger][:log_target].nil?
+		target = '/dev/null'
 	else
 		target = Rbcli::config[:logger][:log_target]
 	end
+	target = '/dev/null' if Rbcli::config[:logger][:log_level].nil?
 	@logger = Logger.new(target)
 	@logger.level = Rbcli::config[:logger][:log_level]
 

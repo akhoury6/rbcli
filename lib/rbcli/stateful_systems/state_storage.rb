@@ -46,6 +46,10 @@ module Rbcli::State
 			end
 		end
 
+		def commit
+			save_state if @loaded
+		end
+
 		def clear
 			state_create unless @loaded
 			@data[:data] = {}

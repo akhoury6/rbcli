@@ -81,8 +81,8 @@ module Rbcli::Config
 		@config_text ||= ''
 		@config_text += "\n" unless @config_text.empty?
 		File.readlines(filename).each do |line|
-			if (line.start_with? '---' or line.start_with? '...')
-				@config_text << "\n\n"
+			if line.start_with? '---' or line.start_with? '...'
+				@config_text << "\n" unless @config_text.empty?
 			else
 				@config_text << line unless @config_text.include? line
 			end

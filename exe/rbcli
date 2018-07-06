@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'rbcli'
+require '../lib/rbcli'
 
 Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]
@@ -32,20 +32,39 @@ Micro:    A single-file, minimal RBCli project. Similar to a mini project, but o
 	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
 
 	action do |params, args, global_opts, config|
-		src = "#{File.dirname(__FILE__)}/../skeletons/project"
 		dest = "#{Dir.pwd}/#{params[:name]}"
 
+		# Prepare template vars
+		template_vars = {
+				cmdname: params[:name],
+				description: params[:description],
+				rbcli_version: Rbcli::VERSION
+		}
+
 		case params[:type]
-		when 'mini'
-		when 'micro'
-		else
+		when 'micro' # Micro: Single File, simplified
+			src = "#{File.dirname(__FILE__)}/../skeletons/micro/executable"
+
+			if File.exists? dest
+				RBCliTool.continue_confirmation "The file #{params[:name]} already exists; contents will be overwritten."
+				FileUtils.rm_rf dest
+			end
+			RBCliTool.cp_file src, dest, template_vars
+
+		when 'mini' # Mini: Single File
+			src = "#{File.dirname(__FILE__)}/../skeletons/mini/executable"
+
+			if File.exists? dest
+				RBCliTool.continue_confirmation "The file #{params[:name]} already exists; contents will be overwritten."
+				FileUtils.rm_rf dest
+			end
+			RBCliTool.cp_file src, dest, template_vars
+
+		else # Standard; full project structure
+			src = "#{File.dirname(__FILE__)}/../skeletons/project"
+
 			if Dir.exists? dest
-				print "A folder for project #{params[:name]} already exists; contents will be overwritten. Continue? (Y/n):  "
-				input = gets
-				unless input[0].downcase == 'y'
-					puts "\n Aborting..."
-					exit 0
-				end
+				RBCliTool.continue_confirmation "A folder for project #{params[:name]} already exists; contents will be overwritten."
 				FileUtils.rm_rf dest
 			end
 
@@ -66,13 +85,6 @@ Micro:    A single-file, minimal RBCli project. Similar to a mini project, but o
 				FileUtils.touch "#{dest}/#{folder}/.keep"
 			end
 
-			# Prepare template vars
-			template_vars = {
-					cmdname: params[:name],
-					description: params[:description],
-					rbcli_version: Rbcli::VERSION
-			}
-
 			# Create executable
 			RBCliTool.cp_file "#{src}/exe/executable", "#{dest}/exe/#{params[:name]}", template_vars
 
@@ -83,14 +95,14 @@ Micro:    A single-file, minimal RBCli project. Similar to a mini project, but o
 
 			# Create default config
 			Dir.glob "#{src}/config/*.rb" do |file|
-				RBCliTool.cp_file file, "#{dest}/config/"
+				RBCliTool.cp_file file, "#{dest}/config/", template_vars
 			end
 
 			# Create application options
 			RBCliTool.cp_file "#{src}/application/options.rb", "#{dest}/application/options.rb", template_vars
 
 			puts "\nInitialization Complete!\n"
-		end
+		end # END case params[:type]
 
 	end
 end

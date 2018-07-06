@@ -29,4 +29,14 @@ module RBCliTool
 			puts "Done!"
 		end
 	end
+
+	def self.continue_confirmation text
+		puts text
+		print "Continue? (Y/n):  "
+		input = gets
+		unless input[0].downcase == 'y'
+			puts "\n Aborting..."
+			exit 0
+		end
+	end
 end

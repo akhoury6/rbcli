@@ -8,46 +8,113 @@ Rbcli::Configurate.me do
 	description 'RBCli initialization tool'
 end
 
+require '../lib/rbcli-tool'
+require 'erb'
+
 class Init < Rbcli::Command
-	description 'Initialize a skeleton RBCli executable.'
-	usage 'This will generate a new file in the current folder'
-	parameter :filename, 'Name of file to generate', type: :string, required: true
+	description 'Initialize a skeleton RBCli project.'
+	usage <<-EOF
+This will generate a new project structure under the current directory. Use -t to specify the type:
+
+
+Standard: A complete RBCli project structure. Recommended for most applications, it provides
+          a framework for organizing code and creating a gem to be installed/distributed.
+
+Mini:     A single-file RBCli project. All features are supported, but project structure is left to the developer.
+          Recommended for smaller applications, or for integrating RBCli into an existing application.
+
+Micro:    A single-file, minimal RBCli project. Similar to a mini project, but only the minimal required code is
+          generated. Recommended for rapid prototyping of scripts, for advanced users only.
+	EOF
+
+	parameter :name, 'Name of project to generate', type: :string, required: true
+	parameter :type, 'Specify project type', type: :string, permitted: %w(standard micro mini), default: 'standard'
+	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
 
 	action do |params, args, global_opts, config|
-		src = "#{File.dirname(__FILE__)}/../examples/mytool"
-		dest = "#{Dir.pwd}/#{params[:filename]}"
-		cp_file src, dest
-	end
-end
+		src = "#{File.dirname(__FILE__)}/../skeletons/project"
+		dest = "#{Dir.pwd}/#{params[:name]}"
 
-class Script < Rbcli::Command
-	description 'Initialize a skeleton bash script to use as an RBCli command.'
-	usage 'This will generate a new file in the current folder.'
-	parameter :filename, 'Name of file to generate', type: :string, required: true
+		case params[:type]
+		when 'mini'
+		when 'micro'
+		else
+			if Dir.exists? dest
+				print "A folder for project #{params[:name]} already exists; contents will be overwritten. Continue? (Y/n):  "
+				input = gets
+				unless input[0].downcase == 'y'
+					puts "\n Aborting..."
+					exit 0
+				end
+				FileUtils.rm_rf dest
+			end
 
-	action do |params, args, global_opts, config|
-		src = "#{File.dirname(__FILE__)}/../examples/myscript.sh"
-		dest = "#{Dir.pwd}/#{params[:filename]}"
-		cp_file src, dest, template_vars: {'CMDNAME' => params[:filename].chomp('.sh')}
-	end
-end
+			# Create Top Level Folder (TLF)
+			FileUtils.mkdir_p dest
 
-def cp_file src, dest, template_vars: nil
-	if File.exists? dest
-		puts "File #{dest} already exists. Please delete it and try again."
-	elsif template_vars
-		print "Generating file #{dest}..."
-		text = File.read src
-		template_vars.each do |k, v|
-			text.gsub! /{{\*\*#{k}\*\*}}/, v
+			# Create project structure
+			%w(
+				application/commands
+				application/commands/scripts
+				config
+				default_user_configs
+				exe
+				hooks
+				spec
+			).each do |folder|
+				FileUtils.mkdir_p "#{dest}/#{folder}"
+				FileUtils.touch "#{dest}/#{folder}/.keep"
+			end
+
+			# Prepare template vars
+			template_vars = {
+					cmdname: params[:name],
+					description: params[:description],
+					rbcli_version: Rbcli::VERSION
+			}
+
+			# Create executable
+			RBCliTool.cp_file "#{src}/exe/executable", "#{dest}/exe/#{params[:name]}", template_vars
+
+			# Create files for Gem package
+			Dir.entries(src).each do |file|
+				RBCliTool.cp_file "#{src}/#{file}", "#{dest}/", template_vars
+			end
+
+			# Create default config
+			Dir.glob "#{src}/config/*.rb" do |file|
+				RBCliTool.cp_file file, "#{dest}/config/"
+			end
+
+			# Create application options
+			RBCliTool.cp_file "#{src}/application/options.rb", "#{dest}/application/options.rb", template_vars
+
+			puts "\nInitialization Complete!\n"
 		end
-		File.open(dest, 'w') { |file| file.write text }
-		puts "Done!"
-	else
-		print "Generating file #{dest}..."
-		FileUtils.cp src, dest
-		puts "Done!"
+
 	end
 end
+
+# class Command < Rbcli::Command
+# 	description 'Generate an RBCli command.'
+# 	usage <<-EOF
+# This will generate an RBCli primitive.
+#
+# rbcli generate (command|script|hook)
+# 	EOF
+# end
+
+# class Script < Rbcli::Command
+# 	description 'Initialize a skeleton bash script to use as an RBCli command.'
+# 	usage 'This will generate a new file in the current folder.'
+# 	parameter :filename, 'Name of file to generate', type: :string, required: true
+#
+# 	action do |params, args, global_opts, config|
+# 		src = "#{File.dirname(__FILE__)}/../examples/myscript.sh"
+# 		dest = "#{Dir.pwd}/#{params[:filename]}"
+# 		cp_file src, dest, template_vars: {'CMDNAME' => params[:filename].chomp('.sh')}
+# 	end
+# end
+
 
 Rbcli.parse

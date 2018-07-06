@@ -14,7 +14,7 @@ Rbcli::Configurate.me do
 	# If merge_defaults=true, user settings override default settings.
 	# If false, defaults set here are not loaded at all, and the user is required to set them.
 	# If required=true, application will not run if file does not exist.
-	config_userfile '~/.mytool', merge_defaults: true, required: false
+	config_userfile '~/.<%= @vars[:cmdname] %>', merge_defaults: true, required: false
 
 	## Config Defaults -- (Optional, Multiple) -- Load a YAML file as part of the default config.
 	# This can be called multiple times, and the YAML files will be merged. User config is generated from these files.

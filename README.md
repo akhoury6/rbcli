@@ -26,6 +26,8 @@ Some of its key features include:
 
 * __External Script Wrapping__: High-level wrapping for Bash scripts, or any other applcication you'd like to wrap into a command.
 
+* __Project Structure and Generators__: Create a well-defined project directory structure which organizes your code and allows you to package and distribute your application as a Gem. Generators can also help speed up the process of creating new commands, scripts, and hooks!
+
 
 ## Installation
 
@@ -60,14 +62,16 @@ mytool show -l
 Note that all options and parameters will have both a short and long version of the parameter available for use.
 
 
-## Getting Started
+## Getting Started (Lightweight)
 
-Creating a new skeleton command is as easy as running `rbcli init <filename>`. It will have these key items:
+For a lightweight skeleton that consists of a single file, use `rbcli init -t mini -n <projectname>`, or `rbcli init -t micro -n <projectname>` for an even more simplified one.
+
+These lightweight skeletons allow creating single-file applications/scripts using RBCli. They consolidate all of the options in the standard project format into these sections:
 
 * The configuration
 * Storage subsystem configuration (optional)
 * A command declaration
-* The parse command
+* The parse command 
 
 ### Configuration
 
@@ -482,6 +486,44 @@ class Test < Rbcli::Command                                                     
 	end
 end
 ```
+
+## Project Structure and Generators
+
+RBCli supports using predefined project structure, helping to organize all of the options and commands that you may use. It also 
+
+Creating a new project skeleton is as easy as running `rbcli init -n <projectname>`. It will create a folder under the currect directory using the name specified, allowing you to create a command that can be easily packaged and distributed as a gem.
+
+The folder structure is as follows:
+
+```
+<projectname>
+|
+|--- application
+|   |
+|   |--- commands
+|      |
+|      |---scripts
+|
+|--- config
+|--- default_user_configs
+|--- exe
+|--- hooks
+|--- spec
+```
+
+It is highly recommended to __not__ create files in these folders manually, and to use the RBCli generators instead:
+
+```shell
+rbcli generate -t command -n <name>
+rbcli generate -t script -n <name>
+rbcli generate -t userconf -n <name>
+rbcli hook -t pre
+rbcli hook -t post
+rbcli hook -t default
+rbcli hook -t runonce
+```
+
+That said, this readme will provide you with the information required to do things manually if you so desire. More details on generators later.
 
 
 ## Development

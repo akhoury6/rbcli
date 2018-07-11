@@ -1,42 +1,16 @@
-require 'erb'
+###########
+## RBCLI ##
+###########
+#
+# This file loads the Rbcli CLI Tool components.
+#
+###########
 
-module RBCliTool
-	class ERBRenderer
-		def initialize filename, varlist
-			@filename = filename
-			@vars = varlist
-		end
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-		def render
-			ERB.new(File.read(@filename)).result(binding)
-		end
-	end
+module RBCliTool end
 
-	def self.cp_file src, dest, template_vars = nil
-		if File.exists? dest
-			puts "File #{dest} already exists. Please delete it and try again."
-		else
-			print "Generating file " + dest + " ... "
-
-			if template_vars
-				renderer = ERBRenderer.new src, template_vars
-				File.open(dest, 'w') {|file| file.write renderer.render}
-			else
-				FileUtils.cp src, dest
-			end
-
-			FileUtils.rm_f "#{File.dirname(dest)}/.keep" if File.exists? "#{File.dirname(dest)}/.keep"
-			puts "Done!"
-		end
-	end
-
-	def self.continue_confirmation text
-		puts text
-		print "Continue? (Y/n):  "
-		input = gets
-		unless input[0].downcase == 'y'
-			puts "\n Aborting..."
-			exit 0
-		end
-	end
-end
+require 'rbcli-tool/mdless_fix'
+require 'rbcli-tool/erb_renderer'
+require 'rbcli-tool/project'

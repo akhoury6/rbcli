@@ -514,9 +514,9 @@ The folder structure is as follows:
 It is highly recommended to __not__ create files in these folders manually, and to use the RBCli generators instead:
 
 ```shell
-rbcli generate -t command -n <name>
-rbcli generate -t script -n <name>
-rbcli generate -t userconf -n <name>
+rbcli command -n <name>
+rbcli script -n <name>
+rbcli userconf -n <name>
 rbcli hook -t pre
 rbcli hook -t post
 rbcli hook -t default

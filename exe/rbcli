@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'rbcli'
+require '../lib/rbcli'
 
 Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]
@@ -8,46 +8,95 @@ Rbcli::Configurate.me do
 	description 'RBCli initialization tool'
 end
 
-class Init < Rbcli::Command
-	description 'Initialize a skeleton RBCli executable.'
-	usage 'This will generate a new file in the current folder'
-	parameter :filename, 'Name of file to generate', type: :string, required: true
+require '../lib/rbcli-tool'
 
-	action do |params, args, global_opts, config|
-		src = "#{File.dirname(__FILE__)}/../examples/mytool"
-		dest = "#{Dir.pwd}/#{params[:filename]}"
-		cp_file src, dest
-	end
-end
+class Docs < Rbcli::Command
+	description 'Show Documentation (Beta)'
 
-class Script < Rbcli::Command
-	description 'Initialize a skeleton bash script to use as an RBCli command.'
-	usage 'This will generate a new file in the current folder.'
-	parameter :filename, 'Name of file to generate', type: :string, required: true
-
-	action do |params, args, global_opts, config|
-		src = "#{File.dirname(__FILE__)}/../examples/myscript.sh"
-		dest = "#{Dir.pwd}/#{params[:filename]}"
-		cp_file src, dest, template_vars: {'CMDNAME' => params[:filename].chomp('.sh')}
-	end
-end
-
-def cp_file src, dest, template_vars: nil
-	if File.exists? dest
-		puts "File #{dest} already exists. Please delete it and try again."
-	elsif template_vars
-		print "Generating file #{dest}..."
-		text = File.read src
-		template_vars.each do |k, v|
-			text.gsub! /{{\*\*#{k}\*\*}}/, v
+	action do
+		readme = "#{File.dirname(__FILE__)}/../README.md"
+		begin
+			CLIMarkdown::Converter.new([readme])
+		rescue Errno::EPIPE
+			# Empty
 		end
-		File.open(dest, 'w') { |file| file.write text }
-		puts "Done!"
-	else
-		print "Generating file #{dest}..."
-		FileUtils.cp src, dest
-		puts "Done!"
 	end
 end
+
+class Init < Rbcli::Command
+	description 'Initialize a skeleton RBCli project.'
+	usage <<-EOF
+This will generate a new project structure under the current directory. Use -t to specify the type:
+
+
+Standard: A complete RBCli project structure. Recommended for most applications, it provides
+          a framework for organizing code and creating a gem to be installed/distributed.
+
+Mini:     A single-file RBCli project. All features are supported, but project structure is left to the developer.
+          Recommended for smaller applications, or for integrating RBCli into an existing application.
+
+Micro:    A single-file, minimal RBCli project. Similar to a mini project, but only the minimal required code is
+          generated. Recommended for rapid prototyping of scripts, for advanced users only.
+	EOF
+
+	parameter :name, 'Name of project to generate', type: :string, required: true
+	parameter :type, 'Specify project type', type: :string, permitted: %w(standard micro mini), default: 'standard'
+	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
+
+	action do |params, args, global_opts, config|
+		dest = "#{Dir.pwd}/#{params[:name]}"
+
+		# Prepare template vars
+		template_vars = {
+				cmdname: params[:name],
+				description: params[:description],
+				rbcli_version: Rbcli::VERSION
+		}
+
+		proj = RBCliTool::Project.new(dest, template_vars)
+
+		if proj.exists?
+			RBCliTool.continue_confirmation "The project or file #{params[:name]} already exists; contents will be overwritten."
+			FileUtils.rm_rf dest
+		end
+
+		case params[:type]
+		when 'micro' # Micro: Single File, simplified
+			puts "\nInitialization Complete!\n" if proj.create_micro
+
+		when 'mini' # Mini: Single File
+			puts "\nInitialization Complete!\n" if proj.create_mini
+
+		else # Standard; full project structure
+			if proj.create
+				puts "\nInitialization Complete!\n"
+			else
+				puts "\nAn RBCli Project already exists in the current directory tree at: #{proj.exists?}. Aborting.\n"
+			end
+
+		end # END case params[:type]
+
+	end
+end
+
+class Command < Rbcli::Command
+	description 'Generate an Rbcli Command under the current project'
+	usage <<-EOF
+This will generate a new project structure under the current directory. Use -t to specify the type:
+
+
+Standard: A complete RBCli project structure. Recommended for most applications, it provides
+          a framework for organizing code and creating a gem to be installed/distributed.
+
+Mini:     A single-file RBCli project. All features are supported, but project structure is left to the developer.
+          Recommended for smaller applications, or for integrating RBCli into an existing application.
+
+Micro:    A single-file, minimal RBCli project. Similar to a mini project, but only the minimal required code is
+          generated. Recommended for rapid prototyping of scripts, for advanced users only.
+	EOF
+
+	parameter :name, 'Name of command to generate', type: :string, required: true
+end
+
 
 Rbcli.parse

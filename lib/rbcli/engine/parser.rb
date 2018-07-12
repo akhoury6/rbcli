@@ -28,8 +28,8 @@ Commands:
 				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted]
 			end
 			opt :json_output, 'Output result in machine-friendly JSON format', :type => :boolean, :default => false if data[:allow_json]
-			opt :config_file, 'Specify a config file manually', :type => :string, :default => data[:config_userfile]
-			opt :generate_config, 'Generate a new config file' #defaults to false
+			opt :config_file, 'Specify a config file manually', :type => :string, :default => data[:config_userfile] unless data[:config_userfile].nil?
+			opt :generate_config, 'Generate a new config file' unless data[:config_userfile].nil? #defaults to false
 			stop_on Rbcli::Command.commands.keys
 		end
 

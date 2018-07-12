@@ -45,7 +45,7 @@ module Rbcli::Config
 	@categorized_defaults = nil
 	@loaded = false
 
-	def self.set_userfile filename, merge_defaults: false, required: false
+	def self.set_userfile filename, merge_defaults: true, required: false
 		@config_file = File.expand_path filename
 		@merge_defaults = merge_defaults
 		@userfile_required = required
@@ -67,11 +67,11 @@ module Rbcli::Config
 		@loaded = false
 	end
 
-	def self.add_default name, description: nil, value: nil
+	def self.add_default name, description: nil, default: nil
 		@config_individual_lines ||= []
-		text = "#{name.to_s}: #{value}".ljust(30) + " # #{description}"
+		text = "#{name.to_s}: #{default}".ljust(30) + " # #{description}"
 		@config_individual_lines.push text unless @config_individual_lines.include? text
-		@config_defaults[name.to_sym] = value
+		@config_defaults[name.to_sym] = default
 		@loaded = false
 	end
 
@@ -81,8 +81,8 @@ module Rbcli::Config
 		@config_text ||= ''
 		@config_text += "\n" unless @config_text.empty?
 		File.readlines(filename).each do |line|
-			if (line.start_with? '---' or line.start_with? '...')
-				@config_text << "\n\n"
+			if line.start_with? '---' or line.start_with? '...'
+				@config_text << "\n" unless @config_text.empty?
 			else
 				@config_text << line unless @config_text.include? line
 			end

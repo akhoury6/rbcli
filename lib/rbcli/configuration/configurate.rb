@@ -4,7 +4,7 @@ module Rbcli::Configurate
 			scriptname: nil,
 			version: nil,
 			description: nil,
-			config_userfile: 'config.yml',
+			config_userfile: nil,
 			allow_json: false,
 			options: {},
 			default_action: nil,

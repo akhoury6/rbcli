@@ -8,7 +8,7 @@ module RBCliTool
 		end
 
 		def render
-			ERB.new(File.read(@filename)).result(binding)
+			ERB.new(File.read(@filename), nil, '-').result(binding)
 		end
 	end
 

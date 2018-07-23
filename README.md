@@ -518,10 +518,11 @@ It is highly recommended to __not__ create files in these folders manually, and 
 rbcli command -n <name>
 rbcli script -n <name>
 rbcli userconf -n <name>
-rbcli hook -t pre
-rbcli hook -t post
-rbcli hook -t default
-rbcli hook -t runonce
+rbcli hook --default      # or rbcli hook -d
+rbcli hook --pre          # or rbcli hook -p
+rbcli hook --post         # or rbcli hook -o
+rbcli hook --firstrun     # or rbcli hook -f
+rbcli hook -dpof          # all hooks at once
 ```
 
 That said, this readme will provide you with the information required to do things manually if you so desire. More details on generators later.

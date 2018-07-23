@@ -61,4 +61,25 @@ module RBCliTool
 		end
 	end
 
+	class Hook < Generator
+		def initialize root_path, hook_type
+			@typename = {
+					default: 'default_action',
+					pre: 'pre_execution',
+					post: 'post_execution',
+					firstrun: 'first_run'
+			}[hook_type]
+			@src = "#{File.dirname(__FILE__)}/../../skeletons/project/hooks/#{@typename}.rb"
+			@dest = "#{root_path}/hooks/#{@typename}.rb"
+		end
+
+		def run
+			if File.exists? @dest
+				RBCliTool.continue_confirmation "The #{@typename} hook already exists; contents will be overwritten."
+				FileUtils.rm_rf @dest
+			end
+			RBCliTool.cp_file @src, @dest
+		end
+	end
+
 end

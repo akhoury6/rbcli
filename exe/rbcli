@@ -37,7 +37,7 @@ Mini:     A single-file RBCli project. All features are supported, but project s
 
 Micro:    A single-file, minimal RBCli project. Similar to a mini project, but only the minimal required code is
           generated. Recommended for rapid prototyping of scripts, for advanced users only.
-	EOF
+EOF
 
 	parameter :name, 'Name of project to generate', type: :string, required: true
 	parameter :type, 'Specify project type', type: :string, permitted: %w(standard micro mini), default: 'standard'
@@ -83,7 +83,7 @@ class Command < Rbcli::Command
 This will generate a new command under the current RBCli project.
 
 Please run this command from within the project's directory structure.
-	EOF
+EOF
 
 	parameter :name, 'Name of command to generate', type: :string, required: true
 	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
@@ -116,7 +116,7 @@ Use this option if you prefer to use bash (or another shell) to script your comm
 a third party application.
 
 Please run this command from within the project's directory structure.
-	EOF
+EOF
 
 	parameter :name, 'Name of command to generate', type: :string, required: true
 	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
@@ -141,5 +141,49 @@ Please run this command from within the project's directory structure.
 		generator.run
 	end
 end
+
+class Hook < Rbcli::Command
+	description 'Generate an Rbcli Hook under the current project'
+	usage <<-EOF
+This will generate one or more execution hooks for the current project.
+
+Default:    The default hook runs whenever the user does not specify a command. If the hook is not present, the default
+            behavior is to show the help text (same as -h).
+
+Pre:        The pre-execution hook, which runs code prior to the execution of any command. This allows for actions such
+            as authentiation into remote systems.
+
+Post:       The post-execution hook, which runs code after the execution of any command.
+
+First-run:  The first-run hook will run only on the first time the user runs the application. This is useful for
+            initial setup or for welcome messages to be shown. Note that if you enable the first-run hook, you must
+            also enable local_state (see config/storage.rb).
+
+Please run this command from within the project's directory structure.
+EOF
+
+	parameter :default, 'Generate the default (no-command-entered) hook', type: :boolean, default: false
+	parameter :pre, 'Generate the pre-execution hook', type: :boolean, default: false
+	parameter :post, 'Generate the post-execution hook', type: :boolean, default: false
+	parameter :firstrun, 'Generate the first-run hook', type: :boolean, default: false
+
+	action do |params, args, global_opts, config|
+		# First we check that we are working within a project folder
+		project_root = RBCliTool::Project.find_root(Dir.pwd)
+		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
+
+		generated_something = false
+
+		[:default, :pre, :post, :firstrun].each do |pname|
+			next unless params[pname]
+			generator = RBCliTool::Generator.new(:hook, project_root, pname)
+			generator.run
+			generated_something = true
+		end
+
+		RBCliTool.exit_with_error("No hooks specified. Please run `rbcli hooks -h` for details on how to generate hooks.") unless generated_something
+	end
+end
+
 
 Rbcli.parse

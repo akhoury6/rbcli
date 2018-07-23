@@ -10,7 +10,7 @@ Rbcli::Configurate.me do
 	# If not present, the help is shown (same as -h)
 
 	default_action do |opts|
-		puts "Hello, #{opts[:name]}."
+		puts "Hello, sir."
 		puts "To see the help, use -h"
 	end
 end

@@ -11,6 +11,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 module RBCliTool end
 
+require 'rbcli-tool/util'
 require 'rbcli-tool/mdless_fix'
-require 'rbcli-tool/erb_renderer'
 require 'rbcli-tool/project'
+require 'rbcli-tool/generators'

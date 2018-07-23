@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'rbcli'
+require "#{File.dirname(__FILE__)}/../lib/rbcli.rb"
 
 Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]
@@ -8,7 +8,7 @@ Rbcli::Configurate.me do
 	description 'RBCli initialization tool'
 end
 
-require 'rbcli-tool'
+require "#{File.dirname(__FILE__)}/../lib/rbcli-tool.rb"
 
 class Docs < Rbcli::Command
 	description 'Show Documentation (Beta)'
@@ -82,20 +82,30 @@ end
 class Command < Rbcli::Command
 	description 'Generate an Rbcli Command under the current project'
 	usage <<-EOF
-This will generate a new project structure under the current directory. Use -t to specify the type:
-
-
-Standard: A complete RBCli project structure. Recommended for most applications, it provides
-          a framework for organizing code and creating a gem to be installed/distributed.
-
-Mini:     A single-file RBCli project. All features are supported, but project structure is left to the developer.
-          Recommended for smaller applications, or for integrating RBCli into an existing application.
-
-Micro:    A single-file, minimal RBCli project. Similar to a mini project, but only the minimal required code is
-          generated. Recommended for rapid prototyping of scripts, for advanced users only.
+This will generate a new command under the current RBCli project. Please run this command from within the project's
+directory structure.
 	EOF
 
 	parameter :name, 'Name of command to generate', type: :string, required: true
+	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
+	parameter :usagetext, 'Usage help text for the command', type: :string, default: 'TODO: Usage text goes here'
+
+	action do |params, args, global_opts, config|
+		# First we check that we are working within a project folder
+		project_root = RBCliTool::Project.find_root(Dir.pwd)
+		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
+
+		# Prepare template vars
+		template_vars = {
+				name: params[:name],
+				description: params[:description],
+				usage_text: params[:usagetext],
+				rbcli_version: Rbcli::VERSION
+		}
+
+		generator = RBCliTool::Generator.new(:command, project_root, template_vars)
+		generator.run
+	end
 end
 
 

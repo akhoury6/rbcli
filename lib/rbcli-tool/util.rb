@@ -40,4 +40,9 @@ module RBCliTool
 			exit 0
 		end
 	end
+
+	def self.exit_with_error text
+		puts text
+		exit 1
+	end
 end

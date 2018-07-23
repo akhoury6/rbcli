@@ -217,7 +217,8 @@ The user chain has two functions: generating and loading configuration from a YA
 Rbcli will determine the correct location to locate the user configuration based on two factors:
 
 1. The default location set in the configurate DSL
-	a. `config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false  # (Optional) Set location of user's config file. If merge_defaults=true, user settings override default settings, and if false, defaults are not loaded at all. If required=true, application will not run if file does not exist.`
+	a. `config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false`
+	b. (Optional) Set location of user's config file. If `merge_defaults=true`, user settings override default settings, and if `false`, defaults are not loaded at all. If `required=true`, application will not run if file does not exist.
 2. The location specified on the command line using the `-c <filename>` option
 	b. `yourclitool -c localfile.yml`
 

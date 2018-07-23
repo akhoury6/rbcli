@@ -8,7 +8,7 @@ module RBCliTool
 		end
 
 		def render
-			ERB.new(File.read(@filename)).result(binding)
+			ERB.new(File.read(@filename), nil, '-').result(binding)
 		end
 	end
 
@@ -39,5 +39,10 @@ module RBCliTool
 			puts "\n Aborting..."
 			exit 0
 		end
+	end
+
+	def self.exit_with_error text
+		puts text
+		exit 1
 	end
 end

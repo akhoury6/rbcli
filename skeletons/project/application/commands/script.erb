@@ -1,0 +1,24 @@
+#########################
+## Command Declaration ##
+#########################
+# With rbcli, commands are declared by subclassing
+# from Rbcli::Command. The name of the class will be
+# the command that is available to the user.
+#########################
+class <%= @vars[:name].capitalize %> < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
+	description '<%= @vars[:description] %>'                                         # (Required) Short description for the global help
+	usage '<%= @vars[:usage_text] %>'                           # (Required) Long description for the command-specific help
+	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
+
+	config_default :myopt2, description: 'Testing this again', default: true           # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.
+	# Alternatively, you can simply create a yaml file in the `default_user_configs` directory in your project
+
+<% if @vars[:no_script] -%>
+	extern path: 'path/to/application', envvars: {MYVAR: 'some_value'}                               # (Required) Runs a given application, with optional environment variables, when the user runs the command.
+	#extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|          # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user. This allows passing config settings as command line arguments to external applications. The block must return a string, which is the command to be executed.
+	#	"echo 'Forcing something: #{params[:force].to_s}'"
+	#end
+<% else -%>
+	extern path: :default                                                              # (Required): Do not edit this line. Do delete it if you wish to manually specify a script path and set environment variables.
+<% end -%>
+end

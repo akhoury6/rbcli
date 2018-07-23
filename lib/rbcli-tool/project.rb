@@ -33,6 +33,7 @@ module RBCliTool
 
 			# Create executable
 			RBCliTool.cp_file "#{src}/exe/executable", "#{@dest}/exe/#{@template_vars[:cmdname]}", @template_vars
+			FileUtils.chmod 0755, "#{@dest}/exe/#{@template_vars[:cmdname]}"
 
 			# Create files for Gem package
 			Dir.entries(src).each do |file|
@@ -65,22 +66,25 @@ module RBCliTool
 			project_exists?
 		end
 
+		def self.find_root path
+			# We look for the .rbcli file in the current tree and return the root path
+			searchpath = path
+			while !searchpath.empty?
+				return searchpath if File.directory? searchpath and File.exists? "#{searchpath}/.rbcli"
+				spath = searchpath.split('/')
+				searchpath = (spath.length == 2) ? '/' : spath[0..-2].join('/')
+			end
+			false
+		end
+
 		private
 
 		def project_exists?
 			# If the specified file already exists...
 			return true if File.exists? @dest
 
-			# Or if the .rbcli file exists anywhere in the tree...
-			searchpath = @dest
-			while !searchpath.empty?
-				return searchpath if File.directory? searchpath and File.exists? "#{searchpath}/.rbcli"
-				spath = searchpath.split('/')
-				searchpath = (spath.length == 2) ? '/' : spath[0..-2].join('/')
-			end
-
-			# Otherwise we say the project does not exist
-			false
+			# Or if the .rbcli file exists anywhere in the tree, we know that we are in a subdirectory of a project
+			Project::find_root(@dest)
 		end
 	end
 

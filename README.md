@@ -31,7 +31,7 @@ Some of its key features include:
 
 ## Installation
 
-RBCli is available on rubygems.org. You can add it to your application's `Gemrile` or `gemspec`, or install it manually via `gem install rbcli`.
+RBCli is available on rubygems.org. You can add it to your application's `Gemfile` or `gemspec`, or install it manually via `gem install rbcli`.
 
 
 ## The Basics
@@ -217,7 +217,8 @@ The user chain has two functions: generating and loading configuration from a YA
 Rbcli will determine the correct location to locate the user configuration based on two factors:
 
 1. The default location set in the configurate DSL
-	a. `config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false  # (Optional) Set location of user's config file. If merge_defaults=true, user settings override default settings, and if false, defaults are not loaded at all. If required=true, application will not run if file does not exist.`
+	a. `config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false`
+	b. (Optional) Set location of user's config file. If `merge_defaults=true`, user settings override default settings, and if `false`, defaults are not loaded at all. If `required=true`, application will not run if file does not exist.
 2. The location specified on the command line using the `-c <filename>` option
 	b. `yourclitool -c localfile.yml`
 
@@ -469,7 +470,7 @@ As you can see above, items which have nested values they are passed in as JSON.
 
 ### Variable Path Mode
 
-Variable Path Mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string. This allows us to generate different commands based on the CLI parameters that the user passed:
+Variable Path Mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string. This allows us to generate different commands based on the CLI parameters that the user passed, or pass configuration as CLI parameters to the external application:
 
 ```ruby
 class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
@@ -478,7 +479,7 @@ class Test < Rbcli::Command                                                     
 	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
 
 	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
-		if params[:force].to_s
+		if params[:force]
 			"externalapp --test-script foo --ignore-errors"
 		else
 			"externalapp"
@@ -517,10 +518,11 @@ It is highly recommended to __not__ create files in these folders manually, and 
 rbcli command -n <name>
 rbcli script -n <name>
 rbcli userconf -n <name>
-rbcli hook -t pre
-rbcli hook -t post
-rbcli hook -t default
-rbcli hook -t runonce
+rbcli hook --default      # or rbcli hook -d
+rbcli hook --pre          # or rbcli hook -p
+rbcli hook --post         # or rbcli hook -o
+rbcli hook --firstrun     # or rbcli hook -f
+rbcli hook -dpof          # all hooks at once
 ```
 
 That said, this readme will provide you with the information required to do things manually if you so desire. More details on generators later.

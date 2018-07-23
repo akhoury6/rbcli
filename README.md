@@ -470,7 +470,7 @@ As you can see above, items which have nested values they are passed in as JSON.
 
 ### Variable Path Mode
 
-Variable Path Mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string. This allows us to generate different commands based on the CLI parameters that the user passed:
+Variable Path Mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string. This allows us to generate different commands based on the CLI parameters that the user passed, or pass configuration as CLI parameters to the external application:
 
 ```ruby
 class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
@@ -479,7 +479,7 @@ class Test < Rbcli::Command                                                     
 	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
 
 	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
-		if params[:force].to_s
+		if params[:force]
 			"externalapp --test-script foo --ignore-errors"
 		else
 			"externalapp"

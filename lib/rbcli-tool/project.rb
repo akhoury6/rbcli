@@ -33,6 +33,7 @@ module RBCliTool
 
 			# Create executable
 			RBCliTool.cp_file "#{src}/exe/executable", "#{@dest}/exe/#{@template_vars[:cmdname]}", @template_vars
+			FileUtils.chmod 0755, "#{@dest}/exe/#{@template_vars[:cmdname]}"
 
 			# Create files for Gem package
 			Dir.entries(src).each do |file|
@@ -83,7 +84,7 @@ module RBCliTool
 			return true if File.exists? @dest
 
 			# Or if the .rbcli file exists anywhere in the tree, we know that we are in a subdirectory of a project
-			Project::find_root(@dest).is_a? String
+			Project::find_root(@dest)
 		end
 	end
 

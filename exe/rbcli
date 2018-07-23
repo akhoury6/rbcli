@@ -55,27 +55,25 @@ Micro:    A single-file, minimal RBCli project. Similar to a mini project, but o
 
 		proj = RBCliTool::Project.new(dest, template_vars)
 
-		if proj.exists?
-			RBCliTool.continue_confirmation "The project or file #{params[:name]} already exists; contents will be overwritten."
-			FileUtils.rm_rf dest
-		end
+		# if proj.exists?
+		# 	RBCliTool.continue_confirmation "The project or file #{params[:name]} already exists; contents will be overwritten."
+		# 	FileUtils.rm_rf dest
+		# end
 
 		case params[:type]
 		when 'micro' # Micro: Single File, simplified
-			puts "\nInitialization Complete!\n" if proj.create_micro
-
+			success = proj.create_micro
 		when 'mini' # Mini: Single File
-			puts "\nInitialization Complete!\n" if proj.create_mini
-
+			success = proj.create_mini
 		else # Standard; full project structure
-			if proj.create
-				puts "\nInitialization Complete!\n"
-			else
-				puts "\nAn RBCli Project already exists in the current directory tree at: #{proj.exists?}. Aborting.\n"
-			end
-
+			success = proj.create
 		end # END case params[:type]
 
+		if success
+			puts "\nInitialization Complete!\n"
+		else
+			puts "\nAn RBCli Project already exists in the current directory tree at: #{proj.exists?}. Please delete the project or run this command from a different directory.\n"
+		end
 	end
 end
 

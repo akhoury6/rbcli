@@ -31,7 +31,7 @@ Some of its key features include:
 
 ## Installation
 
-RBCli is available on rubygems.org. You can add it to your application's `Gemrile` or `gemspec`, or install it manually via `gem install rbcli`.
+RBCli is available on rubygems.org. You can add it to your application's `Gemfile` or `gemspec`, or install it manually via `gem install rbcli`.
 
 
 ## The Basics

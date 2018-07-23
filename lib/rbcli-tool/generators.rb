@@ -17,12 +17,16 @@ module RBCliTool
 
 	class Command < Generator
 		def initialize root_path, template_vars
-			@srcpath = "#{File.dirname(__FILE__)}/../../skeletons/project/application/commands/command.rb"
+			@srcpath = "#{File.dirname(__FILE__)}/../../skeletons/project/application/commands/command.erb"
 			@dest = "#{root_path}/application/commands/#{template_vars[:name]}.rb"
 			@template_vars = template_vars
 		end
 
 		def run
+			if File.exists? @dest
+				RBCliTool.continue_confirmation "The command #{@template_vars[:name]} already exists; contents will be overwritten."
+				FileUtils.rm_rf @dest
+			end
 			RBCliTool.cp_file @srcpath, @dest, @template_vars
 		end
 	end

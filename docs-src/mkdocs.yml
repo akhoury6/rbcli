@@ -1,0 +1,57 @@
+# https://www.mkdocs.org/user-guide/configuration
+
+site_name: RBCli Documentation
+site_description: Description
+site_author: Andrew Khoury
+copyright: Copyright © 2018 Andrew Khoury
+
+pages:
+  - Home: index.md
+  - Tutorial:
+    - Getting Started: tutorial/10-Getting Started.md
+    - Project Layout: tutorial/20-Project Layout.md
+    - Your First Command: tutorial/30-Your First Command.md
+    - Options, Parameters, and Arguments: tutorial/40-Options Parameters and Arguments.md
+    - Publishing and Distribution: tutorial/50-Publishing.md
+  - Advanced Features:
+    - User Config Files: advanced/User Config Files.md
+    - Hooks: advanced/Hooks.md
+    - Automatic Updates: advanced/Automatic Updates.md
+    - State Storage: advanced/State Storage.md
+    - Distributed State Locking: advanced/Distributed State Locking.md
+    - Script Wrapping: advanced/Script Wrapping.md
+  - Development:
+    - Contribution Guide: development/contributing.md
+    - License Info: development/license.md
+    - Code of Conduct: development/code_of_conduct.md
+
+# The repo link on the top-right of the page
+#repo_name: GitHub
+repo_url: https://github.com/akhoury6/rbcli/
+edit_uri: ''
+
+# For use with mkdocs build
+#docs_dir: ./docs-src/docs/
+site_dir: ../docs/
+
+# For use with gh-deploy
+#remote_branch: master
+#remote_name: origin
+
+#theme: material
+#theme: readthedocs
+#theme:
+#  name: mkdocs
+#  custom_dir: my_theme_customizations/
+#  static_templates:
+#   - sitemap.html
+#  include_sidebar: false
+#extra_css:
+#    - css/extra.css
+#    - css/second_extra.css
+#extra_javascript:
+#extra_templates:
+#extra:
+#  rbcli_version: 0.1.0
+
+# For formatting options see https://www.mkdocs.org/user-guide/configuration/#formatting-options

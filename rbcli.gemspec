@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
 	spec.authors       = ['Andrew Khoury']
 	spec.email         = ['akhoury@live.com']
 
-	spec.summary       = %q{A CLI Framework for Ruby}
-	spec.description   = %q{RBCli is a framework to quickly develop command-line tools.}
+	spec.summary       = %q{A CLI Application/Tooling Framework for Ruby}
+	spec.description   = %q{RBCli is a framework to quickly develop command-line tools and applications.}
 	spec.homepage      = 'https://github.com/akhoury6/rbcli'
 	spec.license       = 'MIT'
 

@@ -26,6 +26,7 @@ module RBCliTool
 				exe
 				hooks
 				spec
+				lib
 			).each do |folder|
 				FileUtils.mkdir_p "#{@dest}/#{folder}"
 				FileUtils.touch "#{@dest}/#{folder}/.keep"

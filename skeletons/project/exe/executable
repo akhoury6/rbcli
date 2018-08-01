@@ -10,7 +10,7 @@
 #########################################################
 
 require 'rbcli'
-require '../config/version'
+require "#{File.dirname(__FILE__)}/../config/version"
 
 #########################
 ## Configuration Block ##

@@ -11,8 +11,8 @@ module Rbcli
 		end
 
 		# We automatically pull in default user configs
-		configspath = "#{project_root}/default_user_configs"
-		Dir.glob "#{configspath}/*.{yml,yaml}" do |file|
+		configspath = "#{project_root}/userconf"
+		Dir.glob "#{configspath}/*.{yml,yaml,json}" do |file|
 			Rbcli::Configurate.me {config_defaults file}
 		end
 	end

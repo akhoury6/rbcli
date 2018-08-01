@@ -22,7 +22,7 @@ module RBCliTool
 				application/commands
 				application/commands/scripts
 				config
-				default_user_configs
+				userconf
 				exe
 				hooks
 				spec
@@ -39,7 +39,11 @@ module RBCliTool
 			# Create files for Gem package
 			Dir.entries(src).each do |file|
 				next if File.directory? "#{src}/#{file}"
-				RBCliTool.cp_file "#{src}/#{file}", "#{@dest}/", @template_vars
+				if file == "untitled.gemspec"
+					RBCliTool.cp_file "#{src}/#{file}", "#{@dest}/#{@template_vars[:cmdname]}.gemspec", @template_vars
+				else
+					RBCliTool.cp_file "#{src}/#{file}", "#{@dest}/", @template_vars
+				end
 			end
 
 			# Create default config

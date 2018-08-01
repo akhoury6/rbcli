@@ -15,5 +15,10 @@ module Rbcli
 		Dir.glob "#{configspath}/*.{yml,yaml,json}" do |file|
 			Rbcli::Configurate.me {config_defaults file}
 		end
+
+		# Add lib to the load path for the user
+		#lib = File.expand_path("../../../lib", __FILE__)
+		lib = "#{project_root}/lib"
+		$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 	end
 end

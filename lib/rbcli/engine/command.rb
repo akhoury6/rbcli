@@ -98,9 +98,7 @@ Selected Command:
 
 Usage:
       #{data[:scriptname]} [options] #{command_name} [parameters]
-
-#{command_usage}
-
+#{if command_usage then "\n" + command_usage + "\n" end}
 Command-specific Parameters:
 			EOS
 			params.each do |name, opts|

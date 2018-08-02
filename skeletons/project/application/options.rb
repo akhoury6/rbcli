@@ -26,5 +26,5 @@ Rbcli::Configurate.me do
 	description  %q{<%= @vars[:description] %>}
 
 	## Option -- (Optional, Multiple) -- Add a global CLI Option
-	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']
+	option :name, 'Give me your name', short: 'n', type: :string, default: 'Jack', required: false, permitted: ['Jack', 'Jill']
 end

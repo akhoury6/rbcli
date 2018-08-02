@@ -1,6 +1,10 @@
 module Rbcli
 	def self.load_project
-		project_root = File.expand_path "#{File.dirname(caller[0].split(':')[0])}/../"
+		project_root = File.expand_path("#{File.dirname(caller[0].split(':')[0])}/../")
+
+		# Add lib to the load path for the user's convenience
+		lib = "#{project_root}/lib"
+		$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 		# We require all ruby files as-is
 		%w(config hooks application application/commands).each do |dir|
@@ -16,9 +20,5 @@ module Rbcli
 			Rbcli::Configurate.me {config_defaults file}
 		end
 
-		# Add lib to the load path for the user
-		#lib = File.expand_path("../../../lib", __FILE__)
-		lib = "#{project_root}/lib"
-		$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 	end
 end

@@ -18,20 +18,26 @@ For filetypes where tabs are not supported (such as YAML), please stick to using
 
 ## Documentation for User Features
 
-For any modification that alters the way RBCli is used -- we're talking additional features or options, keyword changes, major behavioral changes, and the like -- the documentation will need to be updated as well. You'll be happy to know we designed it to make the process relatively painless.
+For any modification that alters the way RBCli is used -- we're talking additional features, options, keyword changes, major behavioral changes, and the like -- the documentation will need to be updated as well. You'll be happy to know we designed it to make the process relatively painless.
 
 RBCli's documentation is essentially a collection of markdown files that have been compiled into a static site using [MkDocs](https://www.mkdocs.org). If you already have python and pip on your system, you can install it by running:
 
-```python
-pip install mkdocs
+```bash
+pip install mkdocs mkdocs-material
 ```
 
 You can find the source markdown files in the `docs-src/docs` folder, and the menu organization in `docs-src/mkdocs.yml`. To preview your changes on a live site, run:
 
-```python
+```bash
 mkdocs serve
 ```
 
 Once you've completed your edits, run the `makesite.sh` command to build the actual HTML pages automatically in the `docs` folder, from where they will be served when live.
 
 And of course, don't forget to commmit your changes once you're done.
+
+# Maintainer's Notes
+
+To install this gem onto your local machine from source, run `bundle exec rake install`.
+
+To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).

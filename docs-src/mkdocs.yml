@@ -8,18 +8,18 @@ copyright: Copyright © 2018 Andrew Khoury
 pages:
   - Home: index.md
   - Tutorial:
-    - Getting Started: tutorial/10-Getting Started.md
-    - Project Layout: tutorial/20-Project Layout.md
-    - Your First Command: tutorial/30-Your First Command.md
-    - Options, Parameters, and Arguments: tutorial/40-Options Parameters and Arguments.md
-    - Publishing and Distribution: tutorial/50-Publishing.md
+    - Getting Started: tutorial/10-getting_started.md
+    - The Project Layout: tutorial/20-project_layout.md
+    - Your First Command: tutorial/30-your_first_command.md
+    - Options, Parameters, and Arguments: tutorial/40-options_parameters_and_arguments.md
+    - Publishing and Distribution: tutorial/50-publishing.md
   - Advanced Features:
-    - User Config Files: advanced/User Config Files.md
-    - Hooks: advanced/Hooks.md
-    - Automatic Updates: advanced/Automatic Updates.md
-    - State Storage: advanced/State Storage.md
-    - Distributed State Locking: advanced/Distributed State Locking.md
-    - Script Wrapping: advanced/Script Wrapping.md
+    - User Config Files: advanced/user_config_files.md
+    - Hooks: advanced/hooks.md
+    - Automatic Updates: advanced/automatic_updates.md
+    - State Storage: advanced/state_storage.md
+    - Distributed State Locking: advanced/distributed_state_locking.md
+    - Script Wrapping: advanced/script_wrapping.md
   - Development:
     - Contribution Guide: development/contributing.md
     - License Info: development/license.md
@@ -38,7 +38,23 @@ site_dir: ../docs/
 #remote_branch: master
 #remote_name: origin
 
-#theme: material
+#theme: windmill
+
+#theme:
+#  name: material
+#  logo:
+#     icon: devices    # from https://material.io/tools/icons/?style=baseline
+#  feature:
+#    tabs: true
+#  logo: 'images/logo.svg'
+#   palette:
+#     primary: 'indigo'
+#     accent: 'indigo'
+#   language: 'en'
+#   direction: 'ltr'
+#   favicon: 'assets/images/favicon.ico'
+
+
 #theme: readthedocs
 #theme:
 #  name: mkdocs

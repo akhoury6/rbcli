@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-#pip install mkdocs
-#pip install mkdocs-material
+if ! pip list | grep mkdocs &> /dev/null; then
+	echo "Python package mkdocs not found. Installing..."
+	pip install mkdocs mkdocs-material
+fi
 
 mkdocs build --clean

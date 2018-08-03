@@ -1,7 +1,7 @@
 
 config = File.expand_path("../config", __FILE__)
 $LOAD_PATH.unshift(config) unless $LOAD_PATH.include?(config)
-require 'config/version'
+require 'version.rb'
 
 Gem::Specification.new do |spec|
   spec.name          = "<%= @vars[:cmdname] %>"
@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{<%= @vars[:description] %>}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = nil
+  spec.license       = "None"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.

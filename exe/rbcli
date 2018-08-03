@@ -107,13 +107,12 @@ EOF
 	end
 end
 
-class Extern < Rbcli::Command
+class Script < Rbcli::Command
 	description 'Generate an Rbcli Command with Bash Script under the current project'
 	usage <<-EOF
 This will generate a new command under the current RBCli project, and a skeleton bash script to code it.
 
-Use this option if you prefer to use bash (or another shell) to script your command, or if you need to integrate with
-a third party application.
+Use this option if you prefer to use bash (or another shell) to script your command.
 
 Please run this command from within the project's directory structure.
 EOF
@@ -121,7 +120,6 @@ EOF
 	parameter :name, 'Name of command to generate', type: :string, required: true
 	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
 	parameter :usagetext, 'Usage help text for the command', type: :string, default: 'TODO: Usage text goes here'
-	parameter :skip_script, 'Skip creating a bash script and set executable path manually', type: :boolean, default: false
 
 	action do |params, args, global_opts, config|
 		# First we check that we are working within a project folder
@@ -133,7 +131,40 @@ EOF
 				name: params[:name],
 				description: params[:description],
 				usage_text: params[:usagetext],
-				no_script: params[:skip_script],
+				no_script: false,
+				rbcli_version: Rbcli::VERSION
+		}
+
+		generator = RBCliTool::Generator.new(:extern, project_root, template_vars)
+		generator.run
+	end
+end
+
+class Extern < Rbcli::Command
+	description 'Generate an Rbcli Command that can wrap an external application'
+	usage <<-EOF
+This will generate a new command under the current RBCli project
+
+Use this option if you need to integrate with a third party application.
+
+Please run this command from within the project's directory structure.
+	EOF
+
+	parameter :name, 'Name of command to generate', type: :string, required: true
+	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
+	parameter :usagetext, 'Usage help text for the command', type: :string, default: 'TODO: Usage text goes here'
+
+	action do |params, args, global_opts, config|
+		# First we check that we are working within a project folder
+		project_root = RBCliTool::Project.find_root(Dir.pwd)
+		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
+
+		# Prepare template vars
+		template_vars = {
+				name: params[:name],
+				description: params[:description],
+				usage_text: params[:usagetext],
+				no_script: true,
 				rbcli_version: Rbcli::VERSION
 		}
 

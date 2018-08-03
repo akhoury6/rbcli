@@ -29,7 +29,7 @@ class Rbcli::Command
 	def self.action &block;        @action = block end
 	def      action;               self.class.instance_variable_get :@action end
 
-	def self.parameter name, description, type: :boolean, default: nil, required: false, permitted: nil
+	def self.parameter name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
 		default ||= false if (type == :boolean || type == :bool || type == :flag)
 		@paramlist ||= {}
 		@paramlist[name.to_sym] = {
@@ -37,7 +37,8 @@ class Rbcli::Command
 				type: type,
 				default: default,
 				required: required,
-				permitted: permitted
+				permitted: permitted,
+				short: short
 		}
 	end
 	def      paramlist;               self.class.instance_variable_get :@paramlist end

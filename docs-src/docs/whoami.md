@@ -10,7 +10,7 @@ RBCli started as a collection of code that I would copy-paste between projects, 
 
 The features in RBCli have been chosen from over 25 years of experience writing applications, building features that 3rd parties left out, managing large scale infrastructure, designing embedded systems, integrating enterprise systems, automating CI/CD, scripting my own computers, and so much more. I hope that you can find as much use out of it as I have.
 
-If you'd like to get in touch with me at any time, feel free to email me at [akhoury@live.com](mailto:akhoury@live.com).
+If you'd like to get in touch with me at any time, feel free to email me at [andrew@bluenex.us](mailto:andrew@bluenex.us).
 
 All the best,
 

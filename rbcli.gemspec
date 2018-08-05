@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
 	spec.name          = 'rbcli'
 	spec.version       = Rbcli::VERSION
 	spec.authors       = ['Andrew Khoury']
-	spec.email         = ['akhoury@live.com']
+	spec.email         = ['andrew@bluenex.us']
 
 	spec.summary       = %q{A CLI Application/Tooling Framework for Ruby}
 	spec.description   = %q{RBCli is a framework to quickly develop command-line tools and applications.}

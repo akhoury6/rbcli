@@ -51,14 +51,23 @@ function detect_os {
 ## Install JQ
 function install_jq {
 	case "$(detect_os)}" in
-		Linux)
-			_tmpdir=$(mktemp -d)
-			_pwd=$(pwd)
-			cd $_tmpdir
-			curl -sOL "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
-			mv jq-linux64 /usr/bin/jq
-			cd $_pwd
-			rm -rf $_tmpdir
+		Linux*)
+			_flavor=$(cat /etc/*release | grep "DISTRIB_ID" | cut -d'=' -f2)
+			case "${_flavor}" in
+				Ubuntu*)
+					sudo apt-get install jq -y
+					;;
+				*)
+					_tmpdir=$(mktemp -d)
+					_pwd=$(pwd)
+					cd $_tmpdir
+					curl -sOL "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
+					sudo mv jq-linux64 /usr/bin/jq
+					sudo chmod +x /usr/bin/jq
+					cd $_pwd
+					rm -rf $_tmpdir
+					;;
+				esac
 			;;
 		Darwin*)
 			message "Apple OSX Detected; homebrew must be installed to continue. Continue? (Y/n): " "no_newline"

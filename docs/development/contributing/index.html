@@ -652,7 +652,7 @@
 <p>To release a new version, follow theese steps:</p>
 <ol>
 <li>Update the version number in <code>version.rb</code></li>
-<li>Run <code>exe/rbcli</code>, which will update <code>gemfile.lock</code> with the correct version and all dependency changes</li>
+<li>Run <code>bundle exec rake install</code>, which will update <code>gemfile.lock</code> with the correct version and all dependency changes</li>
 <li>Run <code>docs-src/makesite.sh</code>, which re-compiles the documentation and pulls in the changelog and quick reference automatically</li>
 <li>Commit the above changes to master, but do not push</li>
 <li>Run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</li>

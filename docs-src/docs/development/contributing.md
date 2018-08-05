@@ -43,7 +43,7 @@ To install this gem onto your local machine from source, run `bundle exec rake i
 To release a new version, follow theese steps:
 
 1. Update the version number in `version.rb`
-2. Run `exe/rbcli`, which will update `gemfile.lock` with the correct version and all dependency changes
+2. Run `bundle exec rake install`, which will update `gemfile.lock` with the correct version and all dependency changes
 3. Run `docs-src/makesite.sh`, which re-compiles the documentation and pulls in the changelog and quick reference automatically
 4. Commit the above changes to master, but do not push
 5. Run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).

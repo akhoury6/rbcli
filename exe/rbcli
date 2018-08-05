@@ -58,7 +58,7 @@ This is free software, and you are welcome to redistribute it
 under certain conditions.
 If you wish to release this library as part of commercial software,
 please contact andrew@blacknex.us.
-Type `rbcli license --full' for the license text.
+Type `rbcli license --full' to show the license text.
 EOF
 	end
 end

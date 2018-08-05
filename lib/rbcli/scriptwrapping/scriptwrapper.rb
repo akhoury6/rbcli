@@ -8,7 +8,7 @@ class Rbcli::Command
 		@extern = Rbcli::Scriptwrapper.new path, envvars, block
 	end
 
-	def extern;
+	def extern
 		@extern ||= nil
 		self.class.instance_variable_get :@extern
 	end
@@ -40,18 +40,18 @@ class Rbcli::Scriptwrapper
 		# end
 		# env_hash.merge!(@envvars.deep_stringify!) unless @envvars.nil?
 
-		env_hash = {
-				'__RBCLI_PARAMS' => params.to_json,
-				'__RBCLI_ARGS' => args.to_json,
-				'__RBCLI_GLOBAL' => global_opts.to_json,
-				'__RBCLI_CONFIG' => config.to_json,
-				'__RBCLI_MYVARS' => @envvars.to_json
-		}
-
 		if @block
+			env_hash = {
+					'__RBCLI_PARAMS' => params.to_json,
+					'__RBCLI_ARGS' => args.to_json,
+					'__RBCLI_GLOBAL' => global_opts.to_json,
+					'__RBCLI_CONFIG' => config.to_json,
+					'__RBCLI_MYVARS' => @envvars.to_json
+			}
 			path = @block.call params, args, global_opts, config
+			system(env_hash, path)
 		else
-			path = @path
+			system(@envvars, @path)
 		end
 
 		# IO.popen(env_hash, path) do |io|
@@ -59,7 +59,6 @@ class Rbcli::Scriptwrapper
 		# 		puts line
 		# 	end
 		# end
-		system(env_hash, path)
 	end
 
 end

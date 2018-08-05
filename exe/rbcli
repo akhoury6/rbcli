@@ -6,6 +6,7 @@ Rbcli::Configurate.me do
 	scriptname __FILE__.split('/')[-1]
 	version Rbcli::VERSION
 	description 'RBCli initialization tool'
+	autoupdate gem: 'rbcli', force_update: false, message: "Please run `gem update rbcli` to upgrade to the latest version."
 end
 
 require "#{File.dirname(__FILE__)}/../lib/rbcli-tool.rb"

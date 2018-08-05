@@ -15,7 +15,7 @@
 #     You should have received a copy of the GNU General Public License          #
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
 #                                                                                #
-#     For questions regarding licensing, please contact andrew@bluenex.us        #
+#     For questions regarding licensing, please contact andrew@blacknex.us        #
 ##################################################################################
 
 lib = File.expand_path("../lib", __FILE__)
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
 	spec.name          = 'rbcli'
 	spec.version       = Rbcli::VERSION
 	spec.authors       = ['Andrew Khoury']
-	spec.email         = ['andrew@bluenex.us']
+	spec.email         = ['andrew@blacknex.us']
 
 	spec.summary       = %q{A CLI Application/Tooling Framework for Ruby}
 	spec.description   = %q{RBCli is a framework to quickly develop command-line tools and applications.}

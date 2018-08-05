@@ -6,6 +6,7 @@
 
 * Official documentation created and hosted with Github Pages
 * RBCli released under GPLv3
+* Copyright/License notice displayed via RBCli tool with `rbcli license` in accordance with GPLv3 guidelines
 
 ### Bugfixes
 

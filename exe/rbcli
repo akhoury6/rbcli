@@ -43,6 +43,26 @@ class Docs < Rbcli::Command
 	end
 end
 
+class License < Rbcli::Command
+	description 'Shows Copyright and License Info'
+	usage nil
+
+	parameter :full, 'Display Full License Text', default: false
+
+	action do |params|
+		puts File.read("#{File.dirname(__FILE__)}/../LICENSE.txt") if params[:full]
+		puts <<-EOF
+RBCli  Copyright (C) 2018 Andrew Khoury
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions.
+If you wish to release this library as part of commercial software,
+please contact andrew@blacknex.us.
+Type `rbcli license --full' for the license text.
+EOF
+	end
+end
+
 class Init < Rbcli::Command
 	description 'Initialize a skeleton RBCli project.'
 	usage <<-EOF

@@ -522,7 +522,7 @@
         }, 
         {
             "location": "/imported/changelog/", 
-            "text": "Changelog\n\n\n0.2.0 (Aug 5, 2018)\n\n\nFeatures\n\n\n\n\nOfficial documentation created and hosted with Github Pages\n\n\nRBCli released under GPLv3\n\n\n\n\nBugfixes\n\n\n\n\nFixed version number loading for projects\n\n\nCleaned up command usage help output\n\n\nFixed script and external command generation\n\n\n\n\nImprovements\n\n\n\n\nA quick reference guide can now be found in README.md\n\n\nCLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.\n\n\nAutoupdate feature now allows supplying a custom message\n\n\nDirect Path Mode for External Commands now\n\n\nAdded support for a \nlib\n folder in projects, as a place for custom code, which is automatically added to \n$LOAD_PATH\n for developers\n\n\nImproved language regarding external commands: Documentation now differentiates between Standard, Scripted, and External Commands\n\n\nImproved language regarding user config files: Now called Userspace Config\n\n\nOptions and Parameters now allow specifying the letter to be used for the short version, or to disable it altogether\n\n\nUserspace config can now be disabled by setting the path to nil or removing the declaration\n\n\n\n\nDeprecations/Changes\n\n\n\n\nRemoved deprecated and broken examples from the examples folder", 
+            "text": "Changelog\n\n\n0.2.0 (Aug 5, 2018)\n\n\nFeatures\n\n\n\n\nOfficial documentation created and hosted with Github Pages\n\n\nRBCli released under GPLv3\n\n\nCopyright/License notice displayed via RBCli tool with \nrbcli license\n in accordance with GPLv3 guidelines\n\n\n\n\nBugfixes\n\n\n\n\nFixed version number loading for projects\n\n\nCleaned up command usage help output\n\n\nFixed script and external command generation\n\n\n\n\nImprovements\n\n\n\n\nA quick reference guide can now be found in README.md\n\n\nCLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.\n\n\nAutoupdate feature now allows supplying a custom message\n\n\nDirect Path Mode for External Commands now\n\n\nAdded support for a \nlib\n folder in projects, as a place for custom code, which is automatically added to \n$LOAD_PATH\n for developers\n\n\nImproved language regarding external commands: Documentation now differentiates between Standard, Scripted, and External Commands\n\n\nImproved language regarding user config files: Now called Userspace Config\n\n\nOptions and Parameters now allow specifying the letter to be used for the short version, or to disable it altogether\n\n\nUserspace config can now be disabled by setting the path to nil or removing the declaration\n\n\n\n\nDeprecations/Changes\n\n\n\n\nRemoved deprecated and broken examples from the examples folder", 
             "title": "Changelog"
         }, 
         {
@@ -537,7 +537,7 @@
         }, 
         {
             "location": "/imported/changelog/#features", 
-            "text": "Official documentation created and hosted with Github Pages  RBCli released under GPLv3", 
+            "text": "Official documentation created and hosted with Github Pages  RBCli released under GPLv3  Copyright/License notice displayed via RBCli tool with  rbcli license  in accordance with GPLv3 guidelines", 
             "title": "Features"
         }, 
         {

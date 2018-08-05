@@ -5,10 +5,11 @@ module Rbcli::Autoupdate
 	class GemUpdater
 		include Common
 
-		def initialize gemname, force_update
+		def initialize gemname, force_update, message
 			@gemname = gemname
 			@uri = URI.parse "https://rubygems.org/api/v1/versions/#{gemname}/latest.json"
 			@force_update = force_update
+			@message = message
 		end
 
 		def get_latest_version
@@ -21,7 +22,7 @@ module Rbcli::Autoupdate
 		end
 
 		def update_message
-			"Please check the Ruby gem #{@gemname} for instructions. You can see it at: https://rubygems.org/gems/#{@gemname}/versions/#{@latest_version}"
+			"Please run `gem update #{@gemname}` to upgrade to the latest version. You can see it at: https://rubygems.org/gems/#{@gemname}/versions/#{@latest_version}"
 		end
 
 		# def self.save_defaults

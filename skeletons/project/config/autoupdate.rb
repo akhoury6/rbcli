@@ -19,14 +19,17 @@ Rbcli::Configurate.me do
 	# The `enterprise_hostname` setting allows you to point RBCli at a local GitHub Enterprise server.
 	#
 	# Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
+	#
+	# The `message` parameter allows setiting a custom message. Leave as nil to use the default message provided by RBCli.
+	#
 	# Uncomment the line below to enable
 
-	#autoupdate github_repo: '<your_user>/<your_repo>', access_token: nil, enterprise_hostname: nil, force_update: false
+	#autoupdate github_repo: '<your_user>/<your_repo>', access_token: nil, enterprise_hostname: nil, force_update: false, message: nil
 
 
 	## Autoupdate, Rubygems.org -- (Optional) -- Check for updates to this application on Rubygems.org
 	# Uncomment the line below to enable
 
-	#autoupdate gem: '<your_gem>', force_update: false
+	#autoupdate gem: '<your_gem>', force_update: false, message: nil
 
 end

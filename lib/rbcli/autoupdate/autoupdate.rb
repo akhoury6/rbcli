@@ -1,13 +1,13 @@
 module Rbcli::Configurate
-	def self.autoupdate gem: nil, github_repo: nil, access_token: nil, enterprise_hostname: nil, force_update: false
+	def self.autoupdate gem: nil, github_repo: nil, access_token: nil, enterprise_hostname: nil, force_update: false, message: nil
 		raise StandardError.new "Autoupdater can not have both a gem and git target defined. Please pick one." if gem and github_repo
 		raise StandardError.new "Only one autoupdater can be defined." if @data[:autoupdater]
 		if gem
 			#Rbcli::Autoupdate::GemUpdater.save_defaults
-			@data[:autoupdater] = Rbcli::Autoupdate::GemUpdater.new gem, force_update
+			@data[:autoupdater] = Rbcli::Autoupdate::GemUpdater.new gem, force_update, message
 		else
 			Rbcli::Autoupdate::GithubUpdater.save_defaults
-			@data[:autoupdater] = Rbcli::Autoupdate::GithubUpdater.new github_repo, access_token, enterprise_hostname, force_update
+			@data[:autoupdater] = Rbcli::Autoupdate::GithubUpdater.new github_repo, access_token, enterprise_hostname, force_update, message
 		end
 		@data[:autoupdater].show_message if @data[:autoupdater].update_available?
 	end
@@ -32,7 +32,7 @@ module Rbcli::Autoupdate
 
 		def show_message
 			puts "WARNING: An update is available to #{Rbcli::Configurate::configuration[:scriptname]}. You are currently running version #{Rbcli.configuration[:version]}; the latest is #{@latest_version || get_latest_version}."
-			puts update_message
+			puts @message || update_message
 			puts "\n"
 			if @force_update
 				puts "This application requires that you update to the latest version to continue using it. It will now exit."

@@ -9,7 +9,6 @@ Over the years, we've settled on several design patterns that we know work well.
 Enter RBCli. RBCli is a framework to quickly develop advanced command-line tools in Ruby. It has been written from the ground up with the needs of the modern technologist in mind, designed to make advanced CLI tool development as painless as possible. In RBCli, low-level code has been wrapped and/or replaced with higher-level methods. Much of the functionality has even been reduced to single methods: for example, it takes just one declaration to define, load, and generate a user's config file at the appropriate times. Many other features are automated and require no work by the engineer. These make RBCli a fundamental re-thining of how we develop CLI tools, enabling the rapid development of applications for everyone from hobbyists to enterprises.
 
 
-
 Some of its key features include:
 
 * __Simple DSL Interface__: To cut down on the amount of code that needs to be written, RBCli has a DSL that is designed to cut to the chase. This makes the work a lot less tedious.
@@ -35,166 +34,86 @@ Some of its key features include:
 * __Project Structure and Generators__: Create a well-defined project directory structure which organizes your code and allows you to package and distribute your application as a Gem. Generators can also help speed up the process of creating new commands, scripts, and hooks!
 
 
+For more information, check out the __[official documentation](http://akhoury6.github.io/rbcli/)__ or keep reading for a quick reference.
+
+
+# Quick Reference
+
 ## Installation
 
-RBCli is available on rubygems.org. You can add it to your application's `Gemfile` or `gemspec`, or install it manually via `gem install rbcli`.
+RBCli is available on rubygems.org. You can add it to your application's `Gemfile` or `gemspec`, or install it manually by running:
 
-
-## The Basics
-
-RBCli enforces a general command-line structure:
-
-```
-toolname [options] command [parameters] [lineitem]
+```bash
+gem install rbcli
 ```
 
-* __Options__ are command line parameters such as `-f`, or `--force`. These are available globally to every command. You can create your own, but several options are already built-in:
-	* `-c <filename> / --config-file=<filename>` allows specifying a config file manually
-	* `-g / --generate-config` generates a config file by writing out the defaults to a YAML file (location is configurable, more on that below)
-	* `-v / --version` shows the version`
-	* `-h / --help` shows the help
-* __Command__ represents the subcommands that you will create, such as `test` or `apply`
-* __Parameters__ are the same as options, but only apply to the specific subcommand being executed. In this case only the `-h / --help` parameter is provided.
-* __Lineitems__ are strings that don't begin with a '-', and are passed to the command's code. These can be used as subcommands or additional parameters for your code. 
+Then, `cd` to the folder you'd like to create your project under and run:
 
-So a valid command could look something like these:
-
-```shell
-mytool -n load --filename=foo.txt
-mytool parse foo.txt
-mytool show -l
+```bash
+rbcli init -n mytool -d "A simple CLI tool"
 ```
 
-Note that all options and parameters will have both a short and long version of the parameter available for use.
+Or, for a single-file tool without any folder/gem tructure, run `rbcli init -t mini -n <projectname>` or `rbcli init -t micro -n <projectname>`.
 
 
-## Getting Started (Lightweight)
+## Creating a command
 
-For a lightweight skeleton that consists of a single file, use `rbcli init -t mini -n <projectname>`, or `rbcli init -t micro -n <projectname>` for an even more simplified one.
+There are three types of commands: standard, scripted, and external.
 
-These lightweight skeletons allow creating single-file applications/scripts using RBCli. They consolidate all of the options in the standard project format into these sections:
+* __Standard__ commands let you code the command directly in Ruby
+* __Scripted__ commands provide you with a bash script, where all of the parsed information (params, options, args, and config) is shared
+* __External__ commands let you wrap 3rd party applications directly
 
-* The configuration
-* Storage subsystem configuration (optional)
-* A command declaration
-* The parse command 
+### Standard Commands
 
-### Configuration
+To create a new command called `foo`, run:
 
-```ruby
-require 'rbcli'
-
-Rbcli::Configurate.me do
-	scriptname __FILE__.split('/')[-1]                                     # (Required) This line identifies the tool's executable. You can change it if needed, but this should work for most cases.
-	version '0.1.0'                                                        # (Required) The version number
-	description 'This is my test CLI tool.'                                # (Requierd) A description that will appear when the user looks at the help with -h. This can be as long as needed.
-	
-	log_level :info                                                        # (Optional) Set the default log_level for users. 0-5, or DEBUG < INFO < WARN < ERROR < FATAL < UNKNOWN
-  log_target 'stderr'                                                    # (Optional) Set the target for logs. Valid values are STDOUT, STDERR, or a file path (as strings)
-
-	config_userfile '/etc/mytool/config.yml', merge_defaults: true, required: false  # (Optional) Set location of user's config file. If merge_defaults=true, user settings override default settings, and if false, defaults are not loaded at all. If required=true, application will not run if file does not exist.
-	config_defaults 'defaults.yml'                                         # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
-	config_default :myopt, description: 'Testing this', default: true        # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
-
-	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']  # (Optional, Multiple) Add a global CLI parameter. Supported types are :string, :boolean, :integer, :float, :date, and :io. Can be called multiple times.
-
-	autoupdate github_repo: 'akhoury6/rbcli', access_token: nil, enterprise_hostname: nil, force_update: false    # (Optional) Check for updates to this application at a GitHub repo. The repo must use version number tags in accordance to best practices: https://help.github.com/articles/creating-releases/
-	autoupdate gem: 'rbcli', force_update: false                                                                  # (Optional) Check for updates to this application through RubyGems.org.
-
-	default_action do |opts|                                               # (Optional) The default code to execute when no subcommand is given. If not present, the help is shown (same as -h)
-		puts "Hello, #{opts[:name]}."
-		puts "To see the help, use -h"
-	end
-
-	pre_hook do |opts|                                                     # (Optional) Allows providing a block of code that runs before any command
-		puts 'This is a pre-command hook. It executes before the command.'
-	end
-
-	post_hook do |opts|                                                    # (Optional) Allows providing a block of code that runs after any command
-		puts 'This is a post-command hook. It executes after the command.'
-	end
-
-	first_run halt_after_running: true do                                  # (Optional) Allows providing a block of code that executes the first time that the application is run on a given system. If `halt_after_running` is set to `true` then parsing will not continue after this code is executed. All subsequent runs will not execute this code.
-		puts "This is the first time the mytool command is run! Don't forget to generate a config file with the `-g` option before continuing."
-	end
-end
+```bash
+rbcli command -n foo
 ```
 
-#### CLI Option Declarations
+You will now find the command code in `application/commands/list.rb`. Edit the `action` block to write your coode.
 
-For the `option` parameters that you want to create, the following types are supported:
+### Scripted Commands
 
-* `:string`
-* `:boolean` or `:flag`
-* `:integer`
-* `:float`
+To create a new scripted command called `bar`, run:
 
-If a default value is not set, it will default to `nil`.
-
-If you want to declare more than one option, you can call it multiple times. The same goes for other items tagged with _Multiple_ in the description above.
-
-Once parsed, options will be placed in a hash where they can be accessed via their names as shown above. You can see this demonstrated in the `default_action`, `pre_hook`, and `post_hook` blocks.
-
-### Storage Configuration (optional)
-
-```ruby
-Rbcli::Configurate.storage do
-	local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                                     # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.local_state[:yourkeyhere]
-	remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: true          # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state.
-end
+```bash
+rbcli script -n bar
 ```
 
-This block configures different storage interfaces. For more details please see the [Storage Subsystems](#storage_subsystems) section below.
+You will then find two new files:
 
-### Command Declaration
+* The command declaration under `application/commands/bar.rb`
+* The script code under `application/commands/scripts/bar.sh`
 
-Commands are added by subclassing `Rbcli::Command`. There are a few parameters to set for it, which get used by the different components of Rbcli.
+Edit the script to write your code.
 
-```ruby
-class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
-	description 'This is a short description.'                                         # (Required) Short description for the global help
-	usage 'This is some really long usage text description!'                           # (Required) Long description for the command-specific help
-	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
+### External Commands
 
-	config_defaults 'defaults.yml'                                                     # (Optional, Multiple) Load a YAML file as part of the default config. This can be called multiple times, and the YAML files will be merged. User config is generated from these
-	config_default :myopt2, description: 'Testing this again', default: true             # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config
+To create a new external command called `baz`, run:
 
-	extern path: 'env | grep "^__PARAMS\|^__ARGS\|^__GLOBAL\|^__CONFIG"', envvars: {MYVAR: 'some_value'}     # (Required unless `action` defined) Runs a given application, with optional environment variables, when the user runs the command.
-	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
-		"echo #{params[:force].to_s}__YESSS!!!"
-	end
-
-	action do |params, args, global_opts, config|                                        # (Required unless `extern` defined) Block to execute if the command is called.
-		Rbcli::log.info { 'These logs can go to STDERR, STDOUT, or a file' }                       # Example log. Interface is identical to Ruby's logger
-		puts "\nArgs:\n#{args}"                    # Arguments that came after the command on the CLI (i.e.: `mytool test bar baz` will yield args=['bar', 'baz'])
-		puts "Params:\n#{params}"                  # Parameters, as described through the option statements above
-		puts "Global opts:\n#{global_opts}"        # Global Parameters, as descirbed in the Configurate section
-		puts "Config:\n#{config}"                  # Config file values
-		puts "LocalState:\n#{Rbcli.local_state}"   # Local persistent state storage (when available) -- if unsure use Rbcli.local_state.nil?
-		puts "RemoteState:\n#{Rbcli.remote_state}" # Remote persistent state storage (when available) -- if unsure use Rbcli.remote_state.nil?
-		puts "\nDone!!!"
-	end
-end
+```bash
+rbcli extern -n baz
 ```
 
-### Parse Command
+You will then find the command code in `application/commands/baz.rb`.
 
-```ruby
-Rbcli.parse       # Parse CLI and execute
-```
+Use one of the two provided modes -- direct path mode or variable path mode -- to provide the path to the external program.
 
-## Execution Chain
 
-RBCli takes actions in a specific order when `parse` is run.
 
-1. The default config is loaded
-2. The user config is loaded if present
-3. CLI is parsed for global options, which are then stored in a hash and passed on to the other parts of the code. Built-in options, however, may cause the code to branch and exit.
-4. The CLI is parsed for a command.
-	a. If no command is entered, RBCLI will check if a `default_acction` block has been provided.
-		i. If the block is defined, execute it
-		ii. Otherwise, show the help
-	b. If a command has been entered, the rest of the CLI is parsed for parameters and lineitems, and the code block for the command is called
+
+
+
+
+
+
+
+
+## Storage Configuration
+
+RBCli supports both local and remote state storage. This is done by synchronizing a Hash with either the local disk or a remote database.
 
 
 ## Configuration Files
@@ -265,7 +184,7 @@ Rbcli::Configurate.storage do
 end
 ```
 
-### <a name="local_state"></a> Local State
+### <a name="local_state"></a>Local State
 
 RBCli's local state storage gives you access to a hash that is automatically persisted to disk when changes are made.
 
@@ -426,112 +345,6 @@ The `gem` parameter should simply state the name of the gem.
 Setting `force_update: true` will halt execution if an update is available, forcing the user to update.
 
 
-## External Script Wrapping
-
-RBCli has the ability to run an external application as a CLI command, passing CLI parameters and environment variables as desired. It provides two modes -- __direct path__ and __variable path__ -- which work similarly through the `extern` keyword.
-
-When an external script is defined in a command, an `action` is no longer required.
-
-To quickly generate a script that shows the environment variables passed to it, you can use RBCli's own tool: `rbcli script`
-
-### Direct Path Mode
-
- ```ruby
- class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
- 	description 'This is a short description.'                                         # (Required) Short description for the global help
- 	usage 'This is some really long usage text description!'                           # (Required) Long description for the command-specific help
- 	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
-
- 	extern path: 'env | grep "^__PARAMS\|^__ARGS\|^__GLOBAL\|^__CONFIG\|^MYVAR"', envvars: {MYVAR: 'some_value'}     # (Required unless `action` defined) Runs a given application, with optional environment variables, when the user runs the command.
-end
- ```
-
-Here, we supply a string to run the command. We can optioanlly provide environment variables which will be available for the script to use.
-
-RBCli will automatically set several environment variables as well. As you may have guessed by the example above, they are prefixed with:
-
-* `__PARAMS`
-* `__ARGS`
-* `__GLOBAL`
-* `__CONFIG`
-
-These prefixes are applied to their respective properties in RBCli, similar to what you would see when using an `action`.
-
-The command in the example above will show you a list of variables, which should look something like this:
-
-```bash
-__GLOBAL_VERSION=false
-__GLOBAL_HELP=false
-__GLOBAL_GENERATE_CONFIG=false
-__GLOBAL_CONFIG_FILE="/etc/mytool/config.yml"
-__CONFIG_LOGGER={"log_level":"info","log_target":"stderr"}
-__CONFIG_MYOPT=true
-__CONFIG_GITHUB_UPDATE={"access_token":null,"enterprise_hostname":null}
-__PARAMS_FORCE=false
-__PARAMS_HELP=false
-MYVAR=some_value
-```
-
-As you can see above, items which have nested values they are passed in as JSON. If you need to parse them, [JQ](https://stedolan.github.io/jq/) is recommended.
-
-### Variable Path Mode
-
-Variable Path Mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string. This allows us to generate different commands based on the CLI parameters that the user passed, or pass configuration as CLI parameters to the external application:
-
-```ruby
-class Test < Rbcli::Command                                                          # Declare a new command by subclassing Rbcli::Command
-	description 'This is a short description.'                                         # (Required) Short description for the global help
-	usage 'This is some really long usage text description!'                           # (Required) Long description for the command-specific help
-	parameter :force, 'Force testing', type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
-
-	extern envvars: {MY_OTHER_VAR: 'another_value'} do |params, args, global_opts, config|                   # Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user.
-		if params[:force]
-			"externalapp --test-script foo --ignore-errors"
-		else
-			"externalapp"
-		end
-	end
-end
-```
-
-## Project Structure and Generators
-
-RBCli supports using predefined project structure, helping to organize all of the options and commands that you may use. It also 
-
-Creating a new project skeleton is as easy as running `rbcli init -n <projectname>`. It will create a folder under the currect directory using the name specified, allowing you to create a command that can be easily packaged and distributed as a gem.
-
-The folder structure is as follows:
-
-```
-<projectname>
-|
-|--- application
-|   |
-|   |--- commands
-|      |
-|      |---scripts
-|
-|--- config
-|--- default_user_configs
-|--- exe
-|--- hooks
-|--- spec
-```
-
-It is highly recommended to __not__ create files in these folders manually, and to use the RBCli generators instead:
-
-```shell
-rbcli command -n <name>
-rbcli script -n <name>
-rbcli userconf -n <name>
-rbcli hook --default      # or rbcli hook -d
-rbcli hook --pre          # or rbcli hook -p
-rbcli hook --post         # or rbcli hook -o
-rbcli hook --firstrun     # or rbcli hook -f
-rbcli hook -dpof          # all hooks at once
-```
-
-That said, this readme will provide you with the information required to do things manually if you so desire. More details on generators later.
 
 
 ## Development

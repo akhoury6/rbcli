@@ -7,6 +7,7 @@ copyright: Copyright © 2018 Andrew Khoury
 
 pages:
   - Home: index.md
+  - Quick Reference: imported/quick_reference.md
   - Tutorial:
     - Getting Started: tutorial/10-getting_started.md
     - The Project Layout: tutorial/20-project_layout.md
@@ -19,11 +20,13 @@ pages:
     - Automatic Updates: advanced/automatic_updates.md
     - State Storage: advanced/state_storage.md
     - Distributed State Locking: advanced/distributed_state_locking.md
-    - Script Wrapping: advanced/script_wrapping.md
+    - Advanced Command Types: advanced/advanced_command_types.md
   - Development:
     - Contribution Guide: development/contributing.md
     - License Info: development/license.md
     - Code of Conduct: development/code_of_conduct.md
+    - Changelog: imported/changelog.md
+  - $whoami: whoami.md
 
 # The repo link on the top-right of the page
 #repo_name: GitHub
@@ -40,12 +43,12 @@ site_dir: ../docs/
 
 #theme: windmill
 
-#theme:
-#  name: material
-#  logo:
-#     icon: devices    # from https://material.io/tools/icons/?style=baseline
-#  feature:
-#    tabs: true
+theme:
+  name: material
+  logo:
+     icon: devices    # from https://material.io/tools/icons/?style=baseline
+  feature:
+    tabs: true
 #  logo: 'images/logo.svg'
 #   palette:
 #     primary: 'indigo'

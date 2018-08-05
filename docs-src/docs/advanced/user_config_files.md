@@ -1,4 +1,4 @@
-## Configuration Files
+# Configuration Files
 
 RBCli has two chains to manage configuration: the __defaults chain__ and the __user chain__.
 

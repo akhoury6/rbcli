@@ -32,12 +32,18 @@ You can find the source markdown files in the `docs-src/docs` folder, and the me
 mkdocs serve
 ```
 
-Once you've completed your edits, run the `makesite.sh` command to build the actual HTML pages automatically in the `docs` folder, from where they will be served when live.
+Also, don't forget to update the __Quick Reference Guide__ in the `README.md` file (the main project one) with information about your changes.
 
-And of course, don't forget to commmit your changes once you're done.
+Once you've completed your edits, run the `makesite.sh` command to build the actual HTML pages automatically in the `docs` folder, from where they will be served when live.
 
 # Maintainer's Notes
 
 To install this gem onto your local machine from source, run `bundle exec rake install`.
 
-To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To release a new version, follow theese steps:
+
+1. Update the version number in `version.rb`
+2. Run `exe/rbcli`, which will update `gemfile.lock` with the correct version and all dependency changes
+3. Run `docs-src/makesite.sh`, which re-compiles the documentation and pulls in the changelog and quick reference automatically
+4. Commit the above changes to master, but do not push
+5. Run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).

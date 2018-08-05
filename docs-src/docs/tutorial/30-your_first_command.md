@@ -1,7 +1,5 @@
 # Your First Command
 
-
-
 ## Creating the Command
 
 Creating the command is straightforward:
@@ -9,7 +7,7 @@ Creating the command is straightforward:
 ```bash
 rbcli command --name=list
 #or
-rbcli command -n list 
+rbcli command -n list
 ```
 
 And there you have it! Now you can try out your command by typing:
@@ -76,7 +74,7 @@ Commands are declared to RBCli simply by subclassing them from `Rbcli::Command` 
 * `action`
 	* This loads the block of code that will run when the command is called. It brings in all of the CLI and user config data as variables. We will also get into these in the next section [Options, Parameters, and Arguments][parameters_documentation]
 
-There is an additional declaration not shown here, `extern`, which is used to wrap external applications and scripts as commands. You can find more information on it in the section on [Script Wrapping][script_wrapping_documentation]
+There is an additional declaration not shown here, `extern`. You can find more information on it in the section on [Advanced Command Types][avanced_command_types_documentation]
 
 
 ## Creating the "list" Command
@@ -121,8 +119,8 @@ Go ahead and test it out! The output doesn't show much obviously, just a list of
 
 ## Next Steps
 
-Next we're going to take a look at options, parameters, and arguments, and we'll clean up our list command by using them.
+Next we're going to take a look at options, parameters, and arguments, and we'll clean up our list command by using them. If you'd like to learn more about the additional command types in RBCli before continuing, see the [Advanced Command Types][avanced_command_types_documentation] documentation.
 
 [parameters_documentation]: 40-options_parameters_and_arguments.md
 [user_config_documentation]: ../advanced/user_config_files.md
-[script_wrapping_documentation]: ../advanced/script_wrapping.md
+[avanced_command_types_documentation]: ../advanced/advanced_command_types.md

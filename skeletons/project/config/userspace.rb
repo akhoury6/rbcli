@@ -14,6 +14,8 @@ Rbcli::Configurate.me do
 	# If merge_defaults=true, user settings override default settings.
 	# If false, defaults set here are not loaded at all, and the user is required to set them.
 	# If required=true, application will not run if file does not exist.
+	#
+	# If the path is set to nil, the config file is disabled
 
 	#config_userfile '~/.<%= @vars[:cmdname] %>', merge_defaults: true, required: false
 	config_userfile nil

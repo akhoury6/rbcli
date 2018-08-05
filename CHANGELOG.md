@@ -4,6 +4,7 @@
 
 ### Features
 
+* CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.
 * Official documentation created and hosted with Github Pages
 * RBCli released under GPLv3
 * Copyright/License notice displayed via RBCli tool with `rbcli license` in accordance with GPLv3 guidelines
@@ -17,7 +18,6 @@
 ### Improvements
 
 * A quick reference guide can now be found in README.md
-* CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.
 * Autoupdate feature now allows supplying a custom message
 * Direct Path Mode for External Commands now
 * Added support for a `lib` folder in projects, as a place for custom code, which is automatically added to `$LOAD_PATH` for developers

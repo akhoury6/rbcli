@@ -5,9 +5,11 @@ RBCli is currently in Alpha stages of development. All releases can be considere
 
 Latest Release: v0.2.0 (Aug 5, 2018) -- See the [changelog][changelog] for complete details.
 
+* CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.
 * Official documentation created and hosted with Github Pages
 * RBCli released under GPLv3
 * Copyright/License notice displayed via RBCli tool with `rbcli license` in accordance with GPLv3 guidelines
+* Many improvements and bugfixes
 
 [You can find the Official Documentation for RBCli Here.][documentation_home]
 

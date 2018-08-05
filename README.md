@@ -1,6 +1,17 @@
+# RBCli
+
+
 RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-# RBCli
+Latest Release: v0.2.0 (Aug 5, 2018) -- See the [changelog][changelog] for complete details.
+
+* Official documentation created and hosted with Github Pages
+* RBCli released under GPLv3
+* Copyright/License notice displayed via RBCli tool with `rbcli license` in accordance with GPLv3 guidelines
+
+[You can find the Official Documentation for RBCli Here.][documentation_home]
+
+## Introduction
 
 As technologists today, we work with the command line a lot. We script a lot. We write tools to share with each other to make our lives easier. We even write applications to make up for missing features in the 3rd party software that we buy. Unfortunately, when writing CLI tools, this process has typically been very painful. We've been working with low-level frameworks for decades; frameworks like `getopt` (1980) and `curses` (1977). They fit their purpose well; they were both computationally lightweight for the computers of the day, and they gave engineers full control and flexibility when it came to how things were built. Over the years, we've used them to settle on several design patterns that we know work well. Patterns as to what a CLI command looks like, what a config file looks like, what remote execution looks like, and even how to use locks (mutexes, semaphores, etc) to control application flow and data atomicity. Yet we're stuck writing the same low-level code anytime we want to write our tooling. Not anymore.
 
@@ -32,7 +43,7 @@ Some of its key features include:
 * __Project Structure and Generators__: Create a well-defined project directory structure which organizes your code and allows you to package and distribute your application as a Gem. Generators can also help speed up the process of creating new commands, scripts, and hooks!
 
 
-For more information, take a look at the __[official documentation](http://akhoury6.github.io/rbcli/)__ or keep reading for a quick reference.
+For more information, take a look at the __[official documentation][documentation_home]__ or keep reading for a quick reference.
 
 
 # Quick Reference
@@ -175,7 +186,7 @@ For more information about development and contributing, please see the [Officia
 
 ## License
 
-The gem is available as open source under the terms of the [GPLv3](https://github.com/akhoury6/rbcli/blob/master/CODE_OF_CONDUCT.md).
+The gem is available as open source under the terms of the [GPLv3][license_text].
 
 ## Full Documentation
 
@@ -185,3 +196,4 @@ The gem is available as open source under the terms of the [GPLv3](https://githu
 [documentation_home]: https://akhoury6.github.com/rbcli
 [documentation_development]: https://akhoury6.github.com/rbcli/development/contributing/
 [license_text]: https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt
+[changelog]: https://github.com/akhoury6/rbcli/blob/master/CHANGELOG.md

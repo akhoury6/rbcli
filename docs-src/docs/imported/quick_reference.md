@@ -138,7 +138,7 @@ For more information about development and contributing, please see the [Officia
 
 ## License
 
-The gem is available as open source under the terms of the [GPLv3](https://github.com/akhoury6/rbcli/blob/master/CODE_OF_CONDUCT.md).
+The gem is available as open source under the terms of the [GPLv3][license_text].
 
 ## Full Documentation
 
@@ -148,3 +148,4 @@ The gem is available as open source under the terms of the [GPLv3](https://githu
 [documentation_home]: https://akhoury6.github.com/rbcli
 [documentation_development]: https://akhoury6.github.com/rbcli/development/contributing/
 [license_text]: https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt
+[changelog]: https://github.com/akhoury6/rbcli/blob/master/CHANGELOG.md

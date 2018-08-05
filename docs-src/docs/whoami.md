@@ -8,7 +8,7 @@ I was only a child at the time, but on that day I learned that every "rule" in c
 
 RBCli started as a collection of code that I would copy-paste between projects, until one day when I wondered if I could just find a framework that suited me. I couldn't - in case you hadn't guessed - so I decided to build my own and give it to the world. I would not have accomplished even half of what I have without the open source community, and this is to be the first of hopefully many contributions back.
 
-The features in RBCli have been chosen from over 25 years of experience writing applications, building features that 3rd parties left out, managing large scale infrastructure, designing embedded systems, integrating enterprise systems, automating CI/CD, scripting my own house, and so much more. I hope that you can find as much use out of it as I do.
+The features in RBCli have been chosen from over 25 years of experience writing applications, building features that 3rd parties left out, managing large scale infrastructure, designing embedded systems, integrating enterprise systems, automating CI/CD, scripting my own computers, and so much more. I hope that you can find as much use out of it as I have.
 
 If you'd like to get in touch with me at any time, feel free to email me at [akhoury@live.com](mailto:akhoury@live.com).
 
@@ -17,7 +17,7 @@ All the best,
 Andrew
 
 
-P.S.: If you really liked RBCli and want to support it, any amount you have to help out with is appreciated.
+P.S.: If you really liked RBCli and want to support it, any amount you can help out with goes a long way.
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">

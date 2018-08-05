@@ -15,18 +15,18 @@ pages:
     - Options, Parameters, and Arguments: tutorial/40-options_parameters_and_arguments.md
     - Publishing and Distribution: tutorial/50-publishing.md
   - Advanced Features:
+    - Command Types: advanced/command_types.md
     - User Config Files: advanced/user_config_files.md
     - Hooks: advanced/hooks.md
     - Automatic Updates: advanced/automatic_updates.md
     - State Storage: advanced/state_storage.md
     - Distributed State Locking: advanced/distributed_state_locking.md
-    - Advanced Command Types: advanced/advanced_command_types.md
   - Development:
     - Contribution Guide: development/contributing.md
     - License Info: development/license.md
     - Code of Conduct: development/code_of_conduct.md
     - Changelog: imported/changelog.md
-  - $whoami: whoami.md
+  - $ whoami: whoami.md
 
 # The repo link on the top-right of the page
 #repo_name: GitHub

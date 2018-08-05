@@ -123,4 +123,4 @@ Next we're going to take a look at options, parameters, and arguments, and we'll
 
 [parameters_documentation]: 40-options_parameters_and_arguments.md
 [user_config_documentation]: ../advanced/user_config_files.md
-[avanced_command_types_documentation]: ../advanced/advanced_command_types.md
+[avanced_command_types_documentation]: ../advanced/command_types.md

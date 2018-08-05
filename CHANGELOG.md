@@ -1,12 +1,11 @@
 # Changelog
 
-Newest updates are first
-
 ## 0.2.0 (Aug 5, 2018)
 
 ### Features
 
 * Official documentation created and hosted with Github Pages
+* RBCli released under GPLv3
 
 ### Bugfixes
 

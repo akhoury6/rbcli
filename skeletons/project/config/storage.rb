@@ -6,29 +6,30 @@
 ###############################
 Rbcli::Configurate.storage do
 	###
-	# Local State Storage
+	# Local State Storage -- (Optional)
 	###
 	# Local state storage creates a hash that is automatically saved to a file locally for state persistance.
 	# It is accessible to all commands at:    Rbcli.localstate[:yourkeyhere]
 	#
 	# Note that every update to the top level of this hash will trigger a save, and updating nested hashes will not.
 	# If you need to update nested hashes, you can trigger a save manually by calling `Rbcli.localstate.commit`.
+	# It is accessible to all commands at: Rbcli.localstate[:yourkeyhere]
 	# Please see the documentation for full usage details.
 	###
 
-	#local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true                                                   # (Optional) Creates a hash that is automatically saved to a file locally for state persistance. It is accessible to all commands at  Rbcli.localstate[:yourkeyhere]
+	#local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true
 
 
 	###
-	# Remote State Storage
+	# Remote State Storage -- (Optional)
 	###
 	# Remote state storage creates a hash that is automatically saved to a remote database for state persistence.
 	# This state can be made unique to each user, or can be shared across different users of the tool.
 	#
-	# When sharing, locking should be set to `true`. Note that RBCli uses lazy-loaded, meaning the lock will
-	# only be acquired when absolutely needed. This behavior can be overridden manually if desired.
+	# When sharing, locking should be set to `true` to prevent data corruption. Note that RBCli uses lazy-loaded,
+	# meaning the lock will only be acquired when absolutely needed. This behavior can be overridden manually if desired.
 	# For full usage details, see the documentation.
 	###
 
-	#remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: :auto       # (Optional) Creates a hash that is automatically saved to a DynamoDB table. It is recommended to keep halt_on_error=true when using a shared state. Locking can be one of (:manual :auto :none) -- see the README for details
+	#remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: false
 end

@@ -1,0 +1,972 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Description">
+      
+      
+      
+        <meta name="author" content="Andrew Khoury">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.5, mkdocs-material-2.9.2">
+    
+    
+      
+        <title>The Project Layout - RBCli Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.ba0fd1a6.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#the-project-layout" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="RBCli Documentation" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">devices</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                RBCli Documentation
+              </span>
+              <span class="md-header-nav__topic">
+                The Project Layout
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/akhoury6/rbcli/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../10-getting_started/" title="Tutorial" class="md-tabs__link md-tabs__link--active">
+          Tutorial
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../advanced/command_types/" title="Advanced Features" class="md-tabs__link">
+          Advanced Features
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../development/contributing/" title="Development" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon">devices</i>
+      
+    </span>
+    RBCli Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/akhoury6/rbcli/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../imported/quick_reference/" title="Quick Reference" class="md-nav__link">
+      Quick Reference
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Tutorial
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Tutorial
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10-getting_started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        The Project Layout
+      </label>
+    
+    <a href="./" title="The Project Layout" class="md-nav__link md-nav__link--active">
+      The Project Layout
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-initialization-types" title="Project Initialization Types" class="md-nav__link">
+    Project Initialization Types
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-mode" title="Project Mode" class="md-nav__link">
+    Project Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-micro-modes" title="Mini &amp; Micro Modes" class="md-nav__link">
+    Mini &amp; Micro Modes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-mode-structure" title="Project Mode Structure" class="md-nav__link">
+    Project Mode Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-rubygems-and-rspec" title="Git, RubyGems, and rspec" class="md-nav__link">
+    Git, RubyGems, and rspec
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rbcli-folders" title="RBCli Folders" class="md-nav__link">
+    RBCli Folders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" title="Next Steps" class="md-nav__link">
+    Next Steps
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../30-your_first_command/" title="Your First Command" class="md-nav__link">
+      Your First Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" class="md-nav__link">
+      Options, Parameters, and Arguments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../50-publishing/" title="Publishing and Distribution" class="md-nav__link">
+      Publishing and Distribution
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Advanced Features
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Advanced Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/command_types/" title="Command Types" class="md-nav__link">
+      Command Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/user_config_files/" title="User Config Files" class="md-nav__link">
+      User Config Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/hooks/" title="Hooks" class="md-nav__link">
+      Hooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/automatic_updates/" title="Automatic Updates" class="md-nav__link">
+      Automatic Updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/state_storage/" title="State Storage" class="md-nav__link">
+      State Storage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/distributed_state_locking/" title="Distributed State Locking" class="md-nav__link">
+      Distributed State Locking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Development
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/contributing/" title="Contribution Guide" class="md-nav__link">
+      Contribution Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/license/" title="License Info" class="md-nav__link">
+      License Info
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/code_of_conduct/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imported/changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../whoami/" title="$ whoami" class="md-nav__link">
+      $ whoami
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-initialization-types" title="Project Initialization Types" class="md-nav__link">
+    Project Initialization Types
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-mode" title="Project Mode" class="md-nav__link">
+    Project Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-micro-modes" title="Mini &amp; Micro Modes" class="md-nav__link">
+    Mini &amp; Micro Modes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-mode-structure" title="Project Mode Structure" class="md-nav__link">
+    Project Mode Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-rubygems-and-rspec" title="Git, RubyGems, and rspec" class="md-nav__link">
+    Git, RubyGems, and rspec
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rbcli-folders" title="RBCli Folders" class="md-nav__link">
+    RBCli Folders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" title="Next Steps" class="md-nav__link">
+    Next Steps
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="the-project-layout">The Project Layout</h1>
+<p>Now we will learn about what an RBCli project looks like and how to start using it.</p>
+<h2 id="project-initialization-types">Project Initialization Types</h2>
+<p>RBCli can initialize a tool in three different modes:</p>
+<ul>
+<li>Project Mode (default)</li>
+<li>Mini Mode</li>
+<li>Micro Mode</li>
+</ul>
+<h3 id="project-mode">Project Mode</h3>
+<p>If you've been following along with the tutorial, you've already seen Project Mode. An RBCli Project consists of several folders, each of which has a specific function. The RBCli framework handles loading and parsing the code automatically. To generate a standard, full-featured RBCli project, run:</p>
+<pre><code class="bash">rbcli init -n mytool
+</code></pre>
+
+<p>where <code>mytool</code> can be replaced with any other command name you'd like. (We will continue using <code>mytool</code> in this tutorial though!)</p>
+<p>Inside the newly created <code>mytool</code> folder you will see a bunch of files and folders related to your project. We will go over the structure later.</p>
+<h3 id="mini-micro-modes">Mini &amp; Micro Modes</h3>
+<p>If you need to write a CLI tool but project mode feels a bit overkill for you -- if you think a single-file script is all that is needed -- that's where the Mini and Micro modes come in. Instead of generating a full directory tree, you get only a single file that contains most of the functionality of RBCli. To use it, run:</p>
+<pre><code class="bash">rbcli init -n mytool -t mini
+# or
+rbcli init -n mytool -t micro
+</code></pre>
+
+<p>The only difference between the two is that <code>mini</code> will show you all available options and some documentation to help you, while <code>micro</code> is for advanced users who just want the samllest file possible.</p>
+<p>As far as documentation goes, every piece of code present in those files is identical to Project mode so it should be pretty easy to navigate.</p>
+<h2 id="project-mode-structure">Project Mode Structure</h2>
+<p>An RBCli project has the following structure:</p>
+<pre><code class="text">&lt;name&gt;/
+|--- application/
+|   |--- commands/
+|   |   |--- scripts/
+|   |--- options.rb
+|--- config/
+|--- exe/
+|   |--- &lt;name&gt;
+|--- hooks/
+|--- lib/
+|--- spec/
+|--- userconf/
+|--- .gitignore
+|--- .rbcli
+|--- .rspec
+|--- CODE_OF_CONDUCT.md
+|--- Gemfile
+|--- README.md
+|--- Rakefile
+|--- &lt;name&gt;.gemspec
+</code></pre>
+
+<h2 id="git-rubygems-and-rspec">Git, RubyGems, and rspec</h2>
+<p>A few files aren't part of RBCli itself, but are provided for your convenience. If you're experienced in Ruby and Git you can skip over this.</p>
+<ul>
+<li><code>.gitignore</code><ul>
+<li>Specifies which files to ignore in git. If you don't use git you can delete this file</li>
+</ul>
+</li>
+<li><code>.rspec</code><ul>
+<li>Configures Rspec for testing your code</li>
+</ul>
+</li>
+<li><code>Gemfile</code><ul>
+<li>Allows declaring dependencies for when your users install your application</li>
+</ul>
+</li>
+<li><code>Gemspec</code><ul>
+<li>Same as above, but also lets you fill in more information so that you can publish your application as a gem</li>
+</ul>
+</li>
+<li><code>README.md</code><ul>
+<li>A skeleton README file that will appear as a front page documentation to your code in most source control systems (i.e. Github, Bitbucket)</li>
+</ul>
+</li>
+<li><code>CODE_OF_CONDUCT.md</code><ul>
+<li>Taken directly from the <a href="http://contributor-covenant.org">contributor covenant</a> for your convenience</li>
+</ul>
+</li>
+<li><code>Rakefile</code><ul>
+<li>So you can run rspec tests as a rake task</li>
+</ul>
+</li>
+</ul>
+<p>There is a lot of controvesy online regarding using the <code>gemfile</code> vs the <code>gemspec</code>. If you are new to Ruby in general then I suggest declaring your dependencies in the gemspec and leaving the <code>gemfile</code> as-is. This keeps things simple and allows publishing and distributing your tool as a gem.</p>
+<p>Additionally, note that a git repo is not created automatically. Using git is out of scope of this tutorial, but you can find tutorials <a href="https://www.tutorialspoint.com/git/">here</a>.</p>
+<h2 id="rbcli-folders">RBCli Folders</h2>
+<ul>
+<li><code>application/</code><ul>
+<li>This is where the core of your application will live. You will define CLI options, commands, scripts, and hooks within this folder.</li>
+</ul>
+</li>
+<li><code>config/</code><ul>
+<li>This folder contains the configuration for RBCli's features; such as storage, logging, and automatic updates.</li>
+</ul>
+</li>
+<li><code>exe/</code><ul>
+<li>This folder contains the executable for your tool. You should not edit it; doing so may lead to unexpected behavior.</li>
+</ul>
+</li>
+<li><code>hooks/</code><ul>
+<li>RBCli has several hooks that can be used to run code at different times, such as the 'default' code that is run when no command is selected. This is where they are placed.</li>
+</ul>
+</li>
+<li><code>lib/</code><ul>
+<li>This folder is for you to write any additional code as you see fit, for importing into your commands, scripts, and hooks. It is automatically added to the $LOAD_PATH for you, so you can just use require statements like <code>require 'abc.rb'</code>  without worrying about where they are located on the filesystem.</li>
+</ul>
+</li>
+<li><code>userconf/</code><ul>
+<li>This folder is for you to place the layout and defaults of any userspace config file. Acceptable formats are yaml and json, though we recommend YAML since it is by far easier to read and supports comments.</li>
+</ul>
+</li>
+<li><code>spec/</code><ul>
+<li>This folder is for your rspec tests.</li>
+</ul>
+</li>
+<li><code>.rbcli</code><ul>
+<li>This file is for internal use by RBCli. It should not be modified or deleted.</li>
+</ul>
+</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>For the purposes of getting started right now, you don't actually need to edit any of the defaults already present.</p>
+<p>We just finished going through what an RBCli project looks like. Now let's create our first application with it!</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../10-getting_started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting Started
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../30-your_first_command/" title="Your First Command" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Your First Command
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2018 Andrew Khoury
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.a59e2a89.js"></script>
+      
+      <script>app.initialize({version:"0.17.5",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

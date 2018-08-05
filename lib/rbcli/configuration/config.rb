@@ -1,3 +1,23 @@
+##################################################################################
+#     RBCli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2018 Andrew Khoury                                           #
+#                                                                                #
+#     This program is free software: you can redistribute it and/or modify       #
+#     it under the terms of the GNU General Public License as published by       #
+#     the Free Software Foundation, either version 3 of the License, or          #
+#     (at your option) any later version.                                        #
+#                                                                                #
+#     This program is distributed in the hope that it will be useful,            #
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
+#     GNU General Public License for more details.                               #
+#                                                                                #
+#     You should have received a copy of the GNU General Public License          #
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
+#                                                                                #
+#     For questions regarding licensing, please contact andrew@blacknex.us        #
+##################################################################################
+
 ####
 # Config Module
 ####
@@ -46,6 +66,7 @@ module Rbcli::Config
 	@loaded = false
 
 	def self.set_userfile filename, merge_defaults: true, required: false
+		return if filename.nil?
 		@config_file = File.expand_path filename
 		@merge_defaults = merge_defaults
 		@userfile_required = required
@@ -99,7 +120,7 @@ module Rbcli::Config
 			@config = YAML::load(File.read(@config_file)).deep_symbolize!
 			@config.deep_merge! @config_defaults if @merge_defaults
 		elsif @userfile_required
-			puts "User's config file not found at #{@config_file}. Please run this tool with the -g option to generate it."
+			puts "User's config file not found at #{@config_file}. Please run this tool with the `--generate-config` option to generate it."
 			exit 1
 		else
 			@config = @config_defaults

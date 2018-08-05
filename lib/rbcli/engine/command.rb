@@ -1,3 +1,24 @@
+##################################################################################
+#     RBCli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2018 Andrew Khoury                                           #
+#                                                                                #
+#     This program is free software: you can redistribute it and/or modify       #
+#     it under the terms of the GNU General Public License as published by       #
+#     the Free Software Foundation, either version 3 of the License, or          #
+#     (at your option) any later version.                                        #
+#                                                                                #
+#     This program is distributed in the hope that it will be useful,            #
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
+#     GNU General Public License for more details.                               #
+#                                                                                #
+#     You should have received a copy of the GNU General Public License          #
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
+#                                                                                #
+#     For questions regarding licensing, please contact andrew@blacknex.us        #
+##################################################################################
+
+
 class Rbcli::Command
 
 	#include InheritableTraits
@@ -29,7 +50,7 @@ class Rbcli::Command
 	def self.action &block;        @action = block end
 	def      action;               self.class.instance_variable_get :@action end
 
-	def self.parameter name, description, type: :boolean, default: nil, required: false, permitted: nil
+	def self.parameter name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
 		default ||= false if (type == :boolean || type == :bool || type == :flag)
 		@paramlist ||= {}
 		@paramlist[name.to_sym] = {
@@ -37,7 +58,8 @@ class Rbcli::Command
 				type: type,
 				default: default,
 				required: required,
-				permitted: permitted
+				permitted: permitted,
+				short: short
 		}
 	end
 	def      paramlist;               self.class.instance_variable_get :@paramlist end
@@ -98,13 +120,11 @@ Selected Command:
 
 Usage:
       #{data[:scriptname]} [options] #{command_name} [parameters]
-
-#{command_usage}
-
+#{if command_usage then "\n" + command_usage + "\n" end}
 Command-specific Parameters:
 			EOS
 			params.each do |name, opts|
-				opt name, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted]
+				opt name, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted], short: opts[:short]
 			end if params.is_a? Hash
 		end
 		optx[:args] = ARGV

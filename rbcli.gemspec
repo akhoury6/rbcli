@@ -1,3 +1,22 @@
+##################################################################################
+#     RBCli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2018 Andrew Khoury                                           #
+#                                                                                #
+#     This program is free software: you can redistribute it and/or modify       #
+#     it under the terms of the GNU General Public License as published by       #
+#     the Free Software Foundation, either version 3 of the License, or          #
+#     (at your option) any later version.                                        #
+#                                                                                #
+#     This program is distributed in the hope that it will be useful,            #
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
+#     GNU General Public License for more details.                               #
+#                                                                                #
+#     You should have received a copy of the GNU General Public License          #
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
+#                                                                                #
+#     For questions regarding licensing, please contact andrew@blacknex.us        #
+##################################################################################
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -7,10 +26,10 @@ Gem::Specification.new do |spec|
 	spec.name          = 'rbcli'
 	spec.version       = Rbcli::VERSION
 	spec.authors       = ['Andrew Khoury']
-	spec.email         = ['akhoury@live.com']
+	spec.email         = ['andrew@blacknex.us']
 
-	spec.summary       = %q{A CLI Framework for Ruby}
-	spec.description   = %q{RBCli is a framework to quickly develop command-line tools.}
+	spec.summary       = %q{A CLI Application/Tooling Framework for Ruby}
+	spec.description   = %q{RBCli is a framework to quickly develop command-line tools and applications.}
 	spec.homepage      = 'https://github.com/akhoury6/rbcli'
 	spec.license       = 'MIT'
 

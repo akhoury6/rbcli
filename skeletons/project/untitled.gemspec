@@ -1,7 +1,7 @@
 
 config = File.expand_path("../config", __FILE__)
 $LOAD_PATH.unshift(config) unless $LOAD_PATH.include?(config)
-require 'config/version'
+require 'version.rb'
 
 Gem::Specification.new do |spec|
   spec.name          = "<%= @vars[:cmdname] %>"
@@ -9,10 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["TODO: Your Name Here"]
   spec.email         = ["TODO: Your Email Here"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
+  spec.summary       = %q{<%= @vars[:description] %>}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = nil
+  spec.license       = "None"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["application", "config", "default_user_configs", "hooks"]
+  spec.require_paths = ["application", "config", "default_user_configs", "hooks", "lib"]
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"

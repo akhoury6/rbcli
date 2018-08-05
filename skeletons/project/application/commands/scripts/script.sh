@@ -8,8 +8,8 @@
 source $(echo $(cd "$(dirname $(gem which rbcli))/../lib-sh" && pwd)/lib-rbcli.sh)
 #
 # The `rbcli` function is actually a wrapper around `jq` (https://stedolan.github.io/jq/). It can automatically
-# jq on users' machines if running Linux or OSX, and users have sudo access. If not, users must install it manually.
-# This is because behind the scenes, RBCli passes in the variable data by populating evironment variables with JSON.
+# jq on users' machines if running Linux or OSX, and users have sudo access. If not, users will be prompted to install
+# it. RBCli passes in the variable data by populating evironment variables with JSON, and requires JQ to parse them.
 #
 # You can view the entire JSON structures with:
 #

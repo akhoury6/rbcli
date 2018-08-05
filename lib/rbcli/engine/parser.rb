@@ -1,3 +1,24 @@
+##################################################################################
+#     RBCli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2018 Andrew Khoury                                           #
+#                                                                                #
+#     This program is free software: you can redistribute it and/or modify       #
+#     it under the terms of the GNU General Public License as published by       #
+#     the Free Software Foundation, either version 3 of the License, or          #
+#     (at your option) any later version.                                        #
+#                                                                                #
+#     This program is distributed in the hope that it will be useful,            #
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
+#     GNU General Public License for more details.                               #
+#                                                                                #
+#     You should have received a copy of the GNU General Public License          #
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
+#                                                                                #
+#     For questions regarding licensing, please contact andrew@blacknex.us        #
+##################################################################################
+
+
 #TODO: Change this once the changes have been merged into trollop gem proper
 require "rbcli/util/trollop"
 
@@ -25,11 +46,11 @@ Commands:
 				opts[:default] = nil unless opts.key? :default
 				opts[:required] = false unless opts.key? :required
 				opts[:permitted] = nil unless opts.key? :permitted
-				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted]
+				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted], short: opts[:short]
 			end
-			opt :json_output, 'Output result in machine-friendly JSON format', :type => :boolean, :default => false if data[:allow_json]
-			opt :config_file, 'Specify a config file manually', :type => :string, :default => data[:config_userfile] unless data[:config_userfile].nil?
-			opt :generate_config, 'Generate a new config file' unless data[:config_userfile].nil? #defaults to false
+			opt :json_output, 'Output result in machine-friendly JSON format', type: :boolean, default: false if data[:allow_json]
+			opt :config_file, 'Specify a config file manually', short: :none, type: :string, default: data[:config_userfile] unless data[:config_userfile].nil?
+			opt :generate_config, 'Generate a new config file', short: :none unless data[:config_userfile].nil? #defaults to false
 			stop_on Rbcli::Command.commands.keys
 		end
 

@@ -1,3 +1,23 @@
+##################################################################################
+#     RBCli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2018 Andrew Khoury                                           #
+#                                                                                #
+#     This program is free software: you can redistribute it and/or modify       #
+#     it under the terms of the GNU General Public License as published by       #
+#     the Free Software Foundation, either version 3 of the License, or          #
+#     (at your option) any later version.                                        #
+#                                                                                #
+#     This program is distributed in the hope that it will be useful,            #
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
+#     GNU General Public License for more details.                               #
+#                                                                                #
+#     You should have received a copy of the GNU General Public License          #
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
+#                                                                                #
+#     For questions regarding licensing, please contact andrew@blacknex.us        #
+##################################################################################
+
 class Rbcli::Command
 	def self.extern path: nil, envvars: nil, &block
 		if path == :default
@@ -8,7 +28,7 @@ class Rbcli::Command
 		@extern = Rbcli::Scriptwrapper.new path, envvars, block
 	end
 
-	def extern;
+	def extern
 		@extern ||= nil
 		self.class.instance_variable_get :@extern
 	end
@@ -40,18 +60,18 @@ class Rbcli::Scriptwrapper
 		# end
 		# env_hash.merge!(@envvars.deep_stringify!) unless @envvars.nil?
 
-		env_hash = {
-				'__RBCLI_PARAMS' => params.to_json,
-				'__RBCLI_ARGS' => args.to_json,
-				'__RBCLI_GLOBAL' => global_opts.to_json,
-				'__RBCLI_CONFIG' => config.to_json,
-				'__RBCLI_MYVARS' => @envvars.to_json
-		}
-
 		if @block
+			env_hash = {
+					'__RBCLI_PARAMS' => params.to_json,
+					'__RBCLI_ARGS' => args.to_json,
+					'__RBCLI_GLOBAL' => global_opts.to_json,
+					'__RBCLI_CONFIG' => config.to_json,
+					'__RBCLI_MYVARS' => @envvars.to_json
+			}
 			path = @block.call params, args, global_opts, config
+			system(env_hash, path)
 		else
-			path = @path
+			system(@envvars, @path)
 		end
 
 		# IO.popen(env_hash, path) do |io|
@@ -59,7 +79,6 @@ class Rbcli::Scriptwrapper
 		# 		puts line
 		# 	end
 		# end
-		system(env_hash, path)
 	end
 
 end

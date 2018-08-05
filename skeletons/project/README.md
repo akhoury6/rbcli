@@ -1,6 +1,6 @@
 # <%= @vars[:cmdname] %>
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem.
+Welcome to your new application! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem.
 
 You'll find your gem's Command Line entrypoint under the file `exe/<%= @vars[:cmdname] %>`, although you shouldn't need to edit this file. Instead, follow these steps to get up and running quickly:
 
@@ -18,6 +18,21 @@ TODO: Delete the text above and write your README!
 
 <%= @vars[:description] %>
 
+## Installation
+
+To install this application from source, clone this repo and run:
+
+```bash
+gem build <%= @vars[:cmdname] %>.gemspec
+gem install <%= @vars[:cmdname] %>-*.gem
+```
+
+To install this application from Rubygems.org, run:
+
+```bash
+gem install <%= @vars[:cmdname] %>
+```
+
 ## Development
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `config/version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
@@ -28,4 +43,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 
 ## Code of Conduct
 
-Everyone interacting in the Untitled project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/untitled/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Untitled project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/<%= @vars[:cmdname] %>/blob/master/CODE_OF_CONDUCT.md).

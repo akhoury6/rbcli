@@ -10,9 +10,18 @@ Rbcli::Configurate.me do
 	# Here you are defining the [options]. The parameters and lineitms (subcommands) are
 	# defined under their command blocks.
 	#
-	# The following types are supported: `:string`, `:boolean` or `:flag`, `:integer`, and `:float`
+	# Options are defined in the follwoing format:
+	#     option :<name>, "<description_string>", short: '<character>', type: <variable_type>, default: <default_value>, permitted: [<array_of_permitted_values]
 	#
-	# If a default value is not set, it will default to `nil`.
+	#       name:               (Required) The long name of the option, as a symbol. This will be represented as `--name` on the command line
+	#       description_string: (Required) A short description of the command that will appear in the help text for the user
+	#       type:               (Required) The following types are supported: `:string`, `:boolean` or `:flag`, `:integer`, and `:float`
+	#       default:            (Optional) A default value for the option if one isn't entered (default: nil)
+	#       short:              (Optional) A letter that acts as a shortcut for the option. This will allow users to apply the command as `-n`
+	#                                       To not have a short value, set this to :none
+	#                                       (default: the first letter of the long name)
+	#       required:           (Optional) Specify whether the option is required from the user (default: false)
+	#       permitted:          (Optional) An array of whitelisted values for the option (default: nil)
 	#
 	# To specify multiple options, simply copy the line and modify as desired.
 	#
@@ -26,5 +35,5 @@ Rbcli::Configurate.me do
 	description  %q{<%= @vars[:description] %>}
 
 	## Option -- (Optional, Multiple) -- Add a global CLI Option
-	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']
+	option :name, 'Give me your name', short: 'n', type: :string, default: 'Jack', required: false, permitted: ['Jack', 'Jill']
 end

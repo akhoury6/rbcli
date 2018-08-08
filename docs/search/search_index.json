@@ -436,6 +436,26 @@
             "title": "Manual Locking"
         }, 
         {
+            "location": "/advanced/remote_execution/", 
+            "text": "Remote Execution\n\n\nRBCli can be configured to execute commands on a remote machine via SSH instead of locally.\n\n\nCurrently, only \nscript\n and \nextern\n commands are supported.\n\n\nConfiguration\n\n\nTo allow remote execution, go to \nconfig/general.rb\n and change the following line to \ntrue\n:\n\n\nremote_execution permitted: false\n\n\n\n\nThen, for each command that you would like to enable remote execution for, add the following directive to the command class declaration:\n\n\nremote_permitted\n\n\n\n\nUsage\n\n\nYour end users can now execute a command remotely by specifying the connection string and credentials on the command line as follows:\n\n\nmytool --remote-exec [user@]host[:port] --identity (/path/to/private/ssh/key or password) \ncommand\n\n# or\nmytool -r [user@]host[:port] -i (/path/to/private/ssh/key or password) \ncommand\n\n\n\n\n\nSome valid examples are:\n\n\nmytool -r example.com -i myPassword showuserfiles -u MyUser\nmytool -r root@server.local -i ~/.ssh/id_rsa update\nmytool -r admin@172.16.0.1:2202 -i ~/.ssh/mykey cleartemp\n\n\n\n\nIf the end user is unsure of which commands can or can not be executed remotely, they can check by running \nmytool -h\n. Commands that have remote execution enabled will have an asterisk (*) by their name:\n\n\n$ mytool -h\nA simple command line tool.\nFor more information on individual commands, run `mytool \ncommand\n -h`.\n\nUsage:\n      foo [options] command [parameters]\n\nCommands:\n      bar                  TODO: Description goes here\n   *  baz                  TODO: Description goes here\n\n...\n\n\n\n\nIn this example, the command \nbaz\n is available for remote execution", 
+            "title": "Remote Execution"
+        }, 
+        {
+            "location": "/advanced/remote_execution/#remote-execution", 
+            "text": "RBCli can be configured to execute commands on a remote machine via SSH instead of locally.  Currently, only  script  and  extern  commands are supported.", 
+            "title": "Remote Execution"
+        }, 
+        {
+            "location": "/advanced/remote_execution/#configuration", 
+            "text": "To allow remote execution, go to  config/general.rb  and change the following line to  true :  remote_execution permitted: false  Then, for each command that you would like to enable remote execution for, add the following directive to the command class declaration:  remote_permitted", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/advanced/remote_execution/#usage", 
+            "text": "Your end users can now execute a command remotely by specifying the connection string and credentials on the command line as follows:  mytool --remote-exec [user@]host[:port] --identity (/path/to/private/ssh/key or password)  command \n# or\nmytool -r [user@]host[:port] -i (/path/to/private/ssh/key or password)  command   Some valid examples are:  mytool -r example.com -i myPassword showuserfiles -u MyUser\nmytool -r root@server.local -i ~/.ssh/id_rsa update\nmytool -r admin@172.16.0.1:2202 -i ~/.ssh/mykey cleartemp  If the end user is unsure of which commands can or can not be executed remotely, they can check by running  mytool -h . Commands that have remote execution enabled will have an asterisk (*) by their name:  $ mytool -h\nA simple command line tool.\nFor more information on individual commands, run `mytool  command  -h`.\n\nUsage:\n      foo [options] command [parameters]\n\nCommands:\n      bar                  TODO: Description goes here\n   *  baz                  TODO: Description goes here\n\n...  In this example, the command  baz  is available for remote execution", 
+            "title": "Usage"
+        }, 
+        {
             "location": "/development/contributing/", 
             "text": "Contribution Guide\n\n\nContributing to RBCli is the same as most open source projects:\n\n\n\n\nFork the repository\n\n\nCreate your own branch\n\n\nSubmit a pull request when ready\n\n\n\n\nThat's all there is to it! We've also kept our acceptance criteria pretty simple, as you'll see below. Feel free to submit a pull request even if you don't meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.\n\n\nCode Acceptance Criteria\n\n\nTabs, Not Spaces\n\n\nPlease, and thanks. We all like to use different indentation levels and styles, and this will keep us consistent between editors.\n\n\nFor filetypes where tabs are not supported (such as YAML), please stick to using two (2) spaces.\n\n\nDocumentation for User Features\n\n\nFor any modification that alters the way RBCli is used -- we're talking additional features, options, keyword changes, major behavioral changes, and the like -- the documentation will need to be updated as well. You'll be happy to know we designed it to make the process relatively painless.\n\n\nRBCli's documentation is essentially a collection of markdown files that have been compiled into a static site using \nMkDocs\n. If you already have python and pip on your system, you can install it by running:\n\n\npip install mkdocs mkdocs-material\n\n\n\n\nYou can find the source markdown files in the \ndocs-src/docs\n folder, and the menu organization in \ndocs-src/mkdocs.yml\n. To preview your changes on a live site, run:\n\n\nmkdocs serve\n\n\n\n\nAlso, don't forget to update the \nQuick Reference Guide\n in the \nREADME.md\n file (the main project one) with information about your changes.\n\n\nOnce you've completed your edits, run the \nmakesite.sh\n command to build the actual HTML pages automatically in the \ndocs\n folder, from where they will be served when live.\n\n\nMaintainer's Notes\n\n\nTo install this gem onto your local machine from source, run \nbundle exec rake install\n.\n\n\nTo release a new version, follow theese steps:\n\n\n\n\nUpdate the version number in \nversion.rb\n\n\nRun \nbundle exec rake install\n, which will update \ngemfile.lock\n with the correct version and all dependency changes\n\n\nRun \ndocs-src/makesite.sh\n, which re-compiles the documentation and pulls in the changelog and quick reference automatically\n\n\nCommit the above changes to master with a commit message of \"vX.X.X\" (where X.X.X is the version number), but do not push\n\n\nRun \nbundle exec rake release\n, which will create a git tag for the version, push git commits and tags, and push the \n.gem\n file to \nrubygems.org\n.", 
             "title": "Contribution Guide"
@@ -522,7 +542,7 @@
         }, 
         {
             "location": "/imported/changelog/", 
-            "text": "Changelog\n\n\n0.2.0 (Aug 5, 2018)\n\n\nFeatures\n\n\n\n\nCLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.\n\n\nOfficial documentation created and hosted with Github Pages\n\n\nRBCli released under GPLv3\n\n\nCopyright/License notice displayed via RBCli tool with \nrbcli license\n in accordance with GPLv3 guidelines\n\n\n\n\nBugfixes\n\n\n\n\nFixed version number loading for projects\n\n\nCleaned up command usage help output\n\n\nFixed script and external command generation\n\n\n\n\nImprovements\n\n\n\n\nA quick reference guide can now be found in README.md\n\n\nAutoupdate feature now allows supplying a custom message\n\n\nDirect Path Mode for External Commands now\n\n\nAdded support for a \nlib\n folder in projects, as a place for custom code, which is automatically added to \n$LOAD_PATH\n for developers\n\n\nImproved language regarding external commands: Documentation now differentiates between Standard, Scripted, and External Commands\n\n\nImproved language regarding user config files: Now called Userspace Config\n\n\nOptions and Parameters now allow specifying the letter to be used for the short version, or to disable it altogether\n\n\nUserspace config can now be disabled by setting the path to nil or removing the declaration\n\n\n\n\nDeprecations/Changes\n\n\n\n\nRemoved deprecated and broken examples from the examples folder", 
+            "text": "Changelog\n\n\n0.2.1 (Aug 8, 2018)\n\n\nFeatures\n\n\n\n\nRemote Execution added for Script and External commands\n\n\n\n\nBugfixes\n\n\n\n\nFixed a bug that caused RBCli to crash if a direct path mode script's environment variables were declared as symbols\n\n\n\n\n0.2.0 (Aug 5, 2018)\n\n\nFeatures\n\n\n\n\nCLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.\n\n\nOfficial documentation created and hosted with Github Pages\n\n\nRBCli released under GPLv3\n\n\nCopyright/License notice displayed via RBCli tool with \nrbcli license\n in accordance with GPLv3 guidelines\n\n\n\n\nBugfixes\n\n\n\n\nFixed version number loading for projects\n\n\nCleaned up command usage help output\n\n\nFixed script and external command generation\n\n\n\n\nImprovements\n\n\n\n\nA quick reference guide can now be found in README.md\n\n\nAutoupdate feature now allows supplying a custom message\n\n\nDirect Path Mode for External Commands now\n\n\nAdded support for a \nlib\n folder in projects, as a place for custom code, which is automatically added to \n$LOAD_PATH\n for developers\n\n\nImproved language regarding external commands: Documentation now differentiates between Standard, Scripted, and External Commands\n\n\nImproved language regarding user config files: Now called Userspace Config\n\n\nOptions and Parameters now allow specifying the letter to be used for the short version, or to disable it altogether\n\n\nUserspace config can now be disabled by setting the path to nil or removing the declaration\n\n\n\n\nDeprecations/Changes\n\n\n\n\nRemoved deprecated and broken examples from the examples folder", 
             "title": "Changelog"
         }, 
         {
@@ -531,17 +551,32 @@
             "title": "Changelog"
         }, 
         {
+            "location": "/imported/changelog/#021-aug-8-2018", 
+            "text": "", 
+            "title": "0.2.1 (Aug 8, 2018)"
+        }, 
+        {
+            "location": "/imported/changelog/#features", 
+            "text": "Remote Execution added for Script and External commands", 
+            "title": "Features"
+        }, 
+        {
+            "location": "/imported/changelog/#bugfixes", 
+            "text": "Fixed a bug that caused RBCli to crash if a direct path mode script's environment variables were declared as symbols", 
+            "title": "Bugfixes"
+        }, 
+        {
             "location": "/imported/changelog/#020-aug-5-2018", 
             "text": "", 
             "title": "0.2.0 (Aug 5, 2018)"
         }, 
         {
-            "location": "/imported/changelog/#features", 
+            "location": "/imported/changelog/#features_1", 
             "text": "CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.  Official documentation created and hosted with Github Pages  RBCli released under GPLv3  Copyright/License notice displayed via RBCli tool with  rbcli license  in accordance with GPLv3 guidelines", 
             "title": "Features"
         }, 
         {
-            "location": "/imported/changelog/#bugfixes", 
+            "location": "/imported/changelog/#bugfixes_1", 
             "text": "Fixed version number loading for projects  Cleaned up command usage help output  Fixed script and external command generation", 
             "title": "Bugfixes"
         }, 

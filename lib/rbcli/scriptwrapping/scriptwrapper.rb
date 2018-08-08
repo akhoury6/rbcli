@@ -91,7 +91,7 @@ class Rbcli::Scriptwrapper
 			end
 			system(env_hash, path)
 		else
-			system(@envvars, @path)
+			system(@envvars.collect{|k,v| [k.to_s, v]}.to_h, @path)
 		end
 
 		# IO.popen(env_hash, path) do |io|

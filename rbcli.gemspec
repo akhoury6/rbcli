@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
 	spec.summary       = %q{A CLI Application/Tooling Framework for Ruby}
 	spec.description   = %q{RBCli is a framework to quickly develop command-line tools and applications.}
-	spec.homepage      = 'https://github.com/akhoury6/rbcli'
+	spec.homepage      = 'https://akhoury6.github.io/rbcli'
 	spec.license       = 'MIT'
 
 	spec.required_ruby_version = '>= 2.3'

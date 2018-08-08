@@ -1,9 +1,12 @@
 # RBCli
 
-
 RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-Latest Release: v0.2.0 (Aug 5, 2018) -- See the [changelog][changelog] for complete details.
+Latest Release: v0.2.1 (Aug 8, 2018) -- See the [changelog][changelog] for complete details.
+
+* Remote Execution Feature Added
+
+Previous Release: v0.2.0 (Aug 5, 2018)
 
 * CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.
 * Official documentation created and hosted with Github Pages

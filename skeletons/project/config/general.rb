@@ -12,6 +12,6 @@ Rbcli::Configurate.me do
 
 	## Remote Exection -- (Optional) -- Enables executing commands on remote machines via SSH
 	# For any command that you would like to enable remote_execution for, you shoud also
-	# put
-	remote_execution permitted: true
+	# put the 'remote_permitted' directive in its declaration.
+	remote_execution permitted: false
 end

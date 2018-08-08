@@ -7,6 +7,8 @@ PATH
       deep_merge (~> 1.2)
       macaddr (~> 1.7)
       mdless (~> 0.0)
+      net-scp (~> 1.2)
+      net-ssh (~> 5.0)
       octokit (~> 4.9)
       rufus-scheduler (~> 3.5)
 
@@ -41,6 +43,9 @@ GEM
     mdless (0.0.10)
     minitest (5.11.3)
     multipart-post (2.0.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (5.0.2)
     octokit (4.9.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     public_suffix (3.0.2)

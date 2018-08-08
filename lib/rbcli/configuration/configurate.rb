@@ -32,7 +32,8 @@ module Rbcli::Configurate
 			pre_hook: nil,
 			post_hook: nil,
 			first_run: nil,
-			halt_after_first_run: false
+			halt_after_first_run: false,
+			remote_execution: false
 	}
 
 	def self.me &block
@@ -111,6 +112,10 @@ module Rbcli::Configurate
 	def self.first_run halt_after_running: false, &block
 		@data[:halt_after_first_run] = halt_after_running
 		@data[:first_run] = block
+	end
+
+	def self.remote_execution permitted: true
+		@data[:remote_execution] = permitted
 	end
 
 	##

@@ -48,7 +48,11 @@ Commands:
 				opts[:permitted] = nil unless opts.key? :permitted
 				opt name.to_sym, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted], short: opts[:short]
 			end
-			opt :json_output, 'Output result in machine-friendly JSON format', type: :boolean, default: false if data[:allow_json]
+			if data[:remote_execution]
+				opt :remote_exec, 'Remote user@host:port to execute command on', type: :string, default: nil
+				opt :identity, 'Identity for remote execution', type: :string, default: nil
+			end
+			opt :json_output, 'Output result in machine-friendly JSON format', short: :none, type: :boolean, default: false if data[:allow_json]
 			opt :config_file, 'Specify a config file manually', short: :none, type: :string, default: data[:config_userfile] unless data[:config_userfile].nil?
 			opt :generate_config, 'Generate a new config file', short: :none unless data[:config_userfile].nil? #defaults to false
 			stop_on Rbcli::Command.commands.keys
@@ -66,6 +70,10 @@ Commands:
 			end
 		elsif Rbcli::Command.commands.key? @cmd[0]
 			@cmd << Rbcli::Command.commands[@cmd[0]].parseopts
+
+			if (@cliopts[:remote_exec_given] and not @cliopts[:identity_given]) or (not @cliopts[:remote_exec_given] and @cliopts[:identity_given])
+				Trollop::die 'Must use `--remote-exec` and `--identity` together.'
+			end
 
 			Rbcli.configuration[:pre_hook].call @cliopts unless Rbcli.configuration[:pre_hook].nil?
 			Rbcli::Command.runcmd(@cmd.shift, @cmd[0], @cliopts)

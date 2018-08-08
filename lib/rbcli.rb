@@ -60,6 +60,10 @@ require 'rbcli/autoupdate/autoupdate'
 require 'rbcli/scriptwrapping/scriptwrapper'
 # END SCRIPT WRAPPER
 
+# REMOTE EXEC
+require 'rbcli/remote_exec/remote_exec'
+# END REMOTE EXEC
+
 # CORE
 require 'rbcli/configuration/configurate'
 require 'rbcli/engine/load_project'

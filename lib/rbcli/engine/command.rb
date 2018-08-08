@@ -72,6 +72,14 @@ class Rbcli::Command
 		Rbcli::Config::add_default *params
 	end
 
+	def self.remote_permitted
+		@remote_permitted = true
+	end
+
+	def remote_permitted?
+		self.class.instance_variable_get :@remote_permitted
+	end
+
 	##
 	# END Interface Functions
 	##
@@ -85,7 +93,14 @@ class Rbcli::Command
 		global_opts = cliopts
 		config = Rbcli::config
 
-		raise Exception.new("Command #{cmd} has both an extern and action defined. Usage is limiated to one at a time.") if (@commands[cmd].extern or @commands[cmd].script) and @commands[cmd].action
+		raise Exception.new("Command #{cmd} can only have one of `action`, `script`, or `extern` defined.") if (@commands[cmd].extern or @commands[cmd].script) and @commands[cmd].action
+
+		if cliopts[:remote_exec]
+			Rbcli::RemoteExec.new(@commands[cmd], cliopts[:remote_exec], cliopts[:identity], params, args, global_opts, config).run
+			#remote_exec @commands[cmd], params, args, global_opts, config
+			return
+		end
+
 		@commands[cmd].extern.execute params, args, global_opts, config unless @commands[cmd].extern.nil?
 		@commands[cmd].script.execute params, args, global_opts, config unless @commands[cmd].script.nil?
 		@commands[cmd].action.call params, args, global_opts, config unless @commands[cmd].action.nil?
@@ -98,7 +113,13 @@ class Rbcli::Command
 		#descmap = @commands.map { |name, klass| [name, klass.description] }.to_h
 		@commands.map do |name, cmdobj|
 			desc = ''
-			indent_size.times { desc << ' ' }
+			if Rbcli.configuration[:remote_execution] and cmdobj.remote_permitted?
+				indent_size -= 3
+				indent_size.times { desc << ' ' }
+				desc << '*  '
+			else
+				indent_size.times { desc << ' ' }
+			end
 			desc << name.ljust(justification)
 			desc << cmdobj.description
 		end.join("\n")

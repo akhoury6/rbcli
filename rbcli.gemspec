@@ -64,6 +64,9 @@ Gem::Specification.new do |spec|
 	spec.add_dependency 'rufus-scheduler', '~> 3.5'
 	spec.add_dependency 'octokit', '~> 4.9'
 	spec.add_dependency 'mdless', '~> 0.0'
+	spec.add_dependency 'net-ssh', '~> 5.0'
+	spec.add_dependency 'net-scp', '~> 1.2'
+
 
 	#spec.add_dependency 'trollop', '~> 2.1'
 end

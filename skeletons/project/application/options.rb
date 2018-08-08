@@ -29,11 +29,6 @@ Rbcli::Configurate.me do
 	# they are made available to your hooks and commands.
 	###
 
-	## Description -- (Required) -- A description that will appear when the user looks at the help with -h.
-	# This should describe what the application does, and if applicable, give some common usage examples.
-	# It can be as long as needed. Use a heredoc if desired: <<-EOF TextGoesHere EOF
-	description  %q{<%= @vars[:description] %>}
-
 	## Option -- (Optional, Multiple) -- Add a global CLI Option
 	option :name, 'Give me your name', short: 'n', type: :string, default: 'Jack', required: false, permitted: ['Jack', 'Jill']
 end

@@ -5,13 +5,17 @@
 # from Rbcli::Command. The name of the class will be
 # the command that is available to the user.
 #########################
-class <%= @vars[:name].capitalize %> < Rbcli::Command                                  # Declare a new command by subclassing Rbcli::Command
-	description '<%= @vars[:description] %>'                                             # (Required) Short description for the global help
-	usage '<%= @vars[:usage_text] %>'                                                    # (Required) Long description for the command-specific help
-	parameter :force, 'Force testing', type: :boolean, default: false, required: false   # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
+class <%= @vars[:name].capitalize %> < Rbcli::Command                                 # Declare a new command by subclassing Rbcli::Command
+	description '<%= @vars[:description] %>'                                            # (Required) Short description for the global help
+	usage <<-EOF
+<%= @vars[:usage_text] %>
+EOF
+parameter :force, 'Force testing', type: :boolean, default: false, required: false    # (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times
 
-	config_default :myopt2, description: 'Testing this again', default: true             # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.
-	# Alternatively, you can simply create a yaml file in the `default_user_configs` directory in your project
+	config_default :myopt2, description: 'Testing this again', default: true            # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.
+	# Alternatively, you can create a yaml file in the `default_user_configs` directory in your project
+
+	#remote_permitted                                                                   # (Optional) Allow this script to be executed on remote hosts. Requires enabling remote execution in the RBCli configuration
 
 <% if @vars[:no_script] -%>
 	extern path: 'path/to/application', envvars: {MYVAR: 'some_value'}                               # (Required) Runs a given application, with optional environment variables, when the user runs the command.

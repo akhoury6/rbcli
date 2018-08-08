@@ -9,7 +9,7 @@ class <%= @vars[:name].capitalize %> < Rbcli::Command                           
 	description '<%= @vars[:description] %>'                                            # (Required) Short description for the global help
 	usage <<-EOF
 <%= @vars[:usage_text] %>
-EOF                                                                                   # (Required) Long description for the command-specific help
+EOF
 	parameter :force, 'Force testing', short: 'f', type: :boolean, default: false, required: false  # (Optional, Multiple) Add a command-specific CLI parameter. Uses the same format as options (see application/options.rb for help)
 
 	config_default :myopt2, description: 'My Option #2', default: 'Default Value Here'  # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.

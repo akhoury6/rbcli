@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.1 (Aug 8, 2018)
+
+### Features
+
+* Remote Execution added for Script and External commands
+
+### Bugfixes
+
+* Fixed a bug that caused RBCli to crash if a direct path mode script's environment variables were declared as symbols
+
+
 ## 0.2.0 (Aug 5, 2018)
 
 ### Features

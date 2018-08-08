@@ -21,6 +21,7 @@ pages:
     - Automatic Updates: advanced/automatic_updates.md
     - State Storage: advanced/state_storage.md
     - Distributed State Locking: advanced/distributed_state_locking.md
+    - Remote Execution: advanced/remote_execution.md
   - Development:
     - Contribution Guide: development/contributing.md
     - License Info: development/license.md

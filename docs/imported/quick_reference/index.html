@@ -435,6 +435,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#remote-execution" title="Remote Execution" class="md-nav__link">
+    Remote Execution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#development-and-contributing" title="Development and Contributing" class="md-nav__link">
     Development and Contributing
   </a>
@@ -637,6 +644,18 @@
   <li class="md-nav__item">
     <a href="../../advanced/distributed_state_locking/" title="Distributed State Locking" class="md-nav__link">
       Distributed State Locking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/remote_execution/" title="Remote Execution" class="md-nav__link">
+      Remote Execution
     </a>
   </li>
 
@@ -847,6 +866,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#remote-execution" title="Remote Execution" class="md-nav__link">
+    Remote Execution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#development-and-contributing" title="Development and Contributing" class="md-nav__link">
     Development and Contributing
   </a>
@@ -964,6 +990,19 @@ log_target 'stderr'
 <h2 id="automatic-update-check">Automatic Update Check</h2>
 <p>RBCli can automatically notify users when an update is available. Two sources are currently supported: Github (including Enterprise) and RubyGems.</p>
 <p>You can configure automatic updates in <code>config/autoupdate.rb</code> in your project.</p>
+<h2 id="remote-execution">Remote Execution</h2>
+<p>RBCli can automatically execute script and extern commands on remote machines via SSH. Enable this feature in <code>config/general.rb</code> by changing the following line to <code>true</code>:</p>
+<pre><code class="ruby">remote_execution permitted: false
+</code></pre>
+
+<p>Then for each command you want to enable remote execution for, add the following directive:</p>
+<pre><code class="ruby">remote_permitted
+</code></pre>
+
+<p>Users can then execute commands remotly by specifying the connection string and credentials on the command line:</p>
+<pre><code class="bash">mytool --remote-exec [user@]host[:port] --identity (/path/to/private/ssh/key or password) &lt;command&gt; ...
+</code></pre>
+
 <h2 id="development-and-contributing">Development and Contributing</h2>
 <p>For more information about development and contributing, please see the <a href="https://akhoury6.github.com/rbcli/development/contributing/">Official Development Documentation</a></p>
 <h2 id="license">License</h2>

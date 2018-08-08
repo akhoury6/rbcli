@@ -15,9 +15,9 @@
 #     You should have received a copy of the GNU General Public License          #
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
 #                                                                                #
-#     For questions regarding licensing, please contact andrew@blacknex.us        #
+#     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
 module Rbcli
-	VERSION = "0.2.0"
+	VERSION = "0.2.1"
 end

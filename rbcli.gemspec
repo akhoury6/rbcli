@@ -15,7 +15,7 @@
 #     You should have received a copy of the GNU General Public License          #
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
 #                                                                                #
-#     For questions regarding licensing, please contact andrew@blacknex.us        #
+#     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
 lib = File.expand_path("../lib", __FILE__)
@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
 	spec.summary       = %q{A CLI Application/Tooling Framework for Ruby}
 	spec.description   = %q{RBCli is a framework to quickly develop command-line tools and applications.}
-	spec.homepage      = 'https://github.com/akhoury6/rbcli'
+	spec.homepage      = 'https://akhoury6.github.io/rbcli'
 	spec.license       = 'MIT'
 
 	spec.required_ruby_version = '>= 2.3'
@@ -64,6 +64,9 @@ Gem::Specification.new do |spec|
 	spec.add_dependency 'rufus-scheduler', '~> 3.5'
 	spec.add_dependency 'octokit', '~> 4.9'
 	spec.add_dependency 'mdless', '~> 0.0'
+	spec.add_dependency 'net-ssh', '~> 5.0'
+	spec.add_dependency 'net-scp', '~> 1.2'
+
 
 	#spec.add_dependency 'trollop', '~> 2.1'
 end

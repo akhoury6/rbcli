@@ -15,7 +15,7 @@
 #     You should have received a copy of the GNU General Public License          #
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
 #                                                                                #
-#     For questions regarding licensing, please contact andrew@blacknex.us        #
+#     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
 class Rbcli::Command
@@ -32,15 +32,31 @@ class Rbcli::Command
 		@extern ||= nil
 		self.class.instance_variable_get :@extern
 	end
+
+	def self.script path: nil, envvars: nil
+		if path == :default or path.nil?
+			callerscript = caller_locations.first.absolute_path
+			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
+		end
+		@script = Rbcli::Scriptwrapper.new path, envvars, nil, true
+	end
+
+	def script
+		@script ||= nil
+		self.class.instance_variable_get :@script
+	end
 end
 
 require 'json'
 class Rbcli::Scriptwrapper
-	def initialize path, envvars = nil, block = nil
+	def initialize path, envvars = nil, block = nil, script = false
 		@path = path
 		@envvars = envvars || {}
 		@block = block
+		@script = script
 	end
+
+	attr_reader :path
 
 	def execute params, args, global_opts, config
 		####
@@ -60,7 +76,7 @@ class Rbcli::Scriptwrapper
 		# end
 		# env_hash.merge!(@envvars.deep_stringify!) unless @envvars.nil?
 
-		if @block
+		if @block || @script
 			env_hash = {
 					'__RBCLI_PARAMS' => params.to_json,
 					'__RBCLI_ARGS' => args.to_json,
@@ -68,10 +84,14 @@ class Rbcli::Scriptwrapper
 					'__RBCLI_CONFIG' => config.to_json,
 					'__RBCLI_MYVARS' => @envvars.to_json
 			}
-			path = @block.call params, args, global_opts, config
+			if @block
+				path = @block.call params, args, global_opts, config
+			else
+				path = @path
+			end
 			system(env_hash, path)
 		else
-			system(@envvars, @path)
+			system(@envvars.collect{|k,v| [k.to_s, v]}.to_h, @path)
 		end
 
 		# IO.popen(env_hash, path) do |io|

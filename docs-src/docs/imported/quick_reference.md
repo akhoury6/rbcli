@@ -132,6 +132,27 @@ RBCli can automatically notify users when an update is available. Two sources ar
 You can configure automatic updates in `config/autoupdate.rb` in your project.
 
 
+## Remote Execution
+
+RBCli can automatically execute script and extern commands on remote machines via SSH. Enable this feature in `config/general.rb` by changing the following line to `true`:
+
+```ruby
+remote_execution permitted: false
+```
+
+Then for each command you want to enable remote execution for, add the following directive:
+
+```ruby
+remote_permitted
+```
+
+Users can then execute commands remotly by specifying the connection string and credentials on the command line:
+
+```bash
+mytool --remote-exec [user@]host[:port] --identity (/path/to/private/ssh/key or password) <command> ...
+```
+
+
 ## Development and Contributing
 
 For more information about development and contributing, please see the [Official Development Documentation][documentation_development]

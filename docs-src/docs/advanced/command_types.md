@@ -73,7 +73,7 @@ You can tell a command is a script by the line:
 
 ```ruby
 class List < Rbcli::Command
-	extern path: :default                                                              # (Required): Do not edit this line. Do delete it if you wish to manually specify a script path and set environment variables.
+	script
 end
 ```
 

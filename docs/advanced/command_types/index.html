@@ -576,6 +576,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../remote_execution/" title="Remote Execution" class="md-nav__link">
+      Remote Execution
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -814,7 +826,7 @@ end
 <p>This will create two files in your RBCli project: a Ruby file with the common command declaration (see <a href="#general-command-structure">General Command Structure</a>), and a bash script in the folder <code>application/commands/scripts/</code>.</p>
 <p>You can tell a command is a script by the line:</p>
 <pre><code class="ruby">class List &lt; Rbcli::Command
-    extern path: :default                                                              # (Required): Do not edit this line. Do delete it if you wish to manually specify a script path and set environment variables.
+    script
 end
 </code></pre>
 

@@ -44,6 +44,8 @@ Some of its key features include:
 
 * __Project Structure and Generators__: Create a well-defined project directory structure which organizes your code and allows you to package and distribute your application as a Gem. Generators can also help speed up the process of creating new commands, scripts, and hooks!
 
+* __Remote Execution__: Automatically execute commands on remote machines via SSH
+
 
 For more information, take a look at the __[official documentation][documentation_home]__ or keep reading for a quick reference.
 
@@ -180,6 +182,27 @@ The user will also be able to change the log level and target via their config f
 RBCli can automatically notify users when an update is available. Two sources are currently supported: Github (including Enterprise) and RubyGems.
 
 You can configure automatic updates in `config/autoupdate.rb` in your project.
+
+
+## Remote Execution
+
+RBCli can automatically execute script and extern commands on remote machines via SSH. Enable this feature in `config/general.rb` by changing the following line to `true`:
+
+```ruby
+remote_execution permitted: false
+```
+
+Then for each command you want to enable remote execution for, add the following directive:
+
+```ruby
+remote_permitted
+```
+
+Users can then execute commands remotly by specifying the connection string and credentials on the command line:
+
+```bash
+mytool --remote-exec [user@]host[:port] --identity (/path/to/private/ssh/key or password) <command> ...
+```
 
 
 ## Development and Contributing

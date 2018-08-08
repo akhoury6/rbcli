@@ -21,7 +21,6 @@
 require 'net/ssh'
 require 'net/scp'
 require 'json'
-require 'etc'
 
 class Rbcli::RemoteExec
 

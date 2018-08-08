@@ -30,6 +30,8 @@ Some of its key features include:
 
 * __Project Structure and Generators__: Create a well-defined project directory structure which organizes your code and allows you to package and distribute your application as a Gem. Generators can also help speed up the process of creating new commands, scripts, and hooks!
 
+* __Remote Execution__: Automatically execute commands on remote machines via SSH
+
 
 If you're just getting started with RBCli, take a look at the [Tutorial][tutorial]. Or take a look at the [Advanced] menu above to look through RBCli's additional featureset.
 

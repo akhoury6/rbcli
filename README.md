@@ -44,6 +44,8 @@ Some of its key features include:
 
 * __Project Structure and Generators__: Create a well-defined project directory structure which organizes your code and allows you to package and distribute your application as a Gem. Generators can also help speed up the process of creating new commands, scripts, and hooks!
 
+* __Remote Execution__: Automatically execute commands on remote machines via SSH
+
 
 For more information, take a look at the __[official documentation][documentation_home]__ or keep reading for a quick reference.
 

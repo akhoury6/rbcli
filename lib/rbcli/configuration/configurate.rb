@@ -18,117 +18,64 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-
+#####
+#  Configurate
+###
+# This plugin class allows declaring configuration blocks dynamically
+##
 module Rbcli::Configurate
-
-	@data = {
-			scriptname: nil,
-			version: nil,
-			description: nil,
-			config_userfile: nil,
-			allow_json: false,
-			options: {},
-			default_action: nil,
-			pre_hook: nil,
-			post_hook: nil,
-			first_run: nil,
-			halt_after_first_run: false,
-			remote_execution: false
-	}
-
-	def self.me &block
-		@self_before_instance_eval = eval "self", block.binding
-		instance_eval &block
-	end
-
-	# def self.method_missing(method, *args, &block)
-	# 	@self_before_instance_eval.send method, *args, &block
-	# end
-
 	##
-	# DSL Functions
+	# If a non-existant method is called, we attempt to load the plugin.
+	# If the plugin fails to load we display a message to the developer
 	##
-	def self.scriptname name
-		@data[:scriptname] = name
+	def self.method_missing(method, *args, &block)
+		filename = "#{File.dirname(__FILE__)}/configurate_blocks/#{method.to_s.downcase}.rb"
+		if File.exists? filename
+			require filename
+			self.send method, *args, &block
+		else
+			msg = "Invalid Configurate plugin called: `#{method}` in file #{File.expand_path caller[0]}"
+			Rbcli::log.fatal {msg}
+			raise Exception.new msg
+		end
 	end
+end
 
-	def self.version vsn
-		@data[:version] = vsn
-	end
+module Rbcli::Configurable
 
-	def self.description desc
-		@data[:description] = desc
-	end
+	def self.included klass
+		name = klass.name.split('::')[-1]
 
-	def self.log_level level
-		Rbcli::Logger::save_defaults level: level
-	end
+		# We dynamically add two methods to the module: one that runs other methods dynamially, and one that
+		# displays a reasonable message if a method is missing
+		klass.singleton_class.class_eval do
+			define_method :rbcli_private_running_method do |&block|
+				@self_before_instance_eval = eval 'self', block.binding
+				instance_eval &block
+			end
 
-	def self.log_target target
-		Rbcli::Logger::save_defaults target: target
-	end
+			define_method :method_missing do |method, *args, &block|
+				msg = "Invalid Configurate.#{self.name.split('::')[-1].downcase} method called: `#{method}` in file #{File.expand_path caller[0]}"
+				Rbcli::log.fatal {msg}
+				raise Exception.new msg
+			end
+		end
 
-	def self.config_userfile *params
-		Rbcli::Config::set_userfile *params
-		@data[:config_userfile] = params[0]
-	end
-
-	def self.config_defaults filename
-		Rbcli::Config::add_defaults filename
-	end
-
-	def self.config_default *params
-		Rbcli::Config::add_default *params
-	end
-
-	def self.allow_json_output allow_json
-		@data[:allow_json] = allow_json
-	end
-
-	def self.option name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
-		default ||= false if (type == :boolean || type == :bool || type == :flag)
-		@data[:options][name.to_sym] = {
-				description: description,
-				type: type,
-				default: default,
-				required: required,
-				permitted: permitted,
-				short: short
-		}
-	end
-
-	def self.default_action &block
-		@data[:default_action] = block
-	end
-
-	def self.pre_hook &block
-		@data[:pre_hook] = block
-	end
-
-	def self.post_hook &block
-		@data[:post_hook] = block
-	end
-
-	def self.first_run halt_after_running: false, &block
-		@data[:halt_after_first_run] = halt_after_running
-		@data[:first_run] = block
-	end
-
-	def self.remote_execution permitted: true
-		@data[:remote_execution] = permitted
-	end
-
-	##
-	# Data Retrieval
-	##
-	def self.configuration
-		@data
+		# This will dynamically create the configuate block based on the class name.
+		# For example, if the class name is 'Me', then the resulting block is `Confiugrate.me`
+		Rbcli::Configurate.singleton_class.class_eval do
+			define_method name.downcase.to_sym do |&block|
+				mod = self.const_get name
+				mod.rbcli_private_running_method &block
+			end
+		end
 	end
 
 end
 
 module Rbcli
-	def self.configuration
-		Rbcli::Configurate::configuration
+	def self.configuration mod, key = nil
+		d = Rbcli::Configurate.const_get(mod.to_s.capitalize.to_sym).data
+		(key.nil?) ? d : d[key]
 	end
 end

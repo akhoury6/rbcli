@@ -113,7 +113,7 @@ class Rbcli::Command
 		#descmap = @commands.map { |name, klass| [name, klass.description] }.to_h
 		@commands.map do |name, cmdobj|
 			desc = ''
-			if Rbcli.configuration[:remote_execution] and cmdobj.remote_permitted?
+			if Rbcli.configuration(:me, :remote_execution) and cmdobj.remote_permitted?
 				indent_size -= 3
 				indent_size.times { desc << ' ' }
 				desc << '*  '
@@ -134,7 +134,7 @@ class Rbcli::Command
 		command_desc = description
 		command_usage = usage
 		optx = Trollop::options do
-			data = Rbcli.configuration
+			data = Rbcli.configuration :me
 			banner <<-EOS
 #{data[:description]}
 Selected Command:

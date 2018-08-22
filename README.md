@@ -16,14 +16,7 @@ Previous Release: v0.2.1 (Aug 8, 2018)
 
 [You can find the Official Documentation for RBCli Here.][documentation_home]
 
-If you want to support RBCli's development, please donate and help keep it going!
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHJwYJKoZIhvcNAQcEoIIHGDCCBxQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAlvO54yhStAQT0n9rh3oKdNCFymsEWS1X10TFUjeSIAFVDScm2dbAWyOh9gjk2f8ZMGioJWwUfGcYya0ebKJJNAYEKvm+l+Xu1rVbMAozkMO/FXt5n3SEDPXPwGJKJ6/FCo63zi/mK9EZ9uYlSl6Iqly0q6xM0yNiqLaohI4Dz3zELMAkGBSsOAwIaBQAwgaQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIQUjYPoi4IvGAgYCdwBOynQqDvaGkTyXHQoULuk/V3wgzWUDnurFrxQ/uK4TC79NZv+jb5Gtrdpwl0Knz5JB6DCLQ2KVm+C7Zz4gp0lDDMlDp+OQJn1HrPTbVHzIZXg0AhIlwixIxV3SfGa/sn1FN7MZL6YyVj/R8TZfNQ+My1KcA82m8cuq4uV612aCCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE4MDgwNTAzMTUwOFowIwYJKoZIhvcNAQkEMRYEFGa4W6Hg2elpZIALf2psgQUh+V5XMA0GCSqGSIb3DQEBAQUABIGASoRrOMBmTWBQoGPyZziMaHwWNYQ4JiCbwyoiSXAdf8bx0s2kejwJJoadp1o2KwpqbwCJsEXmAIHrXnDOIz3KTUPKJ1gPy128vzllcJAcqL8t2mo/3eh9utcv03MO+GokUFxQYLsRnsmWPrLGo0Bc3fFPWHpVBsmL3NK2VWqkPeo=-----END PKCS7-----
-">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+[If you want to support RBCli's development, please donate and help keep it going!][documentation_whoami]
 
 ## Introduction
 
@@ -234,5 +227,6 @@ The gem is available as open source under the terms of the [GPLv3][license_text]
 
 [documentation_home]: https://akhoury6.github.com/rbcli
 [documentation_development]: https://akhoury6.github.com/rbcli/development/contributing/
+[documentation_whoami]: https://akhoury6.github.io/rbcli/whoami/
 [license_text]: https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt
 [changelog]: https://github.com/akhoury6/rbcli/blob/master/CHANGELOG.md

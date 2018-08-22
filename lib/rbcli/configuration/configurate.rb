@@ -75,7 +75,11 @@ end
 
 module Rbcli
 	def self.configuration mod, key = nil
-		d = Rbcli::Configurate.const_get(mod.to_s.capitalize.to_sym).data
-		(key.nil?) ? d : d[key]
+		begin
+			d = Rbcli::Configurate.const_get(mod.to_s.capitalize.to_sym).data
+			(key.nil?) ? d : d[key]
+		rescue
+			nil
+		end
 	end
 end

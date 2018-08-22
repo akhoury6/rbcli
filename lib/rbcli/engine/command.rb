@@ -86,7 +86,7 @@ class Rbcli::Command
 		global_opts = cliopts
 		config = Rbcli::config
 
-		raise Exception.new("Command #{cmd} can only have one of `action`, `script`, or `extern` defined.") if (@commands[cmd].extern or @commands[cmd].script) and @commands[cmd].action
+		raise Exception.new("Command #{cmd} can only have one of `action`, `script`, or `extern` defined.") if (@commands[cmd].data[:extern] or @commands[cmd].data[:script]) and @commands[cmd].data[:action]
 
 		if cliopts[:remote_exec]
 			Rbcli::RemoteExec.new(@commands[cmd], cliopts[:remote_exec], cliopts[:identity], params, args, global_opts, config).run
@@ -94,8 +94,8 @@ class Rbcli::Command
 			return
 		end
 
-		@commands[cmd].extern.execute params, args, global_opts, config unless @commands[cmd].extern.nil?
-		@commands[cmd].script.execute params, args, global_opts, config unless @commands[cmd].script.nil?
+		@commands[cmd].data[:extern].execute params, args, global_opts, config unless @commands[cmd].data[:extern].nil?
+		@commands[cmd].data[:script].execute params, args, global_opts, config unless @commands[cmd].data[:script].nil?
 		@commands[cmd].data[:action].call params, args, global_opts, config unless @commands[cmd].data[:action].nil?
 	end
 

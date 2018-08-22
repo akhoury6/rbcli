@@ -25,12 +25,7 @@ class Rbcli::Command
 			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
 		end
 		block = nil unless block_given?
-		@extern = Rbcli::Scriptwrapper.new path, envvars, block
-	end
-
-	def extern
-		@extern ||= nil
-		self.class.instance_variable_get :@extern
+		@data[:extern] = Rbcli::Scriptwrapper.new path, envvars, block
 	end
 
 	def self.script path: nil, envvars: nil
@@ -38,12 +33,7 @@ class Rbcli::Command
 			callerscript = caller_locations.first.absolute_path
 			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
 		end
-		@script = Rbcli::Scriptwrapper.new path, envvars, nil, true
-	end
-
-	def script
-		@script ||= nil
-		self.class.instance_variable_get :@script
+		@data[:script] = Rbcli::Scriptwrapper.new path, envvars, nil, true
 	end
 end
 

@@ -134,7 +134,7 @@ class Rbcli::Command
 		command_desc = description
 		command_usage = usage
 		optx = Trollop::options do
-			data = Rbcli.configuration :me
+			data = Rbcli.configuration(:me)
 			banner <<-EOS
 #{data[:description]}
 Selected Command:

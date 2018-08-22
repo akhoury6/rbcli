@@ -28,11 +28,6 @@ module Rbcli::Configurate::Me
 			description: nil,
 			config_userfile: nil,
 			options: {},
-			default_action: nil,
-			pre_hook: nil,
-			post_hook: nil,
-			first_run: nil,
-			halt_after_first_run: false,
 			remote_execution: false,
 			autoupdater: nil
 	}
@@ -84,18 +79,22 @@ module Rbcli::Configurate::Me
 	end
 
 	def self.default_action &block
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--default_action', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
 		@data[:default_action] = block
 	end
 
 	def self.pre_hook &block
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--pre_hook', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
 		@data[:pre_hook] = block
 	end
 
 	def self.post_hook &block
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--post_hook', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
 		@data[:post_hook] = block
 	end
 
 	def self.first_run halt_after_running: false, &block
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--first_run', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
 		@data[:halt_after_first_run] = halt_after_running
 		@data[:first_run] = block
 	end

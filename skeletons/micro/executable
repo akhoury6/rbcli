@@ -49,8 +49,12 @@ Rbcli::Configurate.me do
 
 	## Option -- (Optional, Multiple) -- Add a global CLI Option
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']
+end
 
-
+###############################
+## Hooks Configuration Block ##
+###############################
+Rbcli::Configurate.hooks do
 	## Default Action -- (Optional) -- The default code to execute when no subcommand is given.
 	default_action do |opts|
 		puts "Hello, #{opts[:name]}."

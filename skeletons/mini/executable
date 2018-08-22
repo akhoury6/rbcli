@@ -131,15 +131,15 @@ Rbcli::Configurate.me do
 
 	## Option -- (Optional, Multiple) -- Add a global CLI Option
 	option :name, 'Give me your name', type: :string, default: 'Foo', required: false, permitted: ['Jack', 'Jill']
+end
 
-
-	####
-	# HOOKS
-	###
-	# Here you can set hooks that will be run at specified points in the execution chain.
-	# Global CLI options are made available to many of the hooks, but command parameters and lineitems are not.
-	###
-
+###############################
+## Hooks Configuration Block ##
+###############################
+# Here you can set hooks that will be run at specified points in the execution chain.
+# Global CLI options are made available to many of the hooks, but command parameters and lineitems are not.
+###############################
+Rbcli::Configurate.hooks do
 	## Default Action -- (Optional) -- The default code to execute when no subcommand is given.
 	# If not present, the help is shown (same as -h)
 	default_action do |opts|

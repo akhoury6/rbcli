@@ -1,4 +1,4 @@
-Rbcli::Configurate.me do
+Rbcli::Configurate.hooks do
 	####
 	# HOOKS
 	###

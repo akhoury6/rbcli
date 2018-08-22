@@ -102,6 +102,7 @@ module Rbcli::Configurate::Me
 
 	def self.remote_execution permitted: true
 		@data[:remote_execution] = permitted
+		require 'rbcli/remote_exec/remote_exec' if permitted
 	end
 
 	def self.autoupdate gem: nil, github_repo: nil, access_token: nil, enterprise_hostname: nil, force_update: false, message: nil

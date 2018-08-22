@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.2 (Under Development)
+## 0.2.2 (Aug 22, 2018)
 
 ### Features
 
@@ -10,10 +10,11 @@
 
 ### Improvements
 
-* Optional modules such as autoupdates, remote storage, etc are now lazy-loaded. This means that if you do not enable them in the code, they will not be loaded into memory. This significantly improves loding times for applications.
+* Lazy-loading has been implemented in optional modules such as autoupdates, remote storage, etc. This means that if you do not enable them in the code, they will not be loaded into memory. This significantly improves loding times for applications.
 * Abstraction system created for configuration. This has significantly simplified the existing codebase and makes future development easier.
 * Deprecation warning system added. This allows for RBCli contributors to notify users of breaking changes that may impact their code.
 * Folder structure has been simplified to ease development.
+* Much of the code has been refactored.
 
 ### Deprecations/Changes
 

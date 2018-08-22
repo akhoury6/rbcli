@@ -2,19 +2,28 @@
 
 RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-Latest Release: v0.2.1 (Aug 8, 2018) -- See the [changelog][changelog] for complete details.
+Latest Release: v0.2.2 (Aug 22, 2018) -- See the [changelog][changelog] for complete details.
+
+* Lazy loading for improved startup time
+* Hooks are now defined under `Rbcli.Configurate.hooks`.
+* Logger is disabled by default, cleaning up output
+* Code refactor and cleanup
+* Many more improvements
+
+Previous Release: v0.2.1 (Aug 8, 2018)
 
 * Remote Execution Feature Added
 
-Previous Release: v0.2.0 (Aug 5, 2018)
-
-* CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.
-* Official documentation created and hosted with Github Pages
-* RBCli released under GPLv3
-* Copyright/License notice displayed via RBCli tool with `rbcli license` in accordance with GPLv3 guidelines
-* Many improvements and bugfixes
-
 [You can find the Official Documentation for RBCli Here.][documentation_home]
+
+If you want to support RBCli's development, please donate and help keep it going!
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
 
 ## Introduction
 
@@ -27,6 +36,8 @@ Some of its key features include:
 
 * __Simple DSL Interface__: To cut down on the amount of code that needs to be written, RBCli has a DSL that is designed to cut to the chase. This makes the work a lot less tedious.
   
+* __Lazy Loading__: Even though RBCli is a heavyweight tool, it uses lazy loading to speed up application startup time. This means you don't have to worry about a large framework slowing your application down.
+
 * __Multiple Levels of Parameters and Arguments__: Forget about writing parsers for command-line options, or about having to differentiate between parameters and arguments. All of that work is taken care of.
 
 * __Config File Generation__: Easily piece together a default configuration even with declarations in different parts of the code. Then the user can generate their own configuration, and it gets stored in whatever location you'd like.

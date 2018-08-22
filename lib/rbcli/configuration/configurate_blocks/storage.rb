@@ -18,68 +18,33 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require 'fileutils'
-require 'json'
+module Rbcli::Configurate::Storage
+	include Rbcli::Configurable
 
-## Configuration Interface
-module Rbcli::ConfigurateStorage
-	@data[:localstate] = nil
+	@data = {
+			localstate: nil,
+			remotestate: nil,
+			remotestate_init_params: nil
+	}
+
+	def self.data; @data; end
 
 	def self.local_state path, force_creation: false, halt_on_error: false
+		require 'rbcli/stateful_systems/localstate'
+
 		@data[:localstate] = Rbcli::State::LocalStorage.new(path, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
-end
 
-## User Interface
-module Rbcli
-	def self.local_state
-		Rbcli::ConfigurateStorage.data[:localstate]
+	def self.remote_state_dynamodb table_name: nil, region: nil, force_creation: false, halt_on_error: true, locking: false
+		raise StandardError "Must decalre `table_name` and `region` to use remote_state_dynamodb" if table_name.nil? or region.nil?
+
+		require 'rbcli/stateful_systems/remotestate_dynamodb'
+
+		@data[:remotestate_init_params] = {
+				dynamodb_table: table_name,
+				region: region,
+				locking: locking
+		}
+		@data[:remotestate] = Rbcli::State::DynamoDBStorage.new(table_name, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
-end
-
-## Local State Module
-module Rbcli::State
-
-	class LocalStorage < StateStorage
-
-		def state_subsystem_init
-			@path = File.expand_path @path
-		end
-
-		def state_exists?
-			File.exists? @path
-		end
-
-		def create_state
-			begin
-				FileUtils.mkdir_p File.dirname(@path)
-				FileUtils.touch @path
-			rescue Errno::EACCES => e
-				error "Can not create file #{@path}. Please make sure the directory is writeable." if @halt_on_error
-			end
-		end
-
-		def load_state
-			begin
-				@data = JSON.parse(File.read(@path)).deep_symbolize!
-			rescue Errno::ENOENT, Errno::EACCES => e
-				error "Can not read from file #{@path}. Please make sure the file exists and is readable." if @halt_on_error
-			end
-		end
-
-		def save_state
-			begin
-				File.write @path, JSON.dump(@data)
-			rescue Errno::ENOENT, Errno::EACCES => e
-				error "Can not write to file #{@path}. Please make sure the file exists and is writeable." if @halt_on_error
-			end
-		end
-
-		def error text
-			raise LocalStateError.new "Error accessing local state: #{text}"
-		end
-
-		class LocalStateError < StandardError; end
-	end
-
 end

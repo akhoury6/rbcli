@@ -18,27 +18,60 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-module Rbcli::Configurate
-	def self.storage &block
-		Rbcli::ConfigurateStorage.configure &block
+require 'rbcli/stateful_systems/common/state_storage'
+require 'fileutils'
+require 'json'
+
+## User Interface
+module Rbcli
+	def self.local_state
+		Rbcli.configuration(:storage, :localstate)
 	end
 end
 
+## Local State Module
+module Rbcli::State
 
-module Rbcli::ConfigurateStorage
-	@data = {
-			localstate: nil
-	}
+	class LocalStorage < StateStorage
 
-	def self.configure &block
-		@self_before_instance_eval = eval "self", block.binding
-		instance_eval &block
+		def state_subsystem_init
+			@path = File.expand_path @path
+		end
+
+		def state_exists?
+			File.exists? @path
+		end
+
+		def create_state
+			begin
+				FileUtils.mkdir_p File.dirname(@path)
+				FileUtils.touch @path
+			rescue Errno::EACCES => e
+				error "Can not create file #{@path}. Please make sure the directory is writeable." if @halt_on_error
+			end
+		end
+
+		def load_state
+			begin
+				@data = JSON.parse(File.read(@path)).deep_symbolize!
+			rescue Errno::ENOENT, Errno::EACCES => e
+				error "Can not read from file #{@path}. Please make sure the file exists and is readable." if @halt_on_error
+			end
+		end
+
+		def save_state
+			begin
+				File.write @path, JSON.dump(@data)
+			rescue Errno::ENOENT, Errno::EACCES => e
+				error "Can not write to file #{@path}. Please make sure the file exists and is writeable." if @halt_on_error
+			end
+		end
+
+		def error text
+			raise LocalStateError.new "Error accessing local state: #{text}"
+		end
+
+		class LocalStateError < StandardError; end
 	end
 
-	##
-	# Data Retrieval
-	##
-	def self.data
-		@data
-	end
 end

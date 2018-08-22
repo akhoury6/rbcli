@@ -73,6 +73,25 @@ class Rbcli::Command
 				short: short
 		}
 	end
+
+	def self.extern path: nil, envvars: nil, &block
+		if path == :default
+			callerscript = caller_locations.first.absolute_path
+			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
+		end
+		block = nil unless block_given?
+		require 'rbcli/features/scriptwrapper'
+		@data[:extern] = Rbcli::Scriptwrapper.new path, envvars, block
+	end
+
+	def self.script path: nil, envvars: nil
+		if path == :default or path.nil?
+			callerscript = caller_locations.first.absolute_path
+			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
+		end
+		require 'rbcli/features/scriptwrapper'
+		@data[:script] = Rbcli::Scriptwrapper.new path, envvars, nil, true
+	end
 	##
 	# END Interface Functions
 	##

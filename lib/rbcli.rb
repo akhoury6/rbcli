@@ -45,10 +45,6 @@ require 'rbcli/features/userconfig'
 require 'rbcli/features/logging'
 # END BASE PREREQS
 
-# SCRIPT WRAPPER
-require 'rbcli/features/scriptwrapper'
-# END SCRIPT WRAPPER
-
 # CORE
 require 'rbcli/configuration/configurate'
 require 'rbcli/engine/load_project'

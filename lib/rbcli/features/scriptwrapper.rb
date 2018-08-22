@@ -18,25 +18,6 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-class Rbcli::Command
-	def self.extern path: nil, envvars: nil, &block
-		if path == :default
-			callerscript = caller_locations.first.absolute_path
-			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
-		end
-		block = nil unless block_given?
-		@data[:extern] = Rbcli::Scriptwrapper.new path, envvars, block
-	end
-
-	def self.script path: nil, envvars: nil
-		if path == :default or path.nil?
-			callerscript = caller_locations.first.absolute_path
-			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
-		end
-		@data[:script] = Rbcli::Scriptwrapper.new path, envvars, nil, true
-	end
-end
-
 require 'json'
 class Rbcli::Scriptwrapper
 	def initialize path, envvars = nil, block = nil, script = false

@@ -44,10 +44,6 @@ require 'rbcli/configuration/config'
 require 'rbcli/logging/logging'
 # END BASE PREREQS
 
-# AUTOUPDATE
-require 'rbcli/autoupdate/autoupdate'
-# END AUTOUPDATE
-
 # SCRIPT WRAPPER
 require 'rbcli/scriptwrapping/scriptwrapper'
 # END SCRIPT WRAPPER

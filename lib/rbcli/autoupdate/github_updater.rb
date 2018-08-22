@@ -18,6 +18,7 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
+require 'rbcli/autoupdate/common/autoupdate'
 require 'octokit'
 
 module Rbcli::Autoupdate

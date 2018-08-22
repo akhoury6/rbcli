@@ -33,7 +33,8 @@ module Rbcli::Configurate::Me
 			post_hook: nil,
 			first_run: nil,
 			halt_after_first_run: false,
-			remote_execution: false
+			remote_execution: false,
+			autoupdater: nil
 	}
 	def self.data; @data; end
 
@@ -101,6 +102,21 @@ module Rbcli::Configurate::Me
 
 	def self.remote_execution permitted: true
 		@data[:remote_execution] = permitted
+	end
+
+	def self.autoupdate gem: nil, github_repo: nil, access_token: nil, enterprise_hostname: nil, force_update: false, message: nil
+		raise StandardError.new "Autoupdater can not have both a gem and git target defined. Please pick one." if gem and github_repo
+		raise StandardError.new "Only one autoupdater can be defined." if @data[:autoupdater]
+		if gem
+			require 'rbcli/autoupdate/gem_updater'
+			#Rbcli::Autoupdate::GemUpdater.save_defaults
+			@data[:autoupdater] = Rbcli::Autoupdate::GemUpdater.new gem, force_update, message
+		else
+			require 'rbcli/autoupdate/github_updater'
+			Rbcli::Autoupdate::GithubUpdater.save_defaults
+			@data[:autoupdater] = Rbcli::Autoupdate::GithubUpdater.new github_repo, access_token, enterprise_hostname, force_update, message
+		end
+		@data[:autoupdater].show_message if @data[:autoupdater].update_available?
 	end
 
 end

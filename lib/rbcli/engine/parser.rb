@@ -20,7 +20,7 @@
 
 
 #TODO: Change this once the changes have been merged into trollop gem proper
-require "rbcli/util/trollop"
+require 'rbcli/util/trollop'
 
 module Rbcli::Parser
 

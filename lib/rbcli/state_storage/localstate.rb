@@ -18,7 +18,7 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require 'rbcli/stateful_systems/common/state_storage'
+require 'rbcli/state_storage/common/state_storage'
 require 'fileutils'
 require 'json'
 

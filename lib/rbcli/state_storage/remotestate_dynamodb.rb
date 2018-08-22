@@ -18,7 +18,7 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require 'rbcli/stateful_systems/common/state_storage'
+require 'rbcli/state_storage/common/state_storage'
 
 ## User Interface
 module Rbcli
@@ -112,4 +112,4 @@ module Rbcli::State
 end
 
 
-require 'rbcli/stateful_systems/remote_state_connectors/dynamodb'
+require 'rbcli/state_storage/remote_state_connectors/dynamodb'

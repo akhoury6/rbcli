@@ -30,7 +30,7 @@ module Rbcli::Configurate::Storage
 	def self.data; @data; end
 
 	def self.local_state path, force_creation: false, halt_on_error: false
-		require 'rbcli/stateful_systems/localstate'
+		require 'rbcli/state_storage/localstate'
 
 		@data[:localstate] = Rbcli::State::LocalStorage.new(path, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
@@ -38,7 +38,7 @@ module Rbcli::Configurate::Storage
 	def self.remote_state_dynamodb table_name: nil, region: nil, force_creation: false, halt_on_error: true, locking: false
 		raise StandardError "Must decalre `table_name` and `region` to use remote_state_dynamodb" if table_name.nil? or region.nil?
 
-		require 'rbcli/stateful_systems/remotestate_dynamodb'
+		require 'rbcli/state_storage/remotestate_dynamodb'
 
 		@data[:remotestate_init_params] = {
 				dynamodb_table: table_name,

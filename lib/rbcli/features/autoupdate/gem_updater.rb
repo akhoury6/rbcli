@@ -18,7 +18,7 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require 'rbcli/autoupdate/common/autoupdate'
+require 'rbcli/features/autoupdate/common/autoupdate'
 require 'net/http'
 require 'json'
 

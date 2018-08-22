@@ -41,12 +41,12 @@ require 'rbcli/util/deprecation_warning'
 # END UTILS
 
 # BASE PREREQS
-require 'rbcli/configuration/config'
-require 'rbcli/logging/logging'
+require 'rbcli/features/userconfig'
+require 'rbcli/features/logging'
 # END BASE PREREQS
 
 # SCRIPT WRAPPER
-require 'rbcli/scriptwrapping/scriptwrapper'
+require 'rbcli/features/scriptwrapper'
 # END SCRIPT WRAPPER
 
 # CORE

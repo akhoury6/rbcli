@@ -18,36 +18,26 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-###########
-## RBCLI ##
-###########
-#
-# This file loads the Rbcli systems.
-#
-# Utils and Prereqs must be loaded first.
-#
-###########
 
-lib = File.expand_path('../../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+class Rbcli::DeprecationWarning
 
-module Rbcli end # Empty module declaration required to declare submodules freely
-require 'rbcli/version'
+	@@warnings = []
 
-# UTILS
-require 'rbcli/util/hash_deep_symbolize'
-require 'rbcli/util/deprecation_warning'
-#require 'rbcli/util/string_colorize' # We are using the colorize gem instead. The code is kept here for reference.
-# END UTILS
+	def initialize original_feature_name, message_text, change_by_version
+		#@caller = caller_locations(2,1)[0].label
+		@original_feature_name = original_feature_name
+		@message_text = message_text
+		@change_by_version = change_by_version
+		@@warnings.append self
+	end
 
-# BASE PREREQS
-require 'rbcli/features/userconfig'
-require 'rbcli/features/logging'
-# END BASE PREREQS
+	def display
+		message = "DEPRECATION WRNING: The feature `#{@original_feature_name}` has been deprecated. #{@message_text} This feature will be removed in version #{@change_by_version}."
+		Rbcli::log.warn { message }
+		puts message.red
+	end
 
-# CORE
-require 'rbcli/configuration/configurate'
-require 'rbcli/engine/load_project'
-require 'rbcli/engine/command'
-require 'rbcli/engine/parser'
-# END CORE
+	def self.display_warnings
+		@@warnings.each { |w| w.display }
+	end
+end

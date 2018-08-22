@@ -2,97 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/imported/quick_reference/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/tutorial/10-getting_started/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/tutorial/20-project_layout/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/tutorial/30-your_first_command/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/tutorial/40-options_parameters_and_arguments/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/tutorial/50-publishing/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/command_types/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/user_config_files/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/hooks/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/automatic_updates/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/state_storage/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/distributed_state_locking/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/advanced/remote_execution/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/development/contributing/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/development/license/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/development/code_of_conduct/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/imported/changelog/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/whoami/</loc>
-     <lastmod>2018-08-08</lastmod>
+     <lastmod>2018-08-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

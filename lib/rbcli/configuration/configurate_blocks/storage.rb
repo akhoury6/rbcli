@@ -18,27 +18,33 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-module Rbcli::Configurate
-	def self.storage &block
-		Rbcli::ConfigurateStorage.configure &block
-	end
-end
+module Rbcli::Configurate::Storage
+	include Rbcli::Configurable
 
-
-module Rbcli::ConfigurateStorage
 	@data = {
-			localstate: nil
+			localstate: nil,
+			remotestate: nil,
+			remotestate_init_params: nil
 	}
 
-	def self.configure &block
-		@self_before_instance_eval = eval "self", block.binding
-		instance_eval &block
+	def self.data; @data; end
+
+	def self.local_state path, force_creation: false, halt_on_error: false
+		require 'rbcli/state_storage/localstate'
+
+		@data[:localstate] = Rbcli::State::LocalStorage.new(path, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
 
-	##
-	# Data Retrieval
-	##
-	def self.data
-		@data
+	def self.remote_state_dynamodb table_name: nil, region: nil, force_creation: false, halt_on_error: true, locking: false
+		raise StandardError "Must decalre `table_name` and `region` to use remote_state_dynamodb" if table_name.nil? or region.nil?
+
+		require 'rbcli/state_storage/remotestate_dynamodb'
+
+		@data[:remotestate_init_params] = {
+				dynamodb_table: table_name,
+				region: region,
+				locking: locking
+		}
+		@data[:remotestate] = Rbcli::State::DynamoDBStorage.new(table_name, force_creation: force_creation, halt_on_error: halt_on_error)
 	end
 end

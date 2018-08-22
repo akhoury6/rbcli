@@ -19,8 +19,8 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require "bundler/setup"
-require "rbcli"
+require 'bundler/setup'
+require 'rbcli'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -29,5 +29,5 @@ require "rbcli"
 # require "pry"
 # Pry.start
 
-require "irb"
+require 'irb'
 IRB.start(__FILE__)

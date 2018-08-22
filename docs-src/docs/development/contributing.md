@@ -36,6 +36,30 @@ Also, don't forget to update the __Quick Reference Guide__ in the `README.md` fi
 
 Once you've completed your edits, run the `makesite.sh` command to build the actual HTML pages automatically in the `docs` folder, from where they will be served when live.
 
+## Deprecations
+
+If a feature needs to be deprecated, RBCli has a built-in deprecation message feature. You can leverage it by calling the following code when a deprecated command is called:
+
+```ruby
+Rbcli::DeprecationWarning.new deprecated_command, message, version_when_code_will_be_removed
+```
+
+So, for example:
+
+```ruby
+Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--first_run', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+```
+
+will display the following message to the user, in red, any any time the application is run:
+
+```text
+DEPRECATION WRNING: The feature `Rbcli::Configurate.me--post_hook` has been deprecated. Please use `RBCli::Configurate.hooks` as the parent block instead. This feature will be removed in version 0.3.0.
+```
+
+Additionally, it will place the same line in the logs using `Rbcli.logger.warn` if logging is enabled.
+
+If a deprecation warning has been added, please remember to mention it in the pull request so that others can update it later.
+
 # Maintainer's Notes
 
 To install this gem onto your local machine from source, run `bundle exec rake install`.

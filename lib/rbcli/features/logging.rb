@@ -42,7 +42,7 @@ require 'colorize'
 module Rbcli::Logger
 
 	@default_level = 'info'
-	@default_target = 'stderr'
+	@default_target = nil
 
 	def self.save_defaults level: nil, target: nil
 		@default_level = level if level
@@ -61,27 +61,28 @@ module Rbcli::Logger
 	end
 	self.save_defaults
 
+	def self.make_logger
+		if Rbcli::config[:logger][:log_target].nil?
+			target = '/dev/null'
+		elsif Rbcli::config[:logger][:log_target].downcase == 'stdout'
+			target = STDOUT
+		elsif Rbcli::config[:logger][:log_target].downcase == 'stderr'
+			target = STDERR
+		else
+			target = Rbcli::config[:logger][:log_target]
+		end
+		@logger = Logger.new(target)
+		@logger.level = Rbcli::config[:logger][:log_level]
 
-	if Rbcli::config[:logger][:log_target].downcase == 'stdout'
-		target = STDOUT
-	elsif Rbcli::config[:logger][:log_target].downcase == 'stderr'
-		target = STDERR
-	elsif Rbcli::config[:logger][:log_target].nil?
-		target = '/dev/null'
-	else
-		target = Rbcli::config[:logger][:log_target]
-	end
-	target = '/dev/null' if Rbcli::config[:logger][:log_level].nil?
-	@logger = Logger.new(target)
-	@logger.level = Rbcli::config[:logger][:log_level]
-
-	original_formatter = Logger::Formatter.new
-	@logger.formatter = proc do |severity, datetime, progname, msg|
-		original_formatter.call(severity, datetime, progname || caller_locations[3].path.split('/')[-1], msg.dump)
+		original_formatter = Logger::Formatter.new
+		@logger.formatter = proc do |severity, datetime, progname, msg|
+			original_formatter.call(severity, datetime, progname || caller_locations[3].path.split('/')[-1], msg.dump)
+		end
+		@logger
 	end
 
 	def self.log
-		@logger
+		@logger || self.make_logger
 	end
 
 end

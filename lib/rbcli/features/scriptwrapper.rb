@@ -18,68 +18,58 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require 'fileutils'
 require 'json'
-
-## Configuration Interface
-module Rbcli::ConfigurateStorage
-	@data[:localstate] = nil
-
-	def self.local_state path, force_creation: false, halt_on_error: false
-		@data[:localstate] = Rbcli::State::LocalStorage.new(path, force_creation: force_creation, halt_on_error: halt_on_error)
+class Rbcli::Scriptwrapper
+	def initialize path, envvars = nil, block = nil, script = false
+		@path = path
+		@envvars = envvars || {}
+		@block = block
+		@script = script
 	end
-end
 
-## User Interface
-module Rbcli
-	def self.local_state
-		Rbcli::ConfigurateStorage.data[:localstate]
-	end
-end
+	attr_reader :path
 
-## Local State Module
-module Rbcli::State
+	def execute params, args, global_opts, config
+		####
+		#### The following code will flatten one level of the hashes into separate variables
+		#### It is deprecated in favor of passing along json to be parsed with JQ
+		####
+		# env_hash = {}
+		# {
+		# 		'__PARAMS' => params,
+		# 		'__ARGS' => args,
+		# 		'__GLOBAL' => global_opts,
+		# 		'__CONFIG' => config
+		# }.each do |name, hsh|
+		# 	hsh.each do |k, v|
+		# 		env_hash["#{name}_#{k.upcase}"] = v.to_json
+		# 	end
+		# end
+		# env_hash.merge!(@envvars.deep_stringify!) unless @envvars.nil?
 
-	class LocalStorage < StateStorage
-
-		def state_subsystem_init
-			@path = File.expand_path @path
-		end
-
-		def state_exists?
-			File.exists? @path
-		end
-
-		def create_state
-			begin
-				FileUtils.mkdir_p File.dirname(@path)
-				FileUtils.touch @path
-			rescue Errno::EACCES => e
-				error "Can not create file #{@path}. Please make sure the directory is writeable." if @halt_on_error
+		if @block || @script
+			env_hash = {
+					'__RBCLI_PARAMS' => params.to_json,
+					'__RBCLI_ARGS' => args.to_json,
+					'__RBCLI_GLOBAL' => global_opts.to_json,
+					'__RBCLI_CONFIG' => config.to_json,
+					'__RBCLI_MYVARS' => @envvars.to_json
+			}
+			if @block
+				path = @block.call params, args, global_opts, config
+			else
+				path = @path
 			end
+			system(env_hash, path)
+		else
+			system(@envvars.collect{|k,v| [k.to_s, v]}.to_h, @path)
 		end
 
-		def load_state
-			begin
-				@data = JSON.parse(File.read(@path)).deep_symbolize!
-			rescue Errno::ENOENT, Errno::EACCES => e
-				error "Can not read from file #{@path}. Please make sure the file exists and is readable." if @halt_on_error
-			end
-		end
-
-		def save_state
-			begin
-				File.write @path, JSON.dump(@data)
-			rescue Errno::ENOENT, Errno::EACCES => e
-				error "Can not write to file #{@path}. Please make sure the file exists and is writeable." if @halt_on_error
-			end
-		end
-
-		def error text
-			raise LocalStateError.new "Error accessing local state: #{text}"
-		end
-
-		class LocalStateError < StandardError; end
+		# IO.popen(env_hash, path) do |io|
+		# 	while (line = io.gets) do
+		# 		puts line
+		# 	end
+		# end
 	end
 
 end

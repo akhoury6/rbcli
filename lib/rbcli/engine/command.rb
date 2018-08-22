@@ -19,41 +19,52 @@
 ##################################################################################
 
 
+module Rbcli::CmdLibrary
+	def self.extended klass
+		klass.instance_variable_set :@commands, {}
+	end
+
+	def inherited subklass
+		subklass.instance_variable_set :@data, {
+				description: nil,
+				usage: nil,
+				action: nil,
+				paramlist: {},
+				remote_permitted: false
+		}
+		@commands[subklass.name.downcase] = subklass.new
+	end
+
+	def data; self.instance_variable_get :@data; end
+
+	def commands
+		@commands
+	end
+
+end
+
+
 class Rbcli::Command
 
 	#include InheritableTraits
 	#traits :description
+	extend Rbcli::CmdLibrary
 
-	@commands = {}
-
-	def self.inherited subklass
-		@commands[subklass.name.downcase] = subklass.new
-	end
-
-	def self.add_command name, klass
-		@commands[name.downcase] = klass.new
-	end
-
-	def self.commands
-		@commands
-	end
+	def data; self.class.data; end
 
 	##
 	# Interface Functions
 	##
-	def self.description desc;     @desc = desc end
-	def      description;          self.class.instance_variable_get :@desc end
-
-	def self.usage usage;          @usage = usage end
-	def      usage;                self.class.instance_variable_get :@usage end
-
-	def self.action &block;        @action = block end
-	def      action;               self.class.instance_variable_get :@action end
-
+	def self.description desc;                @data[:description] = desc; end
+	def self.usage usage;                     @data[:usage] = usage; end
+	def self.action &block;                   @data[:action] = block; end
+	def self.remote_permitted;                @data[:remote_permitted] = true; end
+	def self.remote_permitted?;               @data[:remote_permitted]; end
+	def self.config_defaults filename;        Rbcli::Config::add_defaults(filename); end
+	def self.config_default *params;          Rbcli::Config::add_default *params; end
 	def self.parameter name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
 		default ||= false if (type == :boolean || type == :bool || type == :flag)
-		@paramlist ||= {}
-		@paramlist[name.to_sym] = {
+		@data[:paramlist][name.to_sym] = {
 				description: description,
 				type: type,
 				default: default,
@@ -62,24 +73,25 @@ class Rbcli::Command
 				short: short
 		}
 	end
-	def      paramlist;               self.class.instance_variable_get :@paramlist end
 
-	def self.config_defaults filename
-		Rbcli::Config::add_defaults filename
+	def self.extern path: nil, envvars: nil, &block
+		if path == :default
+			callerscript = caller_locations.first.absolute_path
+			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
+		end
+		block = nil unless block_given?
+		require 'rbcli/features/scriptwrapper'
+		@data[:extern] = Rbcli::Scriptwrapper.new path, envvars, block
 	end
 
-	def self.config_default *params
-		Rbcli::Config::add_default *params
+	def self.script path: nil, envvars: nil
+		if path == :default or path.nil?
+			callerscript = caller_locations.first.absolute_path
+			path = "#{File.dirname(callerscript)}/scripts/#{File.basename(callerscript, ".*")}.sh"
+		end
+		require 'rbcli/features/scriptwrapper'
+		@data[:script] = Rbcli::Scriptwrapper.new path, envvars, nil, true
 	end
-
-	def self.remote_permitted
-		@remote_permitted = true
-	end
-
-	def remote_permitted?
-		self.class.instance_variable_get :@remote_permitted
-	end
-
 	##
 	# END Interface Functions
 	##
@@ -93,7 +105,7 @@ class Rbcli::Command
 		global_opts = cliopts
 		config = Rbcli::config
 
-		raise Exception.new("Command #{cmd} can only have one of `action`, `script`, or `extern` defined.") if (@commands[cmd].extern or @commands[cmd].script) and @commands[cmd].action
+		raise Exception.new("Command #{cmd} can only have one of `action`, `script`, or `extern` defined.") if (@commands[cmd].data[:extern] or @commands[cmd].data[:script]) and @commands[cmd].data[:action]
 
 		if cliopts[:remote_exec]
 			Rbcli::RemoteExec.new(@commands[cmd], cliopts[:remote_exec], cliopts[:identity], params, args, global_opts, config).run
@@ -101,9 +113,9 @@ class Rbcli::Command
 			return
 		end
 
-		@commands[cmd].extern.execute params, args, global_opts, config unless @commands[cmd].extern.nil?
-		@commands[cmd].script.execute params, args, global_opts, config unless @commands[cmd].script.nil?
-		@commands[cmd].action.call params, args, global_opts, config unless @commands[cmd].action.nil?
+		@commands[cmd].data[:extern].execute params, args, global_opts, config unless @commands[cmd].data[:extern].nil?
+		@commands[cmd].data[:script].execute params, args, global_opts, config unless @commands[cmd].data[:script].nil?
+		@commands[cmd].data[:action].call params, args, global_opts, config unless @commands[cmd].data[:action].nil?
 	end
 
 	##
@@ -113,7 +125,7 @@ class Rbcli::Command
 		#descmap = @commands.map { |name, klass| [name, klass.description] }.to_h
 		@commands.map do |name, cmdobj|
 			desc = ''
-			if Rbcli.configuration[:remote_execution] and cmdobj.remote_permitted?
+			if Rbcli.configuration(:me, :remote_execution) and cmdobj.remote_permitted?
 				indent_size -= 3
 				indent_size.times { desc << ' ' }
 				desc << '*  '
@@ -121,20 +133,20 @@ class Rbcli::Command
 				indent_size.times { desc << ' ' }
 			end
 			desc << name.ljust(justification)
-			desc << cmdobj.description
+			desc << cmdobj.class.data[:description]
 		end.join("\n")
 	end
 
 	##
 	# This method reads the parameters provided by the class and parses them from the CLI
 	##
-	def parseopts *args
-		params = paramlist
+	def self.parseopts *args
+		params = @data[:paramlist]
 		command_name = self.class.name.split('::')[-1].downcase
-		command_desc = description
-		command_usage = usage
+		command_desc = @data[:description]
+		command_usage = @data[:usage]
 		optx = Trollop::options do
-			data = Rbcli.configuration
+			data = Rbcli.configuration(:me)
 			banner <<-EOS
 #{data[:description]}
 Selected Command:
@@ -152,19 +164,6 @@ Command-specific Parameters:
 		optx[:args] = ARGV
 		optx
 	end
-
-	##
-	# Inject metadata into response
-	##
-	# def self.wrap_metadata resp
-	# 	{
-	# 			meta: {
-	# 					status: 'ok',
-	# 					timestamp: (Time.now.to_f * 1000).floor
-	# 			},
-	# 			response: resp
-	# 	}.deep_stringify!
-	# end
 
 	####
 	### DEPRECATED

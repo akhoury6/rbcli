@@ -18,44 +18,35 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-require 'net/http'
-require 'json'
 
-module Rbcli::Autoupdate
-	class GemUpdater
-		include Common
+module Rbcli::Configurate::Hooks
+	include Rbcli::Configurable
 
-		def initialize gemname, force_update, message
-			@gemname = gemname
-			@uri = URI.parse "https://rubygems.org/api/v1/versions/#{gemname}/latest.json"
-			@force_update = force_update
-			@message = message
-		end
+	@data = {
+			default_action: nil,
+			pre_hook: nil,
+			post_hook: nil,
+			first_run: nil,
+			halt_after_first_run: false
+	}
+	def self.data; @data; end
 
-		def get_latest_version
-			begin
-				response = Net::HTTP.get(@uri)
-				JSON.parse(response)['version']
-			rescue SocketError => e
-				# Capture connection errors
-			end
-		end
 
-		def update_message
-			"Please run `gem update #{@gemname}` to upgrade to the latest version. You can see it at: https://rubygems.org/gems/#{@gemname}/versions/#{@latest_version}"
-		end
-
-		# def self.save_defaults
-		# 	Rbcli::Config::add_categorized_defaults :gem_update, 'Automatically Check for Updates from RubyGems', {
-		# 			access_token: {
-		# 					description: 'Access token for GitHub API. This is only required for private repos. For help, see: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/',
-		# 					value: nil
-		# 			},
-		# 			enterprise_hostname: {
-		# 					description: 'Hostname for GitHub Enterprise. Leave as null (~) for public GitHub.',
-		# 					value: nil
-		# 			}
-		# 	}
-		# end
+	def self.default_action &block
+		@data[:default_action] = block
 	end
+
+	def self.pre_hook &block
+		@data[:pre_hook] = block
+	end
+
+	def self.post_hook &block
+		@data[:post_hook] = block
+	end
+
+	def self.first_run halt_after_running: false, &block
+		@data[:halt_after_first_run] = halt_after_running
+		@data[:first_run] = block
+	end
+
 end

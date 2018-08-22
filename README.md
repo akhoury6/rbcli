@@ -2,19 +2,21 @@
 
 RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-Latest Release: v0.2.1 (Aug 8, 2018) -- See the [changelog][changelog] for complete details.
+Latest Release: v0.2.2 (Aug 22, 2018) -- See the [changelog][changelog] for complete details.
+
+* Lazy loading for improved startup time
+* Hooks are now defined under `Rbcli.Configurate.hooks`.
+* Logger is disabled by default, cleaning up output
+* Code refactor and cleanup
+* Many more improvements
+
+Previous Release: v0.2.1 (Aug 8, 2018)
 
 * Remote Execution Feature Added
 
-Previous Release: v0.2.0 (Aug 5, 2018)
-
-* CLI tool Autoupdate Enabled; when an upgrade to RBCli is detected, the RBCli CLI tool will notify the developer.
-* Official documentation created and hosted with Github Pages
-* RBCli released under GPLv3
-* Copyright/License notice displayed via RBCli tool with `rbcli license` in accordance with GPLv3 guidelines
-* Many improvements and bugfixes
-
 [You can find the Official Documentation for RBCli Here.][documentation_home]
+
+[If you want to support RBCli's development, please donate and help keep it going!][documentation_whoami]
 
 ## Introduction
 
@@ -27,6 +29,8 @@ Some of its key features include:
 
 * __Simple DSL Interface__: To cut down on the amount of code that needs to be written, RBCli has a DSL that is designed to cut to the chase. This makes the work a lot less tedious.
   
+* __Lazy Loading__: Even though RBCli is a heavyweight tool, it uses lazy loading to speed up application startup time. This means you don't have to worry about a large framework slowing your application down.
+
 * __Multiple Levels of Parameters and Arguments__: Forget about writing parsers for command-line options, or about having to differentiate between parameters and arguments. All of that work is taken care of.
 
 * __Config File Generation__: Easily piece together a default configuration even with declarations in different parts of the code. Then the user can generate their own configuration, and it gets stored in whatever location you'd like.
@@ -223,5 +227,6 @@ The gem is available as open source under the terms of the [GPLv3][license_text]
 
 [documentation_home]: https://akhoury6.github.com/rbcli
 [documentation_development]: https://akhoury6.github.com/rbcli/development/contributing/
+[documentation_whoami]: https://akhoury6.github.io/rbcli/whoami/
 [license_text]: https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt
 [changelog]: https://github.com/akhoury6/rbcli/blob/master/CHANGELOG.md

@@ -20,15 +20,18 @@
 
 
 #TODO: Change this once the changes have been merged into trollop gem proper
-require "rbcli/util/trollop"
+require 'rbcli/util/trollop'
 
 module Rbcli::Parser
 
 	@cliopts = nil
 
 	def self.parse
+		# We show deprecation warnings before anything else, encouraging the developer to update their code.
+		Rbcli::DeprecationWarning.display_warnings
+
 		@cliopts = Trollop::options do
-			data = Rbcli.configuration
+			data = Rbcli.configuration(:me)
 			version "#{data[:scriptname]} version: #{data[:version]}"
 			banner <<-EOS
 #{data[:description]}
@@ -63,21 +66,24 @@ Commands:
 			Rbcli::Config::generate_userconf @cliopts[:config_file]
 			puts "User config generated at #{@cliopts[:config_file]} using default values."
 		elsif @cmd[0].nil?
-			if Rbcli.configuration[:default_action].nil?
+			default_action = Rbcli.configuration(:me, :default_action) || Rbcli.configuration(:hooks, :default_action)
+			if default_action.nil?
 				Trollop::educate
 			else
-				Rbcli.configuration[:default_action].call @cliopts
+				default_action.call @cliopts
 			end
 		elsif Rbcli::Command.commands.key? @cmd[0]
-			@cmd << Rbcli::Command.commands[@cmd[0]].parseopts
+			@cmd << Rbcli::Command.commands[@cmd[0]].class.parseopts
 
 			if (@cliopts[:remote_exec_given] and not @cliopts[:identity_given]) or (not @cliopts[:remote_exec_given] and @cliopts[:identity_given])
 				Trollop::die 'Must use `--remote-exec` and `--identity` together.'
 			end
 
-			Rbcli.configuration[:pre_hook].call @cliopts unless Rbcli.configuration[:pre_hook].nil?
+			Rbcli.configuration(:me, :pre_hook).call @cliopts unless Rbcli.configuration(:me, :pre_hook).nil?
+			Rbcli.configuration(:hooks, :pre_hook).call @cliopts unless Rbcli.configuration(:hooks, :pre_hook).nil?
 			Rbcli::Command.runcmd(@cmd.shift, @cmd[0], @cliopts)
-			Rbcli.configuration[:post_hook].call @cliopts unless Rbcli.configuration[:post_hook].nil?
+			Rbcli.configuration(:me, :post_hook).call @cliopts unless Rbcli.configuration(:me, :post_hook).nil?
+			Rbcli.configuration(:hooks, :post_hook).call @cliopts unless Rbcli.configuration(:hooks, :post_hook).nil?
 		else
 			Trollop::die "Unknown subcommand #{@cmd[0].inspect}"
 		end
@@ -88,14 +94,15 @@ end
 
 module Rbcli
 	def self.parse
-		if Rbcli.configuration[:first_run]
+		first_run_hook = Rbcli.configuration(:me, :first_run) || Rbcli.configuration(:hooks, :first_run)
+		if first_run_hook
 			if Rbcli.local_state
 				if Rbcli.local_state.rbclidata.key? :first_run
 					Rbcli::Parser::parse
 				else
-					Rbcli.configuration[:first_run].call
+					first_run_hook.call
 					Rbcli.local_state.set_rbclidata :first_run, true
-					Rbcli::Parser::parse unless Rbcli.configuration[:halt_after_first_run]
+					Rbcli::Parser::parse unless Rbcli.configuration(:me, :halt_after_first_run) or Rbcli.configuration(:hooks, :halt_after_first_run)
 				end
 			else
 				raise StandardError.new "Error: Can not use `first_run` without also configuring `local_state`."

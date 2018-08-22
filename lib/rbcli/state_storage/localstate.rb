@@ -18,36 +18,60 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-###########
-## RBCLI ##
-###########
-#
-# This file loads the Rbcli systems.
-#
-# Utils and Prereqs must be loaded first.
-#
-###########
+require 'rbcli/state_storage/common/state_storage'
+require 'fileutils'
+require 'json'
 
-lib = File.expand_path('../../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+## User Interface
+module Rbcli
+	def self.local_state
+		Rbcli.configuration(:storage, :localstate)
+	end
+end
 
-module Rbcli end # Empty module declaration required to declare submodules freely
-require 'rbcli/version'
+## Local State Module
+module Rbcli::State
 
-# UTILS
-require 'rbcli/util/hash_deep_symbolize'
-require 'rbcli/util/deprecation_warning'
-#require 'rbcli/util/string_colorize' # We are using the colorize gem instead. The code is kept here for reference.
-# END UTILS
+	class LocalStorage < StateStorage
 
-# BASE PREREQS
-require 'rbcli/features/userconfig'
-require 'rbcli/features/logging'
-# END BASE PREREQS
+		def state_subsystem_init
+			@path = File.expand_path @path
+		end
 
-# CORE
-require 'rbcli/configuration/configurate'
-require 'rbcli/engine/load_project'
-require 'rbcli/engine/command'
-require 'rbcli/engine/parser'
-# END CORE
+		def state_exists?
+			File.exists? @path
+		end
+
+		def create_state
+			begin
+				FileUtils.mkdir_p File.dirname(@path)
+				FileUtils.touch @path
+			rescue Errno::EACCES => e
+				error "Can not create file #{@path}. Please make sure the directory is writeable." if @halt_on_error
+			end
+		end
+
+		def load_state
+			begin
+				@data = JSON.parse(File.read(@path)).deep_symbolize!
+			rescue Errno::ENOENT, Errno::EACCES => e
+				error "Can not read from file #{@path}. Please make sure the file exists and is readable." if @halt_on_error
+			end
+		end
+
+		def save_state
+			begin
+				File.write @path, JSON.dump(@data)
+			rescue Errno::ENOENT, Errno::EACCES => e
+				error "Can not write to file #{@path}. Please make sure the file exists and is writeable." if @halt_on_error
+			end
+		end
+
+		def error text
+			raise LocalStateError.new "Error accessing local state: #{text}"
+		end
+
+		class LocalStateError < StandardError; end
+	end
+
+end

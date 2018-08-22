@@ -659,6 +659,21 @@
 
 <p>Also, don't forget to update the <strong>Quick Reference Guide</strong> in the <code>README.md</code> file (the main project one) with information about your changes.</p>
 <p>Once you've completed your edits, run the <code>makesite.sh</code> command to build the actual HTML pages automatically in the <code>docs</code> folder, from where they will be served when live.</p>
+<h2 id="deprecations">Deprecations</h2>
+<p>If a feature needs to be deprecated, RBCli has a built-in deprecation message feature. You can leverage it by calling the following code when a deprecated command is called:</p>
+<pre><code class="ruby">Rbcli::DeprecationWarning.new deprecated_command, message, version_when_code_will_be_removed
+</code></pre>
+
+<p>So, for example:</p>
+<pre><code class="ruby">Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--first_run', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+</code></pre>
+
+<p>will display the following message to the user, in red, any any time the application is run:</p>
+<pre><code class="text">DEPRECATION WRNING: The feature `Rbcli::Configurate.me--post_hook` has been deprecated. Please use `RBCli::Configurate.hooks` as the parent block instead. This feature will be removed in version 0.3.0.
+</code></pre>
+
+<p>Additionally, it will place the same line in the logs using <code>Rbcli.logger.warn</code> if logging is enabled.</p>
+<p>If a deprecation warning has been added, please remember to mention it in the pull request so that others can update it later.</p>
 <h1 id="maintainers-notes">Maintainer's Notes</h1>
 <p>To install this gem onto your local machine from source, run <code>bundle exec rake install</code>.</p>
 <p>To release a new version, follow theese steps:</p>

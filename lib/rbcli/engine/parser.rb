@@ -73,7 +73,7 @@ Commands:
 				default_action.call @cliopts
 			end
 		elsif Rbcli::Command.commands.key? @cmd[0]
-			@cmd << Rbcli::Command.commands[@cmd[0]].parseopts
+			@cmd << Rbcli::Command.commands[@cmd[0]].class.parseopts
 
 			if (@cliopts[:remote_exec_given] and not @cliopts[:identity_given]) or (not @cliopts[:remote_exec_given] and @cliopts[:identity_given])
 				Trollop::die 'Must use `--remote-exec` and `--identity` together.'

@@ -19,41 +19,52 @@
 ##################################################################################
 
 
+module Rbcli::CmdLibrary
+	def self.extended klass
+		klass.instance_variable_set :@commands, {}
+	end
+
+	def inherited subklass
+		subklass.instance_variable_set :@data, {
+				description: nil,
+				usage: nil,
+				action: nil,
+				paramlist: {},
+				remote_permitted: false
+		}
+		@commands[subklass.name.downcase] = subklass.new
+	end
+
+	def data; self.instance_variable_get :@data; end
+
+	def commands
+		@commands
+	end
+
+end
+
+
 class Rbcli::Command
 
 	#include InheritableTraits
 	#traits :description
+	extend Rbcli::CmdLibrary
 
-	@commands = {}
-
-	def self.inherited subklass
-		@commands[subklass.name.downcase] = subklass.new
-	end
-
-	def self.add_command name, klass
-		@commands[name.downcase] = klass.new
-	end
-
-	def self.commands
-		@commands
-	end
+	def data; self.class.data; end
 
 	##
 	# Interface Functions
 	##
-	def self.description desc;     @desc = desc end
-	def      description;          self.class.instance_variable_get :@desc end
-
-	def self.usage usage;          @usage = usage end
-	def      usage;                self.class.instance_variable_get :@usage end
-
-	def self.action &block;        @action = block end
-	def      action;               self.class.instance_variable_get :@action end
-
+	def self.description desc;                @data[:description] = desc; end
+	def self.usage usage;                     @data[:usage] = usage; end
+	def self.action &block;                   @data[:action] = block; end
+	def self.remote_permitted;                @data[:remote_permitted] = true; end
+	def self.remote_permitted?;               @data[:remote_permitted]; end
+	def self.config_defaults filename;        Rbcli::Config::add_defaults(filename); end
+	def self.config_default *params;          Rbcli::Config::add_default *params; end
 	def self.parameter name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
 		default ||= false if (type == :boolean || type == :bool || type == :flag)
-		@paramlist ||= {}
-		@paramlist[name.to_sym] = {
+		@data[:paramlist][name.to_sym] = {
 				description: description,
 				type: type,
 				default: default,
@@ -62,24 +73,6 @@ class Rbcli::Command
 				short: short
 		}
 	end
-	def      paramlist;               self.class.instance_variable_get :@paramlist end
-
-	def self.config_defaults filename
-		Rbcli::Config::add_defaults filename
-	end
-
-	def self.config_default *params
-		Rbcli::Config::add_default *params
-	end
-
-	def self.remote_permitted
-		@remote_permitted = true
-	end
-
-	def remote_permitted?
-		self.class.instance_variable_get :@remote_permitted
-	end
-
 	##
 	# END Interface Functions
 	##
@@ -103,7 +96,7 @@ class Rbcli::Command
 
 		@commands[cmd].extern.execute params, args, global_opts, config unless @commands[cmd].extern.nil?
 		@commands[cmd].script.execute params, args, global_opts, config unless @commands[cmd].script.nil?
-		@commands[cmd].action.call params, args, global_opts, config unless @commands[cmd].action.nil?
+		@commands[cmd].data[:action].call params, args, global_opts, config unless @commands[cmd].data[:action].nil?
 	end
 
 	##
@@ -121,18 +114,18 @@ class Rbcli::Command
 				indent_size.times { desc << ' ' }
 			end
 			desc << name.ljust(justification)
-			desc << cmdobj.description
+			desc << cmdobj.class.data[:description]
 		end.join("\n")
 	end
 
 	##
 	# This method reads the parameters provided by the class and parses them from the CLI
 	##
-	def parseopts *args
-		params = paramlist
+	def self.parseopts *args
+		params = @data[:paramlist]
 		command_name = self.class.name.split('::')[-1].downcase
-		command_desc = description
-		command_usage = usage
+		command_desc = @data[:description]
+		command_usage = @data[:usage]
 		optx = Trollop::options do
 			data = Rbcli.configuration(:me)
 			banner <<-EOS
@@ -152,19 +145,6 @@ Command-specific Parameters:
 		optx[:args] = ARGV
 		optx
 	end
-
-	##
-	# Inject metadata into response
-	##
-	# def self.wrap_metadata resp
-	# 	{
-	# 			meta: {
-	# 					status: 'ok',
-	# 					timestamp: (Time.now.to_f * 1000).floor
-	# 			},
-	# 			response: resp
-	# 	}.deep_stringify!
-	# end
 
 	####
 	### DEPRECATED

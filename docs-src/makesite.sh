@@ -2,7 +2,7 @@
 
 if ! pip list | grep mkdocs &> /dev/null; then
 	echo "Python package mkdocs not found. Installing..."
-	pip install mkdocs mkdocs-material
+	sudo -H pip install mkdocs mkdocs-material
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"

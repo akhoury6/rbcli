@@ -139,6 +139,30 @@ mytool -c list -asd
 
 Note how the parameters come after the `list` command in the syntax above. As you create more commands, each will have its own unique set of parameters, while the options remain _before_ the command and are available to all of them.
 
+### User Prompting
+
+There is an additional option when declaring parameters to prompt the user for a value if not entered on the command line. This can be done with the `prompt:` keyword. Let's change one of our parameters to utilize it:
+
+```ruby
+parameter :sort, 'Sort output alphabetically', type: :boolean, default: false, prompt: "Sort output alphabetically?"
+```
+
+Now, let's run the tool while omitting the `--sort` parameter, as such:
+
+```bash
+mytool -c list -ad
+```
+
+This should give you the prompt:
+
+```
+Sort output alphabetically? (y/N):
+```
+
+Because we set the parameter to default to `false` the default here is `N`, which is used if the user hits enter without entering a letter. If the default was set to `true`, then the `Y` would be capitalized and be the default.
+
+For more information, see the documentation on [Interactive Commands][interactive_commands].
+
 ## Arguments
 
 Lastly on the command line, there are arguments. Arguments are simply strings without the `-` character in front, and automatically get passed into an array in your applicaiton. Let's take a look at how we can use them.
@@ -249,3 +273,4 @@ Next, we're going to take a quick look at how to publish and distribute your app
 
 [user_config_documentation]: ../advanced/user_config_files.md
 [regex_explanation]: https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285
+[interactive_commands]: ../advanced/interactive_commands.md

@@ -53,6 +53,7 @@ Some of its key features include:
 
 * __Remote Execution__: Automatically execute commands on remote machines via SSH
 
+* __Interactive Commands__: Automatically prompt users for paramter values if not given on the command line. This pattern allows for easy user interaction while still allowing scripting without the use of _expect_.
 
 For more information, take a look at the __[official documentation][documentation_home]__ or keep reading for a quick reference.
 

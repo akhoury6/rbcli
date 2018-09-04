@@ -10,7 +10,7 @@ class <%= @vars[:name].capitalize %> < Rbcli::Command                           
 	usage <<-EOF
 <%= @vars[:usage_text] %>
 EOF
-	parameter :force, 'Force testing', short: 'f', type: :boolean, default: false, required: false  # (Optional, Multiple) Add a command-specific CLI parameter. Uses the same format as options (see application/options.rb for help)
+	parameter :force, 'Force testing', short: 'f', type: :boolean, default: false, required: false, prompt: 'Force testing?'  # (Optional, Multiple) Add a command-specific CLI parameter. Uses the same format as options (see application/options.rb for help)
 
 	config_default :myopt2, description: 'My Option #2', default: 'Default Value Here'  # (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.
                                                                                       # Alternatively, you can simply create a yaml file in the `default_user_configs` directory in your project that specifies the default values of all options

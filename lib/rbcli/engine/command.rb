@@ -62,7 +62,7 @@ class Rbcli::Command
 	def self.remote_permitted?;               @data[:remote_permitted]; end
 	def self.config_defaults filename;        Rbcli::Config::add_defaults(filename); end
 	def self.config_default *params;          Rbcli::Config::add_default *params; end
-	def self.parameter name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
+	def self.parameter name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil, prompt: nil
 		default ||= false if (type == :boolean || type == :bool || type == :flag)
 		@data[:paramlist][name.to_sym] = {
 				description: description,
@@ -70,7 +70,8 @@ class Rbcli::Command
 				default: default,
 				required: required,
 				permitted: permitted,
-				short: short
+				short: short,
+				prompt: prompt
 		}
 	end
 
@@ -162,6 +163,31 @@ Command-specific Parameters:
 			end if params.is_a? Hash
 		end
 		optx[:args] = ARGV
+		params.each do |name, data|
+			given_symbol = (name.to_s + '_given').to_sym
+			if data[:prompt] and not (optx.key?(given_symbol) and optx[given_symbol])
+				if data[:type] == :bool or data[:type] == :boolean or data[:type] == :flag
+					answer = 'INVALID_STRING'
+					while answer.downcase != 'y' and answer.downcase != 'n' and answer.downcase != ''
+						print 'Invalid entry. '.red unless answer == 'INVALID_STRING'
+						print data[:prompt] + " (#{(data[:default]) ? 'Y/n' : 'y/N'}): "
+						answer = gets.chomp
+						if answer.downcase == 'y'
+							optx[name] = true
+						elsif answer.downcase == 'n'
+							optx[name] = false
+						elsif answer.downcase == ''
+							optx[name] = data[:default]
+						end
+					end
+				elsif data[:type] == :string
+					print data[:prompt] + " (default: \"#{data[:default]}\"): "
+					answer = gets.chomp
+					answer = data[:default] if answer.empty?
+					optx[name] = answer
+				end
+			end
+		end
 		optx
 	end
 

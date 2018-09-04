@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.3 (TBD)
+## 0.2.3 (Sep 4, 2018)
 
 ### Features
 

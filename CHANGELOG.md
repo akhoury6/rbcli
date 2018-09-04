@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.3 (TBD)
+
+### Features
+
+* Interactive Commands -- Prompt the user for parameters with a given value
+
+### Improvements
+
+* Added documentation on logging
+
 ## 0.2.2 (Aug 22, 2018)
 
 ### Features

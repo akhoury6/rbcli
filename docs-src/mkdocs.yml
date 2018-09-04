@@ -18,16 +18,18 @@ pages:
     - Command Types: advanced/command_types.md
     - User Config Files: advanced/user_config_files.md
     - Hooks: advanced/hooks.md
+    - Logging: advanced/logging.md
     - Automatic Updates: advanced/automatic_updates.md
     - State Storage: advanced/state_storage.md
     - Distributed State Locking: advanced/distributed_state_locking.md
     - Remote Execution: advanced/remote_execution.md
+    - Interactive Commands: advanced/interactive_commands.md
   - Development:
     - Contribution Guide: development/contributing.md
     - License Info: development/license.md
     - Code of Conduct: development/code_of_conduct.md
     - Changelog: imported/changelog.md
-  - $ whoami: whoami.md
+  - whoami: whoami.md
 
 # The repo link on the top-right of the page
 #repo_name: GitHub

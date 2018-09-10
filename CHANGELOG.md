@@ -10,6 +10,7 @@
 
 * Fixed a bug in the Github Updater where RBCli crashed when a version tag was not present in the repo. 
 * Fixed a bug where deleting a state key would crash Rbcli
+* Fixed a bug where remote state crashed with certain configurations
 
 ## 0.2.4 (Sep 4, 2018)
 

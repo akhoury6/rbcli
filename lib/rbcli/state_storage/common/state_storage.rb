@@ -51,7 +51,7 @@ module Rbcli::State
 			@data[:data][key.to_sym]
 		end
 
-		def delete key#, &block
+		def delete key, &block
 			state_create unless @loaded
 			result = @data[:data].delete key.to_sym, &block
 			save_state

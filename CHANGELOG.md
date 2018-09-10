@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5 (UNRELEASED)
+
+### Bugfixes
+
+* Fixed a bug in the Github Updater where RBCli crashed when a version tag was not present in the repo. 
+
 ## 0.2.4 (Sep 4, 2018)
 
 * This is a dummy release required to update the License in the Gemspec file. The license has not changed (GPLv3).

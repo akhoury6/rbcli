@@ -50,6 +50,8 @@ module Rbcli::Autoupdate
 				@client.repo(@reponame).rels[:tags].get.data.map{ |t| t[:name] }[0].sub(/^[v]*/,"")
 			rescue Faraday::ConnectionFailed => e
 				# This is to capture connection errors without bothering the user.
+			rescue NoMethodError => e
+				# This ignores repos with no tags
 			end
 
 		end

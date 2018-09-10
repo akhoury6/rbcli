@@ -23,7 +23,7 @@ require 'rbcli/state_storage/common/state_storage'
 ## User Interface
 module Rbcli
 	def self.remote_state
-		Rbcli::ConfigurateStorage.data[:remotestate]
+		Rbcli.configuration(:storage, :remotestate)
 	end
 end
 

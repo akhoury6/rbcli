@@ -2,6 +2,10 @@
 
 ## 0.2.5 (UNRELEASED)
 
+### Improvements
+
+* Added a useful error message when local or remote state is used but not initialized.
+
 ### Bugfixes
 
 * Fixed a bug in the Github Updater where RBCli crashed when a version tag was not present in the repo. 

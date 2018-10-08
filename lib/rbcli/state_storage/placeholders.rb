@@ -18,37 +18,12 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-###########
-## RBCLI ##
-###########
-#
-# This file loads the Rbcli systems.
-#
-# Utils and Prereqs must be loaded first.
-#
-###########
+module Rbcli
+	def self.local_state
+		raise Exception.new "Warning: Usage of Local State requires Local State Storage to be enabled in your application's configuration."
+	end
 
-lib = File.expand_path('../../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-
-module Rbcli end # Empty module declaration required to declare submodules freely
-require 'rbcli/version'
-
-# UTILS
-require 'rbcli/util/hash_deep_symbolize'
-require 'rbcli/util/deprecation_warning'
-#require 'rbcli/util/string_colorize' # We are using the colorize gem instead. The code is kept here for reference.
-# END UTILS
-
-# BASE PREREQS
-require 'rbcli/features/userconfig'
-require 'rbcli/features/logging'
-# END BASE PREREQS
-
-# CORE
-require 'rbcli/state_storage/placeholders'
-require 'rbcli/configuration/configurate'
-require 'rbcli/engine/load_project'
-require 'rbcli/engine/command'
-require 'rbcli/engine/parser'
-# END CORE
+	def self.remote_state
+		raise Exception.new "Warning: Usage of Remote State requires Remote State Storage to be enabled in your application's configuration."
+	end
+end

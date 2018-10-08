@@ -42,7 +42,7 @@ module Rbcli::State::RemoteConnectors
 		def initialize dynamodb_table, region, aws_access_key_id, aws_secret_access_key, locking: false, lock_timeout: 60
 			@region = region
 			@dynamo_table_name = dynamodb_table
-			@item_name = Rbcli::configuration[:scriptname]
+			@item_name = Rbcli::configuration(:me, :scriptname)
 			@locking = locking
 			@scheduler = nil
 			@lock_timeout = lock_timeout

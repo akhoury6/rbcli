@@ -2,21 +2,7 @@
 
 RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-Latest Release: v0.2.4 (Sep 4, 2018) -- See the [changelog][changelog] for complete details.
-
-* Interactive Commands
-
-Previous Release: v0.2.2 (Aug 22, 2018)
-
-* Lazy loading for improved startup time
-* Hooks are now defined under `Rbcli.Configurate.hooks`.
-* Logger is disabled by default, cleaning up output
-* Code refactor and cleanup
-* Many more improvements
-
-Previous Release: v0.2.1 (Aug 8, 2018)
-
-* Remote Execution Feature Added
+Latest Release: v0.2.5 (Oct 8, 2018) -- See the [changelog][changelog] for complete details.
 
 [You can find the Official Documentation for RBCli Here.][documentation_home]
 

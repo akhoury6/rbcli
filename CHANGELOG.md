@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.5 (UNRELEASED)
+## 0.2.5 (Oct 8, 2018)
 
 ### Improvements
 

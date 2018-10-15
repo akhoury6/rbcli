@@ -88,7 +88,7 @@ module RBCliTool
 		end
 
 		def exists?
-			project_exists?
+			Project::find_root(@dest)
 		end
 
 		def self.find_root path
@@ -100,16 +100,6 @@ module RBCliTool
 				searchpath = (spath.length == 2) ? '/' : spath[0..-2].join('/')
 			end
 			false
-		end
-
-		private
-
-		def project_exists?
-			# If the specified file already exists...
-			return true if File.exists? @dest
-
-			# Or if the .rbcli file exists anywhere in the tree, we know that we are in a subdirectory of a project
-			Project::find_root(@dest)
 		end
 	end
 

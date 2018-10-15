@@ -84,7 +84,7 @@ EOF
 	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
 
 	action do |params, args, global_opts, config|
-		dest = "#{Dir.pwd}/#{params[:name]}"
+		dest = Dir.pwd
 
 		# Prepare template vars
 		template_vars = {

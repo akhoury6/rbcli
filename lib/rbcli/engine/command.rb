@@ -159,7 +159,7 @@ Usage:
 Command-specific Parameters:
 			EOS
 			params.each do |name, opts|
-				opt name, opts[:description], type: opts[:type], default: opts[:default], required: opts[:required], permitted: opts[:permitted], short: opts[:short]
+				opt name, opts[:description], type: opts[:type], default: opts[:default], required: (opts[:prompt].nil? and opts[:required]), permitted: opts[:permitted], short: opts[:short]
 			end if params.is_a? Hash
 		end
 		optx[:args] = ARGV

@@ -79,12 +79,12 @@ Micro:    A single-file, minimal RBCli project. Similar to a mini project, but o
           generated. Recommended for rapid prototyping of scripts, for advanced users only.
 EOF
 
-	parameter :name, 'Name of project to generate', type: :string, required: true
+	parameter :name, 'Name of project to generate', type: :string, default: File.basename(Dir.pwd), required: true, prompt: 'Enter a name'
 	parameter :type, 'Specify project type', type: :string, permitted: %w(standard micro mini), default: 'standard'
 	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
 
 	action do |params, args, global_opts, config|
-		dest = "#{Dir.pwd}/#{params[:name]}"
+		dest = Dir.pwd
 
 		# Prepare template vars
 		template_vars = {

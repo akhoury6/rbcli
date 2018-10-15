@@ -106,7 +106,7 @@ module RBCliTool
 
 		def project_exists?
 			# If the specified file already exists...
-			return true if File.exists? @dest
+			#return true if File.exists? @dest
 
 			# Or if the .rbcli file exists anywhere in the tree, we know that we are in a subdirectory of a project
 			Project::find_root(@dest)

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.6 (UNRELEASED)
+
+### Bugfixes
+
+Fixed a bug that caused the rbcli tool not to detect project folders correctly.
+Command parameter `prompt:` now works when `required` is set to `true`.
+
+### Changes
+
+The `rbcli init` command now initializes into the current working directory instead of creating a new one. 
+
 ## 0.2.5 (Oct 8, 2018)
 
 ### Improvements

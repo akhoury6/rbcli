@@ -7,7 +7,7 @@
 ## It's job is to load and execute the application.
 #########################################################
 
-require 'rbcli'
+require (ENV['RBCLI_ENV'].downcase == 'development') ? ENV['RBCLI_DEVPATH'] || 'rbcli' : 'rbcli'
 
 #########################
 ## Configuration Block ##

@@ -10,6 +10,7 @@ Command parameter `prompt:` now works when `required` is set to `true`.
 ### Changes
 
 The `rbcli init` command now initializes into the current working directory instead of creating a new one. 
+Fixed erroneous documentation about the 'merge' setting on userspace config.
 
 ## 0.2.5 (Oct 8, 2018)
 

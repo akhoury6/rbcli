@@ -39,7 +39,7 @@ config_userfile '~/.mytool', merge_defaults: true, required: false
 * `path/to/config/file`
 	* Self explanatory. Recommended locations are a dotfile in the user's home directory, or a file under `/etc` such as `/etc/mytool/userconf.yaml`
 * `merge_defaults`
-	* If set to `true`, user settings override default settings. If set to `false`, default settings are not loaded at all and the user is required to have all values specified in their config.
+	* If set to `true`, default settings override user settings. If set to `false`, default settings are not loaded at all and the user is required to have all values specified in their config.
 * `required`
 	* If set to `true` the application will not run if the file does not exist. A message will be displayed to the user to run your application with the `--generate-config` option to generate the file given your specified defaults.
 

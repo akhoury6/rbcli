@@ -18,6 +18,8 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
+#TODO: Detect invalid network connections and skip
+#TODO: Add a timeout
 
 require 'rubygems'
 module Rbcli::Autoupdate

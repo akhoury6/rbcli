@@ -9,7 +9,7 @@
 ## You should not need to edit this file.
 #########################################################
 
-require (ENV['RBCLI_ENV'].downcase == 'development') ? ENV['RBCLI_DEVPATH'] || 'rbcli' : 'rbcli'
+require (ENV['RBCLI_ENV'] == 'development') ? ENV['RBCLI_DEVPATH'] || 'rbcli' : 'rbcli'
 require "#{File.dirname(__FILE__)}/../config/version"
 $projectdir = "#{File.dirname __FILE__}/.."
 

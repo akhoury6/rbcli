@@ -11,7 +11,7 @@ Rbcli::Configurate.me do
 	#
 	#   config_userfile <path>, merge_defaults: <optional: (true|false), default: true>, required: <optional: (true|false, default: false)
 	#
-	# If merge_defaults=true, user settings override default settings.
+	# If merge_defaults=true, default settings override user settings.
 	# If false, defaults set here are not loaded at all, and the user is required to set them.
 	# If required=true, application will not run if file does not exist.
 	#

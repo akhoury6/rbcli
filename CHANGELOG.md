@@ -1,15 +1,20 @@
 # Changelog
 
-## 0.2.6 (UNRELEASED)
+## 0.2.7 (Oct 17, 2018)
+
+### Improvements
+* Added a dev mode for scripts that allows using a local RBCli copy instead of requiring the gem to be installed
+* Added a 
 
 ### Bugfixes
 
-Fixed a bug that caused the rbcli tool not to detect project folders correctly.
-Command parameter `prompt:` now works when `required` is set to `true`.
+* Fixed a bug that caused the rbcli tool not to detect project folders correctly.
+* Command parameter `prompt:` now works when `required` is set to `true`.
 
 ### Changes
 
-The `rbcli init` command now initializes into the current working directory instead of creating a new one. 
+* The `rbcli init` command now initializes into the current working directory instead of creating a new one. 
+* Fixed erroneous documentation about the 'merge' setting on userspace config.
 
 ## 0.2.5 (Oct 8, 2018)
 

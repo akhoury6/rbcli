@@ -79,12 +79,12 @@ module RBCliTool
 
 		def create_mini force = false
 			return false if project_exists? and not force
-			RBCliTool.cp_file @minipath, @dest, @template_vars
+			RBCliTool.cp_file @minipath, "#{@dest}/#{@template_vars[:cmdname]}", @template_vars
 		end
 
 		def create_micro force = false
 			return false if project_exists? and not force
-			RBCliTool.cp_file @micropath, @dest, @template_vars
+			RBCliTool.cp_file @micropath, "#{@dest}/#{@template_vars[:cmdname]}", @template_vars
 		end
 
 		def exists?

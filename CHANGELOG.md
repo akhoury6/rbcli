@@ -1,10 +1,30 @@
 # Changelog
 
+## 0.2.9 (Unreleased)
+
+### Bugfixes
+
+* Fixed a bug which caused the `rbcli init` command to occassionally fail for mini and micro projects
+
+### Changes
+
+* Changed the `rbcli init` helptext to match the order of complexity of projects (standard -> mini -> micro)
+
+## 0.2.8 (Oct 19, 2018)
+
+### Improvements
+
+* Enabled the safe usage of anchors in YAML config files
+
+### Bugfixes
+
+* Fixed an error which caused RBCli to crash when using `local_state`
+
 ## 0.2.7 (Oct 17, 2018)
 
 ### Improvements
+
 * Added a dev mode for scripts that allows using a local RBCli copy instead of requiring the gem to be installed
-* Added a 
 
 ### Bugfixes
 

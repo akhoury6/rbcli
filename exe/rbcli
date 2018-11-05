@@ -80,7 +80,7 @@ Micro:    A single-file, minimal RBCli project. Similar to a mini project, but o
 EOF
 
 	parameter :name, 'Name of project to generate', type: :string, default: File.basename(Dir.pwd), required: true, prompt: 'Enter a name'
-	parameter :type, 'Specify project type', type: :string, permitted: %w(standard micro mini), default: 'standard'
+	parameter :type, 'Specify project type', type: :string, permitted: %w(standard mini micro), default: 'standard'
 	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
 
 	action do |params, args, global_opts, config|
@@ -112,7 +112,7 @@ EOF
 		if success
 			puts "\nInitialization Complete!\n"
 		else
-			puts "\nAn RBCli Project already exists in the current directory tree at: #{proj.exists?}. Please delete the project or run this command from a different directory.\n"
+			puts "\nAn RBCli Project already exists in the current or specified directory tree. Please delete the project or run this command from a different directory.\n"
 		end
 	end
 end

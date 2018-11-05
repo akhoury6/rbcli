@@ -36,6 +36,7 @@ module RBCliTool
 		dest = "#{dest}#{src.split('/')[-1]}" if dest.end_with? '/'
 		if File.exists? dest
 			puts "File #{dest} already exists. Please delete it and try again."
+			false
 		else
 			print "Generating file " + dest + " ... "
 
@@ -48,6 +49,7 @@ module RBCliTool
 
 			FileUtils.rm_f "#{File.dirname(dest)}/.keep" if File.exists? "#{File.dirname(dest)}/.keep"
 			puts "Done!"
+			true
 		end
 	end
 

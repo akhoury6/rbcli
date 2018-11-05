@@ -5,6 +5,7 @@
 ### Improvements
 
 * Enabled the safe usage of anchors in YAML config files
+* Improved the method of determining the script name to be more portable across OS'es
 
 ### Bugfixes
 

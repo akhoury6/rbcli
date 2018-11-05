@@ -14,7 +14,7 @@ require (ENV['RBCLI_ENV'] == 'development') ? ENV['RBCLI_DEVPATH'] || 'rbcli' : 
 #########################
 Rbcli::Configurate.me do
 	## Script Name -- (Required) -- This line identifies the tool's executable on the command line.
-	scriptname __FILE__.split('/')[-1]
+	scriptname File.basename(__FILE__)
 
 	## Version Number -- (Required)
 	version '0.1.0'

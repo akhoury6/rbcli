@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.2.8 (Unreleased)
+## 0.2.8 (Nov 7, 2018)
+
+### Features
+
+* Added a standardized message I/O system
 
 ### Improvements
 

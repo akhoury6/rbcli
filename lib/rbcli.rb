@@ -37,6 +37,7 @@ require 'rbcli/version'
 # UTILS
 require 'rbcli/util/hash_deep_symbolize'
 require 'rbcli/util/deprecation_warning'
+require 'rbcli/util/msg'
 #require 'rbcli/util/string_colorize' # We are using the colorize gem instead. The code is kept here for reference.
 # END UTILS
 

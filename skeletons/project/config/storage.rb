@@ -9,11 +9,11 @@ Rbcli::Configurate.storage do
 	# Local State Storage -- (Optional)
 	###
 	# Local state storage creates a hash that is automatically saved to a file locally for state persistance.
-	# It is accessible to all commands at:    Rbcli.localstate[:yourkeyhere]
+	# It is accessible to all commands at:    Rbcli.local_state[:yourkeyhere]
 	#
 	# Note that every update to the top level of this hash will trigger a save, and updating nested hashes will not.
-	# If you need to update nested hashes, you can trigger a save manually by calling `Rbcli.localstate.commit`.
-	# It is accessible to all commands at: Rbcli.localstate[:yourkeyhere]
+	# If you need to update nested hashes, you can trigger a save manually by calling `Rbcli.local_state.commit`.
+	# It is accessible to all commands at: Rbcli.local_state[:yourkeyhere]
 	# Please see the documentation for full usage details.
 	###
 

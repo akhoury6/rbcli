@@ -1,10 +1,30 @@
 # Changelog
 
+## 0.2.8 (Nov 7, 2018)
+
+### Features
+
+* Added a standardized message I/O system
+
+### Improvements
+
+* Enabled the safe usage of anchors in YAML config files
+* Improved the method of determining the script name to be more portable across OS'es
+
+### Bugfixes
+
+* Fixed an error which caused RBCli to crash when using `local_state`
+* Fixed a bug which caused the `rbcli init` command to occassionally fail for mini and micro projects
+
+### Changes
+
+* Changed the `rbcli init` helptext to match the order of complexity of projects (standard -> mini -> micro)
+
 ## 0.2.7 (Oct 17, 2018)
 
 ### Improvements
+
 * Added a dev mode for scripts that allows using a local RBCli copy instead of requiring the gem to be installed
-* Added a 
 
 ### Bugfixes
 

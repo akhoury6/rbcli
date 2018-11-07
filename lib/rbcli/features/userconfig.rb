@@ -111,13 +111,13 @@ module Rbcli::Config
 		@config_text << "\n\n" << text if text
 
 		@config_defaults ||= {}
-		@config_defaults.deep_merge! YAML::load(@config_text).deep_symbolize!
+		@config_defaults.deep_merge! YAML.safe_load(@config_text, [], [], true).deep_symbolize!
 		@loaded = false
 	end
 
 	def self.load
 		if (! @config_file.nil?) and File.exists? @config_file
-			@config = YAML::load(File.read(@config_file)).deep_symbolize!
+			@config = YAML.safe_load(File.read(@config_file), [], [], true).deep_symbolize!
 			@config.deep_merge! @config_defaults if @merge_defaults
 		elsif @userfile_required
 			puts "User's config file not found at #{@config_file}. Please run this tool with the `--generate-config` option to generate it."

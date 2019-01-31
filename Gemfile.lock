@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rbcli (0.2.9)
+    rbcli (0.2.10)
       aws-sdk-dynamodb (~> 1.6)
       colorize (~> 0.8)
       deep_merge (~> 1.2)

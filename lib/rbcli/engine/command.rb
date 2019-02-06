@@ -143,7 +143,7 @@ class Rbcli::Command
 	##
 	def self.parseopts *args
 		params = @data[:paramlist]
-		command_name = self.class.name.split('::')[-1].downcase
+		command_name = self.name.split('::')[-1].downcase
 		command_desc = @data[:description]
 		command_usage = @data[:usage]
 		optx = Trollop::options do

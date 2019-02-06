@@ -38,7 +38,6 @@ module Rbcli::Msg
 		tcol = (result or msg_fail.nil?) ? success_color : fail_color
 		Rbcli::Msg.puts tmsg, log: log, color: tcol
 		Rbcli::Msg.fatal fatality_msg, log: log if fatality_msg
-
 	end
 
 	def self.yesno question, default_to_yes: false

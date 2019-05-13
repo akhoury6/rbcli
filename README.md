@@ -1,8 +1,8 @@
 # RBCli
 
-RBCli is currently in Alpha stages of development. All releases can be considered stable, though breaking changes may be made between versions.
+RBCli is currently in Beta stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-Latest Release: v0.2.8 (Nov 7, 2018) -- See the [changelog][changelog] for complete details.
+Latest Release: v0.2.11 (Feb 27, 2019) -- See the [changelog][changelog] for complete details.
 
 [You can find the Official Documentation for RBCli Here.][documentation_home]
 

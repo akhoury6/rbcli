@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.11 (Feb 27, 2019)
+
+### Improvements
+
+* Updated the dependent gem verions to use the latest available versions
+
+### Bugfixes
+
+* Fixed the nested triggers of the message I/O system
+
 ## 0.2.8 (Nov 7, 2018)
 
 ### Features

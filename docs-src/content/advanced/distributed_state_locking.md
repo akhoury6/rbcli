@@ -34,4 +34,4 @@ Rbcli.remote_state.disconnect
 Even if you do not want to store any data, you can leverage manual locking to control access to a different shared resource, such as a stateful API. For example, if you write a cloud deployment toolkit, you can ensure that only one user is attempting to modify a deployment at any given time.
 
 
-[state_storage]: /advanced/state_storage
+[state_storage]: {{< ref "advanced/state_storage" >}}

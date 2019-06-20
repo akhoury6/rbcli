@@ -42,5 +42,5 @@ Setting `force_update: true` will halt execution if an update is available, forc
 The `message` parameter allows setting a custom message that will be displayed when an update is available. Leaving it as `nil` will use the default message provided by RBCli.
 
 [github_release_documentation]: https://help.github.com/articles/creating-releases/
-[userspace_configuration]: /advanced/user_config_files
+[userspace_configuration]: {{< ref "advanced/user_config_files" >}}
 [github_generate_token]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/

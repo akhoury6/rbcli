@@ -142,7 +142,7 @@ end
 __NOTE__: Passing user-supplied data as part of the command string may be a security risk (example: `/path/to/application --name #{params[:name]}`). It is highly recommended to provide the fixed strings yourself, and only select which strings are used based on the variables provided. This is demonstrated in the example above.
 
 
-[your_first_command]: /tutorial/30-your_first_command
-[parameters_documentation]: /tutorial/40-options_parameters_and_arguments
-[user_config_documentation]: /advanced/user_config_files
+[your_first_command]: {{< ref "tutorial/30-your_first_command" >}}
+[parameters_documentation]: {{< ref "tutorial/40-options_parameters_and_arguments" >}}
+[user_config_documentation]: {{< ref "advanced/user_config_files" >}}
 [jq_documentation]: https://stedolan.github.io/jq/manual/

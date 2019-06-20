@@ -66,4 +66,4 @@ rbcli hook -f
 You will then find the hook under `hooks/first_run.rb`.
 
 
-[state_storage]: /advanced/state_storage
+[state_storage]: {{< ref "advanced/state_storage" >}}

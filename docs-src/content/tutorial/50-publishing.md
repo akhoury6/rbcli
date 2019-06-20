@@ -49,5 +49,5 @@ As far as RBCli is concerned, all Git hosts and gem platforms work equally well,
 Congratulations! You've completed the tutorial on RBCli and should be able to make all sorts of CLI applications and tools with what you learned. That said, there are still many features in RBCli that we didn't explore, which you can find in the __Advanced__ section of this site. If you aren't sure where to start, we recommend looking at [User Config Files][user_config_files_documentation] and going from there.
 
 
-[automatic_update_documentation]: /advanced/automatic_updates
-[user_config_files_documentation]: /advanced/user_config_files
+[automatic_update_documentation]: {{< ref "advanced/automatic_updates" >}}
+[user_config_files_documentation]: {{< ref "advanced/user_config_files" >}}

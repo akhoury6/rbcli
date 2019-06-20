@@ -36,5 +36,5 @@ Some of its key features include:
 
 If you're just getting started with RBCli, take a look at the [Tutorial][tutorial]. Or take a look at the [Advanced] menu to look through RBCli's additional featureset.
 
-[tutorial]: /tutorial
-[advanced]: /advanced
+[tutorial]: {{< ref "tutorial" >}}
+[advanced]: {{< ref "advanced" >}}

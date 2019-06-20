@@ -127,6 +127,6 @@ Go ahead and test it out! The output doesn't show much obviously, just a list of
 
 Next we're going to take a look at options, parameters, and arguments, and we'll clean up our list command by using them. If you'd like to learn more about the additional command types in RBCli before continuing, see the [Advanced Command Types][avanced_command_types_documentation] documentation.
 
-[parameters_documentation]: /tutorial/40-options_parameters_and_arguments
-[user_config_documentation]: /advanced/user_config_files
-[avanced_command_types_documentation]: /advanced/command_types
+[parameters_documentation]: {{< ref "tutorial/40-options_parameters_and_arguments" >}}
+[user_config_documentation]: {{< ref "advanced/user_config_files" >}}
+[avanced_command_types_documentation]: {{< ref "advanced/command_types" >}}

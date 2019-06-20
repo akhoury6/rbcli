@@ -117,4 +117,4 @@ For more information on the available commands, see the documentation on [Local 
 
 
 [aws_sdk_credentials]: https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html
-[distributed_state_locking]: /advanced/distributed_state_locking
+[distributed_state_locking]: {{< ref "advanced/distributed_state_locking" >}}

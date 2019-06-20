@@ -36,4 +36,4 @@ logger:
 ```
 
 [ruby_logger]: https://ruby-doc.org/stdlib-2.4.0/libdoc/logger/rdoc/Logger.html
-[userspace_configuration]: /advanced/user_config_files
+[userspace_configuration]: {{< ref "advanced/user_config_files" >}}

@@ -277,6 +277,6 @@ parameter :<name>, "<description_string>", short: '<character>', type: <variable
 
 Next, we're going to take a quick look at how to publish and distribute your application, both publicly and within your organization.
 
-[user_config_documentation]: /advanced/user_config_files
+[user_config_documentation]: {{< ref "advanced/user_config_files" >}}
 [regex_explanation]: https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285
-[interactive_commands]: /advanced/interactive_commands
+[interactive_commands]: {{< ref "advanced/interactive_commands" >}}

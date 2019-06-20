@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorial on RBCli Documentation</title>
-    <link>https://akhoury6.github.io/tutorial/</link>
+    <link>https://akhoury6.github.io/rbcli/tutorial/</link>
     <description>Recent content in Tutorial on RBCli Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 20 Jun 2019 15:08:08 -0400</lastBuildDate>
     
-	<atom:link href="https://akhoury6.github.io/tutorial/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://akhoury6.github.io/rbcli/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started</title>
-      <link>https://akhoury6.github.io/tutorial/10-getting_started/</link>
+      <link>https://akhoury6.github.io/rbcli/tutorial/10-getting_started/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
-      <guid>https://akhoury6.github.io/tutorial/10-getting_started/</guid>
+      <guid>https://akhoury6.github.io/rbcli/tutorial/10-getting_started/</guid>
       <description>Welcome to the RBCli getting started tutorial! In this tutorial we&amp;rsquo;re going to cover the basics of RBCli and get a simple application up and running. It should take you between 30-60 minutes to complete, depending on your skill level with Ruby.
 As you go throught the tutorial, you can either use the Next and Back buttons on the page to navigate, or use the menu directly.
 Supported Ruby Versions You&amp;rsquo;ll need Ruby installed before you can use RBCli.</description>
@@ -24,10 +24,10 @@ Supported Ruby Versions You&amp;rsquo;ll need Ruby installed before you can use 
     
     <item>
       <title>The Project Layout</title>
-      <link>https://akhoury6.github.io/tutorial/20-project_layout/</link>
+      <link>https://akhoury6.github.io/rbcli/tutorial/20-project_layout/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
-      <guid>https://akhoury6.github.io/tutorial/20-project_layout/</guid>
+      <guid>https://akhoury6.github.io/rbcli/tutorial/20-project_layout/</guid>
       <description>Now we will learn about what an RBCli project looks like and how to start using it.
 Project Initialization Types RBCli can initialize a tool in three different modes:
  Project Mode (default) Mini Mode Micro Mode  Project Mode If you&amp;rsquo;ve been following along with the tutorial, you&amp;rsquo;ve already seen Project Mode. An RBCli Project consists of several folders, each of which has a specific function. The RBCli framework handles loading and parsing the code automatically.</description>
@@ -35,10 +35,10 @@ Project Initialization Types RBCli can initialize a tool in three different mode
     
     <item>
       <title>Your First Command</title>
-      <link>https://akhoury6.github.io/tutorial/30-your_first_command/</link>
+      <link>https://akhoury6.github.io/rbcli/tutorial/30-your_first_command/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
-      <guid>https://akhoury6.github.io/tutorial/30-your_first_command/</guid>
+      <guid>https://akhoury6.github.io/rbcli/tutorial/30-your_first_command/</guid>
       <description>Creating the Command Creating the command is straightforward:
 rbcli command --name=list #or rbcli command -n list  And there you have it! Now you can try out your command by typing:
 ./exe/mytool list  Congrats! You should now see a generic output listing the values of several variables. We&amp;rsquo;ll get into what they mean in a bit, but first, let&amp;rsquo;s make the tool&amp;rsquo;s execution a bit easier.
@@ -47,10 +47,10 @@ Now that you know your way around a project, its time to create your first comma
     
     <item>
       <title>Options, Parameters, and Arguments</title>
-      <link>https://akhoury6.github.io/tutorial/40-options_parameters_and_arguments/</link>
+      <link>https://akhoury6.github.io/rbcli/tutorial/40-options_parameters_and_arguments/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
-      <guid>https://akhoury6.github.io/tutorial/40-options_parameters_and_arguments/</guid>
+      <guid>https://akhoury6.github.io/rbcli/tutorial/40-options_parameters_and_arguments/</guid>
       <description>If you&amp;rsquo;re already an experienced coder, you can jump to the last section of this document, the Simplified Reference (TLDR)
 Command Line Structure In the previous section, you saw two parts of the RBCli command line structure - the executable followed by the command. However, RBCli is capable of more complex interaction. The structure is as follows:
 toolname [options] command [parameters] argument1 argument2...   Options are command line parameters such as -f, or --force.</description>
@@ -58,10 +58,10 @@ toolname [options] command [parameters] argument1 argument2...   Options are com
     
     <item>
       <title>Publishing Your Application</title>
-      <link>https://akhoury6.github.io/tutorial/50-publishing/</link>
+      <link>https://akhoury6.github.io/rbcli/tutorial/50-publishing/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
-      <guid>https://akhoury6.github.io/tutorial/50-publishing/</guid>
+      <guid>https://akhoury6.github.io/rbcli/tutorial/50-publishing/</guid>
       <description>RBCli creates projects designed to be easily distributed via either source control or as a gem. We&amp;rsquo;ll go over both methods.
 Common Tasks Regardless of where you are publishing, certain tasks need to be accomplished. Namely, preparing the gemspec and the README.
 In both files the items that need changing are pretty obvious &amp;ndash; you&amp;rsquo;ll need to fill out your name, email, etc, and replace the placeholder text in the README with something useful to your users.</description>

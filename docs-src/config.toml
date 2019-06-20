@@ -1,6 +1,6 @@
 ## Theme Documentation: https://learn.netlify.com/en/
 
-baseURL = "https://akhoury6.github.io"
+baseURL = "https://akhoury6.github.io/rbcli/"
 languageCode = "en-us"
 title = "RBCli Documentation"
 theme = "hugo-theme-learn"

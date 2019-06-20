@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.12 (Unreleased)
+
+### Improvements
+
+* The base project skeleton now includes an improved structure for the `lib/` folder
+* Documentation now uses Hugo instead of MkDocs for site generation.
+
+### Features
+
+* Development mode can be enabled by setting the environment variables: `RBCLI_ENV=development` and `RBCLI_DEVPATH=[path to local Rbcli folder]` to simplify changes to Rbcli during development. Combined with setting `alias rbcli='/path/to/rbcli/exe/rbcli'`, gem installation is not required for development work
+
 ## 0.2.11 (Feb 27, 2019)
 
 ### Improvements

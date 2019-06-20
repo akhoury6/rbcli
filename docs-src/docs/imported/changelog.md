@@ -1,16 +1,60 @@
 # Changelog
 
-## 0.2.6 (UNRELEASED)
+## 0.2.12 (Unreleased)
+
+### Improvements
+
+* The base project skeleton now includes an improved structure for the `lib/` folder
+
+### Features
+
+* Development mode can be enabled by setting the environment variables: `RBCLI_ENV=development` and `RBCLI_DEVPATH=[path to local Rbcli folder]` to simplify changes to Rbcli during development. Combined with setting `alias rbcli='/path/to/rbcli/exe/rbcli'`, gem installation is not required for development work
+
+## 0.2.11 (Feb 27, 2019)
+
+### Improvements
+
+* Updated the dependent gem verions to use the latest available versions
 
 ### Bugfixes
 
-Fixed a bug that caused the rbcli tool not to detect project folders correctly.
-Command parameter `prompt:` now works when `required` is set to `true`.
+* Fixed the nested triggers of the message I/O system
+
+## 0.2.8 (Nov 7, 2018)
+
+### Features
+
+* Added a standardized message I/O system
+
+### Improvements
+
+* Enabled the safe usage of anchors in YAML config files
+* Improved the method of determining the script name to be more portable across OS'es
+
+### Bugfixes
+
+* Fixed an error which caused RBCli to crash when using `local_state`
+* Fixed a bug which caused the `rbcli init` command to occassionally fail for mini and micro projects
 
 ### Changes
 
-The `rbcli init` command now initializes into the current working directory instead of creating a new one. 
-Fixed erroneous documentation about the 'merge' setting on userspace config.
+* Changed the `rbcli init` helptext to match the order of complexity of projects (standard -> mini -> micro)
+
+## 0.2.7 (Oct 17, 2018)
+
+### Improvements
+
+* Added a dev mode for scripts that allows using a local RBCli copy instead of requiring the gem to be installed
+
+### Bugfixes
+
+* Fixed a bug that caused the rbcli tool not to detect project folders correctly.
+* Command parameter `prompt:` now works when `required` is set to `true`.
+
+### Changes
+
+* The `rbcli init` command now initializes into the current working directory instead of creating a new one. 
+* Fixed erroneous documentation about the 'merge' setting on userspace config.
 
 ## 0.2.5 (Oct 8, 2018)
 

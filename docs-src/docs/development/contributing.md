@@ -8,6 +8,16 @@ Contributing to RBCli is the same as most open source projects:
 
 That's all there is to it! We've also kept our acceptance criteria pretty simple, as you'll see below. Feel free to submit a pull request even if you don't meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.
 
+# Develpment Mode
+
+ To allow for easy deveopment, Rbcli has a development mode which allows a project to include rbcli from a local folder instead of the default gem path. To use it, add the following to your shell's profile (typically `~/.bash_profile` or `~/.profile`):
+
+ ```bash
+export RBCLI_ENV='development'
+export RBCLI_DEVPATH='/path/to/rbcli/lib/rbcli'
+alias rbcli='/path/to/rbcli/exe/rbcli'
+```
+
 # Code Acceptance Criteria
 
 ## Tabs, Not Spaces

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Advanced on RBCli Documentation</title>
+    <link>https://akhoury6.github.io/advanced/</link>
+    <description>Recent content in Advanced on RBCli Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jun 2019 15:08:08 -0400</lastBuildDate>
+    
+	<atom:link href="https://akhoury6.github.io/advanced/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Automatic Updates</title>
+      <link>https://akhoury6.github.io/advanced/automatic_updates/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/automatic_updates/</guid>
+      <description>RBCli can automatically notify users when an update is available. If force_update is set (see below), RBCli can halt execution until the user updates their application.
+Two sources are currently supported: Github (including Enterprise) and RubyGems.
+GitHub Update Check The GitHub update check works best when paired with GitHub&amp;rsquo;s best practices on releases, where new releases are tagged on master with the format vX.X.X. See Github&amp;rsquo;s release documentation to learn more.</description>
+    </item>
+    
+    <item>
+      <title>Command Types</title>
+      <link>https://akhoury6.github.io/advanced/command_types/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/command_types/</guid>
+      <description>RBCli has three different command types:
+ Standard Commands (Ruby-based) Scripted Commands (Ruby+Bash based) External Commands (Wrapping a 3rd party application)  This document is provided to be a reference. If you would like an in-depth tutorial, please see Your First Command.
+General Command Structure Commands in RBCli are created by subclassing Rbcli::Command. All commands share a certain common structure:
+class List &amp;lt; Rbcli::Command # Declare a new command by subclassing Rbcli::Command description &#39;TODO: Description goes here&#39; # (Required) Short description for the global help usage &amp;lt;&amp;lt;-EOF TODO: Usage text goes here EOF # (Required) Long description for the command-specific help parameter :force, &#39;Force testing&#39;, type: :boolean, default: false, required: false # (Optional, Multiple) Add a command-specific CLI parameter.</description>
+    </item>
+    
+    <item>
+      <title>Distributed State and Locking</title>
+      <link>https://akhoury6.github.io/advanced/distributed_state_locking/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/distributed_state_locking/</guid>
+      <description>Distributed Locking allows a Remote State to be shared among multiple users of the application to make writes appear atomic between sessions. To use it, simply set the locking: parameter to true when enabling remote state.
+This is how locking works:
+ The application attempts to acquire a lock on the remote state when you first access it If the backend is locked by a different application, wait and try again If it succeeds, the lock is held and refreshed periodically When the application exits, the lock is released If the application does not refresh its lock, or fails to release it when it exits, the lock will automatically expire within 60 seconds If another application steals the lock (unlikely but possible), and the application tries to save data, a StandardError will be thrown You can manually attempt to lock/unlock by calling Rbcli.</description>
+    </item>
+    
+    <item>
+      <title>Execution Hooks</title>
+      <link>https://akhoury6.github.io/advanced/hooks/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/hooks/</guid>
+      <description>RBCli provides you with hooks that can be used to have code execute at certain places in the execution chain. These hooks are optional, and do not have to be defined for your application to run.
+All hooks will be created in the hooks/ folder in your project.
+The Defailt Action Hook The Default hook is called when a user calls your application without providing a command. If the hook is not provided, the application will automatically display the help text (the same as running it with -h).</description>
+    </item>
+    
+    <item>
+      <title>Interactive Commands</title>
+      <link>https://akhoury6.github.io/advanced/interactive_commands/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/interactive_commands/</guid>
+      <description>Why interactive commands? When catering to an audience of users who are not accustomed to scripting, you may want to prompt them for the information directly (the typical CS-101 &amp;lsquo;puts&amp;rsquo; and &amp;lsquo;gets&amp;rsquo; pattern). This can be a lot more straightforward than having to read the help texts of your tool, and trying multiple times to enter all of the required data.
+Of course, we want to make sure that scripting with the tool still works well (headless interaction).</description>
+    </item>
+    
+    <item>
+      <title>Logging</title>
+      <link>https://akhoury6.github.io/advanced/logging/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/logging/</guid>
+      <description>Logging with RBCli is straightforward - it looks at the config file for logging settings, and instantiates a single, globally accessible Logger object. You can access it within a standard command like this:
+Rbcli::log.info { &#39;These logs can go to STDERR, STDOUT, or a file&#39; }  Enabling Logging To enable logging, simply set the default values in the config/logging.rb file:
+log_level :info log_target &#39;stderr&#39;   log_level  You can set the default log level using either numeric or standard Ruby logger levels: 0-5, or DEBUG &amp;lt; INFO &amp;lt; WARN &amp;lt; ERROR &amp;lt; FATAL &amp;lt; UNKNOWN  log_target  This specifies where the logs will be placed.</description>
+    </item>
+    
+    <item>
+      <title>Remote Execution</title>
+      <link>https://akhoury6.github.io/advanced/remote_execution/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/remote_execution/</guid>
+      <description>RBCli can be configured to execute commands on a remote machine via SSH instead of locally.
+Currently, only script and extern commands are supported.
+Configuration To allow remote execution, go to config/general.rb and change the following line to true:
+remote_execution permitted: false  Then, for each command that you would like to enable remote execution for, add the following directive to the command class declaration:
+remote_permitted  Usage Your end users can now execute a command remotely by specifying the connection string and credentials on the command line as follows:</description>
+    </item>
+    
+    <item>
+      <title>State Storage</title>
+      <link>https://akhoury6.github.io/advanced/state_storage/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/state_storage/</guid>
+      <description>RBCli supports both local and remote state storage. This is done by synchronizing a Hash with either the local disk or a remote database.
+Local State RBCli&amp;rsquo;s local state storage gives you access to a hash that is automatically persisted to disk when changes are made.
+Configuration You can configure it in config/storage.rb.
+local_state &#39;/var/mytool/localstate&#39;, force_creation: true, halt_on_error: true  There are three parameters to configure it with:
+ The path as a string (self-explanatory) force_creation  This will attempt to create the path and file if it does not exist (equivalent to an mkdir -p and touch in linux)  halt_on_error  RBCli&amp;rsquo;s default behavior is to raise an exception if the file can not be created, read, or updated at any point in time If this is set to false, RBCli will silence any errors pertaining to file access and will fall back to whatever data is available.</description>
+    </item>
+    
+    <item>
+      <title>User Configuration Files</title>
+      <link>https://akhoury6.github.io/advanced/user_config_files/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/advanced/user_config_files/</guid>
+      <description>RBCli provides built-in support for creating and managing userspace configuration files. It does this through two chains: the defaults chain and the user chain.
+Defaults chain The defaults chain allows you to specify sane defaults for your CLI tool throughout your code. This gives you the ability to declare configuration alongside the code, and allows RBCli to generate a user config automatically given your defaults. There are two ways to set them:</description>
+    </item>
+    
+  </channel>
+</rss>

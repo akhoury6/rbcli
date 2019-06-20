@@ -89,6 +89,7 @@ EOF
 		# Prepare template vars
 		template_vars = {
 				cmdname: params[:name],
+				modulename: params[:name].split('-').each(&:capitalize!).join,
 				description: params[:description],
 				rbcli_version: Rbcli::VERSION
 		}

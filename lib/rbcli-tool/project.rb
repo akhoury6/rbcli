@@ -38,7 +38,7 @@ module RBCliTool
 			FileUtils.mkdir_p @dest
 
 			# Create project structure
-			%w(
+			%W(
 				application/commands
 				application/commands/scripts
 				config
@@ -46,7 +46,7 @@ module RBCliTool
 				exe
 				hooks
 				spec
-				lib
+				lib/#{@template_vars[:cmdname]}
 			).each do |folder|
 				FileUtils.mkdir_p "#{@dest}/#{folder}"
 				FileUtils.touch "#{@dest}/#{folder}/.keep"
@@ -73,6 +73,10 @@ module RBCliTool
 
 			# Create application options
 			RBCliTool.cp_file "#{src}/application/options.rb", "#{@dest}/application/options.rb", @template_vars
+
+			# Create lib file
+			RBCliTool.cp_file "#{src}/lib/lib.erb", "#{@dest}/lib/#{@template_vars[:cmdname]}.rb", @template_vars
+			FileUtils.rm_f "#{@dest}/lib/.keep"
 
 			true
 		end

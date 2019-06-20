@@ -2,7 +2,7 @@
 
 RBCli is currently in Beta stages of development. All releases can be considered stable, though breaking changes may be made between versions.
 
-Latest Release: v0.2.11 (Feb 27, 2019) -- See the [changelog][changelog] for complete details.
+Latest Release: [![Gem Version](https://badge.fury.io/rb/rbcli.svg)](https://badge.fury.io/rb/rbcli) -- See the [changelog][changelog] for complete details.
 
 [You can find the Official Documentation for RBCli Here.][documentation_home]
 

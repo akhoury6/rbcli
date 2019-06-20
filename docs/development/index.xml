@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on RBCli Documentation</title>
+    <link>https://akhoury6.github.io/development/</link>
+    <description>Recent content in Development on RBCli Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jun 2019 15:27:12 -0400</lastBuildDate>
+    
+	<atom:link href="https://akhoury6.github.io/development/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Contribution Guide</title>
+      <link>https://akhoury6.github.io/development/contributing/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/development/contributing/</guid>
+      <description>Contributing to RBCli is the same as most open source projects:
+ Fork the repository Create your own branch Submit a pull request when ready  That&amp;rsquo;s all there is to it! We&amp;rsquo;ve also kept our acceptance criteria pretty simple, as you&amp;rsquo;ll see below. Feel free to submit a pull request even if you don&amp;rsquo;t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.</description>
+    </item>
+    
+    <item>
+      <title>License Info</title>
+      <link>https://akhoury6.github.io/development/license/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/development/license/</guid>
+      <description>How RBCli is Licensed We want to help the developer community build tooling faster and with less work. That&amp;rsquo;s why RBCli was built. And let&amp;rsquo;s face it - most of us aren&amp;rsquo;t lawyers, and don&amp;rsquo;t want to worry about legal fine print when building awesome software. That&amp;rsquo;s why RBCli is released under the GPLv3 License. So you&amp;rsquo;re free to use RBCli as you see fit to write free software. If you wish to use RBCli in a commercial offering, please contact me at andrew@blacknex.</description>
+    </item>
+    
+    <item>
+      <title>Code of Conduct</title>
+      <link>https://akhoury6.github.io/development/code_of_conduct/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/development/code_of_conduct/</guid>
+      <description>The Contributor Covenant Code of Conduct
+Our Pledge In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+Our Standards Examples of behavior that contributes to creating a positive environment include:</description>
+    </item>
+    
+    <item>
+      <title>Changelog</title>
+      <link>https://akhoury6.github.io/development/changelog/</link>
+      <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
+      
+      <guid>https://akhoury6.github.io/development/changelog/</guid>
+      <description>0.2.12 (Unreleased) Improvements  The base project skeleton now includes an improved structure for the lib/ folder  Features  Development mode can be enabled by setting the environment variables: RBCLI_ENV=development and RBCLI_DEVPATH=[path to local Rbcli folder] to simplify changes to Rbcli during development. Combined with setting alias rbcli=&#39;/path/to/rbcli/exe/rbcli&#39;, gem installation is not required for development work  0.2.11 (Feb 27, 2019) Improvements  Updated the dependent gem verions to use the latest available versions  Bugfixes  Fixed the nested triggers of the message I/O system  0.</description>
+    </item>
+    
+  </channel>
+</rss>

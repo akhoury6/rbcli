@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Letter To You on RBCli Documentation</title>
+    <link>https://akhoury6.github.io/whoami/</link>
+    <description>Recent content in My Letter To You on RBCli Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jun 2019 15:46:52 -0400</lastBuildDate>
+    
+	<atom:link href="https://akhoury6.github.io/whoami/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

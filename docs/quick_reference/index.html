@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Quick Reference :: RBCli Documentation</title>
+
+    
+    <link href="/css/nucleus.css?1561062920" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1561062920" rel="stylesheet">
+    <link href="/css/hybrid.css?1561062920" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1561062920" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1561062920" rel="stylesheet">
+    <link href="/css/auto-complete.css?1561062920" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1561062920" rel="stylesheet">
+    <link href="/css/theme.css?1561062920" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1561062920" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1561062920" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1561062920"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/quick_reference/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://akhoury6.github.io" style="font-size: 40px">
+  <span class="fas fa-terminal"></span>&nbsp;𝚁𝙱𝙲𝚕𝚒
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1561062920"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1561062920"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/akhoury6.github.io";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1561062920"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/quick_reference/" title="Quick Reference" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/quick_reference/">
+          Quick Reference
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/tutorial/" title="Tutorial" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/tutorial/">
+          Tutorial
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/10-getting_started/" title="Getting Started" class="dd-item ">
+        <a href="/tutorial/10-getting_started/">
+        <b>1. </b>Getting Started
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/20-project_layout/" title="The Project Layout" class="dd-item ">
+        <a href="/tutorial/20-project_layout/">
+        <b>2. </b>The Project Layout
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/30-your_first_command/" title="Your First Command" class="dd-item ">
+        <a href="/tutorial/30-your_first_command/">
+        <b>3. </b>Your First Command
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" class="dd-item ">
+        <a href="/tutorial/40-options_parameters_and_arguments/">
+        <b>4. </b>Options, Parameters, and Arguments
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/50-publishing/" title="Publishing Your Application" class="dd-item ">
+        <a href="/tutorial/50-publishing/">
+        <b>5. </b>Publishing Your Application
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/advanced/" title="Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/advanced/">
+          Advanced
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/automatic_updates/" title="Automatic Updates" class="dd-item ">
+        <a href="/advanced/automatic_updates/">
+        Automatic Updates
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/command_types/" title="Command Types" class="dd-item ">
+        <a href="/advanced/command_types/">
+        Command Types
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/distributed_state_locking/" title="Distributed State and Locking" class="dd-item ">
+        <a href="/advanced/distributed_state_locking/">
+        Distributed State and Locking
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/hooks/" title="Execution Hooks" class="dd-item ">
+        <a href="/advanced/hooks/">
+        Execution Hooks
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/interactive_commands/" title="Interactive Commands" class="dd-item ">
+        <a href="/advanced/interactive_commands/">
+        Interactive Commands
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/logging/" title="Logging" class="dd-item ">
+        <a href="/advanced/logging/">
+        Logging
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/remote_execution/" title="Remote Execution" class="dd-item ">
+        <a href="/advanced/remote_execution/">
+        Remote Execution
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/state_storage/" title="State Storage" class="dd-item ">
+        <a href="/advanced/state_storage/">
+        State Storage
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/user_config_files/" title="User Configuration Files" class="dd-item ">
+        <a href="/advanced/user_config_files/">
+        User Configuration Files
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/development/" title="Development" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/">
+          Development
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/contributing/" title="Contribution Guide" class="dd-item ">
+        <a href="/development/contributing/">
+        Contribution Guide
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/license/" title="License Info" class="dd-item ">
+        <a href="/development/license/">
+        License Info
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/code_of_conduct/" title="Code of Conduct" class="dd-item ">
+        <a href="/development/code_of_conduct/">
+        Code of Conduct
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/changelog/" title="Changelog" class="dd-item ">
+        <a href="/development/changelog/">
+        Changelog
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/whoami/" title="My Letter To You" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/whoami/">
+          My Letter To You
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/akhoury6/rbcli"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://rubygems.org/gems/rbcli"><i class='far fa-gem'></i> Rubygems</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > Quick Reference
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#creating-a-command">Creating a command</a>
+<ul>
+<li><a href="#standard-commands">Standard Commands</a></li>
+<li><a href="#scripted-commands">Scripted Commands</a></li>
+<li><a href="#external-commands">External Commands</a></li>
+</ul></li>
+<li><a href="#hooks">Hooks</a></li>
+<li><a href="#storage">Storage</a>
+<ul>
+<li><a href="#local-state">Local State</a></li>
+<li><a href="#remote-state">Remote State</a></li>
+</ul></li>
+<li><a href="#userspace-configuration-files">Userspace Configuration Files</a></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#automatic-update-check">Automatic Update Check</a></li>
+<li><a href="#remote-execution">Remote Execution</a></li>
+<li><a href="#development-and-contributing">Development and Contributing</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#full-documentation">Full Documentation</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Quick Reference
+            </h1>
+          
+
+        
+
+
+
+
+	
+
+<h2 id="installation">Installation</h2>
+
+<p>RBCli is available on rubygems.org. You can add it to your application&rsquo;s <code>Gemfile</code> or <code>gemspec</code>, or install it manually by running:</p>
+
+<pre><code class="language-bash">gem install rbcli
+</code></pre>
+
+<p>Then, <code>cd</code> to the folder you&rsquo;d like to create your project under and run:</p>
+
+<pre><code class="language-bash">rbcli init -n mytool -d &quot;A simple CLI tool&quot;
+</code></pre>
+
+<p>Or, for a single-file tool without any folder/gem tructure, run <code>rbcli init -t mini -n &lt;projectname&gt;</code> or <code>rbcli init -t micro -n &lt;projectname&gt;</code>.</p>
+
+<h2 id="creating-a-command">Creating a command</h2>
+
+<p>There are three types of commands: standard, scripted, and external.</p>
+
+<ul>
+<li><strong>Standard</strong> commands let you code the command directly in Ruby</li>
+<li><strong>Scripted</strong> commands provide you with a bash script, where all of the parsed information (params, options, args, and config) is shared</li>
+<li><strong>External</strong> commands let you wrap 3rd party applications directly</li>
+</ul>
+
+<h3 id="standard-commands">Standard Commands</h3>
+
+<p>To create a new command called <code>foo</code>, run:</p>
+
+<pre><code class="language-bash">rbcli command -n foo
+</code></pre>
+
+<p>You will now find the command code in <code>application/commands/list.rb</code>. Edit the <code>action</code> block to write your coode.</p>
+
+<h3 id="scripted-commands">Scripted Commands</h3>
+
+<p>To create a new scripted command called <code>bar</code>, run:</p>
+
+<pre><code class="language-bash">rbcli script -n bar
+</code></pre>
+
+<p>You will then find two new files:</p>
+
+<ul>
+<li>The command declaration under <code>application/commands/bar.rb</code></li>
+<li>The script code under <code>application/commands/scripts/bar.sh</code></li>
+</ul>
+
+<p>Edit the script to write your code.</p>
+
+<h3 id="external-commands">External Commands</h3>
+
+<p>To create a new external command called <code>baz</code>, run:</p>
+
+<pre><code class="language-bash">rbcli extern -n baz
+</code></pre>
+
+<p>You will then find the command code in <code>application/commands/baz.rb</code>.</p>
+
+<p>Use one of the two provided modes &ndash; direct path mode or variable path mode &ndash; to provide the path to the external program.</p>
+
+<h2 id="hooks">Hooks</h2>
+
+<p>RBCli has several hooks that run at different points in the exectution chain. They can be created via the <code>rbcli</code> command line tool:</p>
+
+<pre><code class="language-bash">rbcli hook --default      # Runs when no command is provided
+rbcli hook --pre          # Runs before any command
+rbcli hook --post         # Runs after any command
+rbcli hook --firstrun     # Runs the first time a user runs your application. Requires userspace config.
+rbcli hook -dpof          # Create all hooks at once
+</code></pre>
+
+<h2 id="storage">Storage</h2>
+
+<p>RBCli supports both local and remote state storage. This is done by synchronizing a Hash with either the local disk or a remote database.</p>
+
+<h3 id="local-state">Local State</h3>
+
+<p>RBCli can provide you with a unique hash that can be persisted to disk on any change to a top-level value.</p>
+
+<p>Enable local state in <code>config/storage.rb</code>.</p>
+
+<p>Then access it in your Standard Commands with <code>Rbcli.local_state[:yourkeyhere]</code>.</p>
+
+<h3 id="remote-state">Remote State</h3>
+
+<p>Similar to the Local State above, RBCli can provide you with a unique hash that can be persisted to a remote storage location.</p>
+
+<p>Currently only AWS DynamoDB is supported, and credentials will be required for each user.</p>
+
+<p>Enable remote state in <code>config/storage.rb</code>.</p>
+
+<p>Then access it in your Standard Commands with <code>Rbcli.remote_state[:yourkeyhere]</code>.</p>
+
+<h2 id="userspace-configuration-files">Userspace Configuration Files</h2>
+
+<p>RBCli provides an easy mechanism to generate and read configuration files from your users. You set the default values and help text with the <strong>defaults chain</strong>, and leverage the <strong>user chain</strong> to read them.</p>
+
+<p>You can set defaults either by placing a YAML file in the <code>userconf/</code> folder or by specifying individual options in <code>application/options.rb</code> (global) or <code>application/command/*.rb</code> (command-specific).</p>
+
+<p>Users can generate a config file, complete with help text, by running your tool with the <code>--generate-config</code> option.</p>
+
+<h2 id="logging">Logging</h2>
+
+<p>RBCli&rsquo;s logger is configured in <code>config/logging.rb</code>.</p>
+
+<pre><code class="language-ruby">log_level :info
+log_target 'stderr'
+</code></pre>
+
+<p>Then it can be accessed when writing your commands via:</p>
+
+<pre><code class="language-ruby">Rbcli::log.info { 'These logs can go to STDERR, STDOUT, or a file' }
+</code></pre>
+
+<p>The user will also be able to change the log level and target via their config file, if it is enabled.</p>
+
+<h2 id="automatic-update-check">Automatic Update Check</h2>
+
+<p>RBCli can automatically notify users when an update is available. Two sources are currently supported: Github (including Enterprise) and RubyGems.</p>
+
+<p>You can configure automatic updates in <code>config/autoupdate.rb</code> in your project.</p>
+
+<h2 id="remote-execution">Remote Execution</h2>
+
+<p>RBCli can automatically execute script and extern commands on remote machines via SSH. Enable this feature in <code>config/general.rb</code> by changing the following line to <code>true</code>:</p>
+
+<pre><code class="language-ruby">remote_execution permitted: false
+</code></pre>
+
+<p>Then for each command you want to enable remote execution for, add the following directive:</p>
+
+<pre><code class="language-ruby">remote_permitted
+</code></pre>
+
+<p>Users can then execute commands remotly by specifying the connection string and credentials on the command line:</p>
+
+<pre><code class="language-bash">mytool --remote-exec [user@]host[:port] --identity (/path/to/private/ssh/key or password) &lt;command&gt; ...
+</code></pre>
+
+<h2 id="development-and-contributing">Development and Contributing</h2>
+
+<p>For more information about development and contributing, please see the <a href="https://akhoury6.github.com/rbcli/development/contributing/">Official Development Documentation</a></p>
+
+<h2 id="license">License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt">GPLv3</a>.</p>
+
+<h2 id="full-documentation">Full Documentation</h2>
+
+<p><a href="https://akhoury6.github.com/rbcli">You can find the Official Documentation for RBCli Here.</a></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/" title=""> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/tutorial/" title="Tutorial" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1561062920"></script>
+    <script src="/js/perfect-scrollbar.min.js?1561062920"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1561062920"></script>
+    <script src="/js/jquery.sticky.js?1561062920"></script>
+    <script src="/js/featherlight.min.js?1561062920"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1561062920"></script>
+    <script src="/js/highlight.pack.js?1561062920"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1561062920"></script>
+    <script src="/js/learn.js?1561062920"></script>
+    <script src="/js/hugo-learn.js?1561062920"></script>
+
+    <link href="/mermaid/mermaid.css?1561062920" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1561062920"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

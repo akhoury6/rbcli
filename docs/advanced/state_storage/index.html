@@ -1,837 +1,724 @@
-
-
-
-
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="js csstransforms3d">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>State Storage :: RBCli Documentation</title>
+
     
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      
-        <meta name="description" content="Description">
-      
-      
-      
-        <meta name="author" content="Andrew Khoury">
-      
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.4">
+    <link href="/css/nucleus.css?1561062920" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1561062920" rel="stylesheet">
+    <link href="/css/hybrid.css?1561062920" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1561062920" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1561062920" rel="stylesheet">
+    <link href="/css/auto-complete.css?1561062920" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1561062920" rel="stylesheet">
+    <link href="/css/theme.css?1561062920" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1561062920" rel="stylesheet">
     
+      <link href="/css/theme-blue.css?1561062920" rel="stylesheet">
     
+
+    <script src="/js/jquery-3.3.1.min.js?1561062920"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
       
-        <title>State Storage - RBCli Documentation</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
-      
-      
-    
-    
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
-    
+    </style>
     
   </head>
-  
-    <body dir="ltr">
-  
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
-    viewBox="0 0 416 448" id="__github">
-  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
-        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
-        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
-        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
-        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
-        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
-        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
-        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
-        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
-        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
-        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
-        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
-        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
-        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
-        99.5z" />
-</svg>
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="../../#state-storage" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="RBCli Documentation" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon">devices</i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            
-              <span class="md-header-nav__topic">
-                RBCli Documentation
-              </span>
-              <span class="md-header-nav__topic">
-                State Storage
-              </span>
-            
-          
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
-            Type to start searching
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
+  <body class="" data-url="/advanced/state_storage/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://akhoury6.github.io" style="font-size: 40px">
+  <span class="fas fa-terminal"></span>&nbsp;𝚁𝙱𝙲𝚕𝚒
+</a>
+
     </div>
-  </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1561062920"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1561062920"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/akhoury6.github.io";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1561062920"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/quick_reference/" title="Quick Reference" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/quick_reference/">
+          Quick Reference
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/tutorial/" title="Tutorial" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/tutorial/">
+          Tutorial
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
           
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
+          
+            
             
 
 
+ 
   
-
-
-  <a href="https://github.com/akhoury6/rbcli/" title="Go to repository" class="md-source" data-md-source="github">
     
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      GitHub
-    </div>
-  </a>
-
-          </div>
-        </div>
-      
-    </div>
-  </nav>
-</header>
-    
-    <div class="md-container">
-      
+      <li data-nav-id="/tutorial/10-getting_started/" title="Getting Started" class="dd-item ">
+        <a href="/tutorial/10-getting_started/">
+        <b>1. </b>Getting Started
         
-      
-      
-        
-
+        </a>
+    </li>
+     
   
+ 
 
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  <li class="md-tabs__item">
+            
+          
+            
+            
+
+
+ 
+  
     
-      <a href="../.." title="Home" class="md-tabs__link">
-        Home
+      <li data-nav-id="/tutorial/20-project_layout/" title="The Project Layout" class="dd-item ">
+        <a href="/tutorial/20-project_layout/">
+        <b>2. </b>The Project Layout
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/30-your_first_command/" title="Your First Command" class="dd-item ">
+        <a href="/tutorial/30-your_first_command/">
+        <b>3. </b>Your First Command
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" class="dd-item ">
+        <a href="/tutorial/40-options_parameters_and_arguments/">
+        <b>4. </b>Options, Parameters, and Arguments
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorial/50-publishing/" title="Publishing Your Application" class="dd-item ">
+        <a href="/tutorial/50-publishing/">
+        <b>5. </b>Publishing Your Application
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/advanced/" title="Advanced" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/advanced/">
+          Advanced
+          
       </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
     
-  </li>
-
-      
+      <li data-nav-id="/advanced/automatic_updates/" title="Automatic Updates" class="dd-item ">
+        <a href="/advanced/automatic_updates/">
+        Automatic Updates
         
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../tutorial/10-getting_started/" title="Tutorial" class="md-tabs__link">
-          Tutorial
         </a>
-      
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/command_types/" title="Command Types" class="dd-item ">
+        <a href="/advanced/command_types/">
+        Command Types
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/distributed_state_locking/" title="Distributed State and Locking" class="dd-item ">
+        <a href="/advanced/distributed_state_locking/">
+        Distributed State and Locking
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/hooks/" title="Execution Hooks" class="dd-item ">
+        <a href="/advanced/hooks/">
+        Execution Hooks
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/interactive_commands/" title="Interactive Commands" class="dd-item ">
+        <a href="/advanced/interactive_commands/">
+        Interactive Commands
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/logging/" title="Logging" class="dd-item ">
+        <a href="/advanced/logging/">
+        Logging
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/remote_execution/" title="Remote Execution" class="dd-item ">
+        <a href="/advanced/remote_execution/">
+        Remote Execution
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/state_storage/" title="State Storage" class="dd-item active">
+        <a href="/advanced/state_storage/">
+        State Storage
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/advanced/user_config_files/" title="User Configuration Files" class="dd-item ">
+        <a href="/advanced/user_config_files/">
+        User Configuration Files
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
     </li>
   
+ 
 
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../command_types/" title="Advanced Features" class="md-tabs__link md-tabs__link--active">
-          Advanced Features
-        </a>
-      
-    </li>
-  
+          
+          
 
-      
+
+ 
+  
+    
+    <li data-nav-id="/development/" title="Development" class="dd-item 
         
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../development/contributing/" title="Development" class="md-tabs__link">
+        
+        
+        ">
+      <a href="/development/">
           Development
-        </a>
+          
+      </a>
       
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/contributing/" title="Contribution Guide" class="dd-item ">
+        <a href="/development/contributing/">
+        Contribution Guide
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/license/" title="License Info" class="dd-item ">
+        <a href="/development/license/">
+        License Info
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/code_of_conduct/" title="Code of Conduct" class="dd-item ">
+        <a href="/development/code_of_conduct/">
+        Code of Conduct
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/development/changelog/" title="Changelog" class="dd-item ">
+        <a href="/development/changelog/">
+        Changelog
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
     </li>
   
+ 
 
-      
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/whoami/" title="My Letter To You" class="dd-item 
         
+        
+        
+        ">
+      <a href="/whoami/">
+          My Letter To You
+          
+      </a>
       
+              
+    </li>
+  
+ 
+
+          
+         
     </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/akhoury6/rbcli"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://rubygems.org/gems/rbcli"><i class='far fa-gem'></i> Rubygems</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
   </div>
 </nav>
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../.." title="RBCli Documentation" class="md-nav__button md-logo">
-      
-        <i class="md-icon">devices</i>
-      
-    </a>
-    RBCli Documentation
-  </label>
-  
-    <div class="md-nav__source">
-      
 
 
-  
 
 
-  <a href="https://github.com/akhoury6/rbcli/" title="Go to repository" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      GitHub
-    </div>
-  </a>
 
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../.." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../imported/quick_reference/" title="Quick Reference" class="md-nav__link">
-      Quick Reference
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      Tutorial
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        Tutorial
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tutorial/10-getting_started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tutorial/20-project_layout/" title="The Project Layout" class="md-nav__link">
-      The Project Layout
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tutorial/30-your_first_command/" title="Your First Command" class="md-nav__link">
-      Your First Command
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tutorial/40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" class="md-nav__link">
-      Options, Parameters, and Arguments
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tutorial/50-publishing/" title="Publishing and Distribution" class="md-nav__link">
-      Publishing and Distribution
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
-    
-    <label class="md-nav__link" for="nav-4">
-      Advanced Features
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Advanced Features
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../command_types/" title="Command Types" class="md-nav__link">
-      Command Types
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../user_config_files/" title="User Config Files" class="md-nav__link">
-      User Config Files
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../hooks/" title="Hooks" class="md-nav__link">
-      Hooks
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../logging/" title="Logging" class="md-nav__link">
-      Logging
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../automatic_updates/" title="Automatic Updates" class="md-nav__link">
-      Automatic Updates
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        State Storage
-      </label>
-    
-    <a href="./" title="State Storage" class="md-nav__link md-nav__link--active">
-      State Storage
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#local-state" title="Local State" class="md-nav__link">
-    Local State
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuration" title="Configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-and-usage" title="Access and Usage" class="md-nav__link">
-    Access and Usage
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#remote-state" title="Remote State" class="md-nav__link">
-    Remote State
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuration_1" title="Configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-and-usage_1" title="Access and Usage" class="md-nav__link">
-    Access and Usage
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../distributed_state_locking/" title="Distributed State Locking" class="md-nav__link">
-      Distributed State Locking
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../remote_execution/" title="Remote Execution" class="md-nav__link">
-      Remote Execution
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../interactive_commands/" title="Interactive Commands" class="md-nav__link">
-      Interactive Commands
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Development
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Development
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../development/contributing/" title="Contribution Guide" class="md-nav__link">
-      Contribution Guide
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../development/license/" title="License Info" class="md-nav__link">
-      License Info
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../development/code_of_conduct/" title="Code of Conduct" class="md-nav__link">
-      Code of Conduct
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../imported/changelog/" title="Changelog" class="md-nav__link">
-      Changelog
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../whoami/" title="whoami" class="md-nav__link">
-      whoami
-    </a>
-  </li>
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#local-state" title="Local State" class="md-nav__link">
-    Local State
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuration" title="Configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-and-usage" title="Access and Usage" class="md-nav__link">
-    Access and Usage
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#remote-state" title="Remote State" class="md-nav__link">
-    Remote State
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuration_1" title="Configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-and-usage_1" title="Access and Usage" class="md-nav__link">
-    Access and Usage
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
                 
                 
-                <h1 id="state-storage">State Storage</h1>
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/advanced/'>Advanced</a> > State Storage
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#local-state">Local State</a>
+<ul>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#access-and-usage">Access and Usage</a></li>
+</ul></li>
+<li><a href="#remote-state">Remote State</a>
+<ul>
+<li><a href="#configuration-1">Configuration</a></li>
+<li><a href="#access-and-usage-1">Access and Usage</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              State Storage
+            </h1>
+          
+
+        
+
+
+
+
+
 <p>RBCli supports both local and remote state storage. This is done by synchronizing a Hash with either the local disk or a remote database.</p>
+
 <h2 id="local-state">Local State</h2>
-<p>RBCli's local state storage gives you access to a hash that is automatically persisted to disk when changes are made.</p>
+
+<p>RBCli&rsquo;s local state storage gives you access to a hash that is automatically persisted to disk when changes are made.</p>
+
 <h3 id="configuration">Configuration</h3>
+
 <p>You can configure it in <code>config/storage.rb</code>.</p>
-<pre><code class="ruby">local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true
+
+<pre><code class="language-ruby">local_state '/var/mytool/localstate', force_creation: true, halt_on_error: true
 </code></pre>
 
 <p>There are three parameters to configure it with:</p>
+
 <ul>
 <li>The <code>path</code> as a string (self-explanatory)</li>
-<li><code>force_creation</code><ul>
+<li><code>force_creation</code>
+
+<ul>
 <li>This will attempt to create the path and file if it does not exist (equivalent to an <code>mkdir -p</code> and <code>touch</code> in linux)</li>
-</ul>
-</li>
-<li><code>halt_on_error</code><ul>
-<li>RBCli's default behavior is to raise an exception if the file can not be created, read, or updated at any point in time</li>
-<li>If this is set to <code>false</code>, RBCli will silence any errors pertaining to file access and will fall back to whatever data is available. Note that if this is enabled, changes made to the state may not be persisted to disk.<ul>
+</ul></li>
+<li><code>halt_on_error</code>
+
+<ul>
+<li>RBCli&rsquo;s default behavior is to raise an exception if the file can not be created, read, or updated at any point in time</li>
+<li>If this is set to <code>false</code>, RBCli will silence any errors pertaining to file access and will fall back to whatever data is available. Note that if this is enabled, changes made to the state may not be persisted to disk.
+
+<ul>
 <li>If creation fails and file does not exist, you start with an empty hash</li>
-<li>If file exists but can't be read, you will have an empty hash</li>
+<li>If file exists but can&rsquo;t be read, you will have an empty hash</li>
 <li>If file can be read but not written, the hash will be populated with the data. Writes will be stored in memory while the application is running, but will not be persisted to disk.</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
+
 <h3 id="access-and-usage">Access and Usage</h3>
+
 <p>Once configured you can access it with a standard hash syntax in your Standard Commands:</p>
-<pre><code class="ruby">Rbcli.local_state[:yourkeyhere]
+
+<pre><code class="language-ruby">Rbcli.local_state[:yourkeyhere]
 </code></pre>
 
 <p>The methods available for use at the top level are as follows:</p>
+
 <p>Hash native methods:</p>
+
 <ul>
 <li><code>[]</code> (Regular hash syntax. Keys are accessed via either symbols or strings indifferently.)</li>
 <li><code>[]=</code> (Assignment operator)</li>
@@ -839,155 +726,553 @@
 <li><code>each</code></li>
 <li><code>key?</code></li>
 </ul>
+
 <p>Additional methods:</p>
+
 <ul>
-<li><code>commit</code><ul>
+<li><code>commit</code>
+
+<ul>
 <li>Every assignment to the top level of the hash will result in a write to disk (for example: <code>Rbcli.local_state[:yourkey] = 'foo'</code>). However, if you are manipulating nested hashes, these saves will not be triggered. You can trigger them manually by calling <code>commit</code>.</li>
-</ul>
-</li>
-<li><code>clear</code><ul>
+</ul></li>
+<li><code>clear</code>
+
+<ul>
 <li>Resets the data back to an empty hash.</li>
-</ul>
-</li>
-<li><code>refresh</code><ul>
+</ul></li>
+<li><code>refresh</code>
+
+<ul>
 <li>Loads the most current version of the data from the disk</li>
-</ul>
-</li>
-<li><code>disconnect</code><ul>
+</ul></li>
+<li><code>disconnect</code>
+
+<ul>
 <li>Removes the data from memory and sets <code>Rbcli.local_state = nil</code>. Data will be read from disk again on next access.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <p>Every assignment will result in a write to disk, so if an operation will require a large number of assignments/writes it should be performed to a different hash before beign assigned to this one.</p>
+
 <h2 id="remote-state">Remote State</h2>
-<p>RBCli's remote state storage gives you access to a hash that is automatically persisted to a remote storage location when changes are made. It has optional locking built-in, meaning that multiple users may share remote state without any data consistency issues.</p>
+
+<p>RBCli&rsquo;s remote state storage gives you access to a hash that is automatically persisted to a remote storage location when changes are made. It has optional locking built-in, meaning that multiple users may share remote state without any data consistency issues.</p>
+
 <p>Currently, this feature requires AWS DynamoDB, though other backend systems will be added in the future.</p>
-<h3 id="configuration_1">Configuration</h3>
+
+<h3 id="configuration-1">Configuration</h3>
+
 <p>Before DynamoDB can be used, AWS API credentials have to be created and made available. RBCli will attempt to find credentials from the following locations in order:</p>
+
 <ol>
-<li>User's config file</li>
+<li>User&rsquo;s config file</li>
 <li>Environment variables <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code></li>
-<li>User's AWSCLI configuration at <code>~/.aws/credentials</code></li>
+<li>User&rsquo;s AWSCLI configuration at <code>~/.aws/credentials</code></li>
 </ol>
+
 <p>For more information about generating and storing AWS credentials, see <a href="https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html">Configuring the AWS SDK for Ruby</a>. Please make sure that your users are aware that they will need to provide their own credentials to use this feature.</p>
+
 <p>You can configure it in <code>config/storage.rb</code>.</p>
-<pre><code class="ruby">remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: false
+
+<pre><code class="language-ruby">remote_state_dynamodb table_name: 'mytable', region: 'us-east-1', force_creation: true, halt_on_error: true, locking: false
 </code></pre>
 
 <p>These are the parameters:</p>
+
 <ul>
-<li><code>table_name</code><ul>
+<li><code>table_name</code>
+
+<ul>
 <li>The name of the DynamoDB table to use.</li>
-</ul>
-</li>
-<li><code>region</code><ul>
+</ul></li>
+<li><code>region</code>
+
+<ul>
 <li>The AWS region that the database is located</li>
-</ul>
-</li>
-<li><code>force_creation</code><ul>
+</ul></li>
+<li><code>force_creation</code>
+
+<ul>
 <li>Creates the DynamoDB table if it does not already exist</li>
-</ul>
-</li>
-<li><code>halt_on_error</code><ul>
+</ul></li>
+<li><code>halt_on_error</code>
+
+<ul>
 <li>Similar to the way <a href="#local-state">Local State</a> works, setting this to <code>false</code> will silence any errors in connecting to the DynamoDB table. Instead, your application will simply have access to an empty hash that does not get persisted anywhere.</li>
-<li>This is good for use cases that involve using this storage as a cache, where a connection error might mean the feature doesn't work but its not important enough to interrupt the user.</li>
+<li>This is good for use cases that involve using this storage as a cache, where a connection error might mean the feature doesn&rsquo;t work but its not important enough to interrupt the user.</li>
+</ul></li>
+<li><code>locking</code>
+
+<ul>
+<li>Setting this to <code>true</code> enables locking, meaning only one instance of your application can access the shared data at any given time. For more information see <a href="/advanced/distributed_state_locking">Distributed State Locking</a>.</li>
+</ul></li>
 </ul>
-</li>
-<li><code>locking</code><ul>
-<li>Setting this to <code>true</code> enables locking, meaning only one instance of your application can access the shared data at any given time. For more information see <a href="../distributed_state_locking/">Distributed State Locking</a>.</li>
-</ul>
-</li>
-</ul>
-<h3 id="access-and-usage_1">Access and Usage</h3>
+
+<h3 id="access-and-usage-1">Access and Usage</h3>
+
 <p>Once configured you can access it with a standard hash syntax:</p>
-<pre><code class="ruby">Rbcli.remote_state[:yourkeyhere]
+
+<pre><code class="language-ruby">Rbcli.remote_state[:yourkeyhere]
 </code></pre>
 
 <p>This works the same way that <a href="#local-state">Local State</a> does, with the same performance caveats (try not to write too frequently).</p>
+
 <p>Note that all state in Rbcli is <strong>lazy-loaded</strong>, so no connections will be made until your code attempts to access the data even if the feature is enabled.</p>
+
 <p>For more information on the available commands, see the documentation on <a href="#local-state">Local State</a></p>
-                
-                  
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
-        </div>
-      </main>
-      
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../automatic_updates/" title="Automatic Updates" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Automatic Updates
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../distributed_state_locking/" title="Distributed State Locking" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Distributed State Locking
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright © 2018 Andrew Khoury
-          </div>
-        
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
-      </div>
-      
-        
-      
-    </div>
-  </div>
+<footer class=" footline" >
+	
 </footer>
-      
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/advanced/remote_execution/" title="Remote Execution"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/advanced/user_config_files/" title="User Configuration Files" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
     </div>
+
+    </section>
     
-      <script src="../../assets/javascripts/application.583bbe55.js"></script>
-      
-      <script>app.initialize({version:"1.0.3",url:{base:"../.."}})</script>
-      
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1561062920"></script>
+    <script src="/js/perfect-scrollbar.min.js?1561062920"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1561062920"></script>
+    <script src="/js/jquery.sticky.js?1561062920"></script>
+    <script src="/js/featherlight.min.js?1561062920"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1561062920"></script>
+    <script src="/js/highlight.pack.js?1561062920"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1561062920"></script>
+    <script src="/js/learn.js?1561062920"></script>
+    <script src="/js/hugo-learn.js?1561062920"></script>
+
+    <link href="/mermaid/mermaid.css?1561062920" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1561062920"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
     
-    
-      
-    
+
   </body>
 </html>
+

@@ -1,108 +1,136 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>None</loc>
-     <lastmod>2018-10-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://akhoury6.github.io/quick_reference/</loc>
+    <lastmod>2019-06-20T15:49:49-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tutorial/</loc>
+    <lastmod>2019-06-20T15:08:08-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/development/contributing/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tutorial/10-getting_started/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/</loc>
+    <lastmod>2019-06-20T15:08:08-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/development/license/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tutorial/20-project_layout/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/development/</loc>
+    <lastmod>2019-06-20T15:27:12-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/development/code_of_conduct/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tutorial/30-your_first_command/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/whoami/</loc>
+    <lastmod>2019-06-20T15:46:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tutorial/40-options_parameters_and_arguments/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tutorial/50-publishing/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/development/changelog/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/automatic_updates/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/command_types/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/distributed_state_locking/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/hooks/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/interactive_commands/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/logging/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/remote_execution/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/state_storage/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/advanced/user_config_files/</loc>
+    <lastmod>2019-06-20T15:07:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://akhoury6.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
 </urlset>

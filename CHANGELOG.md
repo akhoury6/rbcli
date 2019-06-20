@@ -5,6 +5,7 @@
 ### Improvements
 
 * The base project skeleton now includes an improved structure for the `lib/` folder
+* Documentation now uses Hugo instead of MkDocs for site generation.
 
 ### Features
 

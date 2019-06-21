@@ -103,7 +103,7 @@ In both files the items that need changing are pretty obvious &amp;ndash; you&am
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
       <guid>https://akhoury6.github.io/rbcli/development/changelog/</guid>
-      <description>0.2.12 (Unreleased) Improvements  The base project skeleton now includes an improved structure for the lib/ folder Documentation now uses Hugo instead of MkDocs for site generation.  Features  Development mode can be enabled by setting the environment variables: RBCLI_ENV=development and RBCLI_DEVPATH=[path to local Rbcli folder] to simplify changes to Rbcli during development. Combined with setting alias rbcli=&#39;/path/to/rbcli/exe/rbcli&#39;, gem installation is not required for development work  0.2.11 (Feb 27, 2019) Improvements  Updated the dependent gem verions to use the latest available versions  Bugfixes  Fixed the nested triggers of the message I/O system  0.</description>
+      <description>0.2.12 (Unreleased) Improvements  The base project skeleton now includes an improved structure for the lib/ folder Documentation now uses Hugo instead of MkDocs for site generation. Updated dependencies in project skeleton to latest versions  Features  Development mode can be enabled by setting the environment variables: RBCLI_ENV=development and RBCLI_DEVPATH=[path to local Rbcli folder] to simplify changes to Rbcli during development. Combined with setting alias rbcli=&#39;/path/to/rbcli/exe/rbcli&#39;, gem installation is not required for development work  0.</description>
     </item>
     
     <item>

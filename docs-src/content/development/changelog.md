@@ -12,6 +12,7 @@ weight: 100
 
 * The base project skeleton now includes an improved structure for the `lib/` folder
 * Documentation now uses Hugo instead of MkDocs for site generation.
+* Updated dependencies in project skeleton to latest versions
 
 ### Features
 

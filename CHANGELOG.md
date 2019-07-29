@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.12 (Unreleased)
+## 0.2.12 (July 29, 2019)
 
 ### Improvements
 

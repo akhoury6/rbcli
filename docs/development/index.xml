@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Development on RBCli Documentation</title>
@@ -47,7 +47,7 @@ Our Standards Examples of behavior that contributes to creating a positive envir
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
       <guid>https://akhoury6.github.io/rbcli/development/changelog/</guid>
-      <description>0.2.12 (Unreleased) Improvements  The base project skeleton now includes an improved structure for the lib/ folder Documentation now uses Hugo instead of MkDocs for site generation. Updated dependencies in project skeleton to latest versions  Features  Development mode can be enabled by setting the environment variables: RBCLI_ENV=development and RBCLI_DEVPATH=[path to local Rbcli folder] to simplify changes to Rbcli during development. Combined with setting alias rbcli=&#39;/path/to/rbcli/exe/rbcli&#39;, gem installation is not required for development work  0.</description>
+      <description>0.3 (July 31, 2020) Improvements  Deprecated Ruby code has been updated to be compatible with Ruby 2.7.x All depedencies have been updated to their latest versions and tested to ensure continued compatibility Old-style execution hooks have been fully deprecated in favor of declaring them in the Rbcli::Configurate.hooks block. To ensure compatibility, save your current hooks and generate new ones using the command rbcli hook Skeleton gemspec now includes spec.required_ruby_version, which matches Rbcli&amp;rsquo;s requirement Documentation updated to support latest Hugo and theme versions (Hugo 0.</description>
     </item>
     
   </channel>

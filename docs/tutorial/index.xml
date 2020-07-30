@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorial on RBCli Documentation</title>
@@ -40,8 +40,8 @@ Project Initialization Types RBCli can initialize a tool in three different mode
       
       <guid>https://akhoury6.github.io/rbcli/tutorial/30-your_first_command/</guid>
       <description>Creating the Command Creating the command is straightforward:
-rbcli command --name=list #or rbcli command -n list  And there you have it! Now you can try out your command by typing:
-./exe/mytool list  Congrats! You should now see a generic output listing the values of several variables. We&amp;rsquo;ll get into what they mean in a bit, but first, let&amp;rsquo;s make the tool&amp;rsquo;s execution a bit easier.
+rbcli command --name=list #or rbcli command -n list And there you have it! Now you can try out your command by typing:
+./exe/mytool list Congrats! You should now see a generic output listing the values of several variables. We&amp;rsquo;ll get into what they mean in a bit, but first, let&amp;rsquo;s make the tool&amp;rsquo;s execution a bit easier.
 Now that you know your way around a project, its time to create your first command!</description>
     </item>
     
@@ -53,7 +53,7 @@ Now that you know your way around a project, its time to create your first comma
       <guid>https://akhoury6.github.io/rbcli/tutorial/40-options_parameters_and_arguments/</guid>
       <description>If you&amp;rsquo;re already an experienced coder, you can jump to the last section of this document, the Simplified Reference (TLDR)
 Command Line Structure In the previous section, you saw two parts of the RBCli command line structure - the executable followed by the command. However, RBCli is capable of more complex interaction. The structure is as follows:
-toolname [options] command [parameters] argument1 argument2...   Options are command line parameters such as -f, or --force.</description>
+toolname [options] command [parameters] argument1 argument2...  Options are command line parameters such as -f, or --force.</description>
     </item>
     
     <item>

@@ -22,22 +22,39 @@
 class Rbcli::DeprecationWarning
 
 	@@warnings = []
+	@@errors_exist = false
 
-	def initialize original_feature_name, message_text, change_by_version
+	def initialize original_feature_name, message_text, change_by_version, caller
 		#@caller = caller_locations(2,1)[0].label
 		@original_feature_name = original_feature_name
 		@message_text = message_text
 		@change_by_version = change_by_version
+		@caller = caller
 		@@warnings.append self
 	end
 
 	def display
-		message = "DEPRECATION WRNING: The feature `#{@original_feature_name}` has been deprecated. #{@message_text} This feature will be removed in version #{@change_by_version}."
-		Rbcli::log.warn { message }
-		puts message.red
+		deprecated_version_parts = @change_by_version.split('.').map { |i| i.to_i }
+		current_version_parts = Rbcli::VERSION.split('.').map { |i| i.to_i }
+
+		if deprecated_version_parts[0] > current_version_parts[0] or
+				deprecated_version_parts[1] > current_version_parts[1] or
+				deprecated_version_parts[2] >= current_version_parts[2]
+
+			message = "DEPRECATION ERROR: The feature `#{@original_feature_name}` has been deprecated as of Rbcli version #{@change_by_version}. #{@message_text} Please update the relevant code to continue using Rbcli."
+			Rbcli::log.error { message }
+			puts message.red
+			@@errors_exist = true
+		else
+			message = "DEPRECATION WARNING: The feature `#{@original_feature_name}` has been deprecated. #{@message_text} This feature will be removed in version #{@change_by_version}."
+			Rbcli::log.warn { message }
+			puts message.yellow
+		end
+		puts @caller[0], ""
 	end
 
 	def self.display_warnings
 		@@warnings.each { |w| w.display }
+		exit(1) if @@errors_exist
 	end
 end

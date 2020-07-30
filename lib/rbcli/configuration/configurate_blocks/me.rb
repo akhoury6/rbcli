@@ -63,7 +63,7 @@ module Rbcli::Configurate::Me
 	end
 
 	def self.config_default *params
-		Rbcli::Config::add_default *params
+		Rbcli::Config::add_default params[0], **params[1]
 	end
 
 	def self.option name, description, short: nil, type: :boolean, default: nil, required: false, permitted: nil
@@ -79,22 +79,22 @@ module Rbcli::Configurate::Me
 	end
 
 	def self.default_action &block
-		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--default_action', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--default_action', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0', self.caller
 		@data[:default_action] = block
 	end
 
 	def self.pre_hook &block
-		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--pre_hook', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--pre_hook', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0', self.caller
 		@data[:pre_hook] = block
 	end
 
 	def self.post_hook &block
-		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--post_hook', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--post_hook', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0', self.caller
 		@data[:post_hook] = block
 	end
 
 	def self.first_run halt_after_running: false, &block
-		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--first_run', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+		Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--first_run', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0', self.caller
 		@data[:halt_after_first_run] = halt_after_running
 		@data[:first_run] = block
 	end

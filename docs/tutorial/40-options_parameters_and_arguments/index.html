@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <meta name="description" content="">
 
 
@@ -12,20 +12,21 @@
     <title>Options, Parameters, and Arguments :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1561087612" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1561087612" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1596148729" rel="stylesheet">
     
-      <link href="/rbcli/css/theme-blue.css?1561087612" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1596148729" rel="stylesheet">
+    
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1561087612"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1596148729"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -54,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1561087612"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1561087612"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1596148729"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1596148729"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1561087612"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1596148729"></script>
 
     
   </div>
@@ -72,6 +73,8 @@
         
           
           
+
+
 
 
  
@@ -94,6 +97,8 @@
 
           
           
+
+
 
 
  
@@ -121,6 +126,8 @@
             
 
 
+
+
  
   
     
@@ -138,6 +145,8 @@
           
             
             
+
+
 
 
  
@@ -159,6 +168,8 @@
             
 
 
+
+
  
   
     
@@ -178,6 +189,8 @@
             
 
 
+
+
  
   
     
@@ -195,6 +208,8 @@
           
             
             
+
+
 
 
  
@@ -223,6 +238,8 @@
           
 
 
+
+
  
   
     
@@ -248,6 +265,8 @@
             
 
 
+
+
  
   
     
@@ -265,6 +284,8 @@
           
             
             
+
+
 
 
  
@@ -286,6 +307,8 @@
             
 
 
+
+
  
   
     
@@ -303,6 +326,8 @@
           
             
             
+
+
 
 
  
@@ -324,6 +349,8 @@
             
 
 
+
+
  
   
     
@@ -341,6 +368,8 @@
           
             
             
+
+
 
 
  
@@ -362,6 +391,8 @@
             
 
 
+
+
  
   
     
@@ -381,6 +412,8 @@
             
 
 
+
+
  
   
     
@@ -398,6 +431,8 @@
           
             
             
+
+
 
 
  
@@ -426,6 +461,8 @@
           
 
 
+
+
  
   
     
@@ -451,6 +488,8 @@
             
 
 
+
+
  
   
     
@@ -468,6 +507,8 @@
           
             
             
+
+
 
 
  
@@ -489,6 +530,8 @@
             
 
 
+
+
  
   
     
@@ -506,6 +549,8 @@
           
             
             
+
+
 
 
  
@@ -532,6 +577,8 @@
 
           
           
+
+
 
 
  
@@ -585,7 +632,6 @@
 
 
 
-
         <section id="body">
         <div id="overlay"></div>
         <div class="padding highlightable">
@@ -619,9 +665,9 @@
           
             <a href='/rbcli/'></a> > <a href='/rbcli/tutorial/'>Tutorial</a> > Options, Parameters, and Arguments
           
-         
+        
           
-         
+        
           
         
                  
@@ -631,20 +677,18 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#command-line-structure">Command Line Structure</a></li>
-<li><a href="#options">Options</a></li>
-<li><a href="#parameters">Parameters</a>
-<ul>
-<li><a href="#user-prompting">User Prompting</a></li>
-</ul></li>
-<li><a href="#arguments">Arguments</a></li>
-<li><a href="#simplified-reference-tldr">Simplified Reference (TLDR)</a></li>
-<li><a href="#next-steps">Next Steps</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#command-line-structure">Command Line Structure</a></li>
+    <li><a href="#options">Options</a></li>
+    <li><a href="#parameters">Parameters</a>
+      <ul>
+        <li><a href="#user-prompting">User Prompting</a></li>
+      </ul>
+    </li>
+    <li><a href="#arguments">Arguments</a></li>
+    <li><a href="#simplified-reference-tldr">Simplified Reference (TLDR)</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -668,295 +712,227 @@
         
 
 
-
-
-
 <p>If you&rsquo;re already an experienced coder, you can jump to the last section of this document, the <a href="#simplified-reference-tldr">Simplified Reference (TLDR)</a></p>
-
 <h2 id="command-line-structure">Command Line Structure</h2>
-
 <p>In the previous section, you saw two parts of the RBCli command line structure - the executable followed by the command. However, RBCli is capable of more complex interaction. The structure is as follows:</p>
-
 <pre><code>toolname [options] command [parameters] argument1 argument2...
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li><strong>Options</strong> are command line parameters such as <code>-f</code>, or <code>--force</code>. These are available globally to every command. You can create your own, though several are already built-in and reserved for RBCli:
-
 <ul>
 <li><code>--config-file=&lt;filename&gt;</code> allows specifying a config file location manually.</li>
 <li><code>--generate-config</code> generates a config file for the user by writing out the defaults to a YAML file. This option will only appear if a config file has been set. The location is configurable, with more on that in the documentation on <a href="/rbcli/advanced/user_config_files/">User Config Files</a>).</li>
 <li><code>-v / --version</code> shows the version.</li>
 <li><code>-h / --help</code> shows the help.</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Command</strong> represents the subcommands that you will create, such as <code>list</code>, <code>test</code>, or <code>apply</code>.</li>
 <li><strong>Parameters</strong> are the same as options, but only apply to the specific subcommand being executed. In this case only the <code>-h / --help</code> parameter is provided automatically.</li>
 <li><strong>Arguments</strong> are strings that don&rsquo;t begin with a &lsquo;-&rsquo;, and are passed to the command&rsquo;s code as an array. These can be used as subcommands or additional parameters for your command.</li>
 </ul>
-
 <p>So a valid command could look something like these:</p>
-
-<pre><code class="language-shell">mytool -n load --filename=foo.txt
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mytool -n load --filename<span style="color:#f92672">=</span>foo.txt
 mytool parse foo.txt
 mytool show -l
-</code></pre>
-
-<p>Note that all options and parameters will have both a short and long version of the parameter available for use.</p>
-
+</code></pre></div><p>Note that all options and parameters will have both a short and long version of the parameter available for use.</p>
 <p>So let&rsquo;s take a look at how we define them.</p>
-
 <h2 id="options">Options</h2>
-
 <p>You can find the options declarations under <code>application/options.rb</code>.  You&rsquo;ll see the example in the code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">option <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">&#39;Give me your name&#39;</span>, <span style="color:#e6db74">short</span>: <span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:string</span>, <span style="color:#e6db74">default</span>: <span style="color:#e6db74">&#39;Jack&#39;</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">permitted</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;Jack&#39;</span>, <span style="color:#e6db74">&#39;Jill&#39;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>This won&rsquo;t do for our tool, so let&rsquo;s change it. Remember that these options will be applicable to all of our commands, so lets make it something appropriate:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">option <span style="color:#e6db74">:color</span>, <span style="color:#e6db74">&#39;Enable color output&#39;</span>, <span style="color:#e6db74">short</span>: <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
+</code></pre></div><p>So now, let&rsquo;s take advantage of this flag in our <code>list</code> command. Let&rsquo;s change our block to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">	action <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>
+		<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>glob <span style="color:#e6db74">&#34;./*&#34;</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+			outname <span style="color:#f92672">=</span> filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]</span>
+			outname <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
 
-<pre><code class="language-ruby">option :name, 'Give me your name', short: 'n', type: :string, default: 'Jack', required: false, permitted: ['Jack', 'Jill']
-</code></pre>
-
-<p>This won&rsquo;t do for our tool, so let&rsquo;s change it. Remember that these options will be applicable to all of our commands, so lets make it something appropriate:</p>
-
-<pre><code class="language-ruby">option :color, 'Enable color output', short: 'c', type: :boolean, default: false
-</code></pre>
-
-<p>So now, let&rsquo;s take advantage of this flag in our <code>list</code> command. Let&rsquo;s change our block to:</p>
-
-<pre><code class="language-ruby">	action do |params, args, global_opts, config|
-		Dir.glob &quot;./*&quot; do |filename|
-			outname = filename.split('/')[1]
-			outname += '/' if File.directory? filename
-
-			# We change the color based on the kind of file shown
-			if global_opts[:color]
-				if File.directory? filename
-					outname = outname.light_blue
-				elsif File.executable? filename
-					outname = outname.light_green
-				end
-			end
+			<span style="color:#75715e"># We change the color based on the kind of file shown</span>
+			<span style="color:#66d9ef">if</span> global_opts<span style="color:#f92672">[</span><span style="color:#e6db74">:color</span><span style="color:#f92672">]</span>
+				<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+					outname <span style="color:#f92672">=</span> outname<span style="color:#f92672">.</span>light_blue
+				<span style="color:#66d9ef">elsif</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>executable? filename
+					outname <span style="color:#f92672">=</span> outname<span style="color:#f92672">.</span>light_green
+				<span style="color:#66d9ef">end</span>
+			<span style="color:#66d9ef">end</span>
 			
 			puts outname
-		end
-	end
-</code></pre>
-
-<p>Notice how we referenced the value by using <code>global_opts[:color]</code>. It&rsquo;s that simple. To see it in action, run:</p>
-
-<pre><code class="language-bash">mytool -c list
-</code></pre>
-
-<h2 id="parameters">Parameters</h2>
-
+		<span style="color:#66d9ef">end</span>
+	<span style="color:#66d9ef">end</span>
+</code></pre></div><p>Notice how we referenced the value by using <code>global_opts[:color]</code>. It&rsquo;s that simple. To see it in action, run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mytool -c list
+</code></pre></div><h2 id="parameters">Parameters</h2>
 <p>Parameters work the same way as options, but they are localized to only the selected command. They are declared - as you probably guessed by now - in the command&rsquo;s class. So let&rsquo;s add the following lines to our list command within the class declaration:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">parameter <span style="color:#e6db74">:sort</span>, <span style="color:#e6db74">&#39;Sort output alphabetically&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
+parameter <span style="color:#e6db74">:all</span>, <span style="color:#e6db74">&#39;Show hidden files&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
+parameter <span style="color:#e6db74">:directoriesfirst</span>, <span style="color:#e6db74">&#39;Show directories on top&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
+</code></pre></div><p>And let&rsquo;s modify our action block to utilize them:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">	action <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>
+		filelist <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
 
-<pre><code class="language-ruby">parameter :sort, 'Sort output alphabetically', type: :boolean, default: false
-parameter :all, 'Show hidden files', type: :boolean, default: false
-parameter :directoriesfirst, 'Show directories on top', type: :boolean, default: false
-</code></pre>
-
-<p>And let&rsquo;s modify our action block to utilize them:</p>
-
-<pre><code class="language-ruby">	action do |params, args, global_opts, config|
-		filelist = []
-
-		# We include dotfiles if specified
-		include_dotfiles = (params[:all]) ? File::FNM_DOTMATCH : 0
+		<span style="color:#75715e"># We include dotfiles if specified</span>
+		include_dotfiles <span style="color:#f92672">=</span> (params<span style="color:#f92672">[</span><span style="color:#e6db74">:all</span><span style="color:#f92672">]</span>) ? <span style="color:#66d9ef">File</span><span style="color:#f92672">::</span><span style="color:#66d9ef">FNM_DOTMATCH</span> : <span style="color:#ae81ff">0</span>
 		
-		# We store a list of the files in an array, including dotfiles if specified
-		Dir.glob &quot;./*&quot;, include_dotfiles do |filename|
-			outname = filename.split('/')[1]
-			outname += '/' if File.directory? filename
-			filelist.append outname
-		end
+		<span style="color:#75715e"># We store a list of the files in an array, including dotfiles if specified</span>
+		<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>glob <span style="color:#e6db74">&#34;./*&#34;</span>, include_dotfiles <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+			outname <span style="color:#f92672">=</span> filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]</span>
+			outname <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+			filelist<span style="color:#f92672">.</span>append outname
+		<span style="color:#66d9ef">end</span>
 
-		# Sort alphabetically if specified
-		filelist.sort! if params[:sort]
+		<span style="color:#75715e"># Sort alphabetically if specified</span>
+		filelist<span style="color:#f92672">.</span>sort! <span style="color:#66d9ef">if</span> params<span style="color:#f92672">[</span><span style="color:#e6db74">:sort</span><span style="color:#f92672">]</span>
 
-		# Put directories first if specified
-		if params[:directoriesfirst]
-			files = []; dirs = []
-			filelist.each do |filename|
-				if File.directory? filename
-					dirs.append(filename)
-				else
-					files.append(filename)
-				end
-			end
-			filelist = dirs + files
-		end
+		<span style="color:#75715e"># Put directories first if specified</span>
+		<span style="color:#66d9ef">if</span> params<span style="color:#f92672">[</span><span style="color:#e6db74">:directoriesfirst</span><span style="color:#f92672">]</span>
+			files <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>; dirs <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+			filelist<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+				<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+					dirs<span style="color:#f92672">.</span>append(filename)
+				<span style="color:#66d9ef">else</span>
+					files<span style="color:#f92672">.</span>append(filename)
+				<span style="color:#66d9ef">end</span>
+			<span style="color:#66d9ef">end</span>
+			filelist <span style="color:#f92672">=</span> dirs <span style="color:#f92672">+</span> files
+		<span style="color:#66d9ef">end</span>
 		
-		# Apply color. We do this at the end now because color codes can alter the sorting.
-		filelist.map! do |filename|
-			if File.directory? filename
-				filename.light_blue
-			elsif File.executable? filename
-				filename.light_green
-			else
+		<span style="color:#75715e"># Apply color. We do this at the end now because color codes can alter the sorting.</span>
+		filelist<span style="color:#f92672">.</span>map! <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+			<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+				filename<span style="color:#f92672">.</span>light_blue
+			<span style="color:#66d9ef">elsif</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>executable? filename
+				filename<span style="color:#f92672">.</span>light_green
+			<span style="color:#66d9ef">else</span>
 				filename
-			end
-		end if global_opts[:color]
+			<span style="color:#66d9ef">end</span>
+		<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span> global_opts<span style="color:#f92672">[</span><span style="color:#e6db74">:color</span><span style="color:#f92672">]</span>
 
 		puts filelist
-	end
-</code></pre>
-
-<p>You should be able to run it now:</p>
-
-<pre><code class="language-bash">mytool -c list -asd
-</code></pre>
-
-<p>Note how the parameters come after the <code>list</code> command in the syntax above. As you create more commands, each will have its own unique set of parameters, while the options remain <em>before</em> the command and are available to all of them.</p>
-
+	<span style="color:#66d9ef">end</span>
+</code></pre></div><p>You should be able to run it now:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mytool -c list -asd
+</code></pre></div><p>Note how the parameters come after the <code>list</code> command in the syntax above. As you create more commands, each will have its own unique set of parameters, while the options remain <em>before</em> the command and are available to all of them.</p>
 <h3 id="user-prompting">User Prompting</h3>
-
 <p>There is an additional option when declaring parameters to prompt the user for a value if not entered on the command line. This can be done with the <code>prompt:</code> keyword. Let&rsquo;s change one of our parameters to utilize it:</p>
-
-<pre><code class="language-ruby">parameter :sort, 'Sort output alphabetically', type: :boolean, default: false, prompt: &quot;Sort output alphabetically?&quot;
-</code></pre>
-
-<p>Now, let&rsquo;s run the tool while omitting the <code>--sort</code> parameter, as such:</p>
-
-<pre><code class="language-bash">mytool -c list -ad
-</code></pre>
-
-<p>This should give you the prompt:</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">parameter <span style="color:#e6db74">:sort</span>, <span style="color:#e6db74">&#39;Sort output alphabetically&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">prompt</span>: <span style="color:#e6db74">&#34;Sort output alphabetically?&#34;</span>
+</code></pre></div><p>Now, let&rsquo;s run the tool while omitting the <code>--sort</code> parameter, as such:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mytool -c list -ad
+</code></pre></div><p>This should give you the prompt:</p>
 <pre><code>Sort output alphabetically? (y/N):
-</code></pre>
-
-<p>Because we set the parameter to default to <code>false</code> the default here is <code>N</code>, which is used if the user hits enter without entering a letter. If the default was set to <code>true</code>, then the <code>Y</code> would be capitalized and be the default.</p>
-
+</code></pre><p>Because we set the parameter to default to <code>false</code> the default here is <code>N</code>, which is used if the user hits enter without entering a letter. If the default was set to <code>true</code>, then the <code>Y</code> would be capitalized and be the default.</p>
 <p>For more information, see the documentation on <a href="/rbcli/advanced/interactive_commands/">Interactive Commands</a>.</p>
-
 <h2 id="arguments">Arguments</h2>
-
 <p>Lastly on the command line, there are arguments. Arguments are simply strings without the <code>-</code> character in front, and automatically get passed into an array in your applicaiton. Let&rsquo;s take a look at how we can use them.</p>
-
 <p>Unlike options and parameters, arguments require no setup. So let&rsquo;s assume that we want any arguments passed to the <code>list</code> command to be filenames that you want to display, and that you can pass multiple ones. Since arguments aren&rsquo;t listed automatically by the help function, this is a good example of what to put in your usage text. Let&rsquo;s take a look at what our class looks like now:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
+	description <span style="color:#e6db74">%q{List files in current directory}</span>
+	usage <span style="color:#e6db74">&lt;&lt;-EOF
+</span><span style="color:#e6db74"></span><span style="color:#66d9ef">To</span> list only specific files, you can enter filenames as arguments
 
-<pre><code class="language-ruby">class List &lt; Rbcli::Command
-	description %q{List files in current directory}
-	usage &lt;&lt;-EOF
-To list only specific files, you can enter filenames as arguments
+	mytool list filename1 filename2<span style="color:#f92672">...</span>
+<span style="color:#66d9ef">EOF</span>
+	parameter <span style="color:#e6db74">:sort</span>, <span style="color:#e6db74">&#39;Sort output alphabetically&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
+	parameter <span style="color:#e6db74">:all</span>, <span style="color:#e6db74">&#39;Show hidden files&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
+	parameter <span style="color:#e6db74">:directoriesfirst</span>, <span style="color:#e6db74">&#39;Show directories on top&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>
 
-	mytool list filename1 filename2...
-EOF
-	parameter :sort, 'Sort output alphabetically', type: :boolean, default: false
-	parameter :all, 'Show hidden files', type: :boolean, default: false
-	parameter :directoriesfirst, 'Show directories on top', type: :boolean, default: false
+	action <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>
+		filelist <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
 
-	action do |params, args, global_opts, config|
-		filelist = []
-
-		# We include dotfiles if specified
-		include_dotfiles = (params[:all]) ? File::FNM_DOTMATCH : 0
+		<span style="color:#75715e"># We include dotfiles if specified</span>
+		include_dotfiles <span style="color:#f92672">=</span> (params<span style="color:#f92672">[</span><span style="color:#e6db74">:all</span><span style="color:#f92672">]</span>) ? <span style="color:#66d9ef">File</span><span style="color:#f92672">::</span><span style="color:#66d9ef">FNM_DOTMATCH</span> : <span style="color:#ae81ff">0</span>
 		
-		# We store a list of the files in an array, including dotfiles if specified
-		Dir.glob &quot;./*&quot;, include_dotfiles do |filename|
-			outname = filename.split('/')[1]
-			next unless args.include? outname if args.length &gt; 0
-			outname += '/' if File.directory? filename
-			filelist.append outname
-		end
+		<span style="color:#75715e"># We store a list of the files in an array, including dotfiles if specified</span>
+		<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>glob <span style="color:#e6db74">&#34;./*&#34;</span>, include_dotfiles <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+			outname <span style="color:#f92672">=</span> filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]</span>
+			<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> args<span style="color:#f92672">.</span>include? outname <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+			outname <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+			filelist<span style="color:#f92672">.</span>append outname
+		<span style="color:#66d9ef">end</span>
 
-		# Sort alphabetically if specified
-		filelist.sort! if params[:sort]
+		<span style="color:#75715e"># Sort alphabetically if specified</span>
+		filelist<span style="color:#f92672">.</span>sort! <span style="color:#66d9ef">if</span> params<span style="color:#f92672">[</span><span style="color:#e6db74">:sort</span><span style="color:#f92672">]</span>
 
-		# Put directories first if specified
-		if params[:directoriesfirst]
-			files = []; dirs = []
-			filelist.each do |filename|
-				if File.directory? filename
-					dirs.append(filename)
-				else
-					files.append(filename)
-				end
-			end
-			filelist = dirs + files
-		end
+		<span style="color:#75715e"># Put directories first if specified</span>
+		<span style="color:#66d9ef">if</span> params<span style="color:#f92672">[</span><span style="color:#e6db74">:directoriesfirst</span><span style="color:#f92672">]</span>
+			files <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>; dirs <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+			filelist<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+				<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+					dirs<span style="color:#f92672">.</span>append(filename)
+				<span style="color:#66d9ef">else</span>
+					files<span style="color:#f92672">.</span>append(filename)
+				<span style="color:#66d9ef">end</span>
+			<span style="color:#66d9ef">end</span>
+			filelist <span style="color:#f92672">=</span> dirs <span style="color:#f92672">+</span> files
+		<span style="color:#66d9ef">end</span>
 		
-		# Apply color. We do this at the end because color codes can alter the sorting
-		filelist.map! do |filename|
-			if File.directory? filename
-				filename.light_blue
-			elsif File.executable? filename
-				filename.light_green
-			else
+		<span style="color:#75715e"># Apply color. We do this at the end because color codes can alter the sorting</span>
+		filelist<span style="color:#f92672">.</span>map! <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>filename<span style="color:#f92672">|</span>
+			<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>directory? filename
+				filename<span style="color:#f92672">.</span>light_blue
+			<span style="color:#66d9ef">elsif</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>executable? filename
+				filename<span style="color:#f92672">.</span>light_green
+			<span style="color:#66d9ef">else</span>
 				filename
-			end
-		end if global_opts[:color]
+			<span style="color:#66d9ef">end</span>
+		<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span> global_opts<span style="color:#f92672">[</span><span style="color:#e6db74">:color</span><span style="color:#f92672">]</span>
 
 		puts filelist
-	end
-end
-</code></pre>
-
-<h2 id="simplified-reference-tldr">Simplified Reference (TLDR)</h2>
-
+	<span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><h2 id="simplified-reference-tldr">Simplified Reference (TLDR)</h2>
 <p>RBCli enforces a CLI structure of:</p>
-
 <pre><code>toolname [options] command [parameters] argument1 argument2...
-</code></pre>
-
-<p><strong>Options</strong> are declared in <code>application/options.rb</code> file.</p>
-
+</code></pre><p><strong>Options</strong> are declared in <code>application/options.rb</code> file.</p>
 <p><strong>Parameters</strong> are declared in the respective command&rsquo;s class declaration.</p>
-
 <p><strong>Arguments</strong> don&rsquo;t need to be declared, and are passed in as an array to your commands. It is helpful to describe the argument purpose in the <code>usage</code> text declaration so that the user can see what to do in the help.</p>
-
 <p><strong>Options</strong> and <strong>parameters</strong> both use the same format:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">option    <span style="color:#e6db74">:&lt;</span>name<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">&#34;&lt;description_string&gt;&#34;</span>, <span style="color:#e6db74">short</span>: <span style="color:#e6db74">&#39;&lt;character&gt;&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#f92672">&lt;</span>variable_type<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">default</span>: <span style="color:#f92672">&lt;</span>default_value<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">permitted</span>: <span style="color:#f92672">[&lt;</span>array_of_permitted_values<span style="color:#f92672">]</span>
 
-<pre><code class="language-ruby">option    :&lt;name&gt;, &quot;&lt;description_string&gt;&quot;, short: '&lt;character&gt;', type: &lt;variable_type&gt;, default: &lt;default_value&gt;, permitted: [&lt;array_of_permitted_values]
-
-parameter :&lt;name&gt;, &quot;&lt;description_string&gt;&quot;, short: '&lt;character&gt;', type: &lt;variable_type&gt;, default: &lt;default_value&gt;, permitted: [&lt;array_of_permitted_values]
-</code></pre>
-
-<ul>
+parameter <span style="color:#e6db74">:&lt;</span>name<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">&#34;&lt;description_string&gt;&#34;</span>, <span style="color:#e6db74">short</span>: <span style="color:#e6db74">&#39;&lt;character&gt;&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#f92672">&lt;</span>variable_type<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">default</span>: <span style="color:#f92672">&lt;</span>default_value<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">permitted</span>: <span style="color:#f92672">[&lt;</span>array_of_permitted_values<span style="color:#f92672">]</span>
+</code></pre></div><ul>
 <li><code>name</code>
-
 <ul>
 <li>(Required) The long name of the option, as a symbol. This will be represented as <code>--name</code> on the command line</li>
-</ul></li>
+</ul>
+</li>
 <li><code>description_string</code>
-
 <ul>
 <li>(Required) A short description of the command that will appear in the help text for the user</li>
-</ul></li>
+</ul>
+</li>
 <li><code>type</code>
-
 <ul>
 <li>(Required) The following types are supported: <code>:string</code>, <code>:boolean</code> or <code>:flag</code>, <code>:integer</code>, and <code>:float</code></li>
-</ul></li>
+</ul>
+</li>
 <li><code>default</code>
-
 <ul>
 <li>(Optional) A default value for the option if one isn&rsquo;t entered (default: nil)</li>
-</ul></li>
+</ul>
+</li>
 <li><code>short</code>
-
 <ul>
 <li>(Optional) A letter that acts as a shortcut for the option. This will allow users to apply the command as <code>-n</code></li>
 <li>To not have a short value, set this to :none (default: the first letter of the long name)</li>
-</ul></li>
+</ul>
+</li>
 <li><code>required</code>
-
 <ul>
 <li>(Optional) Specify whether the option is required from the user (default: false)</li>
-</ul></li>
+</ul>
+</li>
 <li><code>permitted</code>
-
 <ul>
 <li>(Optional) An array of whitelisted values for the option (default: nil)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="next-steps">Next Steps</h2>
-
 <p>Next, we&rsquo;re going to take a quick look at how to publish and distribute your application, both publicly and within your organization.</p>
 
 
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
-
 
         
         </div> 
@@ -1385,20 +1361,19 @@ parameter :&lt;name&gt;, &quot;&lt;description_string&gt;&quot;, short: '&lt;cha
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1561087612"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1561087612"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1561087612"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1561087612"></script>
-    <script src="/rbcli/js/featherlight.min.js?1561087612"></script>
-    <script src="/rbcli/js/html5shiv-printshiv.min.js?1561087612"></script>
-    <script src="/rbcli/js/highlight.pack.js?1561087612"></script>
+    <script src="/rbcli/js/clipboard.min.js?1596148729"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1596148729"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1596148729"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1596148729"></script>
+    <script src="/rbcli/js/featherlight.min.js?1596148729"></script>
+    <script src="/rbcli/js/highlight.pack.js?1596148729"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1561087612"></script>
-    <script src="/rbcli/js/learn.js?1561087612"></script>
-    <script src="/rbcli/js/hugo-learn.js?1561087612"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1596148729"></script>
+    <script src="/rbcli/js/learn.js?1596148729"></script>
+    <script src="/rbcli/js/hugo-learn.js?1596148729"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1561087612" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1561087612"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1596148729" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1596148729"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

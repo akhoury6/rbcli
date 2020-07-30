@@ -6,7 +6,22 @@ weight: 100
 ---
 
 
-## 0.2.12 (Unreleased)
+## 0.3 (July 31, 2020)
+
+### Improvements
+
+* Deprecated Ruby code has been updated to be compatible with Ruby 2.7.x
+* All depedencies have been updated to their latest versions and tested to ensure continued compatibility
+* Old-style execution hooks have been fully deprecated in favor of declaring them in the `Rbcli::Configurate.hooks` block. To ensure compatibility, save your current hooks and generate new ones using the command `rbcli hook`
+* Skeleton gemspec now includes `spec.required_ruby_version`, which matches Rbcli's requirement
+* Documentation updated to support latest Hugo and theme versions (Hugo 0.74.3 and hugo-theme-learn 2.5.0)
+
+### Features
+
+* Rbcli Deprecation Warnings now show the offending line of code to ease updating
+* The `$libdir` global variable is defined by default in the skeleton project, allwoing easy access to the project's `lib` folder
+
+## 0.2.12 (July 29, 2019)
 
 ### Improvements
 

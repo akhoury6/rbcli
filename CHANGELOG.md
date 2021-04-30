@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 (TBD)
+
+### Bugfixes
+
+* Updated Github Pages links to point to `github.io` instead of `github.com` which are being deprecated
+
 ## 0.3 (July 31, 2020)
 
 ### Improvements

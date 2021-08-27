@@ -181,7 +181,8 @@ Command-specific Parameters:
 						end
 					end
 				elsif data[:type] == :string
-					print data[:prompt] + " (default: \"#{data[:default]}\"): "
+					print data[:prompt]
+					print " (default: \"#{data[:default]}\"): " unless data[:default].nil?
 					answer = gets.chomp
 					answer = data[:default] if answer.empty?
 					optx[name] = answer

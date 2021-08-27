@@ -4,6 +4,7 @@
 
 ### Bugfixes
 
+* Fixed prompt for option value to ignore nil defaults instead of displaying an empty string
 * Skeleton script command `script.sh` updated to function correctly when development mode is enabled
 * Updated Github Pages links to point to `github.io` instead of `github.com` which are being deprecated
 

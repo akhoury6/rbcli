@@ -5,10 +5,6 @@
     <link>https://akhoury6.github.io/rbcli/categories/</link>
     <description>Recent content in Categories on RBCli Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://akhoury6.github.io/rbcli/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://akhoury6.github.io/rbcli/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

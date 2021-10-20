@@ -6,11 +6,7 @@
     <description>Recent content in Advanced on RBCli Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 15:08:08 -0400</lastBuildDate>
-    
-	<atom:link href="https://akhoury6.github.io/rbcli/advanced/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 20 Jun 2019 15:08:08 -0400</lastBuildDate><atom:link href="https://akhoury6.github.io/rbcli/advanced/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automatic Updates</title>
       <link>https://akhoury6.github.io/rbcli/advanced/automatic_updates/</link>

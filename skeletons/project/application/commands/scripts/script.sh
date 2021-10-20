@@ -5,7 +5,12 @@
 ###
 #
 # You can access RBCli's variables via the `rbcli` command, which is imported by this line:
-source $(echo $(cd "$(dirname $(gem which rbcli))/../lib-sh" && pwd)/lib-rbcli.sh)
+if [[ RBCLI_ENV -eq "development" ]]; then
+	__RBCLI_LIBSH_PATH="${RBCLI_DEVPATH}/../../lib-sh/lib-rbcli.sh"
+else
+	__RBCLI_LIBSH_PATH=$(echo $(cd "$(dirname $(gem which rbcli))/../lib-sh" && pwd)/lib-rbcli.sh)
+fi
+source "${__RBCLI_LIBSH_PATH}"
 #
 # The `rbcli` function is actually a wrapper around `jq` (https://stedolan.github.io/jq/). It can automatically
 # jq on users' machines if running Linux or OSX, and users have sudo access. If not, users will be prompted to install

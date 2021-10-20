@@ -6,6 +6,15 @@ weight: 100
 ---
 
 
+## 0.3.1 (October 19, 2021)
+
+### Bugfixes
+
+* Fixed prompt for option value to ignore nil defaults instead of displaying an empty string
+* Skeleton script command `script.sh` updated to function correctly when development mode is enabled
+* Updated Github Pages links to point to `github.io` instead of `github.com` which are being deprecated
+* Updated dependencies, closing the security hole of the gem `addressable <= 1.7.0`
+
 ## 0.3 (July 31, 2020)
 
 ### Improvements

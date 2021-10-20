@@ -1,134 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://akhoury6.github.io/rbcli/quick_reference/</loc>
     <lastmod>2019-06-20T15:49:49-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tutorial/</loc>
     <lastmod>2019-06-20T15:08:08-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/development/contributing/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tutorial/10-getting_started/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/</loc>
     <lastmod>2019-06-20T15:08:08-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/development/license/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tutorial/20-project_layout/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/development/</loc>
     <lastmod>2019-06-20T15:27:12-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/development/code_of_conduct/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tutorial/30-your_first_command/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/whoami/</loc>
     <lastmod>2019-06-20T15:46:52-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tutorial/40-options_parameters_and_arguments/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tutorial/50-publishing/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/development/changelog/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/</loc>
     <lastmod>2019-06-20T15:49:49-04:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/automatic_updates/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/command_types/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/distributed_state_locking/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/hooks/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/interactive_commands/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/logging/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/remote_execution/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/state_storage/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/advanced/user_config_files/</loc>
     <lastmod>2019-06-20T15:07:21-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://akhoury6.github.io/rbcli/tags/</loc>
   </url>
-  
 </urlset>

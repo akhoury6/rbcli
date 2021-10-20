@@ -84,9 +84,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2.1)
+  bundler (~> 2.2)
   rake (~> 13.0)
   rbcli!
 
 BUNDLED WITH
-   2.1.4
+   2.2.29

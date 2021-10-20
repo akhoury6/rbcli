@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.88.1" />
     <meta name="description" content="">
 
 
@@ -12,21 +12,21 @@
     <title>State Storage :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1596148729" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1634703589" rel="stylesheet">
     
-    <link href="/rbcli/css/theme-blue.css?1596148729" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1634703589" rel="stylesheet">
     
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1596148729"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1634703589"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1596148729"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1596148729"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1634703589"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1596148729"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1634703589"></script>
 
     
   </div>
@@ -719,7 +719,7 @@
 <p>RBCli&rsquo;s local state storage gives you access to a hash that is automatically persisted to disk when changes are made.</p>
 <h3 id="configuration">Configuration</h3>
 <p>You can configure it in <code>config/storage.rb</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">local_state <span style="color:#e6db74">&#39;/var/mytool/localstate&#39;</span>, <span style="color:#e6db74">force_creation</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">halt_on_error</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">local_state <span style="color:#e6db74">&#39;/var/mytool/localstate&#39;</span>, <span style="color:#e6db74">force_creation</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">halt_on_error</span>: <span style="color:#66d9ef">true</span>
 </code></pre></div><p>There are three parameters to configure it with:</p>
 <ul>
 <li>The <code>path</code> as a string (self-explanatory)</li>
@@ -743,7 +743,7 @@
 </ul>
 <h3 id="access-and-usage">Access and Usage</h3>
 <p>Once configured you can access it with a standard hash syntax in your Standard Commands:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">.</span>local_state<span style="color:#f92672">[</span><span style="color:#e6db74">:yourkeyhere</span><span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">.</span>local_state<span style="color:#f92672">[</span><span style="color:#e6db74">:yourkeyhere</span><span style="color:#f92672">]</span>
 </code></pre></div><p>The methods available for use at the top level are as follows:</p>
 <p>Hash native methods:</p>
 <ul>
@@ -789,7 +789,7 @@
 </ol>
 <p>For more information about generating and storing AWS credentials, see <a href="https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html">Configuring the AWS SDK for Ruby</a>. Please make sure that your users are aware that they will need to provide their own credentials to use this feature.</p>
 <p>You can configure it in <code>config/storage.rb</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">remote_state_dynamodb <span style="color:#e6db74">table_name</span>: <span style="color:#e6db74">&#39;mytable&#39;</span>, <span style="color:#e6db74">region</span>: <span style="color:#e6db74">&#39;us-east-1&#39;</span>, <span style="color:#e6db74">force_creation</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">halt_on_error</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">locking</span>: <span style="color:#66d9ef">false</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">remote_state_dynamodb <span style="color:#e6db74">table_name</span>: <span style="color:#e6db74">&#39;mytable&#39;</span>, <span style="color:#e6db74">region</span>: <span style="color:#e6db74">&#39;us-east-1&#39;</span>, <span style="color:#e6db74">force_creation</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">halt_on_error</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">locking</span>: <span style="color:#66d9ef">false</span>
 </code></pre></div><p>These are the parameters:</p>
 <ul>
 <li><code>table_name</code>
@@ -821,7 +821,7 @@
 </ul>
 <h3 id="access-and-usage-1">Access and Usage</h3>
 <p>Once configured you can access it with a standard hash syntax:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">.</span>remote_state<span style="color:#f92672">[</span><span style="color:#e6db74">:yourkeyhere</span><span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">.</span>remote_state<span style="color:#f92672">[</span><span style="color:#e6db74">:yourkeyhere</span><span style="color:#f92672">]</span>
 </code></pre></div><p>This works the same way that <a href="#local-state">Local State</a> does, with the same performance caveats (try not to write too frequently).</p>
 <p>Note that all state in Rbcli is <strong>lazy-loaded</strong>, so no connections will be made until your code attempts to access the data even if the feature is enabled.</p>
 <p>For more information on the available commands, see the documentation on <a href="#local-state">Local State</a></p>
@@ -1258,19 +1258,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1596148729"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1596148729"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1596148729"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1596148729"></script>
-    <script src="/rbcli/js/featherlight.min.js?1596148729"></script>
-    <script src="/rbcli/js/highlight.pack.js?1596148729"></script>
+    <script src="/rbcli/js/clipboard.min.js?1634703589"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1634703589"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1634703589"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1634703589"></script>
+    <script src="/rbcli/js/featherlight.min.js?1634703589"></script>
+    <script src="/rbcli/js/highlight.pack.js?1634703589"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1596148729"></script>
-    <script src="/rbcli/js/learn.js?1596148729"></script>
-    <script src="/rbcli/js/hugo-learn.js?1596148729"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1634703589"></script>
+    <script src="/rbcli/js/learn.js?1634703589"></script>
+    <script src="/rbcli/js/hugo-learn.js?1634703589"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1596148729" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1596148729"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1634703589" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1634703589"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

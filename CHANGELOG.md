@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.1 (TBD)
+## 0.3.1 (October 19, 2021)
 
 ### Bugfixes
 

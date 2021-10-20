@@ -6,11 +6,7 @@
     <description>Recent content on RBCli Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 15:49:49 -0400</lastBuildDate>
-    
-	<atom:link href="https://akhoury6.github.io/rbcli/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 20 Jun 2019 15:49:49 -0400</lastBuildDate><atom:link href="https://akhoury6.github.io/rbcli/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Contribution Guide</title>
       <link>https://akhoury6.github.io/rbcli/development/contributing/</link>
@@ -103,7 +99,7 @@ In both files the items that need changing are pretty obvious &amp;ndash; you&am
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
       
       <guid>https://akhoury6.github.io/rbcli/development/changelog/</guid>
-      <description>0.3 (July 31, 2020) Improvements  Deprecated Ruby code has been updated to be compatible with Ruby 2.7.x All depedencies have been updated to their latest versions and tested to ensure continued compatibility Old-style execution hooks have been fully deprecated in favor of declaring them in the Rbcli::Configurate.hooks block. To ensure compatibility, save your current hooks and generate new ones using the command rbcli hook Skeleton gemspec now includes spec.required_ruby_version, which matches Rbcli&amp;rsquo;s requirement Documentation updated to support latest Hugo and theme versions (Hugo 0.</description>
+      <description>0.3.1 (October 19, 2021) Bugfixes  Fixed prompt for option value to ignore nil defaults instead of displaying an empty string Skeleton script command script.sh updated to function correctly when development mode is enabled Updated Github Pages links to point to github.io instead of github.com which are being deprecated Updated dependencies, closing the security hole of the gem addressable &amp;lt;= 1.7.0  0.3 (July 31, 2020) Improvements  Deprecated Ruby code has been updated to be compatible with Ruby 2.</description>
     </item>
     
     <item>

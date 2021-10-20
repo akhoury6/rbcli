@@ -173,8 +173,8 @@ The gem is available as open source under the terms of the [GPLv3][license_text]
 [You can find the Official Documentation for RBCli Here.][documentation_home]
 
 
-[documentation_home]: https://akhoury6.github.com/rbcli
-[documentation_development]: https://akhoury6.github.com/rbcli/development/contributing/
+[documentation_home]: https://akhoury6.github.io/rbcli
+[documentation_development]: https://akhoury6.github.io/rbcli/development/contributing/
 [documentation_whoami]: https://akhoury6.github.io/rbcli/whoami/
 [license_text]: https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt
 [changelog]: https://github.com/akhoury6/rbcli/blob/master/CHANGELOG.md

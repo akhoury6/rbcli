@@ -6,11 +6,7 @@
     <description>Recent content in Tutorial on RBCli Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 15:08:08 -0400</lastBuildDate>
-    
-	<atom:link href="https://akhoury6.github.io/rbcli/tutorial/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 20 Jun 2019 15:08:08 -0400</lastBuildDate><atom:link href="https://akhoury6.github.io/rbcli/tutorial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started</title>
       <link>https://akhoury6.github.io/rbcli/tutorial/10-getting_started/</link>

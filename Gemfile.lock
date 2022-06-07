@@ -56,7 +56,7 @@ GEM
     fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     macaddr (1.7.2)
       systemu (~> 2.6.5)
     mdless (1.0.27)

@@ -42,7 +42,7 @@ module RBCliTool
 		end
 
 		def run
-			if File.exists? @dest
+			if File.exist? @dest
 				RBCliTool.continue_confirmation "The command #{@template_vars[:name]} already exists; contents will be overwritten."
 				FileUtils.rm_rf @dest
 			end
@@ -70,7 +70,7 @@ module RBCliTool
 			confirmed = false
 			@filepaths.each do |file|
 				next if file[:dest].end_with? '.sh' and @template_vars[:no_script]
-				if File.exists? file[:dest]
+				if File.exist? file[:dest]
 					RBCliTool.continue_confirmation "The script command #{@template_vars[:name]} already exists; contents will be overwritten." unless confirmed
 					confirmed = true
 					FileUtils.rm_rf file[:dest]
@@ -94,7 +94,7 @@ module RBCliTool
 		end
 
 		def run
-			if File.exists? @dest
+			if File.exist? @dest
 				RBCliTool.continue_confirmation "The #{@typename} hook already exists; contents will be overwritten."
 				FileUtils.rm_rf @dest
 			end

@@ -32,7 +32,7 @@ module Rbcli
 			dirpath = "#{project_root}/#{dir}"
 			Dir.glob "#{dirpath}/*.rb" do |file|
 				require file
-			end if Dir.exists? dirpath
+			end if Dir.exist? dirpath
 		end
 
 		# We automatically pull in default user configs

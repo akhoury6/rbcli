@@ -96,7 +96,7 @@ EOF
 
 		proj = RBCliTool::Project.new(dest, template_vars)
 
-		# if proj.exists?
+		# if proj.exist?
 		# 	RBCliTool.continue_confirmation "The project or file #{params[:name]} already exists; contents will be overwritten."
 		# 	FileUtils.rm_rf dest
 		# end

@@ -91,7 +91,7 @@ module RBCliTool
 			RBCliTool.cp_file @micropath, "#{@dest}/#{@template_vars[:cmdname]}", @template_vars
 		end
 
-		def exists?
+		def exist?
 			project_exists?
 		end
 
@@ -99,7 +99,7 @@ module RBCliTool
 			# We look for the .rbcli file in the current tree and return the root path
 			searchpath = path
 			while !searchpath.empty?
-				return searchpath if File.directory? searchpath and File.exists? "#{searchpath}/.rbcli"
+				return searchpath if File.directory? searchpath and File.exist? "#{searchpath}/.rbcli"
 				spath = searchpath.split('/')
 				searchpath = (spath.length == 2) ? '/' : spath[0..-2].join('/')
 			end
@@ -110,7 +110,7 @@ module RBCliTool
 
 		def project_exists?
 			# If the specified file already exists...
-			#return true if File.exists? @dest
+			#return true if File.exist? @dest
 
 			# Or if the .rbcli file exists anywhere in the tree, we know that we are in a subdirectory of a project
 			Project::find_root(@dest)

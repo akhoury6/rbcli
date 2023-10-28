@@ -53,19 +53,17 @@ Gem::Specification.new do |spec|
 	spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
 	spec.require_paths = ['lib']
 
-	spec.add_development_dependency 'bundler', '~> 2.2'
-	spec.add_development_dependency 'rake', '~> 13.0'
-	# spec.add_development_dependency 'rspec', '~> 3.8'
-	# spec.add_development_dependency 'minitest', '~> 5.0'
+	spec.add_development_dependency 'bundler', '>= 2'
+	spec.add_development_dependency 'rake', '>= 13'
 
-	spec.add_dependency 'colorize', '~> 0.8'
-	spec.add_dependency 'deep_merge', '~> 1.2'
-	spec.add_dependency 'aws-sdk-dynamodb', '~> 1.64'
-	spec.add_dependency 'macaddr', '~> 1.7'
-	spec.add_dependency 'rufus-scheduler', '~> 3.8'
-	spec.add_dependency 'octokit', '~> 4.21'
-	spec.add_dependency 'mdless', '~> 1.0'
-	spec.add_dependency 'net-ssh', '~> 6.1'
-	spec.add_dependency 'net-scp', '~> 3.0'
+	spec.add_dependency 'colorize', '~> 1'
+	spec.add_dependency 'deep_merge', '~> 1'
+	spec.add_dependency 'aws-sdk-dynamodb', '~> 1'
+	spec.add_dependency 'macaddr', '~> 1'
+	spec.add_dependency 'rufus-scheduler', '~> 3'
+	spec.add_dependency 'octokit', '~> 7'
+	spec.add_dependency 'mdless', '~> 1'
+	spec.add_dependency 'net-ssh', '~> 7'
+	spec.add_dependency 'net-scp', '~> 4'
 	# spec.add_dependency 'trollop', '~> 2.1'
 end

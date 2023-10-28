@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.2 (October 28, 2023)
+
+### Bugfixes
+
+* Replaced several calls to the deprecated `.exists?` method with `.exist?` for compatibility with Ruby 3.2.0
+* Updated dependencies to latest versions
+* Standardized on version locking to the latest Major version of dependencies rather than the latest Minor ones
+
 ## 0.3.1 (October 19, 2021)
 
 ### Bugfixes

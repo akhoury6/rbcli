@@ -34,7 +34,7 @@ module RBCliTool
 
 	def self.cp_file src, dest, template_vars = nil
 		dest = "#{dest}#{src.split('/')[-1]}" if dest.end_with? '/'
-		if File.exists? dest
+		if File.exist? dest
 			puts "File #{dest} already exists. Please delete it and try again."
 			false
 		else
@@ -47,7 +47,7 @@ module RBCliTool
 				FileUtils.cp src, dest
 			end
 
-			FileUtils.rm_f "#{File.dirname(dest)}/.keep" if File.exists? "#{File.dirname(dest)}/.keep"
+			FileUtils.rm_f "#{File.dirname(dest)}/.keep" if File.exist? "#{File.dirname(dest)}/.keep"
 			puts "Done!"
 			true
 		end

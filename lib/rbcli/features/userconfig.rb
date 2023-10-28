@@ -98,7 +98,7 @@ module Rbcli::Config
 
 	def self.add_defaults filename=nil, text: nil
 		filename = File.expand_path filename
-		return unless filename and File.exists? filename
+		return unless filename and File.exist? filename
 		@config_text ||= ''
 		@config_text += "\n" unless @config_text.empty?
 		File.readlines(filename).each do |line|
@@ -107,7 +107,7 @@ module Rbcli::Config
 			else
 				@config_text << line unless @config_text.include? line
 			end
-		end if filename and File.exists? filename
+		end if filename and File.exist? filename
 		@config_text << "\n\n" << text if text
 
 		@config_defaults ||= {}
@@ -116,7 +116,7 @@ module Rbcli::Config
 	end
 
 	def self.load
-		if (! @config_file.nil?) and File.exists? @config_file
+		if (! @config_file.nil?) and File.exist? @config_file
 			@config = YAML.safe_load(File.read(@config_file), [], [], true).deep_symbolize!
 			@config.deep_merge! @config_defaults if @merge_defaults
 		elsif @userfile_required

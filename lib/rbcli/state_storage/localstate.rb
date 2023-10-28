@@ -39,7 +39,7 @@ module Rbcli::State
 		end
 
 		def state_exists?
-			File.exists? @path
+			File.exist? @path
 		end
 
 		def create_state

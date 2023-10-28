@@ -378,7 +378,7 @@ module CLIMarkdown
 									base = File.expand_path(File.dirname(@file))
 									img_path = File.join(base,img_path)
 								end
-								if File.exists?(img_path)
+								if File.exist?(img_path)
 									pre = match[2].size > 0 ? "    #{c([:d,:blue])}[#{match[2].strip}]\n" : ''
 									post = tail.size > 0 ? "\n    #{c([:b,:blue])}-- #{tail} --" : ''
 									img = %x{imgcat "#{img_path}"}

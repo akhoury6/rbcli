@@ -30,7 +30,7 @@ module Rbcli::Configurate
 	##
 	def self.method_missing(method, *args, &block)
 		filename = "#{File.dirname(__FILE__)}/configurate_blocks/#{method.to_s.downcase}.rb"
-		if File.exists? filename
+		if File.exist? filename
 			require filename
 			self.send method, *args, &block
 		else

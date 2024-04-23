@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="generator" content="Hugo 0.125.1">
     <meta name="description" content="">
 
 
@@ -12,21 +12,21 @@
     <title>Execution Hooks :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
     
-    <link href="/rbcli/css/theme-blue.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
     
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1634703589"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1634703589"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
 
     
   </div>
@@ -711,31 +711,31 @@
 <h2 id="the-defailt-action-hook">The Defailt Action Hook</h2>
 <p>The Default hook is called when a user calls your application without providing a command. If the hook is not provided, the application will automatically display the help text (the same as running it with <code>-h</code>).</p>
 <p>To create it in your project, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli hook --default
-<span style="color:#75715e"># or</span>
-rbcli hook -d
-</code></pre></div><p>You will then find the hook under <code>hooks/default_action.rb</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli hook --default
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>rbcli hook -d
+</span></span></code></pre></div><p>You will then find the hook under <code>hooks/default_action.rb</code>.</p>
 <h2 id="the-pre-execution-hook">The Pre-Execution Hook</h2>
 <p>The Pre-Execution hook is called after the global command line options are parsed and before a command is executed.</p>
 <p>To create it in your project, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli hook --pre
-<span style="color:#75715e"># or</span>
-rbcli hook -p
-</code></pre></div><p>You will then find the hook under <code>hooks/pre_execution.rb</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli hook --pre
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>rbcli hook -p
+</span></span></code></pre></div><p>You will then find the hook under <code>hooks/pre_execution.rb</code>.</p>
 <h2 id="the-post-execution-hook">The Post-Execution Hook</h2>
 <p>The Pre-Execution hook is called after a command is executed.</p>
 <p>To create it in your project, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli hook --post
-<span style="color:#75715e"># or</span>
-rbcli hook -o
-</code></pre></div><p>You will then find the hook under <code>hooks/post_execution.rb</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli hook --post
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>rbcli hook -o
+</span></span></code></pre></div><p>You will then find the hook under <code>hooks/post_execution.rb</code>.</p>
 <h2 id="the-first-run-hook">The First-Run Hook</h2>
 <p>The First-Run hook is called the first time a user executes your application. Using the first-run hook requires enabling <a href="/rbcli/advanced/state_storage/">Local State Storage</a> for persistence.</p>
 <p>To create it in your project, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli hook --firstrun
-<span style="color:#75715e"># or</span>
-rbcli hook -f
-</code></pre></div><p>You will then find the hook under <code>hooks/first_run.rb</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli hook --firstrun
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>rbcli hook -f
+</span></span></code></pre></div><p>You will then find the hook under <code>hooks/first_run.rb</code>.</p>
 
 
 <footer class="footline">
@@ -1169,19 +1169,19 @@ rbcli hook -f
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1634703589"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1634703589"></script>
-    <script src="/rbcli/js/featherlight.min.js?1634703589"></script>
-    <script src="/rbcli/js/highlight.pack.js?1634703589"></script>
+    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
+    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
+    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1634703589"></script>
-    <script src="/rbcli/js/learn.js?1634703589"></script>
-    <script src="/rbcli/js/hugo-learn.js?1634703589"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
+    <script src="/rbcli/js/learn.js?1713907739"></script>
+    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1634703589" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1634703589"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

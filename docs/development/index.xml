@@ -4,47 +4,37 @@
     <title>Development on RBCli Documentation</title>
     <link>https://akhoury6.github.io/rbcli/development/</link>
     <description>Recent content in Development on RBCli Documentation</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 15:27:12 -0400</lastBuildDate><atom:link href="https://akhoury6.github.io/rbcli/development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Jun 2019 15:07:21 -0400</lastBuildDate>
+    <atom:link href="https://akhoury6.github.io/rbcli/development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Contribution Guide</title>
       <link>https://akhoury6.github.io/rbcli/development/contributing/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
-      
       <guid>https://akhoury6.github.io/rbcli/development/contributing/</guid>
-      <description>Contributing to RBCli is the same as most open source projects:
- Fork the repository Create your own branch Submit a pull request when ready  That&amp;rsquo;s all there is to it! We&amp;rsquo;ve also kept our acceptance criteria pretty simple, as you&amp;rsquo;ll see below. Feel free to submit a pull request even if you don&amp;rsquo;t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.</description>
+      <description>Contributing to RBCli is the same as most open source projects:&#xA;Fork the repository Create your own branch Submit a pull request when ready That&amp;rsquo;s all there is to it! We&amp;rsquo;ve also kept our acceptance criteria pretty simple, as you&amp;rsquo;ll see below. Feel free to submit a pull request even if you don&amp;rsquo;t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.</description>
     </item>
-    
     <item>
       <title>License Info</title>
       <link>https://akhoury6.github.io/rbcli/development/license/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
-      
       <guid>https://akhoury6.github.io/rbcli/development/license/</guid>
       <description>How RBCli is Licensed We want to help the developer community build tooling faster and with less work. That&amp;rsquo;s why RBCli was built. And let&amp;rsquo;s face it - most of us aren&amp;rsquo;t lawyers, and don&amp;rsquo;t want to worry about legal fine print when building awesome software. That&amp;rsquo;s why RBCli is released under the GPLv3 License. So you&amp;rsquo;re free to use RBCli as you see fit to write free software. If you wish to use RBCli in a commercial offering, please contact me at andrew@blacknex.</description>
     </item>
-    
     <item>
       <title>Code of Conduct</title>
       <link>https://akhoury6.github.io/rbcli/development/code_of_conduct/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
-      
       <guid>https://akhoury6.github.io/rbcli/development/code_of_conduct/</guid>
-      <description>The Contributor Covenant Code of Conduct
-Our Pledge In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
-Our Standards Examples of behavior that contributes to creating a positive environment include:</description>
+      <description>The Contributor Covenant Code of Conduct&#xA;Our Pledge In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.&#xA;Our Standards Examples of behavior that contributes to creating a positive environment include:</description>
     </item>
-    
     <item>
       <title>Changelog</title>
       <link>https://akhoury6.github.io/rbcli/development/changelog/</link>
       <pubDate>Thu, 20 Jun 2019 15:07:21 -0400</pubDate>
-      
       <guid>https://akhoury6.github.io/rbcli/development/changelog/</guid>
-      <description>0.3.1 (October 19, 2021) Bugfixes  Fixed prompt for option value to ignore nil defaults instead of displaying an empty string Skeleton script command script.sh updated to function correctly when development mode is enabled Updated Github Pages links to point to github.io instead of github.com which are being deprecated Updated dependencies, closing the security hole of the gem addressable &amp;lt;= 1.7.0  0.3 (July 31, 2020) Improvements  Deprecated Ruby code has been updated to be compatible with Ruby 2.</description>
+      <description>0.3.3 (April 24, 2024) Improvements Tested with Ruby 3.3.0 Updated dependencies for Ruby 3.3.0 Updated dependnecies for Sekeleton projects Added a bundler/inline gemfile on mini and micro skeleton projects to simplify their use Replaced deprecated Trollop gem with its replacement, ManageIQ/Optimist Bugfixes Updated deprecated ERB call for skeleton generation to use new format 0.3.2 (October 28, 2023) Bugfixes Replaced several calls to the deprecated .exists? method with .exist? for compatibility with Ruby 3.</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.3 (TBD)
+## 0.3.3 (April 24, 2024)
 
 ### Improvements
 * Tested with Ruby 3.3.0

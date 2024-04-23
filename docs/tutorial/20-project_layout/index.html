@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="generator" content="Hugo 0.125.1">
     <meta name="description" content="">
 
 
@@ -12,21 +12,21 @@
     <title>The Project Layout :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
     
-    <link href="/rbcli/css/theme-blue.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
     
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1634703589"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1634703589"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
 
     
   </div>
@@ -722,41 +722,41 @@
 </ul>
 <h3 id="project-mode">Project Mode</h3>
 <p>If you&rsquo;ve been following along with the tutorial, you&rsquo;ve already seen Project Mode. An RBCli Project consists of several folders, each of which has a specific function. The RBCli framework handles loading and parsing the code automatically. To generate a standard, full-featured RBCli project, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli init -n mytool
-</code></pre></div><p>where <code>mytool</code> can be replaced with any other command name you&rsquo;d like. (We will continue using <code>mytool</code> in this tutorial though!)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli init -n mytool
+</span></span></code></pre></div><p>where <code>mytool</code> can be replaced with any other command name you&rsquo;d like. (We will continue using <code>mytool</code> in this tutorial though!)</p>
 <p>Inside the newly created <code>mytool</code> folder you will see a bunch of files and folders related to your project. We will go over the structure later.</p>
 <h3 id="mini--micro-modes">Mini &amp; Micro Modes</h3>
 <p>If you need to write a CLI tool but project mode feels a bit overkill for you &ndash; if you think a single-file script is all that is needed &ndash; that&rsquo;s where the Mini and Micro modes come in. Instead of generating a full directory tree, you get only a single file that contains most of the functionality of RBCli. To use it, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli init -n mytool -t mini
-<span style="color:#75715e"># or</span>
-rbcli init -n mytool -t micro
-</code></pre></div><p>The only difference between the two is that <code>mini</code> will show you all available options and some documentation to help you, while <code>micro</code> is for advanced users who just want the samllest file possible.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli init -n mytool -t mini
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>rbcli init -n mytool -t micro
+</span></span></code></pre></div><p>The only difference between the two is that <code>mini</code> will show you all available options and some documentation to help you, while <code>micro</code> is for advanced users who just want the samllest file possible.</p>
 <p>As far as documentation goes, every piece of code present in those files is identical to Project mode so it should be pretty easy to navigate.</p>
 <h2 id="project-mode-structure">Project Mode Structure</h2>
 <p>An RBCli project has the following structure:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;name&gt;/
-|--- application/
-|   |--- commands/
-|   |   |--- scripts/
-|   |--- options.rb
-|--- config/
-|--- exe/
-|   |--- &lt;name&gt;
-|--- hooks/
-|--- lib/
-|   |--- &lt;name&gt;/
-|   |--- &lt;name&gt;.rb
-|--- spec/
-|--- userconf/
-|--- .gitignore
-|--- .rbcli
-|--- .rspec
-|--- CODE_OF_CONDUCT.md
-|--- Gemfile
-|--- README.md
-|--- Rakefile
-|--- &lt;name&gt;.gemspec
-</code></pre></div><h2 id="git-rubygems-and-rspec">Git, RubyGems, and rspec</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;name&gt;/
+</span></span><span style="display:flex;"><span>|--- application/
+</span></span><span style="display:flex;"><span>|   |--- commands/
+</span></span><span style="display:flex;"><span>|   |   |--- scripts/
+</span></span><span style="display:flex;"><span>|   |--- options.rb
+</span></span><span style="display:flex;"><span>|--- config/
+</span></span><span style="display:flex;"><span>|--- exe/
+</span></span><span style="display:flex;"><span>|   |--- &lt;name&gt;
+</span></span><span style="display:flex;"><span>|--- hooks/
+</span></span><span style="display:flex;"><span>|--- lib/
+</span></span><span style="display:flex;"><span>|   |--- &lt;name&gt;/
+</span></span><span style="display:flex;"><span>|   |--- &lt;name&gt;.rb
+</span></span><span style="display:flex;"><span>|--- spec/
+</span></span><span style="display:flex;"><span>|--- userconf/
+</span></span><span style="display:flex;"><span>|--- .gitignore
+</span></span><span style="display:flex;"><span>|--- .rbcli
+</span></span><span style="display:flex;"><span>|--- .rspec
+</span></span><span style="display:flex;"><span>|--- CODE_OF_CONDUCT.md
+</span></span><span style="display:flex;"><span>|--- Gemfile
+</span></span><span style="display:flex;"><span>|--- README.md
+</span></span><span style="display:flex;"><span>|--- Rakefile
+</span></span><span style="display:flex;"><span>|--- &lt;name&gt;.gemspec
+</span></span></code></pre></div><h2 id="git-rubygems-and-rspec">Git, RubyGems, and rspec</h2>
 <p>A few files aren&rsquo;t part of RBCli itself, but are provided for your convenience. If you&rsquo;re experienced in Ruby and Git you can skip over this.</p>
 <ul>
 <li><code>.gitignore</code>
@@ -1276,19 +1276,19 @@ rbcli init -n mytool -t micro
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1634703589"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1634703589"></script>
-    <script src="/rbcli/js/featherlight.min.js?1634703589"></script>
-    <script src="/rbcli/js/highlight.pack.js?1634703589"></script>
+    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
+    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
+    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1634703589"></script>
-    <script src="/rbcli/js/learn.js?1634703589"></script>
-    <script src="/rbcli/js/hugo-learn.js?1634703589"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
+    <script src="/rbcli/js/learn.js?1713907739"></script>
+    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1634703589" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1634703589"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

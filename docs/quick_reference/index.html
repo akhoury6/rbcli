@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="generator" content="Hugo 0.125.1">
     <meta name="description" content="">
 
 
@@ -12,21 +12,21 @@
     <title>Quick Reference :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
     
-    <link href="/rbcli/css/theme-blue.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
     
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1634703589"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1634703589"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
 
     
   </div>
@@ -81,7 +81,7 @@
   
     
     <li data-nav-id="/rbcli/quick_reference/" title="Quick Reference" class="dd-item 
-        parent
+        
         active
         
         ">
@@ -721,10 +721,10 @@
 
 	<h2 id="installation">Installation</h2>
 <p>RBCli is available on rubygems.org. You can add it to your application&rsquo;s <code>Gemfile</code> or <code>gemspec</code>, or install it manually by running:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gem install rbcli
-</code></pre></div><p>Then, <code>cd</code> to the folder you&rsquo;d like to create your project under and run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli init -n mytool -d <span style="color:#e6db74">&#34;A simple CLI tool&#34;</span>
-</code></pre></div><p>Or, for a single-file tool without any folder/gem tructure, run <code>rbcli init -t mini -n &lt;projectname&gt;</code> or <code>rbcli init -t micro -n &lt;projectname&gt;</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gem install rbcli
+</span></span></code></pre></div><p>Then, <code>cd</code> to the folder you&rsquo;d like to create your project under and run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli init -n mytool -d <span style="color:#e6db74">&#34;A simple CLI tool&#34;</span>
+</span></span></code></pre></div><p>Or, for a single-file tool without any folder/gem tructure, run <code>rbcli init -t mini -n &lt;projectname&gt;</code> or <code>rbcli init -t micro -n &lt;projectname&gt;</code>.</p>
 <h2 id="creating-a-command">Creating a command</h2>
 <p>There are three types of commands: standard, scripted, and external.</p>
 <ul>
@@ -734,12 +734,12 @@
 </ul>
 <h3 id="standard-commands">Standard Commands</h3>
 <p>To create a new command called <code>foo</code>, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli command -n foo
-</code></pre></div><p>You will now find the command code in <code>application/commands/list.rb</code>. Edit the <code>action</code> block to write your coode.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli command -n foo
+</span></span></code></pre></div><p>You will now find the command code in <code>application/commands/list.rb</code>. Edit the <code>action</code> block to write your coode.</p>
 <h3 id="scripted-commands">Scripted Commands</h3>
 <p>To create a new scripted command called <code>bar</code>, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli script -n bar
-</code></pre></div><p>You will then find two new files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli script -n bar
+</span></span></code></pre></div><p>You will then find two new files:</p>
 <ul>
 <li>The command declaration under <code>application/commands/bar.rb</code></li>
 <li>The script code under <code>application/commands/scripts/bar.sh</code></li>
@@ -747,17 +747,17 @@
 <p>Edit the script to write your code.</p>
 <h3 id="external-commands">External Commands</h3>
 <p>To create a new external command called <code>baz</code>, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli extern -n baz
-</code></pre></div><p>You will then find the command code in <code>application/commands/baz.rb</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli extern -n baz
+</span></span></code></pre></div><p>You will then find the command code in <code>application/commands/baz.rb</code>.</p>
 <p>Use one of the two provided modes &ndash; direct path mode or variable path mode &ndash; to provide the path to the external program.</p>
 <h2 id="hooks">Hooks</h2>
 <p>RBCli has several hooks that run at different points in the exectution chain. They can be created via the <code>rbcli</code> command line tool:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli hook --default      <span style="color:#75715e"># Runs when no command is provided</span>
-rbcli hook --pre          <span style="color:#75715e"># Runs before any command</span>
-rbcli hook --post         <span style="color:#75715e"># Runs after any command</span>
-rbcli hook --firstrun     <span style="color:#75715e"># Runs the first time a user runs your application. Requires userspace config.</span>
-rbcli hook -dpof          <span style="color:#75715e"># Create all hooks at once</span>
-</code></pre></div><h2 id="storage">Storage</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli hook --default      <span style="color:#75715e"># Runs when no command is provided</span>
+</span></span><span style="display:flex;"><span>rbcli hook --pre          <span style="color:#75715e"># Runs before any command</span>
+</span></span><span style="display:flex;"><span>rbcli hook --post         <span style="color:#75715e"># Runs after any command</span>
+</span></span><span style="display:flex;"><span>rbcli hook --firstrun     <span style="color:#75715e"># Runs the first time a user runs your application. Requires userspace config.</span>
+</span></span><span style="display:flex;"><span>rbcli hook -dpof          <span style="color:#75715e"># Create all hooks at once</span>
+</span></span></code></pre></div><h2 id="storage">Storage</h2>
 <p>RBCli supports both local and remote state storage. This is done by synchronizing a Hash with either the local disk or a remote database.</p>
 <h3 id="local-state">Local State</h3>
 <p>RBCli can provide you with a unique hash that can be persisted to disk on any change to a top-level value.</p>
@@ -774,22 +774,22 @@ rbcli hook -dpof          <span style="color:#75715e"># Create all hooks at once
 <p>Users can generate a config file, complete with help text, by running your tool with the <code>--generate-config</code> option.</p>
 <h2 id="logging">Logging</h2>
 <p>RBCli&rsquo;s logger is configured in <code>config/logging.rb</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">log_level <span style="color:#e6db74">:info</span>
-log_target <span style="color:#e6db74">&#39;stderr&#39;</span>
-</code></pre></div><p>Then it can be accessed when writing your commands via:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span>log<span style="color:#f92672">.</span>info { <span style="color:#e6db74">&#39;These logs can go to STDERR, STDOUT, or a file&#39;</span> }
-</code></pre></div><p>The user will also be able to change the log level and target via their config file, if it is enabled.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>log_level <span style="color:#e6db74">:info</span>
+</span></span><span style="display:flex;"><span>log_target <span style="color:#e6db74">&#39;stderr&#39;</span>
+</span></span></code></pre></div><p>Then it can be accessed when writing your commands via:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span>log<span style="color:#f92672">.</span>info { <span style="color:#e6db74">&#39;These logs can go to STDERR, STDOUT, or a file&#39;</span> }
+</span></span></code></pre></div><p>The user will also be able to change the log level and target via their config file, if it is enabled.</p>
 <h2 id="automatic-update-check">Automatic Update Check</h2>
 <p>RBCli can automatically notify users when an update is available. Two sources are currently supported: Github (including Enterprise) and RubyGems.</p>
 <p>You can configure automatic updates in <code>config/autoupdate.rb</code> in your project.</p>
 <h2 id="remote-execution">Remote Execution</h2>
 <p>RBCli can automatically execute script and extern commands on remote machines via SSH. Enable this feature in <code>config/general.rb</code> by changing the following line to <code>true</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">remote_execution <span style="color:#e6db74">permitted</span>: <span style="color:#66d9ef">false</span>
-</code></pre></div><p>Then for each command you want to enable remote execution for, add the following directive:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">remote_permitted
-</code></pre></div><p>Users can then execute commands remotly by specifying the connection string and credentials on the command line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mytool --remote-exec <span style="color:#f92672">[</span>user@<span style="color:#f92672">]</span>host<span style="color:#f92672">[</span>:port<span style="color:#f92672">]</span> --identity <span style="color:#f92672">(</span>/path/to/private/ssh/key or password<span style="color:#f92672">)</span> &lt;command&gt; ...
-</code></pre></div><h2 id="development-and-contributing">Development and Contributing</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>remote_execution <span style="color:#e6db74">permitted</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><p>Then for each command you want to enable remote execution for, add the following directive:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>remote_permitted
+</span></span></code></pre></div><p>Users can then execute commands remotly by specifying the connection string and credentials on the command line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mytool --remote-exec <span style="color:#f92672">[</span>user@<span style="color:#f92672">]</span>host<span style="color:#f92672">[</span>:port<span style="color:#f92672">]</span> --identity <span style="color:#f92672">(</span>/path/to/private/ssh/key or password<span style="color:#f92672">)</span> &lt;command&gt; ...
+</span></span></code></pre></div><h2 id="development-and-contributing">Development and Contributing</h2>
 <p>For more information about development and contributing, please see the <a href="https://akhoury6.github.io/rbcli/development/contributing/">Official Development Documentation</a></p>
 <h2 id="license">License</h2>
 <p>The gem is available as open source under the terms of the <a href="https://github.com/akhoury6/rbcli/blob/master/LICENSE.txt">GPLv3</a>.</p>
@@ -1224,19 +1224,19 @@ log_target <span style="color:#e6db74">&#39;stderr&#39;</span>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1634703589"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1634703589"></script>
-    <script src="/rbcli/js/featherlight.min.js?1634703589"></script>
-    <script src="/rbcli/js/highlight.pack.js?1634703589"></script>
+    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
+    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
+    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1634703589"></script>
-    <script src="/rbcli/js/learn.js?1634703589"></script>
-    <script src="/rbcli/js/hugo-learn.js?1634703589"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
+    <script src="/rbcli/js/learn.js?1713907739"></script>
+    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1634703589" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1634703589"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="generator" content="Hugo 0.125.1">
     <meta name="description" content="">
 
 
@@ -12,21 +12,21 @@
     <title>Command Types :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
     
-    <link href="/rbcli/css/theme-blue.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
     
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1634703589"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1634703589"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
 
     
   </div>
@@ -720,17 +720,17 @@
 <p>This document is provided to be a reference. If you would like an in-depth tutorial, please see <a href="/rbcli/tutorial/30-your_first_command/">Your First Command</a>.</p>
 <h2 id="general-command-structure">General Command Structure</h2>
 <p>Commands in RBCli are created by subclassing <code>Rbcli::Command</code>. All commands share a certain common structure:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>                                                           <span style="color:#75715e"># Declare a new command by subclassing Rbcli::Command</span>
-	description <span style="color:#e6db74">&#39;TODO: Description goes here&#39;</span>                                           <span style="color:#75715e"># (Required) Short description for the global help</span>
-	usage <span style="color:#e6db74">&lt;&lt;-EOF
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">TODO</span>: <span style="color:#66d9ef">Usage</span> text goes here
-<span style="color:#66d9ef">EOF</span>                                                                                   <span style="color:#75715e"># (Required) Long description for the command-specific help</span>
-	parameter <span style="color:#e6db74">:force</span>, <span style="color:#e6db74">&#39;Force testing&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">false</span>  <span style="color:#75715e"># (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times</span>
-
-	config_default <span style="color:#e6db74">:myopt2</span>, <span style="color:#e6db74">description</span>: <span style="color:#e6db74">&#39;My Option #2&#39;</span>, <span style="color:#e6db74">default</span>: <span style="color:#e6db74">&#39;Default Value Here&#39;</span>  <span style="color:#75715e"># (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.</span>
-                                                                                      <span style="color:#75715e"># Alternatively, you can simply create a yaml file in the `default_user_configs` directory in your project that specifies the default values of all options</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>                                                           <span style="color:#75715e"># Declare a new command by subclassing Rbcli::Command</span>
+</span></span><span style="display:flex;"><span>	description <span style="color:#e6db74">&#39;TODO: Description goes here&#39;</span>                                           <span style="color:#75715e"># (Required) Short description for the global help</span>
+</span></span><span style="display:flex;"><span>	usage <span style="color:#e6db74">&lt;&lt;-EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span><span style="color:#e6db74">TODO</span>: <span style="color:#66d9ef">Usage</span> text goes here
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">EOF</span>                                                                                   <span style="color:#75715e"># (Required) Long description for the command-specific help</span>
+</span></span><span style="display:flex;"><span>	parameter <span style="color:#e6db74">:force</span>, <span style="color:#e6db74">&#39;Force testing&#39;</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:boolean</span>, <span style="color:#e6db74">default</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">false</span>  <span style="color:#75715e"># (Optional, Multiple) Add a command-specific CLI parameter. Can be called multiple times</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	config_default <span style="color:#e6db74">:myopt2</span>, <span style="color:#e6db74">description</span>: <span style="color:#e6db74">&#39;My Option #2&#39;</span>, <span style="color:#e6db74">default</span>: <span style="color:#e6db74">&#39;Default Value Here&#39;</span>  <span style="color:#75715e"># (Optional, Multiple) Specify an individual configuration parameter and set a default value. These will also be included in generated user config.</span>
+</span></span><span style="display:flex;"><span>                                                                                      <span style="color:#75715e"># Alternatively, you can simply create a yaml file in the `default_user_configs` directory in your project that specifies the default values of all options</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><ul>
 <li><code>description</code>
 <ul>
 <li>A short description of the command, which will appear in the top-level help (when the user runs <code>mytool -h</code>).</li>
@@ -754,58 +754,58 @@
 </ul>
 <h2 id="standard-commands">Standard Commands</h2>
 <p>Standard commands are written as ruby code. To create a standard command called <code>list</code>, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli command --name<span style="color:#f92672">=</span>list
-<span style="color:#75715e">#or</span>
-rbcli command -n list
-</code></pre></div><p>A standard command can be identified by the presence of an <code>action</code> block in the definition:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
-	action <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>
-		<span style="color:#75715e"># Code goes here</span>
-	<span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>Your application&rsquo;s <strong>parameters</strong>, <strong>arguments</strong>, <strong>options</strong>, and <strong>config</strong> are available in the variables passed into the block. For more information on these, see <a href="/rbcli/tutorial/40-options_parameters_and_arguments/">Options, Parameters, and Arguments</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli command --name<span style="color:#f92672">=</span>list
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#or</span>
+</span></span><span style="display:flex;"><span>rbcli command -n list
+</span></span></code></pre></div><p>A standard command can be identified by the presence of an <code>action</code> block in the definition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
+</span></span><span style="display:flex;"><span>	action <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Code goes here</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>Your application&rsquo;s <strong>parameters</strong>, <strong>arguments</strong>, <strong>options</strong>, and <strong>config</strong> are available in the variables passed into the block. For more information on these, see <a href="/rbcli/tutorial/40-options_parameters_and_arguments/">Options, Parameters, and Arguments</a>.</p>
 <h2 id="scripted-commands">Scripted Commands</h2>
 <p>Scripted commands are part Ruby, part Bash scripting. They are a good choice to use if you feel something might be easier or more performant to script with Bash, or if you already have a Bash script you&rsquo;d like to use in your project. You can create one with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli script -n list
-</code></pre></div><p>This will create two files in your RBCli project: a Ruby file with the common command declaration (see <a href="#general-command-structure">General Command Structure</a>), and a bash script in the folder <code>application/commands/scripts/</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli script -n list
+</span></span></code></pre></div><p>This will create two files in your RBCli project: a Ruby file with the common command declaration (see <a href="#general-command-structure">General Command Structure</a>), and a bash script in the folder <code>application/commands/scripts/</code>.</p>
 <p>You can tell a command is a script by the line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
-	script
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>RBCli will pass along your applications config and CLI parameters through JSON environment variables. To make things easy, a Bash library is provided that makes retrieving and parsing these variables easy. It is already imported when you generate the command, with the line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">source <span style="color:#66d9ef">$(</span>echo <span style="color:#66d9ef">$(</span>cd <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>dirname <span style="color:#66d9ef">$(</span>gem which rbcli<span style="color:#66d9ef">))</span><span style="color:#e6db74">/../lib-sh&#34;</span> <span style="color:#f92672">&amp;&amp;</span> pwd<span style="color:#66d9ef">)</span>/lib-rbcli.sh<span style="color:#66d9ef">)</span>
-</code></pre></div><p>This will find the library which is stored on the system as part of the RBCli gem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
+</span></span><span style="display:flex;"><span>	script
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>RBCli will pass along your applications config and CLI parameters through JSON environment variables. To make things easy, a Bash library is provided that makes retrieving and parsing these variables easy. It is already imported when you generate the command, with the line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source <span style="color:#66d9ef">$(</span>echo <span style="color:#66d9ef">$(</span>cd <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>dirname <span style="color:#66d9ef">$(</span>gem which rbcli<span style="color:#66d9ef">))</span><span style="color:#e6db74">/../lib-sh&#34;</span> <span style="color:#f92672">&amp;&amp;</span> pwd<span style="color:#66d9ef">)</span>/lib-rbcli.sh<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>This will find the library which is stored on the system as part of the RBCli gem.</p>
 <p>You can then retrieve the values present in your variables like such:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rbcli params
-rbcli args
-rbcli global_opts
-rbcli config
-rbcli myvars
-
-echo <span style="color:#e6db74">&#34;Usage Examples:&#34;</span>
-echo <span style="color:#e6db74">&#34;Log Level:  </span><span style="color:#66d9ef">$(</span>rbcli config .logger.log_level<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-echo <span style="color:#e6db74">&#34;Log Target: </span><span style="color:#66d9ef">$(</span>rbcli config .logger.log_target<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-echo <span style="color:#e6db74">&#34;First Argument (if passed): </span><span style="color:#66d9ef">$(</span>rbcli args .<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>For your convenience, the script will have all the instructions needed there. For more instructions on how to use JQ syntax to parse values, see the <a href="https://stedolan.github.io/jq/manual/">JQ documentation</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli params
+</span></span><span style="display:flex;"><span>rbcli args
+</span></span><span style="display:flex;"><span>rbcli global_opts
+</span></span><span style="display:flex;"><span>rbcli config
+</span></span><span style="display:flex;"><span>rbcli myvars
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Usage Examples:&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Log Level:  </span><span style="color:#66d9ef">$(</span>rbcli config .logger.log_level<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Log Target: </span><span style="color:#66d9ef">$(</span>rbcli config .logger.log_target<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;First Argument (if passed): </span><span style="color:#66d9ef">$(</span>rbcli args .<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>For your convenience, the script will have all the instructions needed there. For more instructions on how to use JQ syntax to parse values, see the <a href="https://stedolan.github.io/jq/manual/">JQ documentation</a>.</p>
 <h2 id="external-commands">External Commands</h2>
 <p>External Commands are used to wrap 3rd party applications. RBCli accomplishes this by allowing you to set environment variables and command line parameters based on your input variables.</p>
 <p>RBCli provides this feature through the <code>extern</code> keyword. It provides two modes &ndash; <strong>direct path</strong> and <strong>variable path</strong> &ndash; which work similarly.</p>
 <h3 id="direct-path-mode">Direct Path Mode</h3>
 <p>Direct path mode is the simpler mode of the two External Command modes. It allows you to provide a specific command with environment variables set, though it does not allow using RBCli parameters, arguments, options, and config.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
-   extern <span style="color:#e6db74">path</span>: <span style="color:#e6db74">&#39;path/to/application&#39;</span>, <span style="color:#e6db74">envvars</span>: {<span style="color:#e6db74">MYVAR</span>: <span style="color:#e6db74">&#39;some_value&#39;</span>}                               <span style="color:#75715e"># (Required) Runs a given application, with optional environment variables, when the user runs the command.</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>Here, we supply a string to run the command. We can optioanlly provide environment variables which will be set for the external application.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
+</span></span><span style="display:flex;"><span>	extern <span style="color:#e6db74">path</span>: <span style="color:#e6db74">&#39;path/to/application&#39;</span>, <span style="color:#e6db74">envvars</span>: {<span style="color:#e6db74">MYVAR</span>: <span style="color:#e6db74">&#39;some_value&#39;</span>}                               <span style="color:#75715e"># (Required) Runs a given application, with optional environment variables, when the user runs the command.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>Here, we supply a string to run the command. We can optioanlly provide environment variables which will be set for the external application.</p>
 <h3 id="variable-path-mode">Variable Path Mode</h3>
 <p>Variable Path mode works the same as Direct Path Mode, only instead of providing a string we provide a block that returns a string (which will be the command executed). This allows us to generate different commands based on the CLI parameters that the user passed, or pass configuration as CLI parameters to the external application:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
-	extern <span style="color:#e6db74">envvars</span>: {<span style="color:#e6db74">MY_OTHER_VAR</span>: <span style="color:#e6db74">&#39;another_value&#39;</span>} <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>          <span style="color:#75715e"># Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user. This allows passing config settings as command line arguments to external applications. The block must return a string, which is the command to be executed.</span>
-		cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/path/to/application&#39;</span>
-		cmd <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39; --test-script foo --ignore-errors&#39;</span> <span style="color:#66d9ef">if</span> params<span style="color:#f92672">[</span><span style="color:#e6db74">:force</span><span style="color:#f92672">]</span>
-		cmd
-	<span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p><strong>NOTE</strong>: Passing user-supplied data as part of the command string may be a security risk (example: <code>/path/to/application --name #{params[:name]}</code>). It is highly recommended to provide the fixed strings yourself, and only select which strings are used based on the variables provided. This is demonstrated in the example above.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
+</span></span><span style="display:flex;"><span>	extern <span style="color:#e6db74">envvars</span>: {<span style="color:#e6db74">MY_OTHER_VAR</span>: <span style="color:#e6db74">&#39;another_value&#39;</span>} <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>params, args, global_opts, config<span style="color:#f92672">|</span>          <span style="color:#75715e"># Alternate usage. Supplying a block instead of a path allows us to modify the command based on the arguments and configuration supplied by the user. This allows passing config settings as command line arguments to external applications. The block must return a string, which is the command to be executed.</span>
+</span></span><span style="display:flex;"><span>		cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/path/to/application&#39;</span>
+</span></span><span style="display:flex;"><span>		cmd <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39; --test-script foo --ignore-errors&#39;</span> <span style="color:#66d9ef">if</span> params<span style="color:#f92672">[</span><span style="color:#e6db74">:force</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>		cmd
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p><strong>NOTE</strong>: Passing user-supplied data as part of the command string may be a security risk (example: <code>/path/to/application --name #{params[:name]}</code>). It is highly recommended to provide the fixed strings yourself, and only select which strings are used based on the variables provided. This is demonstrated in the example above.</p>
 
 
 <footer class="footline">
@@ -1239,19 +1239,19 @@ echo <span style="color:#e6db74">&#34;First Argument (if passed): </span><span s
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1634703589"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1634703589"></script>
-    <script src="/rbcli/js/featherlight.min.js?1634703589"></script>
-    <script src="/rbcli/js/highlight.pack.js?1634703589"></script>
+    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
+    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
+    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1634703589"></script>
-    <script src="/rbcli/js/learn.js?1634703589"></script>
-    <script src="/rbcli/js/hugo-learn.js?1634703589"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
+    <script src="/rbcli/js/learn.js?1713907739"></script>
+    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1634703589" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1634703589"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

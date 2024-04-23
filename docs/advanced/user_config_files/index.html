@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="generator" content="Hugo 0.125.1">
     <meta name="description" content="">
 
 
@@ -12,21 +12,21 @@
     <title>User Configuration Files :: RBCli Documentation</title>
 
     
-    <link href="/rbcli/css/nucleus.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1634703589" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
+    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
     
-    <link href="/rbcli/css/theme-blue.css?1634703589" rel="stylesheet">
+    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
     
     
 
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1634703589"></script>
+    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,14 +55,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1634703589"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
+<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
     
 </script>
-<script type="text/javascript" src="/rbcli/js/search.js?1634703589"></script>
+<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
 
     
   </div>
@@ -725,8 +725,8 @@
 </li>
 </ul>
 <p>DSL statements appear in both of the above locations as the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">config_default <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">description</span>: <span style="color:#e6db74">&#39;&lt;description_help_text&gt;&#39;</span>, <span style="color:#e6db74">default</span>: <span style="color:#e6db74">&#39;&lt;default_value&gt;&#39;</span>
-</code></pre></div><h2 id="user-chain">User chain</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>config_default <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">description</span>: <span style="color:#e6db74">&#39;&lt;description_help_text&gt;&#39;</span>, <span style="color:#e6db74">default</span>: <span style="color:#e6db74">&#39;&lt;default_value&gt;&#39;</span>
+</span></span></code></pre></div><h2 id="user-chain">User chain</h2>
 <p>The user chain has two functions: generating and loading configuration from a YAML file on the end user&rsquo;s machine.</p>
 <p>Rbcli will determine the correct location to locate the user configuration based on two factors:</p>
 <ol>
@@ -734,8 +734,8 @@
 <li>The location specified on the command line using the <code>--config-file=&lt;filename&gt;</code> option (overrides #1)</li>
 </ol>
 <p>To configure the default location, edit <code>config/userspace.rb</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">config_userfile <span style="color:#e6db74">&#39;~/.mytool&#39;</span>, <span style="color:#e6db74">merge_defaults</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">false</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>config_userfile <span style="color:#e6db74">&#39;~/.mytool&#39;</span>, <span style="color:#e6db74">merge_defaults</span>: <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><ul>
 <li><code>path/to/config/file</code>
 <ul>
 <li>Self explanatory. Recommended locations are a dotfile in the user&rsquo;s home directory, or a file under <code>/etc</code> such as <code>/etc/mytool/userconf.yaml</code></li>
@@ -1186,19 +1186,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rbcli/js/clipboard.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1634703589"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1634703589"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1634703589"></script>
-    <script src="/rbcli/js/featherlight.min.js?1634703589"></script>
-    <script src="/rbcli/js/highlight.pack.js?1634703589"></script>
+    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
+    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
+    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
+    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
+    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1634703589"></script>
-    <script src="/rbcli/js/learn.js?1634703589"></script>
-    <script src="/rbcli/js/hugo-learn.js?1634703589"></script>
+    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
+    <script src="/rbcli/js/learn.js?1713907739"></script>
+    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
 
-    <link href="/rbcli/mermaid/mermaid.css?1634703589" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1634703589"></script>
+    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
+    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -6,6 +6,26 @@ weight: 100
 ---
 
 
+## 0.3.3 (April 24, 2024)
+
+### Improvements
+* Tested with Ruby 3.3.0
+* Updated dependencies for Ruby 3.3.0
+* Updated dependnecies for Sekeleton projects
+* Added a `bundler/inline` gemfile on mini and micro skeleton projects to simplify their use
+* Replaced deprecated Trollop gem with its replacement, [ManageIQ/Optimist](https://github.com/ManageIQ/optimist)
+
+### Bugfixes
+* Updated deprecated ERB call for skeleton generation to use new format
+
+## 0.3.2 (October 28, 2023)
+
+### Bugfixes
+
+* Replaced several calls to the deprecated `.exists?` method with `.exist?` for compatibility with Ruby 3.2.0
+* Updated dependencies to latest versions
+* Standardized on version locking to the latest Major version of dependencies rather than the latest Minor ones
+
 ## 0.3.1 (October 19, 2021)
 
 ### Bugfixes

@@ -2,7 +2,12 @@
 
 ## 0.3.3 (TBD)
 
+* Tested with Ruby 3.3.0
+* Updated dependencies for Ruby 3.3.0
+* Updated dependnecies for Sekeleton projects
+* Added a `bundler/inline` gemfile on mini and micro skeleton projects to simplify their use
 * Replaced deprecated Trollop gem with its replacement, [ManageIQ/Optimist](https://github.com/ManageIQ/optimist)
+* 
 
 ## 0.3.2 (October 28, 2023)
 

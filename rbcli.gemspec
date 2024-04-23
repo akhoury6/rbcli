@@ -61,8 +61,8 @@ Gem::Specification.new do |spec|
 	spec.add_dependency 'aws-sdk-dynamodb', '~> 1'
 	spec.add_dependency 'macaddr', '~> 1'
 	spec.add_dependency 'rufus-scheduler', '~> 3'
-	spec.add_dependency 'octokit', '~> 7'
-	spec.add_dependency 'mdless', '~> 1'
+	spec.add_dependency 'octokit', RUBY_VERSION >= '3.3.0' ? '~> 8' : '~> 7'
+	spec.add_dependency 'mdless', RUBY_VERSION >= '3.3.0' ? '~> 2' : '~> 1'
 	spec.add_dependency 'net-ssh', '~> 7'
 	spec.add_dependency 'net-scp', '~> 4'
 	#TODO: Pull in the Optimist gem once the required PR's have been merged:

@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
 	spec.homepage    = "TODO: Put your gem's website or public repo URL here."
 	spec.license     = 'None'
 
-	spec.required_ruby_version = '>= 2.3'
+	spec.required_ruby_version = ">= <%= RUBY_VERSION %>"
 
 	# Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
 	# to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -32,9 +32,9 @@ Gem::Specification.new do |spec|
 	spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
 	spec.require_paths = ['application', 'config', 'default_user_configs', 'hooks', 'lib']
 
-	spec.add_development_dependency 'bundler', '~> 2.2'
-	spec.add_development_dependency 'rake', '~> 13.0'
-	spec.add_development_dependency 'rspec', '~> 3.10'
+	spec.add_development_dependency 'bundler', '~> 2'
+	spec.add_development_dependency 'rake', '~> 13'
+	spec.add_development_dependency 'rspec', '~> 3'
 
 	spec.add_dependency 'rbcli', '>= <%= @vars[:rbcli_version] %>'
 end

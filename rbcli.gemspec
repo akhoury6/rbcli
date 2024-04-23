@@ -65,5 +65,9 @@ Gem::Specification.new do |spec|
 	spec.add_dependency 'mdless', '~> 1'
 	spec.add_dependency 'net-ssh', '~> 7'
 	spec.add_dependency 'net-scp', '~> 4'
-	# spec.add_dependency 'trollop', '~> 2.1'
+	#TODO: Pull in the Optimist gem once the required PR's have been merged:
+	# https://github.com/ManageIQ/optimist/pull/145
+	# https://github.com/ManageIQ/optimist/pull/146
+	# https://github.com/ManageIQ/optimist/pull/147
+	# spec.add_dependency 'optimist', '???'
 end

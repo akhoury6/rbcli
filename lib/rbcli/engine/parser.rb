@@ -18,9 +18,11 @@
 #     For questions regarding licensing, please contact andrew@blacknex.us       #
 ##################################################################################
 
-
-#TODO: Change this once the changes have been merged into trollop gem proper
-require 'rbcli/util/trollop'
+#TODO: Pull in the Optimist gem once the required PR's have been merged:
+# https://github.com/ManageIQ/optimist/pull/145
+# https://github.com/ManageIQ/optimist/pull/146
+# https://github.com/ManageIQ/optimist/pull/147
+require 'rbcli/util/optimist'
 
 module Rbcli::Parser
 
@@ -30,7 +32,7 @@ module Rbcli::Parser
 		# We show deprecation warnings before anything else, encouraging the developer to update their code.
 		Rbcli::DeprecationWarning.display_warnings
 
-		@cliopts = Trollop::options do
+		@cliopts = Optimist::options do
 			data = Rbcli.configuration(:me)
 			version "#{data[:scriptname]} version: #{data[:version]}"
 			banner <<-EOS
@@ -68,7 +70,7 @@ Commands:
 		elsif @cmd[0].nil?
 			default_action = Rbcli.configuration(:me, :default_action) || Rbcli.configuration(:hooks, :default_action)
 			if default_action.nil?
-				Trollop::educate
+				Optimist::educate
 			else
 				default_action.call @cliopts
 			end
@@ -76,7 +78,7 @@ Commands:
 			@cmd << Rbcli::Command.commands[@cmd[0]].class.parseopts
 
 			if (@cliopts[:remote_exec_given] and not @cliopts[:identity_given]) or (not @cliopts[:remote_exec_given] and @cliopts[:identity_given])
-				Trollop::die 'Must use `--remote-exec` and `--identity` together.'
+				Optimist::die 'Must use `--remote-exec` and `--identity` together.'
 			end
 
 			Rbcli.configuration(:me, :pre_hook).call @cliopts unless Rbcli.configuration(:me, :pre_hook).nil?
@@ -85,7 +87,7 @@ Commands:
 			Rbcli.configuration(:me, :post_hook).call @cliopts unless Rbcli.configuration(:me, :post_hook).nil?
 			Rbcli.configuration(:hooks, :post_hook).call @cliopts unless Rbcli.configuration(:hooks, :post_hook).nil?
 		else
-			Trollop::die "Unknown subcommand #{@cmd[0].inspect}"
+			Optimist::die "Unknown subcommand #{@cmd[0].inspect}"
 		end
 
 	end

@@ -146,7 +146,7 @@ class Rbcli::Command
 		command_name = self.name.split('::')[-1].downcase
 		command_desc = @data[:description]
 		command_usage = @data[:usage]
-		optx = Trollop::options do
+		optx = Optimist::options do
 			data = Rbcli.configuration(:me)
 			banner <<-EOS
 #{data[:description]}

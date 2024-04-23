@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3 (TBD)
+
+* Replaced deprecated Trollop gem with its replacement, [ManageIQ/Optimist](https://github.com/ManageIQ/optimist)
+
 ## 0.3.2 (October 28, 2023)
 
 ### Bugfixes

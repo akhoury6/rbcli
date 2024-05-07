@@ -2,10 +2,8 @@
 title = "Development"
 date = 2019-06-20T15:27:12-04:00
 weight = 30
-chapter = true
+chapter = false
 #pre = "<b>X. </b>"
 +++
 
-# Development
-
-Want to make RBCli even better? On behalf of all RBCli users everywhere, it's much appreciated. Of course, even if you keep your changes to yourself and don't contribute back, now that you're a ninja you'll likely want to pave your own road forward. This section will guide you how.
+Want to make Rbcli even better? On behalf of all Rbcli users everywhere, it's much appreciated. Of course, even if you keep your changes to yourself and don't contribute back, now that you're a ninja you'll likely want to pave your own road forward. This section will guide you how.

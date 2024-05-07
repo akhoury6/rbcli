@@ -1,682 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" class="js csstransforms3d">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.125.1">
-    <meta name="description" content="">
-
-
-    <link rel="icon" href="/rbcli/images/favicon.png" type="image/png">
-
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.125.5">
+    <meta name="generator" content="Relearn 6.0.0+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Creating the Command Creating the command is straightforward:
+rbcli command --name=list #or rbcli command -n listAnd there you have it! Now you can try out your command by typing:
+./exe/mytool listCongrats! You should now see a generic output listing the values of several variables. We’ll get into what they mean in a bit, but first, let’s make the tool’s execution a bit easier.
+Now that you know your way around a project, its time to create your first command!">
+    <meta name="author" content="Andrew Khoury">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://akhoury6.github.io/rbcli/images/hero.png">
+    <meta name="twitter:title" content="Your First Command :: RBCli Documentation">
+    <meta name="twitter:description" content="Creating the Command Creating the command is straightforward:
+rbcli command --name=list #or rbcli command -n listAnd there you have it! Now you can try out your command by typing:
+./exe/mytool listCongrats! You should now see a generic output listing the values of several variables. We’ll get into what they mean in a bit, but first, let’s make the tool’s execution a bit easier.
+Now that you know your way around a project, its time to create your first command!">
+    <meta property="og:url" content="https://akhoury6.github.io/rbcli/tutorial/30-your_first_command/index.html">
+    <meta property="og:site_name" content="RBCli Documentation">
+    <meta property="og:title" content="Your First Command :: RBCli Documentation">
+    <meta property="og:description" content="Creating the Command Creating the command is straightforward:
+rbcli command --name=list #or rbcli command -n listAnd there you have it! Now you can try out your command by typing:
+./exe/mytool listCongrats! You should now see a generic output listing the values of several variables. We’ll get into what they mean in a bit, but first, let’s make the tool’s execution a bit easier.
+Now that you know your way around a project, its time to create your first command!">
+    <meta property="og:locale" content="en-us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tutorial">
+    <meta property="article:published_time" content="2019-06-20T15:07:21-04:00">
+    <meta property="article:modified_time" content="2019-06-20T15:07:21-04:00">
+    <meta property="og:image" content="https://akhoury6.github.io/rbcli/images/hero.png">
+    <meta itemprop="name" content="Your First Command :: RBCli Documentation">
+    <meta itemprop="description" content="Creating the Command Creating the command is straightforward:
+rbcli command --name=list #or rbcli command -n listAnd there you have it! Now you can try out your command by typing:
+./exe/mytool listCongrats! You should now see a generic output listing the values of several variables. We’ll get into what they mean in a bit, but first, let’s make the tool’s execution a bit easier.
+Now that you know your way around a project, its time to create your first command!">
+    <meta itemprop="datePublished" content="2019-06-20T15:07:21-04:00">
+    <meta itemprop="dateModified" content="2019-06-20T15:07:21-04:00">
+    <meta itemprop="wordCount" content="854">
+    <meta itemprop="image" content="https://akhoury6.github.io/rbcli/images/hero.png">
     <title>Your First Command :: RBCli Documentation</title>
-
-    
-    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
-    
-    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
-    
-    
-
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
-
-    <style>
-      :root #header + #content > #left > #rlblock_left{
-          display:none !important;
-      }
-      
-    </style>
-    
+    <link href="/rbcli/images/favicon.png?1714947259" rel="icon" type="image/png">
+    <link href="/rbcli/css/fontawesome-all.min.css?1714947259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/rbcli/css/fontawesome-all.min.css?1714947259" rel="stylesheet"></noscript>
+    <link href="/rbcli/css/nucleus.css?1714947259" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1714947259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/rbcli/css/auto-complete.css?1714947259" rel="stylesheet"></noscript>
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1714947259" rel="stylesheet">
+    <link href="/rbcli/css/fonts.css?1714947259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/rbcli/css/fonts.css?1714947259" rel="stylesheet"></noscript>
+    <link href="/rbcli/css/theme.css?1714947259" rel="stylesheet">
+    <link href="/rbcli/css/theme-relearn-auto.css?1714947259" rel="stylesheet" id="R-variant-style">
+    <link href="/rbcli/css/chroma-relearn-auto.css?1714947259" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/rbcli/css/variant.css?1714947259" rel="stylesheet">
+    <link href="/rbcli/css/print.css?1714947259" rel="stylesheet" media="print">
+    <script src="/rbcli/js/variant.js?1714947259"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/akhoury6.github.io\/rbcli';
+      window.index_js_url="/rbcli/index.search.js";
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
   </head>
-  <body class="" data-url="/rbcli/tutorial/30-your_first_command/">
-    <nav id="sidebar" class="">
-
-
-
-  <div id="header-wrapper">
-    <div id="header">
-      <a id="logo" href="https://akhoury6.github.io/rbcli/" style="font-size: 40px">
-  <span class="fas fa-terminal"></span>&nbsp;𝚁𝙱𝙲𝚕𝚒
-</a>
-
-    </div>
-    
-        <div class="searchbox">
-    <label for="search-by"><i class="fas fa-search"></i></label>
-    <input data-search-input id="search-by" type="search" placeholder="Search...">
-    <span data-search-clear=""><i class="fas fa-times"></i></span>
-</div>
-
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
-<script type="text/javascript">
-    
-        var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
-    
-</script>
-<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
-
-    
-  </div>
-
-    <div class="highlightable">
-    <ul class="topics">
-
-        
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/quick_reference/" title="Quick Reference" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/quick_reference/">
-          Quick Reference
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/tutorial/" title="Tutorial" class="dd-item 
-        parent
-        
-        
-        ">
-      <a href="/rbcli/tutorial/">
-          Tutorial
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/10-getting_started/" title="Getting Started" class="dd-item ">
-        <a href="/rbcli/tutorial/10-getting_started/">
-        <b>1. </b>Getting Started
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/20-project_layout/" title="The Project Layout" class="dd-item ">
-        <a href="/rbcli/tutorial/20-project_layout/">
-        <b>2. </b>The Project Layout
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/30-your_first_command/" title="Your First Command" class="dd-item active">
-        <a href="/rbcli/tutorial/30-your_first_command/">
-        <b>3. </b>Your First Command
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" class="dd-item ">
-        <a href="/rbcli/tutorial/40-options_parameters_and_arguments/">
-        <b>4. </b>Options, Parameters, and Arguments
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/50-publishing/" title="Publishing Your Application" class="dd-item ">
-        <a href="/rbcli/tutorial/50-publishing/">
-        <b>5. </b>Publishing Your Application
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/advanced/" title="Advanced" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/advanced/">
-          Advanced
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/automatic_updates/" title="Automatic Updates" class="dd-item ">
-        <a href="/rbcli/advanced/automatic_updates/">
-        Automatic Updates
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/command_types/" title="Command Types" class="dd-item ">
-        <a href="/rbcli/advanced/command_types/">
-        Command Types
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/distributed_state_locking/" title="Distributed State and Locking" class="dd-item ">
-        <a href="/rbcli/advanced/distributed_state_locking/">
-        Distributed State and Locking
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/hooks/" title="Execution Hooks" class="dd-item ">
-        <a href="/rbcli/advanced/hooks/">
-        Execution Hooks
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/interactive_commands/" title="Interactive Commands" class="dd-item ">
-        <a href="/rbcli/advanced/interactive_commands/">
-        Interactive Commands
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/logging/" title="Logging" class="dd-item ">
-        <a href="/rbcli/advanced/logging/">
-        Logging
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/remote_execution/" title="Remote Execution" class="dd-item ">
-        <a href="/rbcli/advanced/remote_execution/">
-        Remote Execution
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/state_storage/" title="State Storage" class="dd-item ">
-        <a href="/rbcli/advanced/state_storage/">
-        State Storage
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/user_config_files/" title="User Configuration Files" class="dd-item ">
-        <a href="/rbcli/advanced/user_config_files/">
-        User Configuration Files
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/development/" title="Development" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/development/">
-          Development
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/contributing/" title="Contribution Guide" class="dd-item ">
-        <a href="/rbcli/development/contributing/">
-        Contribution Guide
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/license/" title="License Info" class="dd-item ">
-        <a href="/rbcli/development/license/">
-        License Info
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/code_of_conduct/" title="Code of Conduct" class="dd-item ">
-        <a href="/rbcli/development/code_of_conduct/">
-        Code of Conduct
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/changelog/" title="Changelog" class="dd-item ">
-        <a href="/rbcli/development/changelog/">
-        Changelog
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/whoami/" title="My Letter To You" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/whoami/">
-          My Letter To You
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-         
-    </ul>
-
-    
-    
-      <section id="shortcuts">
-        <h3>More</h3>
-        <ul>
-          
-              <li> 
-                  <a class="padding" href="https://github.com/akhoury6/rbcli"><i class='fab fa-github'></i> Github repo</a>
-              </li>
-          
-              <li> 
-                  <a class="padding" href="https://rubygems.org/gems/rbcli"><i class='far fa-gem'></i> Rubygems</a>
-              </li>
-          
-        </ul>
-      </section>
-    
-
-    
-    <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
-
-    </section>
-  </div>
-</nav>
-
-
-
-
-        <section id="body">
-        <div id="overlay"></div>
-        <div class="padding highlightable">
-              
-              <div>
-                <div id="top-bar">
-                
-                
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                    <span id="sidebar-toggle-span">
-                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                          <i class="fas fa-bars"></i>
-                        </a>
-                    </span>
-                  
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
-                  <span class="links">
-                 
-                 
-                    
-          
-          
-            
-            
-          
-          
-            
-            
-          
-          
-            <a href='/rbcli/'></a> > <a href='/rbcli/tutorial/'>Tutorial</a> > Your First Command
-          
-        
-          
-        
-          
-        
-                 
-                  </span>
-                </div>
-                
-                    <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/rbcli/tutorial/30-your_first_command/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"><nav class="TableOfContents">
   <ul>
     <li><a href="#creating-the-command">Creating the Command</a></li>
     <li><a href="#the-command-declaration">The Command Declaration</a></li>
@@ -684,41 +91,50 @@
     <li><a href="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
-    </div>
-</div>
-
-                
+                </div>
               </div>
             </div>
-            
-        <div id="head-tags">
-        
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/rbcli/tutorial/index.html"><span itemprop="name">Tutorial</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Your First Command</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/akhoury6/rbcli/edit/master/docs-src/content/tutorial/30-your_first_command.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/rbcli/tutorial/20-project_layout/index.html" title="The Project Layout (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/rbcli/tutorial/40-options_parameters_and_arguments/index.html" title="Options, Parameters, and Arguments (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div id="body-inner">
-          
-            <h1>
-              
-              Your First Command
-            </h1>
-          
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
 
-        
-
+<h1 id="your-first-command">Your First Command</h1>
 
 <h2 id="creating-the-command">Creating the Command</h2>
 <p>Creating the command is straightforward:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbcli command --name<span style="color:#f92672">=</span>list
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#or</span>
-</span></span><span style="display:flex;"><span>rbcli command -n list
-</span></span></code></pre></div><p>And there you have it! Now you can try out your command by typing:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./exe/mytool list
-</span></span></code></pre></div><p>Congrats! You should now see a generic output listing the values of several variables. We&rsquo;ll get into what they mean in a bit, but first, let&rsquo;s make the tool&rsquo;s execution a bit easier.</p>
+</span></span><span style="display:flex;"><span>rbcli command -n list</span></span></code></pre></div><p>And there you have it! Now you can try out your command by typing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./exe/mytool list</span></span></code></pre></div><p>Congrats! You should now see a generic output listing the values of several variables. We&rsquo;ll get into what they mean in a bit, but first, let&rsquo;s make the tool&rsquo;s execution a bit easier.</p>
 <p>Now that you know your way around a project, its time to create your first command! But before we do, let&rsquo;s make development just a little bit easier. Go to the base directory of the folder and type:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias mytool<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/exe/mytool&#34;</span>
-</span></span></code></pre></div><p>And now you&rsquo;ll be able to execute your application as if it was already installed as a gem, without worrying about the working path. You can see this in action by running your application again, but without the path:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mytool list
-</span></span></code></pre></div><p>So, now let&rsquo;s take a more in-dpeth look at what the command code looks like.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias mytool<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/exe/mytool&#34;</span></span></span></code></pre></div><p>And now you&rsquo;ll be able to execute your application as if it was already installed as a gem, without worrying about the working path. You can see this in action by running your application again, but without the path:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mytool list</span></span></code></pre></div><p>So, now let&rsquo;s take a more in-dpeth look at what the command code looks like.</p>
 <h2 id="the-command-declaration">The Command Declaration</h2>
 <p>As mentioned in the previous section, you can find your commands listed under the <code>application/commands/</code> directory. Each command will appear as its own unique file with some base code to work from. Let&rsquo;s take a look at that code a little more in-depth:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>                                                           <span style="color:#75715e"># Declare a new command by subclassing Rbcli::Command</span>
@@ -741,8 +157,7 @@
 </span></span><span style="display:flex;"><span>		puts <span style="color:#e6db74">&#34;RemoteState:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">#{</span><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">.</span>remote_state<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#75715e"># Remote persistent state storage (when available) -- if unsure use Rbcli.remote_state.nil?</span>
 </span></span><span style="display:flex;"><span>		puts <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Done!!!&#34;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><p>Commands are declared to RBCli simply by subclassing them from <code>Rbcli::Command</code> as shown above. Then, you have a list of declarations that tell RBCli information about it. They are:</p>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span></span></span></code></pre></div><p>Commands are declared to RBCli simply by subclassing them from <code>Rbcli::Command</code> as shown above. Then, you have a list of declarations that tell RBCli information about it. They are:</p>
 <ul>
 <li><code>description</code>
 <ul>
@@ -756,21 +171,21 @@
 </li>
 <li><code>parameter</code>
 <ul>
-<li>Command-line tags that the user can enter that are specific to only this command. We will get into these in the next section on <a href="/rbcli/tutorial/40-options_parameters_and_arguments/">Options, Parameters, and Arguments</a></li>
+<li>Command-line tags that the user can enter that are specific to only this command. We will get into these in the next section on <a href="https://akhoury6.github.io/rbcli/tutorial/40-options_parameters_and_arguments/" rel="external" target="_self">Options, Parameters, and Arguments</a></li>
 </ul>
 </li>
 <li><code>config_default</code>
 <ul>
-<li>This sets a single item in the config file that will be made available to the user. More information can be found in the documentation on <a href="/rbcli/advanced/user_config_files/">User Config Files</a></li>
+<li>This sets a single item in the config file that will be made available to the user. More information can be found in the documentation on <a href="https://akhoury6.github.io/rbcli/advanced/user_config_files/" rel="external" target="_self">User Config Files</a></li>
 </ul>
 </li>
 <li><code>action</code>
 <ul>
-<li>This loads the block of code that will run when the command is called. It brings in all of the CLI and user config data as variables. We will also get into these in the next section <a href="/rbcli/tutorial/40-options_parameters_and_arguments/">Options, Parameters, and Arguments</a></li>
+<li>This loads the block of code that will run when the command is called. It brings in all of the CLI and user config data as variables. We will also get into these in the next section <a href="https://akhoury6.github.io/rbcli/tutorial/40-options_parameters_and_arguments/" rel="external" target="_self">Options, Parameters, and Arguments</a></li>
 </ul>
 </li>
 </ul>
-<p>There is an additional declaration not shown here, <code>extern</code>. You can find more information on it in the section on <a href="/rbcli/advanced/command_types/">Advanced Command Types</a></p>
+<p>There is an additional declaration not shown here, <code>extern</code>. You can find more information on it in the section on <a href="https://akhoury6.github.io/rbcli/advanced/command_types/" rel="external" target="_self">Advanced Command Types</a></p>
 <h2 id="creating-the-list-command">Creating the &ldquo;list&rdquo; Command</h2>
 <p>Now we&rsquo;re going to modify this command to list the contents of the current directory to the terminal. So let&rsquo;s change the code in that file to:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Command</span>
@@ -803,461 +218,136 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		puts filelist
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><p>Go ahead and test it out! The output doesn&rsquo;t show much obviously, just a list of names and nothing else. Don&rsquo;t worry though, we&rsquo;ll fix that in the next secion.</p>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span></span></span></code></pre></div><p>Go ahead and test it out! The output doesn&rsquo;t show much obviously, just a list of names and nothing else. Don&rsquo;t worry though, we&rsquo;ll fix that in the next secion.</p>
 <h2 id="next-steps">Next Steps</h2>
-<p>Next we&rsquo;re going to take a look at options, parameters, and arguments, and we&rsquo;ll clean up our list command by using them. If you&rsquo;d like to learn more about the additional command types in RBCli before continuing, see the <a href="/rbcli/advanced/command_types/">Advanced Command Types</a> documentation.</p>
+<p>Next we&rsquo;re going to take a look at options, parameters, and arguments, and we&rsquo;ll clean up our list command by using them. If you&rsquo;d like to learn more about the additional command types in RBCli before continuing, see the <a href="https://akhoury6.github.io/rbcli/advanced/command_types/" rel="external" target="_self">Advanced Command Types</a> documentation.</p>
 
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a id="logo" href="https://akhoury6.github.io/rbcli/" style="font-size: 40px">
+  <span class="fas fa-terminal"></span>&nbsp;𝚁𝙱𝙲𝚕𝚒
+</a>
 
-<footer class="footline">
-	
-</footer>
+        </div>
 
-        
-        </div> 
-        
-
+        <search><form action="/rbcli/search.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/rbcli/js/auto-complete.js?1714947259" defer></script>
+        <script src="/rbcli/js/lunr/lunr.min.js?1714947259" defer></script>
+        <script src="/rbcli/js/lunr/lunr.stemmer.support.min.js?1714947259" defer></script>
+        <script src="/rbcli/js/lunr/lunr.multi.min.js?1714947259" defer></script>
+        <script src="/rbcli/js/lunr/lunr.en.min.js?1714947259" defer></script>
+        <script src="/rbcli/js/search.js?1714947259" defer></script>
       </div>
-
-    <div id="navigation">
-        
-        
-        
-        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-        
-        
-
-
-	 
-	 
-		
-			<a class="nav nav-prev" href="/rbcli/tutorial/20-project_layout/" title="The Project Layout"> <i class="fa fa-chevron-left"></i></a>
-		
-		
-			<a class="nav nav-next" href="/rbcli/tutorial/40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
-		
-	
-    </div>
-
-    </section>
-    
-    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
-      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
-    </div>
-    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
-    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
-    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
-    <script src="/rbcli/js/learn.js?1713907739"></script>
-    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
-
-    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
-    
-
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
+          <ul class="enlarge morespace collapsible-menu">
+          <li data-nav-id="/rbcli/quick_reference/index.html" class=""><a class="padding" href="/rbcli/quick_reference/index.html">Quick Reference</a></li>
+          <li data-nav-id="/rbcli/tutorial/index.html" class="parent alwaysopen"><a class="padding" href="/rbcli/tutorial/index.html">Tutorial</a><ul id="R-subsections-5816d3986a56e91688f1baee8cddaed6" class="morespace collapsible-menu">
+          <li data-nav-id="/rbcli/tutorial/10-getting_started/index.html" class=""><a class="padding" href="/rbcli/tutorial/10-getting_started/index.html"><b>1. </b>Getting Started</a></li>
+          <li data-nav-id="/rbcli/tutorial/20-project_layout/index.html" class=""><a class="padding" href="/rbcli/tutorial/20-project_layout/index.html"><b>2. </b>The Project Layout</a></li>
+          <li data-nav-id="/rbcli/tutorial/30-your_first_command/index.html" class="active"><a class="padding" href="/rbcli/tutorial/30-your_first_command/index.html"><b>3. </b>Your First Command</a></li>
+          <li data-nav-id="/rbcli/tutorial/40-options_parameters_and_arguments/index.html" class=""><a class="padding" href="/rbcli/tutorial/40-options_parameters_and_arguments/index.html"><b>4. </b>Options, Parameters, and Arguments</a></li>
+          <li data-nav-id="/rbcli/tutorial/50-publishing/index.html" class=""><a class="padding" href="/rbcli/tutorial/50-publishing/index.html"><b>5. </b>Publishing Your Application</a></li></ul></li>
+          <li data-nav-id="/rbcli/advanced/index.html" class="alwaysopen"><a class="padding" href="/rbcli/advanced/index.html">Advanced</a><ul id="R-subsections-4a9ec026c6882d204f4ef62e414beded" class="morespace collapsible-menu">
+          <li data-nav-id="/rbcli/advanced/automatic_updates/index.html" class=""><a class="padding" href="/rbcli/advanced/automatic_updates/index.html">Automatic Updates</a></li>
+          <li data-nav-id="/rbcli/advanced/command_types/index.html" class=""><a class="padding" href="/rbcli/advanced/command_types/index.html">Command Types</a></li>
+          <li data-nav-id="/rbcli/advanced/distributed_state_locking/index.html" class=""><a class="padding" href="/rbcli/advanced/distributed_state_locking/index.html">Distributed State and Locking</a></li>
+          <li data-nav-id="/rbcli/advanced/hooks/index.html" class=""><a class="padding" href="/rbcli/advanced/hooks/index.html">Execution Hooks</a></li>
+          <li data-nav-id="/rbcli/advanced/interactive_commands/index.html" class=""><a class="padding" href="/rbcli/advanced/interactive_commands/index.html">Interactive Commands</a></li>
+          <li data-nav-id="/rbcli/advanced/logging/index.html" class=""><a class="padding" href="/rbcli/advanced/logging/index.html">Logging</a></li>
+          <li data-nav-id="/rbcli/advanced/remote_execution/index.html" class=""><a class="padding" href="/rbcli/advanced/remote_execution/index.html">Remote Execution</a></li>
+          <li data-nav-id="/rbcli/advanced/state_storage/index.html" class=""><a class="padding" href="/rbcli/advanced/state_storage/index.html">State Storage</a></li>
+          <li data-nav-id="/rbcli/advanced/user_config_files/index.html" class=""><a class="padding" href="/rbcli/advanced/user_config_files/index.html">User Configuration Files</a></li></ul></li>
+          <li data-nav-id="/rbcli/development/index.html" class="alwaysopen"><a class="padding" href="/rbcli/development/index.html">Development</a><ul id="R-subsections-b4f82c41674389c8b9704f843893fe69" class="morespace collapsible-menu">
+          <li data-nav-id="/rbcli/development/contributing/index.html" class=""><a class="padding" href="/rbcli/development/contributing/index.html">Contribution Guide</a></li>
+          <li data-nav-id="/rbcli/development/license/index.html" class=""><a class="padding" href="/rbcli/development/license/index.html">License Info</a></li>
+          <li data-nav-id="/rbcli/development/code_of_conduct/index.html" class=""><a class="padding" href="/rbcli/development/code_of_conduct/index.html">Code of Conduct</a></li>
+          <li data-nav-id="/rbcli/development/changelog/index.html" class=""><a class="padding" href="/rbcli/development/changelog/index.html">Changelog</a></li></ul></li>
+          <li data-nav-id="/rbcli/whoami/index.html" class=""><a class="padding" href="/rbcli/whoami/index.html">My Letter To You</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space">
+            <li><a class="padding" href="https://github.com/akhoury6/rbcli"><i class='fab fa-github'></i> Github repo</a></li>
+            <li><a class="padding" href="https://rubygems.org/gems/rbcli"><i class='far fa-gem'></i> Rubygems</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/rbcli/tutorial/30-your_first_command/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch showVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Auto Light/Dark</option>
+                      <option id="R-select-variant-relearn-light" value="relearn-light">Light</option>
+                      <option id="R-select-variant-relearn-dark" value="relearn-dark">Dark</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/rbcli/js/clipboard.min.js?1714947259" defer></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1714947259" defer></script>
+    <script src="/rbcli/js/theme.js?1714947259" defer></script>
   </body>
 </html>
-

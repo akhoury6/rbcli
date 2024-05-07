@@ -1,0 +1,9 @@
+##################################################################################
+#     Rbcli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
+##################################################################################
+module Rbcli
+  VERSION: String
+
+  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+end

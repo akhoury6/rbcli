@@ -1,10 +1,10 @@
 ---
 title: "Contribution Guide"
-date: 2019-06-20T15:07:21-04:00
+date: 2024-05-07T03:09:27-00:00
 draft: false
 weight: 10
 ---
-
+<!-- BEGIN -->
 Contributing to RBCli is the same as most open source projects:
 
 1. Fork the repository
@@ -15,74 +15,107 @@ That's all there is to it! We've also kept our acceptance criteria pretty simple
 
 # Develpment Mode
 
- To allow for easy deveopment, Rbcli has a development mode which allows a project to include rbcli from a local folder instead of the default gem path. To use it, add the following to your shell's profile (typically `~/.bash_profile` or `~/.profile`):
+To allow for easy development, Rbcli has a development mode which allows applications generated from the Rbcli tool to include Rbcli from a local folder instead of the default gem path. To use it, add the following to your shell's profile (typically `~/.profile`):
 
- ```bash
-export RBCLI_ENV='development'
-export RBCLI_DEVPATH='/path/to/rbcli/lib/rbcli'
+```bash
+export RBCLI_DEVELOPMENT='true'
 alias rbcli='/path/to/rbcli/exe/rbcli'
 ```
 
 # Code Acceptance Criteria
 
+## Tests
+
+All code changes and additions must have associated tests updated and/or added to test both the success and failure cases of the new code.
+
+To run the suite of tests locally, just run `rake spec`
+
 ## Tabs, Not Spaces
 
 Please, and thanks. We all like to use different indentation levels and styles, and this will keep us consistent between editors.
 
-For filetypes where tabs are not supported (such as YAML), please stick to using two (2) spaces.
+For filetypes where tabs are not supported (such as `yaml`), please stick to using two (2) spaces.
 
 ## Documentation for User Features
 
-For any modification that alters the way RBCli is used -- we're talking additional features, options, keyword changes, major behavioral changes, and the like -- the documentation will need to be updated as well. You'll be happy to know we designed it to make the process relatively painless.
+For any modification that alters the way RBCli is used -- additional features, options, keyword changes, behavioral changes, and the like -- the documentation will need to be updated as well. The process has been made as painless as possible.
 
-RBCli's documentation is essentially a collection of markdown files that have been compiled into a static site using [MkDocs](https://www.mkdocs.org). If you already have python and pip on your system, you can install it by running:
-
-```bash
-pip install mkdocs mkdocs-material
-```
-
-You can find the source markdown files in the `docs-src/docs` folder, and the menu organization in `docs-src/mkdocs.yml`. To preview your changes on a live site, run:
+RBCli's documentation is a collection of markdown files that have been compiled into a static site using [Hugo](https://gohugo.io) and the [Relearn Theme](https://mcshelby.github.io/hugo-theme-relearn/index.html).  You can install it by running:
 
 ```bash
-mkdocs serve
+brew install hugo 
 ```
 
-Also, don't forget to update the __Quick Reference Guide__ in the `README.md` file (the main project one) with information about your changes.
+All of the source files are in `docs-src/content`. If adding a new page, make sure that an appropriate weight is set in the header so that it shows up in the correct order on the site. You can preview your changes with:
 
-Once you've completed your edits, run the `makesite.sh` command to build the actual HTML pages automatically in the `docs` folder, from where they will be served when live.
+```bash
+rake docserver
+```
+
+When the changes are ready to be committed, compile the static site to be commited along with the code:
+
+```bash
+rake docs
+```
+
+Note: This command will also pull in and modify/add to some of the other documentation files (including `README.md`, `LICENSE.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, and `CHANGELOG.md`) if there are any updates to them. If you are changing any of this documentation, make sure that your changes are not getting overwritten.
 
 ## Deprecations
 
-If a feature needs to be deprecated, RBCli has a built-in deprecation message feature. You can leverage it by calling the following code when a deprecated command is called:
+If a feature needs to be deprecated, RBCli has a built-in deprecation message feature. Code/method removal should only happen on major version releases, as doing so will break backwards compatibility. You can leverage it by calling the following code when a deprecated command is called:
 
 ```ruby
-Rbcli::DeprecationWarning.new deprecated_command, message, version_when_code_will_be_removed
+Rbcli::DeprecationWarning.new offending_object, warn_at: nil, deprecate_at: nil, message: nil
 ```
 
 So, for example:
 
 ```ruby
-Rbcli::DeprecationWarning.new 'Rbcli::Configurate.me--first_run', 'Please use `RBCli::Configurate.hooks` as the parent block instead.', '0.3.0'
+Rbcli::DeprecationWarning.new(
+  'Rbcli::Configurate.me',  # This can also be an object -- 'self' is a good one
+  warn_at: '0.4.0',
+  deprecate_at: '0.5.0',
+  message: 'Please use `Rbcli::Configurate.cli` instead.'
+)
 ```
 
-will display the following message to the user, in red, any any time the application is run:
+This will display a warning or error to the user (using the Logger) depending on the version they are using. The text is as follows (depending on log format):
 
 ```text
-DEPRECATION WRNING: The feature `Rbcli::Configurate.me--post_hook` has been deprecated. Please use `RBCli::Configurate.hooks` as the parent block instead. This feature will be removed in version 0.3.0.
+Warning:
+WARN  || DEPR || DEPRECATION WARNING -- Rbcli::Configurate.me -- This method is scheduled to be removed on version 0.5.0. You are on version 0.4.0.
+WARN  || DEPR || Please use `RBCli::Configurate.cli` as the Configurate block instead.
+
+Error:
+ERROR || DEPR || DEPRECATION ERROR -- Rbcli::Configurate.me -- The removal of this method is imminent. Please update your application accordingly.
+ERROR || DEPR || Please use `RBCli::Configurate.cli` as the Configurate block instead.
 ```
 
-Additionally, it will place the same line in the logs using `Rbcli.logger.warn` if logging is enabled.
+## Versioning Scheme
 
-If a deprecation warning has been added, please remember to mention it in the pull request so that others can update it later.
+Rbcli uses [Semantic Versioning](https://semver.org), following the `MAJOR.MINOR.PATCH` paradigm. This means that breaking changes will only happen on major version updates.
+<!-- END -->
 
-# Maintainer's Notes
+# Maintainer Notes
 
 To install this gem onto your local machine from source, run `bundle exec rake install`.
 
-To release a new version, follow theese steps:
+To release a new version, make sure your local branches are up to date with the upstream repo and do:
 
-1. Update the version number in `version.rb`
-2. Run `bundle exec rake install`, which will update `gemfile.lock` with the correct version and all dependency changes
-3. Run `docs-src/makesite.sh`, which re-compiles the documentation and pulls in the changelog and quick reference automatically
-4. Commit the above changes to master with a commit message of "vX.X.X" (where X.X.X is the version number), but do not push
-5. Run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+1. Update the version number in the `VERSION` file in the top level directory, leaving no whitespace or newlines in the file
+2. Update the version number and release date in `CHANGELOG.md`
+3. Run the following commands:
+   ```shell
+   export RBCLI_VERSION=$(cat './VERSION')
+   bundle exec rake docs
+   bundle exec rake build
+   git add -A
+   git commit -m "v${RBCLI_VERSION}"
+   ## The next two lines are if merging the changes locally from a separate branch.
+   ## If github PR's have already been merged and you're working off of master already, ignore them.
+   git checkout master
+   git merge
+   ## Continue here
+   bundle exec rake release
+   ```
+   This will automatically create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).

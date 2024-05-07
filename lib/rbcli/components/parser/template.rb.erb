@@ -1,0 +1,35 @@
+Rbcli::Configurate.cli do
+  <%- if @showdocs -%>
+  ##### Core Configuration (Required) #####
+  # appname          (Optional) - Defaults to the name of the executable
+  # author           (Optional) - A name or array of names
+  # email            (Optional) - An email for users to contact
+  # version          (Optional) - major.minor.patch notation, required if using update checks
+  # copyright_year   (Optional) - Self explanatory
+  # license          (Optional) - Convention is to use an identifier from here: https://spdx.org/licenses/
+  # helptext         (Optional) - Text that gets shown with --help or -h
+  <%- end -%>
+  appname nil
+  author nil
+  email nil
+  version <%= @appname.capitalize %>::VERSION
+  copyright_year <%= Time.now.year %>
+  license nil
+  helptext "This text shows up in `<%= @appname.downcase %> --help`"
+  <%- if @showdocs -%>
+  ##### CLI Options (Optional) #####
+  # These appear to commands as `opts`.
+  # Format:
+  #   opt :name, "Description"[, optional arguments ]
+  # Optional Arguments:
+  #   long: Specify the long form (--long) version of an argument. (Default: same as the name)
+  #   short: Specify the short form (-s) version of an argument. (Default: first letter of the name)
+  #   type: Specify the type. Valid options are :boolean, :float, :integer, :string, :io, :date. (Default: :boolean)
+  #     If the plural form of any of the above are used (i.e. ':strings') then the user can provide a comma-delimited list on the command line (--param=foo,bar)
+  #   required: If set to true, requires that this option is provided by the user. (Default: false)
+  #   multi: If set to true, allows the option to be provided multiple times (--param --param, or in short form, -pp). (Default: false)
+  #     When using this with a :boolean type, rather than returning `true` or `false`, it will return a count of the number of times the parameter was passed.
+  #   permitted: If set to an array, restricts input to the values within that array. (Default: nil (no restrictions))
+  <%- end -%>
+  opt :verbose, "Twice or more enables very-verbose output", multi: true
+end

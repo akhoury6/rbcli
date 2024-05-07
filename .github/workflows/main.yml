@@ -1,0 +1,31 @@
+##################################################################################
+#     Rbcli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
+##################################################################################
+name: Ruby
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.3.0'
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run the tests
+        run: rspec

@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+####<%= @appname.gsub(/./,'#') %>####
+### <%= @appname.capitalize %> ###
+####<%= @appname.gsub(/./,'#') %>####
+
+<%- if @development -%>
+require '<%= File.expand_path(File.join(RBCLI_LIBDIR, '..', 'rbcli.rb')) %>'
+<%- elsif @use_bundler -%>
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  ruby '>= <%= RUBY_VERSION %>'
+  gem 'rbcli', '~> <%= Rbcli::VERSION %>', require: true
+end
+<%- else -%>
+require 'rbcli'
+<%- end -%>
+
+module <%= @appname.capitalize %>
+  VERSION = '0.0.0'
+end
+
+##########################
+## Configuration        ##
+##########################
+
+<%= render_component('parser') %>
+
+<%= render_component('logger') %>
+
+<%= render_component('config') %>
+
+<%= render_component('envvars') %>
+
+<%= render_component('hooks') %>
+
+<%= render_component('updatechecker') %>
+
+##########################
+## Command Declarations ##
+##########################
+
+<%= render_component('commands', 'command.rb.erb') %>
+
+<%= render_component('commands', 'script.rb.erb') %>
+
+Rbcli.go!

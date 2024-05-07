@@ -1,710 +1,125 @@
 <!DOCTYPE html>
-<html lang="en" class="js csstransforms3d">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.125.1">
-    <meta name="description" content="">
-
-
-    <link rel="icon" href="/rbcli/images/favicon.png" type="image/png">
-
-    <title>Contribution Guide :: RBCli Documentation</title>
-
-    
-    <link href="/rbcli/css/nucleus.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/fontawesome-all.min.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/hybrid.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/featherlight.min.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/perfect-scrollbar.min.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/auto-complete.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/atom-one-dark-reasonable.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/theme.css?1713907739" rel="stylesheet">
-    <link href="/rbcli/css/hugo-theme.css?1713907739" rel="stylesheet">
-    
-    <link href="/rbcli/css/theme-blue.css?1713907739" rel="stylesheet">
-    
-    
-
-    <script src="/rbcli/js/jquery-3.3.1.min.js?1713907739"></script>
-
-    <style>
-      :root #header + #content > #left > #rlblock_left{
-          display:none !important;
-      }
-      
-    </style>
-    
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.125.5">
+    <meta name="generator" content="Relearn 6.0.0+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Contributing to RBCli is the same as most open source projects:
+Fork the repository Create your own branch Submit a pull request when ready That’s all there is to it! We’ve also kept our acceptance criteria pretty simple, as you’ll see below. Feel free to submit a pull request even if you don’t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.">
+    <meta name="author" content="Andrew Khoury">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://akhoury6.github.io/rbcli/images/hero.png">
+    <meta name="twitter:title" content="Contribution Guide :: Rbcli Documentation">
+    <meta name="twitter:description" content="Contributing to RBCli is the same as most open source projects:
+Fork the repository Create your own branch Submit a pull request when ready That’s all there is to it! We’ve also kept our acceptance criteria pretty simple, as you’ll see below. Feel free to submit a pull request even if you don’t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.">
+    <meta property="og:url" content="https://akhoury6.github.io/rbcli/development/contributing/index.html">
+    <meta property="og:site_name" content="Rbcli Documentation">
+    <meta property="og:title" content="Contribution Guide :: Rbcli Documentation">
+    <meta property="og:description" content="Contributing to RBCli is the same as most open source projects:
+Fork the repository Create your own branch Submit a pull request when ready That’s all there is to it! We’ve also kept our acceptance criteria pretty simple, as you’ll see below. Feel free to submit a pull request even if you don’t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.">
+    <meta property="og:locale" content="en-us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Development">
+    <meta property="article:published_time" content="2024-05-07T03:09:27+00:00">
+    <meta property="article:modified_time" content="2024-05-07T03:09:27+00:00">
+    <meta property="og:image" content="https://akhoury6.github.io/rbcli/images/hero.png">
+    <meta itemprop="name" content="Contribution Guide :: Rbcli Documentation">
+    <meta itemprop="description" content="Contributing to RBCli is the same as most open source projects:
+Fork the repository Create your own branch Submit a pull request when ready That’s all there is to it! We’ve also kept our acceptance criteria pretty simple, as you’ll see below. Feel free to submit a pull request even if you don’t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.">
+    <meta itemprop="datePublished" content="2024-05-07T03:09:27+00:00">
+    <meta itemprop="dateModified" content="2024-05-07T03:09:27+00:00">
+    <meta itemprop="wordCount" content="752">
+    <meta itemprop="image" content="https://akhoury6.github.io/rbcli/images/hero.png">
+    <title>Contribution Guide :: Rbcli Documentation</title>
+    <link href="/rbcli/images/favicon.png?1715055307" rel="icon" type="image/png">
+    <link href="/rbcli/css/fontawesome-all.min.css?1715055307" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/rbcli/css/fontawesome-all.min.css?1715055307" rel="stylesheet"></noscript>
+    <link href="/rbcli/css/nucleus.css?1715055307" rel="stylesheet">
+    <link href="/rbcli/css/auto-complete.css?1715055307" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/rbcli/css/auto-complete.css?1715055307" rel="stylesheet"></noscript>
+    <link href="/rbcli/css/perfect-scrollbar.min.css?1715055307" rel="stylesheet">
+    <link href="/rbcli/css/fonts.css?1715055307" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/rbcli/css/fonts.css?1715055307" rel="stylesheet"></noscript>
+    <link href="/rbcli/css/theme.css?1715055307" rel="stylesheet">
+    <link href="/rbcli/css/theme-relearn-auto.css?1715055307" rel="stylesheet" id="R-variant-style">
+    <link href="/rbcli/css/chroma-relearn-auto.css?1715055307" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/rbcli/css/variant.css?1715055307" rel="stylesheet">
+    <link href="/rbcli/css/print.css?1715055307" rel="stylesheet" media="print">
+    <script src="/rbcli/js/variant.js?1715055307"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/akhoury6.github.io\/rbcli';
+      window.index_js_url="/rbcli/index.search.js";
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
   </head>
-  <body class="" data-url="/rbcli/development/contributing/">
-    <nav id="sidebar" class="">
-
-
-
-  <div id="header-wrapper">
-    <div id="header">
-      <a id="logo" href="https://akhoury6.github.io/rbcli/" style="font-size: 40px">
-  <span class="fas fa-terminal"></span>&nbsp;𝚁𝙱𝙲𝚕𝚒
-</a>
-
-    </div>
-    
-        <div class="searchbox">
-    <label for="search-by"><i class="fas fa-search"></i></label>
-    <input data-search-input id="search-by" type="search" placeholder="Search...">
-    <span data-search-clear=""><i class="fas fa-times"></i></span>
-</div>
-
-<script type="text/javascript" src="/rbcli/js/lunr.min.js?1713907739"></script>
-<script type="text/javascript" src="/rbcli/js/auto-complete.js?1713907739"></script>
-<script type="text/javascript">
-    
-        var baseurl = "https:\/\/akhoury6.github.io\/rbcli\/";
-    
-</script>
-<script type="text/javascript" src="/rbcli/js/search.js?1713907739"></script>
-
-    
-  </div>
-
-    <div class="highlightable">
-    <ul class="topics">
-
-        
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/quick_reference/" title="Quick Reference" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/quick_reference/">
-          Quick Reference
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/tutorial/" title="Tutorial" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/tutorial/">
-          Tutorial
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/10-getting_started/" title="Getting Started" class="dd-item ">
-        <a href="/rbcli/tutorial/10-getting_started/">
-        <b>1. </b>Getting Started
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/20-project_layout/" title="The Project Layout" class="dd-item ">
-        <a href="/rbcli/tutorial/20-project_layout/">
-        <b>2. </b>The Project Layout
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/30-your_first_command/" title="Your First Command" class="dd-item ">
-        <a href="/rbcli/tutorial/30-your_first_command/">
-        <b>3. </b>Your First Command
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/40-options_parameters_and_arguments/" title="Options, Parameters, and Arguments" class="dd-item ">
-        <a href="/rbcli/tutorial/40-options_parameters_and_arguments/">
-        <b>4. </b>Options, Parameters, and Arguments
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/tutorial/50-publishing/" title="Publishing Your Application" class="dd-item ">
-        <a href="/rbcli/tutorial/50-publishing/">
-        <b>5. </b>Publishing Your Application
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/advanced/" title="Advanced" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/advanced/">
-          Advanced
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/automatic_updates/" title="Automatic Updates" class="dd-item ">
-        <a href="/rbcli/advanced/automatic_updates/">
-        Automatic Updates
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/command_types/" title="Command Types" class="dd-item ">
-        <a href="/rbcli/advanced/command_types/">
-        Command Types
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/distributed_state_locking/" title="Distributed State and Locking" class="dd-item ">
-        <a href="/rbcli/advanced/distributed_state_locking/">
-        Distributed State and Locking
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/hooks/" title="Execution Hooks" class="dd-item ">
-        <a href="/rbcli/advanced/hooks/">
-        Execution Hooks
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/interactive_commands/" title="Interactive Commands" class="dd-item ">
-        <a href="/rbcli/advanced/interactive_commands/">
-        Interactive Commands
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/logging/" title="Logging" class="dd-item ">
-        <a href="/rbcli/advanced/logging/">
-        Logging
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/remote_execution/" title="Remote Execution" class="dd-item ">
-        <a href="/rbcli/advanced/remote_execution/">
-        Remote Execution
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/state_storage/" title="State Storage" class="dd-item ">
-        <a href="/rbcli/advanced/state_storage/">
-        State Storage
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/advanced/user_config_files/" title="User Configuration Files" class="dd-item ">
-        <a href="/rbcli/advanced/user_config_files/">
-        User Configuration Files
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/development/" title="Development" class="dd-item 
-        parent
-        
-        
-        ">
-      <a href="/rbcli/development/">
-          Development
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/contributing/" title="Contribution Guide" class="dd-item active">
-        <a href="/rbcli/development/contributing/">
-        Contribution Guide
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/license/" title="License Info" class="dd-item ">
-        <a href="/rbcli/development/license/">
-        License Info
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/code_of_conduct/" title="Code of Conduct" class="dd-item ">
-        <a href="/rbcli/development/code_of_conduct/">
-        Code of Conduct
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/rbcli/development/changelog/" title="Changelog" class="dd-item ">
-        <a href="/rbcli/development/changelog/">
-        Changelog
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/rbcli/whoami/" title="My Letter To You" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/rbcli/whoami/">
-          My Letter To You
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-         
-    </ul>
-
-    
-    
-      <section id="shortcuts">
-        <h3>More</h3>
-        <ul>
-          
-              <li> 
-                  <a class="padding" href="https://github.com/akhoury6/rbcli"><i class='fab fa-github'></i> Github repo</a>
-              </li>
-          
-              <li> 
-                  <a class="padding" href="https://rubygems.org/gems/rbcli"><i class='far fa-gem'></i> Rubygems</a>
-              </li>
-          
-        </ul>
-      </section>
-    
-
-    
-    <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
-
-    </section>
-  </div>
-</nav>
-
-
-
-
-        <section id="body">
-        <div id="overlay"></div>
-        <div class="padding highlightable">
-              
-              <div>
-                <div id="top-bar">
-                
-                
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                    <span id="sidebar-toggle-span">
-                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                          <i class="fas fa-bars"></i>
-                        </a>
-                    </span>
-                  
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
-                  <span class="links">
-                 
-                 
-                    
-          
-          
-            
-            
-          
-          
-            
-            
-          
-          
-            <a href='/rbcli/'></a> > <a href='/rbcli/development/'>Development</a> > Contribution Guide
-          
-        
-          
-        
-          
-        
-                 
-                  </span>
-                </div>
-                
-                    <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/rbcli/development/contributing/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"><nav class="TableOfContents">
   <ul>
+    <li><a href="#tests">Tests</a></li>
     <li><a href="#tabs-not-spaces">Tabs, Not Spaces</a></li>
     <li><a href="#documentation-for-user-features">Documentation for User Features</a></li>
     <li><a href="#deprecations">Deprecations</a></li>
+    <li><a href="#versioning-scheme">Versioning Scheme</a></li>
   </ul>
 </nav>
-    </div>
-</div>
-
-                
+                </div>
               </div>
             </div>
-            
-        <div id="head-tags">
-        
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/rbcli/development/index.html"><span itemprop="name">Development</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Contribution Guide</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/akhoury6/rbcli/edit/master/docs-src/content/development/contributing.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/rbcli/development/index.html" title="Development (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/rbcli/development/license/index.html" title="License Info (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div id="body-inner">
-          
-            <h1>
-              
-              Contribution Guide
-            </h1>
-          
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
 
-        
+<h1 id="contribution-guide">Contribution Guide</h1>
 
-
+<!-- raw HTML omitted -->
 <p>Contributing to RBCli is the same as most open source projects:</p>
 <ol>
 <li>Fork the repository</li>
@@ -713,489 +128,169 @@
 </ol>
 <p>That&rsquo;s all there is to it! We&rsquo;ve also kept our acceptance criteria pretty simple, as you&rsquo;ll see below. Feel free to submit a pull request even if you don&rsquo;t meet it if you would like your code or feature to be reviewed first; we do want to be mindful of your time and will review submissions before they are polished.</p>
 <h1 id="develpment-mode">Develpment Mode</h1>
-<p>To allow for easy deveopment, Rbcli has a development mode which allows a project to include rbcli from a local folder instead of the default gem path. To use it, add the following to your shell&rsquo;s profile (typically <code>~/.bash_profile</code> or <code>~/.profile</code>):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export RBCLI_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;development&#39;</span>
-</span></span><span style="display:flex;"><span>export RBCLI_DEVPATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/path/to/rbcli/lib/rbcli&#39;</span>
-</span></span><span style="display:flex;"><span>alias rbcli<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/path/to/rbcli/exe/rbcli&#39;</span>
-</span></span></code></pre></div><h1 id="code-acceptance-criteria">Code Acceptance Criteria</h1>
+<p>To allow for easy development, Rbcli has a development mode which allows applications generated from the Rbcli tool to include Rbcli from a local folder instead of the default gem path. To use it, add the following to your shell&rsquo;s profile (typically <code>~/.profile</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export RBCLI_DEVELOPMENT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;true&#39;</span>
+</span></span><span style="display:flex;"><span>alias rbcli<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/path/to/rbcli/exe/rbcli&#39;</span></span></span></code></pre></div><h1 id="code-acceptance-criteria">Code Acceptance Criteria</h1>
+<h2 id="tests">Tests</h2>
+<p>All code changes and additions must have associated tests updated and/or added to test both the success and failure cases of the new code.</p>
+<p>To run the suite of tests locally, just run <code>rake spec</code></p>
 <h2 id="tabs-not-spaces">Tabs, Not Spaces</h2>
 <p>Please, and thanks. We all like to use different indentation levels and styles, and this will keep us consistent between editors.</p>
-<p>For filetypes where tabs are not supported (such as YAML), please stick to using two (2) spaces.</p>
+<p>For filetypes where tabs are not supported (such as <code>yaml</code>), please stick to using two (2) spaces.</p>
 <h2 id="documentation-for-user-features">Documentation for User Features</h2>
-<p>For any modification that alters the way RBCli is used &ndash; we&rsquo;re talking additional features, options, keyword changes, major behavioral changes, and the like &ndash; the documentation will need to be updated as well. You&rsquo;ll be happy to know we designed it to make the process relatively painless.</p>
-<p>RBCli&rsquo;s documentation is essentially a collection of markdown files that have been compiled into a static site using <a href="https://www.mkdocs.org">MkDocs</a>. If you already have python and pip on your system, you can install it by running:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install mkdocs mkdocs-material
-</span></span></code></pre></div><p>You can find the source markdown files in the <code>docs-src/docs</code> folder, and the menu organization in <code>docs-src/mkdocs.yml</code>. To preview your changes on a live site, run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdocs serve
-</span></span></code></pre></div><p>Also, don&rsquo;t forget to update the <strong>Quick Reference Guide</strong> in the <code>README.md</code> file (the main project one) with information about your changes.</p>
-<p>Once you&rsquo;ve completed your edits, run the <code>makesite.sh</code> command to build the actual HTML pages automatically in the <code>docs</code> folder, from where they will be served when live.</p>
+<p>For any modification that alters the way RBCli is used &ndash; additional features, options, keyword changes, behavioral changes, and the like &ndash; the documentation will need to be updated as well. The process has been made as painless as possible.</p>
+<p>RBCli&rsquo;s documentation is a collection of markdown files that have been compiled into a static site using <a href="https://gohugo.io" rel="external" target="_self">Hugo</a> and the <a href="https://mcshelby.github.io/hugo-theme-relearn/index.html" rel="external" target="_self">Relearn Theme</a>.  You can install it by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo </span></span></code></pre></div><p>All of the source files are in <code>docs-src/content</code>. If adding a new page, make sure that an appropriate weight is set in the header so that it shows up in the correct order on the site. You can preview your changes with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rake docserver</span></span></code></pre></div><p>When the changes are ready to be committed, compile the static site to be commited along with the code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rake docs</span></span></code></pre></div><p>Note: This command will also pull in and modify/add to some of the other documentation files (including <code>README.md</code>, <code>LICENSE.md</code>, <code>CONTRIBUTING.md</code>, <code>CODE_OF_CONDUCT.md</code>, and <code>CHANGELOG.md</code>) if there are any updates to them. If you are changing any of this documentation, make sure that your changes are not getting overwritten.</p>
 <h2 id="deprecations">Deprecations</h2>
-<p>If a feature needs to be deprecated, RBCli has a built-in deprecation message feature. You can leverage it by calling the following code when a deprecated command is called:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DeprecationWarning</span><span style="color:#f92672">.</span>new deprecated_command, message, version_when_code_will_be_removed
-</span></span></code></pre></div><p>So, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DeprecationWarning</span><span style="color:#f92672">.</span>new <span style="color:#e6db74">&#39;Rbcli::Configurate.me--first_run&#39;</span>, <span style="color:#e6db74">&#39;Please use `RBCli::Configurate.hooks` as the parent block instead.&#39;</span>, <span style="color:#e6db74">&#39;0.3.0&#39;</span>
-</span></span></code></pre></div><p>will display the following message to the user, in red, any any time the application is run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>DEPRECATION WRNING: The feature `Rbcli::Configurate.me--post_hook` has been deprecated. Please use `RBCli::Configurate.hooks` as the parent block instead. This feature will be removed in version 0.3.0.
-</span></span></code></pre></div><p>Additionally, it will place the same line in the logs using <code>Rbcli.logger.warn</code> if logging is enabled.</p>
-<p>If a deprecation warning has been added, please remember to mention it in the pull request so that others can update it later.</p>
-<h1 id="maintainers-notes">Maintainer&rsquo;s Notes</h1>
+<p>If a feature needs to be deprecated, RBCli has a built-in deprecation message feature. Code/method removal should only happen on major version releases, as doing so will break backwards compatibility. You can leverage it by calling the following code when a deprecated command is called:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DeprecationWarning</span><span style="color:#f92672">.</span>new offending_object, <span style="color:#e6db74">warn_at</span>: <span style="color:#66d9ef">nil</span>, <span style="color:#e6db74">deprecate_at</span>: <span style="color:#66d9ef">nil</span>, <span style="color:#e6db74">message</span>: <span style="color:#66d9ef">nil</span></span></span></code></pre></div><p>So, for example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rbcli</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DeprecationWarning</span><span style="color:#f92672">.</span>new(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;Rbcli::Configurate.me&#39;</span>,  <span style="color:#75715e"># This can also be an object -- &#39;self&#39; is a good one</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">warn_at</span>: <span style="color:#e6db74">&#39;0.4.0&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">deprecate_at</span>: <span style="color:#e6db74">&#39;0.5.0&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">message</span>: <span style="color:#e6db74">&#39;Please use `Rbcli::Configurate.cli` instead.&#39;</span>
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div><p>This will display a warning or error to the user (using the Logger) depending on the version they are using. The text is as follows (depending on log format):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Warning:
+</span></span><span style="display:flex;"><span>WARN  || DEPR || DEPRECATION WARNING -- Rbcli::Configurate.me -- This method is scheduled to be removed on version 0.5.0. You are on version 0.4.0.
+</span></span><span style="display:flex;"><span>WARN  || DEPR || Please use `RBCli::Configurate.cli` as the Configurate block instead.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Error:
+</span></span><span style="display:flex;"><span>ERROR || DEPR || DEPRECATION ERROR -- Rbcli::Configurate.me -- The removal of this method is imminent. Please update your application accordingly.
+</span></span><span style="display:flex;"><span>ERROR || DEPR || Please use `RBCli::Configurate.cli` as the Configurate block instead.</span></span></code></pre></div><h2 id="versioning-scheme">Versioning Scheme</h2>
+<p>Rbcli uses <a href="https://semver.org" rel="external" target="_self">Semantic Versioning</a>, following the <code>MAJOR.MINOR.PATCH</code> paradigm. This means that breaking changes will only happen on major version updates.</p>
+<!-- raw HTML omitted -->
+<h1 id="maintainer-notes">Maintainer Notes</h1>
 <p>To install this gem onto your local machine from source, run <code>bundle exec rake install</code>.</p>
-<p>To release a new version, follow theese steps:</p>
+<p>To release a new version, make sure your local branches are up to date with the upstream repo and do:</p>
 <ol>
-<li>Update the version number in <code>version.rb</code></li>
-<li>Run <code>bundle exec rake install</code>, which will update <code>gemfile.lock</code> with the correct version and all dependency changes</li>
-<li>Run <code>docs-src/makesite.sh</code>, which re-compiles the documentation and pulls in the changelog and quick reference automatically</li>
-<li>Commit the above changes to master with a commit message of &ldquo;vX.X.X&rdquo; (where X.X.X is the version number), but do not push</li>
-<li>Run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</li>
+<li>Update the version number in the <code>VERSION</code> file in the top level directory, leaving no whitespace or newlines in the file</li>
+<li>Update the version number and release date in <code>CHANGELOG.md</code></li>
+<li>Run the following commands:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>export RBCLI_VERSION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">&#39;./VERSION&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>bundle exec rake docs
+</span></span><span style="display:flex;"><span>bundle exec rake build
+</span></span><span style="display:flex;"><span>git add -A
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;v</span><span style="color:#e6db74">${</span>RBCLI_VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## The next two lines are if merging the changes locally from a separate branch.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## If github PR&#39;s have already been merged and you&#39;re working off of master already, ignore them.</span>
+</span></span><span style="display:flex;"><span>git checkout master
+</span></span><span style="display:flex;"><span>git merge
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Continue here</span>
+</span></span><span style="display:flex;"><span>bundle exec rake release</span></span></code></pre></div>This will automatically create a git tag for the version, push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org" rel="external" target="_self">rubygems.org</a>.</li>
 </ol>
 
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a id="logo" href="https://akhoury6.github.io/rbcli/" style="font-size: 40px">
+  <span class="fas fa-terminal"></span>&nbsp;𝚁𝙱𝙲𝚕𝚒
+</a>
 
-<footer class="footline">
-	
-</footer>
+        </div>
 
-        
-        </div> 
-        
-
+        <search><form action="/rbcli/search.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/rbcli/js/auto-complete.js?1715055307" defer></script>
+        <script src="/rbcli/js/lunr/lunr.min.js?1715055307" defer></script>
+        <script src="/rbcli/js/lunr/lunr.stemmer.support.min.js?1715055307" defer></script>
+        <script src="/rbcli/js/lunr/lunr.multi.min.js?1715055307" defer></script>
+        <script src="/rbcli/js/lunr/lunr.en.min.js?1715055307" defer></script>
+        <script src="/rbcli/js/search.js?1715055307" defer></script>
       </div>
-
-    <div id="navigation">
-        
-        
-        
-        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-        
-        
-
-
-	 
-	 
-		
-			<a class="nav nav-prev" href="/rbcli/development/" title="Development"> <i class="fa fa-chevron-left"></i></a>
-		
-		
-			<a class="nav nav-next" href="/rbcli/development/license/" title="License Info" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
-		
-	
-    </div>
-
-    </section>
-    
-    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
-      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
-    </div>
-    <script src="/rbcli/js/clipboard.min.js?1713907739"></script>
-    <script src="/rbcli/js/perfect-scrollbar.min.js?1713907739"></script>
-    <script src="/rbcli/js/perfect-scrollbar.jquery.min.js?1713907739"></script>
-    <script src="/rbcli/js/jquery.sticky.js?1713907739"></script>
-    <script src="/rbcli/js/featherlight.min.js?1713907739"></script>
-    <script src="/rbcli/js/highlight.pack.js?1713907739"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rbcli/js/modernizr.custom-3.6.0.js?1713907739"></script>
-    <script src="/rbcli/js/learn.js?1713907739"></script>
-    <script src="/rbcli/js/hugo-learn.js?1713907739"></script>
-
-    <link href="/rbcli/mermaid/mermaid.css?1713907739" rel="stylesheet" />
-    <script src="/rbcli/mermaid/mermaid.js?1713907739"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
-    
-
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
+          <ul class="enlarge morespace collapsible-menu">
+          <li data-nav-id="/rbcli/quick_reference/index.html" class=""><a class="padding" href="/rbcli/quick_reference/index.html">Quick Reference</a></li>
+          <li data-nav-id="/rbcli/development/index.html" class="parent alwaysopen"><a class="padding" href="/rbcli/development/index.html">Development</a><ul id="R-subsections-b4f82c41674389c8b9704f843893fe69" class="morespace collapsible-menu">
+          <li data-nav-id="/rbcli/development/contributing/index.html" class="active"><a class="padding" href="/rbcli/development/contributing/index.html">Contribution Guide</a></li>
+          <li data-nav-id="/rbcli/development/license/index.html" class=""><a class="padding" href="/rbcli/development/license/index.html">License Info</a></li>
+          <li data-nav-id="/rbcli/development/code_of_conduct/index.html" class=""><a class="padding" href="/rbcli/development/code_of_conduct/index.html">Code of Conduct</a></li>
+          <li data-nav-id="/rbcli/development/changelog/index.html" class=""><a class="padding" href="/rbcli/development/changelog/index.html">Changelog</a></li></ul></li>
+          <li data-nav-id="/rbcli/whoami/index.html" class=""><a class="padding" href="/rbcli/whoami/index.html">My Letter To You</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space">
+            <li><a class="padding" href="https://github.com/akhoury6/rbcli"><i class='fab fa-github'></i> Github repo</a></li>
+            <li><a class="padding" href="https://rubygems.org/gems/rbcli"><i class='far fa-gem'></i> Rubygems</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/rbcli/development/contributing/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch showVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Auto Light/Dark</option>
+                      <option id="R-select-variant-relearn-light" value="relearn-light">Light</option>
+                      <option id="R-select-variant-relearn-dark" value="relearn-dark">Dark</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/rbcli/js/clipboard.min.js?1715055307" defer></script>
+    <script src="/rbcli/js/perfect-scrollbar.min.js?1715055307" defer></script>
+    <script src="/rbcli/js/theme.js?1715055307" defer></script>
   </body>
 </html>
-

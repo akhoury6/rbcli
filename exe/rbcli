@@ -1,261 +1,200 @@
 #!/usr/bin/env ruby
 ##################################################################################
-#     RBCli -- A framework for developing command line applications in Ruby      #
-#     Copyright (C) 2018 Andrew Khoury                                           #
-#                                                                                #
-#     This program is free software: you can redistribute it and/or modify       #
-#     it under the terms of the GNU General Public License as published by       #
-#     the Free Software Foundation, either version 3 of the License, or          #
-#     (at your option) any later version.                                        #
-#                                                                                #
-#     This program is distributed in the hope that it will be useful,            #
-#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
-#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
-#     GNU General Public License for more details.                               #
-#                                                                                #
-#     You should have received a copy of the GNU General Public License          #
-#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
-#                                                                                #
-#     For questions regarding licensing, please contact andrew@blacknex.us       #
+#     Rbcli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
 ##################################################################################
+BASEDIR = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+require File.join(BASEDIR, 'lib', 'rbcli.rb')
+require File.join(RBCLI_TOOLDIR, 'helpers.rb')
 
-require "#{File.dirname(__FILE__)}/../lib/rbcli.rb"
-
-Rbcli::Configurate.me do
-	scriptname __FILE__.split('/')[-1]
-	version Rbcli::VERSION
-	description 'RBCli initialization tool'
-	autoupdate gem: 'rbcli', force_update: false, message: "Please run `gem update rbcli` to upgrade to the latest version."
+Rbcli::Configurate.cli do
+  appname 'Rbcli'
+  author 'Andrew Khoury'
+  email 'akhoury@live.com'
+  version Rbcli::VERSION
+  copyright_year 2024
+  license 'MIT'
+  helptext "Helptext!"
+  opt :version, "Print version and exit", :short => :none
 end
 
-require "#{File.dirname(__FILE__)}/../lib/rbcli-tool.rb"
-
-class Docs < Rbcli::Command
-	description 'Show Documentation (Beta)'
-
-	action do
-		readme = "#{File.dirname(__FILE__)}/../README.md"
-		begin
-			CLIMarkdown::Converter.new([readme])
-		rescue Errno::EPIPE
-			# Empty
-		end
-	end
+Rbcli::Configurate.logger do
+  logger target: :stdout,
+         level: ENV['RBCLI_DEVELOPMENT'] == 'true' ? :debug : :info,
+         format: ENV['RBCLI_DEVELOPMENT'] == 'true' ? :simple : :display
 end
 
-class License < Rbcli::Command
-	description 'Shows Copyright and License Info'
-	usage nil
-
-	parameter :full, 'Display Full License Text', default: false
-
-	action do |params|
-		puts File.read("#{File.dirname(__FILE__)}/../LICENSE.txt") if params[:full]
-		puts <<-EOF
-RBCli  Copyright (C) 2018 Andrew Khoury
-This program comes with ABSOLUTELY NO WARRANTY.
-This is free software, and you are welcome to redistribute it
-under certain conditions.
-If you wish to release this library as part of commercial software,
-please contact andrew@blacknex.us.
-EOF
-		puts "Type `rbcli license --full' to show the license text." unless params[:full]
-	end
+Rbcli::Configurate.updatechecker do
+  gem 'rbcli', force_update: false, message: "Please run `gem update rbcli` to upgrade to the latest version."
 end
 
-class Init < Rbcli::Command
-	description 'Initialize a skeleton RBCli project.'
-	usage <<-EOF
-This will generate a new project structure under the current directory. Use -t to specify the type:
-
-
-Standard: A complete RBCli project structure. Recommended for most applications, it provides
-          a framework for organizing code and creating a gem to be installed/distributed.
-
-Mini:     A single-file RBCli project. All features are supported, but project structure is left to the developer.
-          Recommended for smaller applications, or for integrating RBCli into an existing application.
-
-Micro:    A single-file, minimal RBCli project. Similar to a mini project, but only the minimal required code is
-          generated. Recommended for rapid prototyping of scripts, for advanced users only.
-EOF
-
-	parameter :name, 'Name of project to generate', type: :string, default: File.basename(Dir.pwd), required: true, prompt: 'Enter a name'
-	parameter :type, 'Specify project type', type: :string, permitted: %w(standard mini micro), default: 'standard'
-	parameter :description, 'A description of the project', type: :string, default: 'TODO: Description goes here'
-
-	action do |params, args, global_opts, config|
-		dest = Dir.pwd
-
-		# Prepare template vars
-		template_vars = {
-				cmdname: params[:name],
-				modulename: params[:name].split('-').each(&:capitalize!).join,
-				description: params[:description],
-				rbcli_version: Rbcli::VERSION
-		}
-
-		proj = RBCliTool::Project.new(dest, template_vars)
-
-		# if proj.exist?
-		# 	RBCliTool.continue_confirmation "The project or file #{params[:name]} already exists; contents will be overwritten."
-		# 	FileUtils.rm_rf dest
-		# end
-
-		case params[:type]
-		when 'micro' # Micro: Single File, simplified
-			success = proj.create_micro
-		when 'mini' # Mini: Single File
-			success = proj.create_mini
-		else # Standard; full project structure
-			success = proj.create
-		end # END case params[:type]
-
-		if success
-			puts "\nInitialization Complete!\n"
-		else
-			puts "\nAn RBCli Project already exists in the current or specified directory tree. Please delete the project or run this command from a different directory.\n"
-		end
-	end
+Rbcli::Configurate.envvars do
+  prefix 'RBCLI'
+  envvar 'RBCLI_DEVELOPMENT', false
 end
 
-class Command < Rbcli::Command
-	description 'Generate an Rbcli Command under the current project'
-	usage <<-EOF
-This will generate a new command under the current RBCli project.
+Rbcli.command "portable" do
+  description 'Creates a portable Rbcli executable'
+  usage "(--(d)ocs|--use-(b)undler|--(f)orce) <application_name>"
+  helptext <<~HELPTEXT
+    This will initialize a portable Rbcli project in the current directory.
 
-Please run this command from within the project's directory structure.
-EOF
+    A single executable file will be created with all of the Rbcli configuration 
+    in it. This setup is ideal for creating an executable that can be easily transferred to
+    different systems, or for dropping into a pre-existing project.
 
-	parameter :name, 'Name of command to generate', type: :string, required: true
-	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
-	parameter :usagetext, 'Usage help text for the command', type: :string, default: 'TODO: Usage text goes here'
+    If you'd prefer a complete project structure, run `rbcli gem --help` for more information.
+  HELPTEXT
 
-	action do |params, args, global_opts, config|
-		# First we check that we are working within a project folder
-		project_root = RBCliTool::Project.find_root(Dir.pwd)
-		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
+  parameter :annotate, "Add annotations and examples for a more guided build"
+  parameter :use_bundler, "Use bundler inline for dependencies", short: :b
+  parameter :force, "Overwrite files without prompting"
 
-		# Prepare template vars
-		template_vars = {
-				name: params[:name],
-				description: params[:description],
-				usage_text: params[:usagetext],
-				rbcli_version: Rbcli::VERSION
-		}
-
-		generator = RBCliTool::Generator.new(:command, project_root, template_vars)
-		generator.run
-	end
+  action do |opts, params, args, config, env|
+    if args.first.nil?
+      Rbcli.log.error "You must specify a name for the project", 'TOOL'
+      Rbcli.log.error "Usage: #{self.usage}", 'TOOL'
+      Rbcli::exit 1
+    end
+    vars = {
+      appname: args.first,
+      use_bundler: params[:use_bundler],
+      development: env[:development],
+      showdocs: params[:annotate]
+    }
+    Rbcli.log.debug "Creating portable executable", 'TOOL'
+    Rbcli::ToolHelpers.cp_file File.join(RBCLI_TOOLDIR, 'skeletons', 'portable.rb.erb'),
+                               File.join(Dir.getwd, "#{vars[:appname].downcase}"),
+                               template_vars: vars, set_executable: true, force: params[:force]
+    Rbcli.log.info "Done.", 'TOOL'
+  end
 end
 
-class Script < Rbcli::Command
-	description 'Generate an Rbcli Command with Bash Script under the current project'
-	usage <<-EOF
-This will generate a new command under the current RBCli project, and a skeleton bash script to code it.
+Rbcli.command "gem" do
+  description 'Creates an full Rbcli-based gem project'
+  usage "(--(f)orce) <application_name>"
+  helptext <<~HELPTEXT
+    This will initialize an complete Rbcli project in the current directory.
 
-Use this option if you prefer to use bash (or another shell) to script your command.
+    First a basic Gem structure is created with bundler, and then the
+    Rbcli-specific modifications are layered on top. This is ideal
+    for larger applications, or if you already have CI/CD pipelines
+    that work with Gems and want to reuse your code
 
-Please run this command from within the project's directory structure.
-EOF
+    If you'd prefer a single-file executable script, run `rbcli portable --help` for more information. 
+  HELPTEXT
 
-	parameter :name, 'Name of command to generate', type: :string, required: true
-	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
-	parameter :usagetext, 'Usage help text for the command', type: :string, default: 'TODO: Usage text goes here'
+  parameter :force, "Overwrite files without prompting"
 
-	action do |params, args, global_opts, config|
-		# First we check that we are working within a project folder
-		project_root = RBCliTool::Project.find_root(Dir.pwd)
-		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
+  action do |opts, params, args, config, env|
+    if args.first.nil?
+      Rbcli.log.error "You must specify a name for the project", 'TOOL'
+      Rbcli.log.error "Usage: #{self.usage}", 'TOOL'
+      Rbcli::exit 1
+    end
+    vars = {
+      appname: args.first,
+      use_bundler: params[:use_bundler],
+      development: env[:development],
+      showdocs: params[:docs]
+    }
+    project_dir = File.join(Dir.getwd, vars[:appname])
+    config_dir = File.join(project_dir, 'lib', 'config')
+    command_dir = File.join(project_dir, 'lib', 'commands')
+    scripts_dir = File.join(command_dir, 'scripts')
+    if File.exist?(project_dir) && params[:force]
+      FileUtils.rm_rf(project_dir)
+    elsif File.exist?(project_dir) && !params[:force]
+      Rbcli.log.info "The project #{vars[:appname]} already exists. Overwrite? (y/n): ", 'TOOL'
+      answer = gets.chomp
+      answer = { 'y' => true, 'n' => false }[(answer[0] || '').downcase]
+      if answer
+        Rbcli.log.debug "Deleting #{File.basename(project_dir)}", 'TOOL'
+        FileUtils.rm_rf(project_dir)
+      else
+        return
+      end
+    end
 
-		# Prepare template vars
-		template_vars = {
-				name: params[:name],
-				description: params[:description],
-				usage_text: params[:usagetext],
-				no_script: false,
-				rbcli_version: Rbcli::VERSION
-		}
-
-		generator = RBCliTool::Generator.new(:extern, project_root, template_vars)
-		generator.run
-	end
+    # Full options available:
+    # `bundle gem --exe --coc --mit --test=rspec/minitest/test-unit --ci=github/gitlab/circle --linter=rubocop/standard <name>`
+    Rbcli.log.info "Running bundler gem", 'TOOL'
+    `bundle gem --exe --coc #{vars[:appname]}`
+    Rbcli.log.debug "Creating Rbcli project identifier", 'TOOL'
+    FileUtils.touch(File.join(project_dir), '.rbcli')
+    Rbcli.log.debug "Creating additional directories", 'TOOL'
+    [config_dir, command_dir, scripts_dir].each { |dir| FileUtils.mkdir_p(dir) }
+    FileUtils.touch(File.join(scripts_dir, '.keep'))
+    Rbcli.log.debug "Creating executable", 'TOOL'
+    Rbcli::ToolHelpers.cp_file File.join(RBCLI_TOOLDIR, 'skeletons', 'gem.rb.erb'),
+                               File.join(project_dir, 'exe', "#{vars[:appname].downcase}"),
+                               template_vars: vars, set_executable: true, force: true
+    Rbcli.log.debug "Creating configs", 'TOOL'
+    %w(parser logger config envvars hooks updatechecker).each { |component|
+      Rbcli::ToolHelpers.cp_file File.join(RBCLI_LIBDIR, 'components', component, 'template.rb.erb'),
+                                 File.join(config_dir, "#{component}.rb"),
+                                 template_vars: vars, set_executable: false, force: params[:force] }
+    Rbcli.log.debug "Creating commands", 'TOOL'
+    %w(command script).each { |cmdtype|
+      Rbcli::ToolHelpers.cp_file File.join(RBCLI_LIBDIR, 'components', 'commands', "#{cmdtype}.rb.erb"),
+                                 File.join(command_dir, "#{cmdtype}.rb"),
+                                 template_vars: vars, set_executable: false, force: params[:force] }
+    Rbcli.log.info "Done."
+  end
 end
 
-class Extern < Rbcli::Command
-	description 'Generate an Rbcli Command that can wrap an external application'
-	usage <<-EOF
-This will generate a new command under the current RBCli project
+Rbcli.command "command" do
+  description 'Generate a new command declaration in the current project'
+  usage "(--(s)cript|--(f)orce) <application_name>"
+  parameter :script, 'Generate a shell-script based command', default: false
+  parameter :force, 'Overwrite files without prompting', default: false
+  action do |opts, params, args, config, env|
+    if args.first.nil?
+      Rbcli.log.error "You must specify a name for the command", 'TOOL'
+      Rbcli.log.error "Usage: #{self.usage}", 'TOOL'
+      Rbcli::exit 1
+    end
 
-Use this option if you need to integrate with a third party application.
+    unless (project_dir = find_root(Dir.pwd))
+      Rbcli.log.error "Not an Rbcli project directory. This command can only be run on projects created using `rbcli gem <project_name>`."
+      Rbcli.log.error "If you believe you are receiving this message in error, make sure the `.rbcli` file exists in the current directory."
+      return
+    end
 
-Please run this command from within the project's directory structure.
-	EOF
+    command_dir = File.join(project_dir, 'lib', 'commands')
+    scripts_dir = File.join(command_dir, 'scripts')
+    FileUtils.mkdir_p(command_dir)
+    FileUtils.mkdir_p(scripts_dir) if params[:script]
+    Rbcli.log.debug "Creating commands", 'TOOL'
 
-	parameter :name, 'Name of command to generate', type: :string, required: true
-	parameter :description, 'A short description of the command', type: :string, default: 'TODO: Description goes here'
-	parameter :usagetext, 'Usage help text for the command', type: :string, default: 'TODO: Usage text goes here'
+    vars = {
+      command_name: args.first,
+      showdocs: true
+    }
 
-	action do |params, args, global_opts, config|
-		# First we check that we are working within a project folder
-		project_root = RBCliTool::Project.find_root(Dir.pwd)
-		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
+    cmdtype = params[:script] ? 'script' : 'command'
+    Rbcli::ToolHelpers.cp_file File.join(RBCLI_LIBDIR, 'components', 'commands', "#{cmdtype}.rb.erb"),
+                               File.join(command_dir, "#{args.first}.rb"),
+                               template_vars: vars, set_executable: false, force: params[:force]
+  end
 
-		# Prepare template vars
-		template_vars = {
-				name: params[:name],
-				description: params[:description],
-				usage_text: params[:usagetext],
-				no_script: true,
-				rbcli_version: Rbcli::VERSION
-		}
-
-		generator = RBCliTool::Generator.new(:extern, project_root, template_vars)
-		generator.run
-	end
+  def find_root path
+    # We look for the .rbcli file in the current tree and return the root path
+    searchpath = path
+    until searchpath.empty?
+      return searchpath if File.directory? searchpath and File.exist? "#{searchpath}/.rbcli"
+      spath = searchpath.split('/')
+      searchpath = (spath.length == 2) ? '/' : spath[0..-2].join('/')
+    end
+    false
+  end
 end
 
-class Hook < Rbcli::Command
-	description 'Generate an Rbcli Hook under the current project'
-	usage <<-EOF
-This will generate one or more execution hooks for the current project.
-
-Default:    The default hook runs whenever the user does not specify a command. If the hook is not present, the default
-            behavior is to show the help text (same as -h).
-
-Pre:        The pre-execution hook, which runs code prior to the execution of any command. This allows for actions such
-            as authentiation into remote systems.
-
-Post:       The post-execution hook, which runs code after the execution of any command.
-
-First-run:  The first-run hook will run only on the first time the user runs the application. This is useful for
-            initial setup or for welcome messages to be shown. Note that if you enable the first-run hook, you must
-            also enable local_state (see config/storage.rb).
-
-Please run this command from within the project's directory structure.
-EOF
-
-	parameter :default, 'Generate the default (no-command-entered) hook', type: :boolean, default: false
-	parameter :pre, 'Generate the pre-execution hook', type: :boolean, default: false
-	parameter :post, 'Generate the post-execution hook', type: :boolean, default: false
-	parameter :firstrun, 'Generate the first-run hook', type: :boolean, default: false
-
-	action do |params, args, global_opts, config|
-		# First we check that we are working within a project folder
-		project_root = RBCliTool::Project.find_root(Dir.pwd)
-		RBCliTool.exit_with_error("Can't find the project root in the current path. Please `cd` to your project's directory before running this command, and ensure that the `.rbcli` file is present in its root path.") unless project_root
-
-		generated_something = false
-
-		[:default, :pre, :post, :firstrun].each do |pname|
-			next unless params[pname]
-			generator = RBCliTool::Generator.new(:hook, project_root, pname)
-			generator.run
-			generated_something = true
-		end
-
-		RBCliTool.exit_with_error("No hooks specified. Please run `rbcli hooks -h` for details on how to generate hooks.") unless generated_something
-	end
+Rbcli.command "license" do
+  description 'Display license info'
+  action do |opts, params, args, config, env|
+    Rbcli.log.info "eJxdUk9v2jAUv/Mpnnpqpaibqp12M4kpVkMcOaaMY0gM8RRiZJshvv3ec+na\nTkKK/Px+f81KaChtZ6Zgfs5muTtdvT0M0fRw3z3A7gps6r25wMvgzv4KT9+f\nfsxmtfFHG4J1E9gAg/EGFw++nRCXwd4bA24P3dD6g8kgOminK5yMDwhwu9ja\nyU4HaKFDOdqMA9IEt4+X1htc7qENwXW2JR+9685HM8U2kt7ejibAfRwM3DU3\nxN1DEulNO4KdgO7er+BiIzqP4E2I3nbEkeFSN5578vB+PdqjvSkQPHUQiPQc\nMAH5zODoerunr0mxTufdaMOQQW+JeneOOAw0TG1mlOOb8xDMOBKDRd8p64e7\ntEMqJyo03ipKupfBHb8mwYr2Zz+hpEmY3mFlSfG36SJNaH3vxtFdKFrnpt5S\nooAPq/Gq3bk/JmVJ8WByEa2+WaAHOH286u0qDC1635lbYaiL9baf4niSDxEf\n3mL3J+eT3v8xH1F/yaGRC71hioNooFbyVRS8gDvW4Pkug43QS7nWgBuKVXoL\ncgGs2sKLqIoM+K9a8aYBqUCs6lJwnIkqL9eFqJ5hjrhK4h9ZrIRGUi2BBG9U\ngjdEtuIqX+KRzUUp9DaDhdAVcS6QlEHNlBb5umQK6rWqZcNRvkDaSlQLhSp8\nxSv9iKo4A/6KB2iWrCyTFFuje5X85bLeKvG81LCUZcFxOOfojM1L/iaFofKS\niVUGBVuxZ55QEllUWru52yx5GqEew1+uhawoRi4rrfCYYUql/0E3ouEZMCUa\nKmShJNJTnYiQiQRxFX9joarhy4vgCp3XDf/wUnBWIldD4M/Lj38BVjZX4w==".decompress, 'TOOL' ### LICENSE.txt
+  end
 end
 
-
-Rbcli.parse
+Rbcli.go!

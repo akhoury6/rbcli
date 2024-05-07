@@ -1,0 +1,40 @@
+Rbcli::Configurate.logger do
+  <%- if @showdocs -%>
+  ##### Logger (Optional) #####
+  # The Rbcli logger is a wrapper around the standard Ruby `Logger` library
+  # It is recommended that - unless you want to use specialized output libraries (such as ncurses) - that all
+  #    of your application output is directed through the logger. This will allow for easy formatting and redirection
+  #    no matter how your application is run.
+  #
+  # Valid targets are: :stdout, :stderr, "/path/to/a/file", or an IO or StringIO object   (Default: :stdout)
+  # Valid levels are: :debug, :info, :warn, :error, :fatal, :unknown, :any                (Default: :info)
+  # Valid formats are: :display, :simple, :full, :ruby, :json, :apache, :lolcat           (Default: :display)
+  #
+  # The first three formats are designed to cover most use cases:
+  #   display:   For display on a terminal, with user interaction
+  #   simple:    For display on a terminal, for a developer
+  #   full:      For logging to a file, or using log collection software
+  # The next three are for specialized integrations in case you already have log collection configured:
+  #   ruby:      Default ruby logger format
+  #   json:      Each line is a JSON object
+  #   apache:    Follows the standard Apache log format
+  # As for :lolcat... if you can't guess what it does then give it a shot
+  <%- end -%>
+  logger target: :stdout, level: :info, format: :display
+  <%- if @showdocs -%>
+  # Custom formats can also be defined here.
+  # Declaring a format here will not switch to it. However, if
+  # the `format` keyword is used without providing a Proc, it will switch
+  # to that format.
+  #
+  #   Format switch:      format :json
+  #   Format definition:  format :foo, Proc.new { |severity, datetime, progname, msg| "Foo! " + msg }
+  #
+  # You can also switch formats mid-execution by calling this method on
+  # the logger object itself.
+  #
+  #   Rbcli.log.format :json
+  #
+  <%- end -%>
+  # format :foo, Proc.new { |severity, datetime, progname, msg| "Foo! " + msg }
+end

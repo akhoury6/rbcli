@@ -9,13 +9,13 @@ chapter = false
 
 My Fellow Coder,
 
-I'm glad to see you are interested in RBCli. I'd like to introduce myself. My name is Andrew, and I've been a technologist since 1992 when my father bought our first family computer -- a 486DX2 which ran at 66Mhz (33Mhz if you turned off the 'turbo' button) and came with MS DOS 5.0, [QBasic](https://en.wikipedia.org/wiki/QBasic), and a game already coded in it called [Nibbles](https://classicreload.com/qbasic-nibbles.html) (if you care to see the code, die 5 times and don't play again). I didn't like that the game forced my name to be "Sammy", and thought, "hey, if I can see the code, can't I change it?". So I did what any annoyed child would do and learned to code so I could do just that. I'd tell you what I changed it to, but I was so proud of myself for this simple feat that I changed it every 30 seconds and couldn't settle on just one name. Then I performed my first ever hack, and figured out how to go through walls without dying. All of a sudden the world seemed limitless.
+I'm glad to see you are interested in Rbcli. I'd like to introduce myself. My name is Andrew, and I've been a technologist since 1992 when my father bought our first family computer -- a 486DX2 which ran at 66Mhz (33Mhz if you turned off the 'turbo' button) and came with MS DOS 5.0, [QBasic](https://en.wikipedia.org/wiki/QBasic), and a game already coded in it called [Nibbles](https://classicreload.com/qbasic-nibbles.html) (if you care to see the code, die 5 times and don't play again). I didn't like that the game forced my name to be "Sammy", and thought, "hey, if I can see the code, can't I change it?". So I did what any annoyed child would do and learned to code so I could do just that. I'd tell you what I changed it to, but I was so proud of myself for this simple feat that I changed it every 30 seconds and couldn't settle on just one name. Then I performed my first ever hack, and figured out how to go through walls without dying. All of a sudden the world seemed limitless.
 
-I was only a child at the time, but on that day I learned that every "rule" in computing was an artifical construct and could be changed to suit your needs. Thus began my career in tech and my obsession to change the world with it. This is why RBCli was born.
+I was only a child at the time, but on that day I learned that every "rule" in computing was an artifical construct and could be changed to suit your needs. Thus began my career in tech and my obsession to change the world with it. This is why Rbcli was born.
 
-RBCli started as a collection of code that I would copy-paste between projects, until one day when I wondered if I could just find a framework that suited me. I couldn't - in case you hadn't guessed - so I decided to build my own and give it to the world. I would not have accomplished even half of what I have without the open source community, and this is to be the first of hopefully many contributions back.
+Rbcli started as a collection of code that I would copy-paste between projects, until one day when I wondered if I could just find a framework that suited me. I couldn't - in case you hadn't guessed - so I decided to build my own and give it to the world. I would not have accomplished even half of what I have without the open source community, and this is to be the first of hopefully many contributions back.
 
-The features in RBCli have been chosen from over 25 years of experience writing applications, building features that 3rd parties left out, managing large scale infrastructure, designing embedded systems, integrating enterprise systems, automating CI/CD, scripting my own computers, and so much more. I hope that you can find as much use out of it as I have.
+The features in Rbcli have been chosen from over 25 years of experience writing applications, building features that 3rd parties left out, managing large scale infrastructure, designing embedded systems, integrating enterprise systems, automating CI/CD, scripting my own computers, and so much more. I hope that you can find as much use out of it as I have.
 
 If you'd like to get in touch with me at any time, feel free to email me at [akhoury@live.com](mailto:akhoury@live.com).
 
@@ -24,7 +24,7 @@ All the best,
 _Andrew_
 
 
-P.S.: If you really liked RBCli and want to support it, any amount you can help out with goes a long way.
+P.S.: If you really liked Rbcli and want to support it, any amount you can help out with goes a long way.
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">

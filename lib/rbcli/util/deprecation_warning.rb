@@ -1,60 +1,46 @@
+# frozen_string_literal: true
 ##################################################################################
-#     RBCli -- A framework for developing command line applications in Ruby      #
-#     Copyright (C) 2018 Andrew Khoury                                           #
-#                                                                                #
-#     This program is free software: you can redistribute it and/or modify       #
-#     it under the terms of the GNU General Public License as published by       #
-#     the Free Software Foundation, either version 3 of the License, or          #
-#     (at your option) any later version.                                        #
-#                                                                                #
-#     This program is distributed in the hope that it will be useful,            #
-#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
-#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
-#     GNU General Public License for more details.                               #
-#                                                                                #
-#     You should have received a copy of the GNU General Public License          #
-#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
-#                                                                                #
-#     For questions regarding licensing, please contact andrew@blacknex.us       #
+#     Rbcli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
 ##################################################################################
-
+require 'rubygems'
 
 class Rbcli::DeprecationWarning
+  def initialize offending_object, warn_at: nil, deprecate_at: nil, message: nil
+    if offending_object.is_a?(String)
+      @offender = offending_object
+      @in_rbcli = offending_object.include?('Rbcli')
+    else
+      @offender = (offending_object.respond_to?(:name) && offending_object.name.include?('::')) ? @offender = offending_object.name : @offender = offending_object.class.name
+      @in_rbcli = offending_object.name.include?('Rbcli')
+    end
+    # @method = self.caller_locations[1].label
+    @message = message
 
-	@@warnings = []
-	@@errors_exist = false
+    raise Rbcli::ConfigurateError.new "The `warn_at` and `deprecate_at` values must both be set" if warn_at.nil? || deprecate_at.nil?
+    raise Rbcli::ConfigurateError.new "Version string must be set in Rbcli::Configurate.cli to use deprecation warnings" if !@in_rbcli && Rbcli::Warehouse.get(:version, :appinfo).nil?
+    @current_version = @in_rbcli ? Rbcli::VERSION : Gem::Version.new(Rbcli::Warehouse.get(:version, :appinfo))
+    @warning_version = Gem::Version.new(warn_at)
+    @error_version = Gem::Version.new(deprecate_at)
+    raise Rbcli::ConfigurateError.new "Warning version must come earlier than the deprecation version" if @warning_version >= @error_version
 
-	def initialize original_feature_name, message_text, change_by_version, caller
-		#@caller = caller_locations(2,1)[0].label
-		@original_feature_name = original_feature_name
-		@message_text = message_text
-		@change_by_version = change_by_version
-		@caller = caller
-		@@warnings.append self
-	end
+    @callerstack = self.caller_locations
+    self.parse
+  end
 
-	def display
-		deprecated_version_parts = @change_by_version.split('.').map { |i| i.to_i }
-		current_version_parts = Rbcli::VERSION.split('.').map { |i| i.to_i }
+  private
 
-		if deprecated_version_parts[0] > current_version_parts[0] or
-				deprecated_version_parts[1] > current_version_parts[1] or
-				deprecated_version_parts[2] >= current_version_parts[2]
-
-			message = "DEPRECATION ERROR: The feature `#{@original_feature_name}` has been deprecated as of Rbcli version #{@change_by_version}. #{@message_text} Please update the relevant code to continue using Rbcli."
-			Rbcli::log.error { message }
-			puts message.red
-			@@errors_exist = true
-		else
-			message = "DEPRECATION WARNING: The feature `#{@original_feature_name}` has been deprecated. #{@message_text} This feature will be removed in version #{@change_by_version}."
-			Rbcli::log.warn { message }
-			puts message.yellow
-		end
-		puts @caller[0], ""
-	end
-
-	def self.display_warnings
-		@@warnings.each { |w| w.display }
-		exit(1) if @@errors_exist
-	end
+  def parse
+    if @current_version >= @error_version
+      Rbcli.log.error [
+                        "DEPRECATION ERROR -- #{@offender.to_s}".red.bold + " -- The removal of this method is imminent. Please update your application accordingly.".red,
+                        @message.nil? ? nil : @message.red
+                      ].reject(&:nil?).map { |str| "DEPR".red + ' || ' + str }.join("\n"), "DEPR"
+    elsif @current_version >= @warning_version
+      Rbcli.log.warn [
+                       "DEPRECATION WARNING -- #{@offender.to_s.yellow.bold}" + " -- This method is scheduled to be removed on version #{@error_version}. You are on version #{@current_version}.".yellow,
+                       @message.nil? ? nil : @message.yellow
+                     ].reject(&:nil?).map { |str| "DEPR".yellow + ' || ' + str }.join("\n"), "DEPR"
+    end
+  end
 end

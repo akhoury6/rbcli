@@ -1,0 +1,55 @@
+Rbcli.command "<%= @command_name || 'example' %>" do
+  <%- if @showdocs -%>
+  ##### Command Declaration (At least one is required) #####
+  # default     (Optional) The default command is run when no other commands are called on the CLI
+  #               Note that parameters are not available for default commands, as all CLI options
+  #               are parsed against the global-level ones declared in the `Configurate.opts` block
+  # description (Optional) Short description that shows up in --help for the executable
+  # usage       (Optional) Usage text that shows up in --help or when CLI format is bad
+  # helptext    (Optional) Large help text that shows up in --help for the command
+  <%- end -%>
+  default
+  description 'Example command'
+  usage "[--param|--otherparam] name"
+  helptext <<~EOF
+    Big block of helptext
+  EOF
+  <%- if @showdocs -%>
+  # parameter (Optinoal) Parameters follow the same format as CLI Options, but are only available for this command
+  <%- end -%>
+  parameter :param, 'A Parameter', default: false
+  parameter :otherparam, 'Another Parameter', type: :string, default: "Default value"
+  <%- if @showdocs -%>
+  # action    (Required, unless declaring a `script`) The action block is code that gets executed when the command is called
+  #             Sending all output through the logger is recommended. For it to be displayed
+  #             as regular text, set the logger to the :display format
+  <%- end -%>
+  action do |opts, params, args, config, env|
+    Rbcli.log.info "Welcome to your new application!"
+    <%- if @showdocs -%>
+    Rbcli.log.info "We like to send all of our output through the logger for easy formatting and deployment..."
+    puts "...but you don't have to"
+    Rbcli.log.info "Here's a quick demo of how to use the framework:\n"
+
+    Rbcli.log.info "Top-level CLI Options: " + opts.to_s
+    Rbcli.log.info "Parameters:            " + params.to_s
+    Rbcli.log.info "Arguments on the CLI:  " + args.to_s
+    Rbcli.log.info "The config:            " + config.to_s
+    Rbcli.log.info "Environment variables: " + env.to_s
+    Rbcli.log.info ""
+
+    Rbcli.log.debug "Example Debug Message (change your log level to see this!)", "MYAPP"
+    Rbcli.log.info "Example Info Message", "MYAPP"
+    Rbcli.log.warn "Example Warning Message", "MYAPP"
+    Rbcli.log.error "Example Error Message", "MYAPP"
+    Rbcli.log.fatal "Example Fatal Message", "MYAPP"
+    Rbcli.log.unknown "Example Unknown Message", "MYAPP"
+    Rbcli.log.info ""
+
+    config[:davey] = 'Davey Jones'.compress
+    Rbcli.log.info "Compressed String: " + config[:davey]
+    Rbcli.log.info "Decompressed String: " + config[:davey].decompress
+    config.save!
+    <%- end -%>
+  end
+end

@@ -1,33 +1,14 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 ##################################################################################
-#     RBCli -- A framework for developing command line applications in Ruby      #
-#     Copyright (C) 2018 Andrew Khoury                                           #
-#                                                                                #
-#     This program is free software: you can redistribute it and/or modify       #
-#     it under the terms of the GNU General Public License as published by       #
-#     the Free Software Foundation, either version 3 of the License, or          #
-#     (at your option) any later version.                                        #
-#                                                                                #
-#     This program is distributed in the hope that it will be useful,            #
-#     but WITHOUT ANY WARRANTY; without even the implied warranty of             #
-#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
-#     GNU General Public License for more details.                               #
-#                                                                                #
-#     You should have received a copy of the GNU General Public License          #
-#     along with this program.  If not, see <https://www.gnu.org/licenses/>.     #
-#                                                                                #
-#     For questions regarding licensing, please contact andrew@blacknex.us       #
+#     Rbcli -- A framework for developing command line applications in Ruby      #
+#     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
 ##################################################################################
-
-require 'bundler/setup'
-require 'rbcli'
+require "bundler/setup"
+require "rbcli"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
-
-require 'irb'
+require "irb"
 IRB.start(__FILE__)

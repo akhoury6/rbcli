@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My Letter To You on RBCli Documentation</title>
-    <link>https://akhoury6.github.io/rbcli/whoami/</link>
-    <description>Recent content in My Letter To You on RBCli Documentation</description>
-    <generator>Hugo 0.125.1</generator>
+    <title>My Letter To You :: Rbcli Documentation</title>
+    <link>https://akhoury6.github.io/rbcli/whoami/index.html</link>
+    <description>My Fellow Coder,&#xA;I’m glad to see you are interested in Rbcli. I’d like to introduce myself. My name is Andrew, and I’ve been a technologist since 1992 when my father bought our first family computer – a 486DX2 which ran at 66Mhz (33Mhz if you turned off the ’turbo’ button) and came with MS DOS 5.0, QBasic, and a game already coded in it called Nibbles (if you care to see the code, die 5 times and don’t play again).</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
+    <copyright>Andrew Khoury</copyright>
     <lastBuildDate></lastBuildDate>
     <atom:link href="https://akhoury6.github.io/rbcli/whoami/index.xml" rel="self" type="application/rss+xml" />
   </channel>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on RBCli Documentation</title>
-    <link>https://akhoury6.github.io/rbcli/categories/</link>
-    <description>Recent content in Categories on RBCli Documentation</description>
-    <generator>Hugo 0.125.1</generator>
+    <title>Categories :: Rbcli Documentation</title>
+    <link>https://akhoury6.github.io/rbcli/categories/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
     <language>en-us</language>
+    <copyright>Andrew Khoury</copyright>
     <atom:link href="https://akhoury6.github.io/rbcli/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

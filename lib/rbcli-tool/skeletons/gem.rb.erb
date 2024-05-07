@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+####<%= @appname.gsub(/./,'#') %>####
+### <%= @appname.capitalize %> ###
+####<%= @appname.gsub(/./,'#') %>####
+
+<%- if @development -%>
+require '<%= File.expand_path(File.join(RBCLI_LIBDIR, '..', 'rbcli.rb')) %>'
+<%- else -%>
+require 'rbcli'
+<%- end -%>
+
+require File.join(File.dirname(__FILE__), '..', 'lib', '<%= @appname %>')
+Dir[File.join(File.dirname(__FILE__), '..', 'lib', 'config', '*.rb')].each { |file| require file }
+Dir[File.join(File.dirname(__FILE__), '..', 'lib', 'commands', '*.rb')].each { |file| require file }
+
+Rbcli.go!

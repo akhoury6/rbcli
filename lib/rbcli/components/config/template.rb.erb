@@ -1,0 +1,36 @@
+Rbcli::Configurate.config do
+  <%- if @showdocs -%>
+  ##### Config (Optional) #####
+  # The built-in config will automatically pull in a config file to a hash and vice versa
+  # It can either be used immutably (as user-defined configuration) and/or to store application state
+  #
+  # file location:             <string> or <array>            (Required) Provide either a specific config file location or a hierarchy to search
+  #      type:                 (:yaml|:json|:ini|:toml|:null) (Optional) Select which backend/file format to use. If the file has an associated extension (i.e. '.yaml') then this can be omitted.
+  #      schema_location:      <string>                       (Optional) The file location of a JSON Schema (https://json-schema.org). If provided, the config will automatically be validated. (default: nil)
+  #      save_on_exit:         (true|false)                   (Optional) Save changes to the config file on exit (default: false)
+  #      create_if_not_exists: (true|false)                   (Optional) Create the file using default values if it is not found on the system (default: false)
+  #      suppress_errors:      (true|false)                   (Optional) If set to false, the application will halt on any errors in loading the config. If set to true, defaults will be provided (default: true)
+  <%- end -%>
+  file location: ['./<%= @appname.downcase %>.yaml', '~/.<%= @appname.downcase %>.yaml', '/etc/<%= @appname.downcase %>.yaml'],
+       type: :yaml, schema_location: nil, save_on_exit: false,
+       create_if_not_exists: false, suppress_errors: true
+  <%- if @showdocs -%>
+  ##### Banner (Optional) #####
+  # Define a banner to be placed at the top of the config file.
+  # Note that the banner will only be written to backends that support comments (:yaml, :ini, and :toml).
+  <%- end -%>
+  banner <<~BANNER
+    This text appears at the top of the config file when using a backend that supports comments.
+    Tell the user a bit about what they're doing here.
+  BANNER
+  <%- if @showdocs -%>
+  ## Config Structure & Defaults (Optional)
+  # Set defaults for your config values.
+  #
+  # Defaults set here will be provided to your application if the values are missing in the config.
+  # They will also be used to create new config files when the flag `create_if_not_exists` is set above.
+  # will be written to a config file, along with the helptext and/or short descriptions.
+  <%- end -%>
+  group :group1
+  setting :enable_logins, default: true
+end

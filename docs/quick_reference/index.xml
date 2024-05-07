@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Quick Reference on RBCli Documentation</title>
-    <link>https://akhoury6.github.io/rbcli/quick_reference/</link>
-    <description>Recent content in Quick Reference on RBCli Documentation</description>
-    <generator>Hugo 0.125.1</generator>
+    <title>Quick Reference :: Rbcli Documentation</title>
+    <link>https://akhoury6.github.io/rbcli/quick_reference/index.html</link>
+    <description>Installation Rbcli is available on rubygems.org. You can add it to your application’s Gemfile or gemspec:&#xA;spec.add_dependency &#39;rbcli&#39;, &#39;~&gt; 0.4&#39;Or install it manually by running:&#xA;gem install rbcliStarting a Project Rbcli includes a tool to quickly create either a gem or a portable executable. Creating either is simple.&#xA;rbcli gem mytoolrbcli portable mytool rbcli portable -a mytool # Adds annotationsOr you can DIY&#xA;#!/usr/bin/env ruby require &#39;rbcli&#39; Rbcli::Configurate.cli do appname &#39;mytool&#39; version &#39;0.</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
+    <copyright>Andrew Khoury</copyright>
     <lastBuildDate></lastBuildDate>
     <atom:link href="https://akhoury6.github.io/rbcli/quick_reference/index.xml" rel="self" type="application/rss+xml" />
   </channel>

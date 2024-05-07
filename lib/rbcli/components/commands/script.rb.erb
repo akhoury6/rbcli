@@ -1,0 +1,43 @@
+<%- if @showdocs -%>
+# Script Command
+# Supports all of the same features as a regular command, but passes everything to a bash script
+# The script can be defined inline, or a path to an external script can be provided
+#
+# Code is injected into the script to integrate with Rbcli.
+#   The `log` commands are integrated with the ruby logger
+#   The `rbcli` command provides a wrapper around jq that can retrieve
+#     the values of opts/params/args/config/env
+#   For more information on JQ syntax, see: https://jqlang.github.io/jq/
+<%- end -%>
+Rbcli.command "<%= @command_name || 'script' %>" do
+  description "example script command"
+  # external_script vars: {}, path: "./test.sh"
+  inline_script vars: { foo: 'bar!!!' }, inline: <<~INLINE
+    #!/usr/bin/env bash
+    log "Rbcli shell integration demo!"
+    <%- if @showdocs -%>
+    log "A custom JQ wrapper is used to parse data passed through from Rbcli"
+    log "For more information on how to use it, see: https://jqlang.github.io/jq/"
+    log ""
+
+    log "Top-level CLI Options: $(rbcli opts .)"
+    log "Parameters: $(rbcli params .)"
+    log "Arguments on the CLI: $(rbcli args .)"
+    log "Config: $(rbcli config .)"
+    log "Environment Variables: $(rbcli env .)"
+    log "Custom Var from command: $(rbcli vars .foo)"
+    log "Same variable, in environment: ${FOO}"
+
+    log "Logs are integrated too"
+    log "Example Debug (you need to change your log level to see this)" "debug"
+    log "Example Info" "info"
+    log "Example Warning" "warn"
+    log "Example Error" "error"
+    log "Example Fatal" "fatal"
+    log "Example Unknown" "unknown"
+    <%- else -%>
+    rbcli opts .
+    log "Example Warning" "warn"
+    <%- end -%>
+  INLINE
+end

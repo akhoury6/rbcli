@@ -1,9 +1,0 @@
-$projectdir = File.expand_path('..', __dir__)
-$libdir = File.expand_path('.', __dir__)
-
-module <%= @vars[:modulename] %>
-  # This is a stub
-end
-
-require ENV['RBCLI_ENV'] == 'development' ? ENV['RBCLI_DEVPATH'] || 'rbcli' : 'rbcli'
-require "#{$projectdir}/config/version"

@@ -8,7 +8,7 @@ require 'json-schema'
 require_relative 'backend'
 
 class Rbcli::Config < Hash
-  def initialize location: nil, type: nil, schema_location: nil, create_if_not_exists: false, suppress_errors: false
+  def initialize location: nil, type: nil, schema_location: nil, create_if_not_exists: false, suppress_errors: false, banner: nil, defaults: {}
     location = [location] unless location.is_a?(Array)
     locations = location.map { |path| [path, Rbcli::UserConf::Backend.create(path, type: type)] }.reject { |path, storage| !(path.nil? || path == :null) && storage.type == 'NULL' }
     existing_location = locations.select { |_path, storage| storage.exist? }.first
@@ -29,7 +29,8 @@ class Rbcli::Config < Hash
     end
     @suppress_errors = suppress_errors
     @original_hash = {}
-    @defaults = {}
+    @defaults = defaults
+    @banner = banner
     if schema_location
       @schema = self.class.new(location: schema_location)
       @schema.is_schema = true

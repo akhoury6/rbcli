@@ -50,10 +50,10 @@ RSpec.describe 'Config module' do
     it 'will create missing backend file with defaults' do
       config = Rbcli::Config.new(location: @tmppath, create_if_not_exists: true, suppress_errors: true)
       expect(File.exist?(@tmppath)).to eq(false)
-      config.add_default :foo, default: 'bar'
+      config.defaults = { foo: "bar", string: "default_string", supergroup: { bar: 'baz' } }
       config.load!
       expect(File.exist?(@tmppath)).to eq(true)
-      expect(YAML.safe_load_file(@tmppath, symbolize_names: true, aliases: true, permitted_classes: [Symbol])).to eq({ foo: 'bar' })
+      expect(YAML.safe_load_file(@tmppath, symbolize_names: true, aliases: true, permitted_classes: [Symbol])).to eq({ foo: "bar", string: "default_string", supergroup: { bar: 'baz' } })
     end
 
   end

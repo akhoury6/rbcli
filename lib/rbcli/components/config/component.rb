@@ -21,13 +21,8 @@ module Rbcli::Configurate::Config
     Rbcli::Warehouse.get(:config, :parsedopts).set_banner text
   end
 
-  def self.group slug #, helptext: nil
-    @lastgroup = slug.to_sym
-    Rbcli::Warehouse.get(:config, :parsedopts).add_group(slug.to_sym, helptext: nil)
-  end
-
-  def self.setting slug, default: nil #, helptext: nil
-    # raise Rbcli::ConfigurateError.new "A config group must be defined before declaring any config options" if @lastgroup.nil?
-    Rbcli::Warehouse.get(:config, :parsedopts).add_default(slug.to_sym, helptext: nil, group_path: @lastgroup, default: default)
+  def self.defaults hash
+    raise Rbcli::ConfigurateError.new "The default configuration must be a hash." unless hash.is_a?(Hash)
+    Rbcli::Warehouse.get(:config, :parsedopts).defaults = hash
   end
 end

@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>Andrew Khoury</copyright>
-    <lastBuildDate>Tue, 07 May 2024 04:11:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 May 2024 21:19:46 +0000</lastBuildDate>
     <atom:link href="https://akhoury6.github.io/rbcli/development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Contribution Guide</title>
@@ -33,9 +33,9 @@
     <item>
       <title>Changelog</title>
       <link>https://akhoury6.github.io/rbcli/development/changelog/index.html</link>
-      <pubDate>Tue, 07 May 2024 04:11:00 +0000</pubDate>
+      <pubDate>Thu, 09 May 2024 21:19:46 +0000</pubDate>
       <guid>https://akhoury6.github.io/rbcli/development/changelog/index.html</guid>
-      <description>Rbcli Changelog 0.4.0 (May 7, 2024) This release is a major refactor! Nearly all of the codebase has been rewritten from the ground up. This brought lots of features and improvements, with a heavy focus on making the framework easier to understand and use. It’s memory footprint has been reduced, and execution time has sped up too.&#xA;NOTE: The license for this version has been changed from GPLv3 to MIT.</description>
+      <description>Rbcli Changelog 0.4.1 (May 10, 2024) Features A “compatibility” field has been added to the CLI helptext configuration A skeleton config can be defined, rather than relying on individual default values. Improvements Test coverage has been increased to include all of the config functionality Bugfixes Config type selection had edge cases where null configs would be created when errors were supposed to be thrown 0.4.0 (May 7, 2024) This release is a major refactor!</description>
     </item>
   </channel>
 </rss>

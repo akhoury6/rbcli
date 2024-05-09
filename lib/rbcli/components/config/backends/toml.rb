@@ -10,7 +10,6 @@ class Rbcli::UserConf::Toml < Rbcli::UserConf::Backend
 
   def parse str
     begin
-
       parsed_str = TOML.load(str).deep_symbolize!
     rescue => e
       Rbcli.log.warn "Error when parsing TOML file", "CONF"

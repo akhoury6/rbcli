@@ -28,5 +28,4 @@ class Rbcli::UserConf::Json < Rbcli::UserConf::Backend
   def inject_banner text, _banner
     text
   end
-
 end

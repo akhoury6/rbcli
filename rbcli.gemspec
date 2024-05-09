@@ -16,8 +16,6 @@ Gem::Specification.new do |spec|
   spec.homepage = "https://akhoury6.github.io/rbcli/"
   spec.license = "MIT"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
-
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["documentation_uri"] = "https://akhoury6.github.io/rbcli/"
   spec.metadata["source_code_uri"] = "https://github.com/akhoury6/rbcli"

@@ -27,9 +27,10 @@ class Rbcli::UserConf::Backend
   end
 
   def self.create filename, type: nil
-    type ||= self.types.map { |slug, check| [slug, check.call(filename)] }.to_h.select { |slug, match| match }.first.first
+    type ||= self.types.map { |slug, check| [slug, check.call(filename)] }.select { |slug, match| match }.first.first
     type = type.to_s.downcase.to_sym
     require_relative "backends/#{type.to_s}"
+    Rbcli.log.debug "Creating backend of type #{type} at #{filename}", "CONF"
     @registered_types[type].new(filename, type)
   end
 
@@ -43,7 +44,7 @@ class Rbcli::UserConf::Backend
   attr_reader :type, :loaded
   alias_method :loaded?, :loaded
 
-  # The defaults: parameter is used on some backends to know which fields to expect and parse
+  # The `defaults` parameter is used on some backends which override this method
   def load defaults: nil
     begin
       text = File.read(@path)
@@ -76,17 +77,18 @@ class Rbcli::UserConf::Backend
     File.exist?(@path)
   end
 
-  def annotate! defaults
+  def annotate! banner
+    return true unless self.respond_to?(:inject_banner) || self.private_methods.include?(:inject_banner)
+
     begin
       text = File.read(@path)
     rescue Errno::ENOENT => _
       Rbcli.log.debug "Attempted to annotate #{@type} config file but did not find it at '#{@path}'", "CONF"
       return nil
     end
-    Rbcli.log.debug "Annotating #{@type} config file at '#{@path}'", "CONF"
 
-    text = self.inject_banner(text, defaults[:helptext])
-    File.write(@path, text)
+    Rbcli.log.debug "Annotating #{@type} config file at '#{@path}'", "CONF"
+    text = self.inject_banner(text, banner)
 
     begin
       File.write(@path, text)

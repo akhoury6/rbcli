@@ -19,14 +19,10 @@ class Rbcli::UserConf::Null < Rbcli::UserConf::Backend
   end
 
   def savable?
-    true
+    false
   end
 
   def exist?
-    true
-  end
-
-  def annotate! _defaults = nil
     true
   end
 end

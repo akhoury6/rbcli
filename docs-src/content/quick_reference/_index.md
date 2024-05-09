@@ -248,14 +248,12 @@ Rbcli::Configurate.config do
     This text appears at the top of the config file when using a backend that supports comments.
     Tell the user a bit about what they're doing here.
   BANNER
-  ## Config Structure & Defaults (Optional)
+  ##### Defaults (Optional) #####
   # Set defaults for your config values.
   #
   # Defaults set here will be provided to your application if the values are missing in the config.
-  # They will also be used to create new config files when the flag `create_if_not_exists` is set above.
-  # will be written to a config file, along with the helptext and/or short descriptions.
-  group :group1
-  setting :enable_logins, default: true
+  # They will also be used to create new config files when the flag `create_if_not_exists` is set to true.
+  defaults({ setting_one: true, setting_two: false })
 end
 ```
 

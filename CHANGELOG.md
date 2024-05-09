@@ -1,10 +1,19 @@
 # Rbcli Changelog
 
-## 0.4.1 (XXXX XX, XXXX)
+## 0.4.1 (May 10, 2024)
 
 ### Features
 
 * A "compatibility" field has been added to the CLI helptext configuration
+* A skeleton config can be defined, rather than relying on individual default values.
+
+### Improvements
+
+* Test coverage has been increased to include all of the config functionality
+
+### Bugfixes
+
+* Config type selection had edge cases where null configs would be created when errors were supposed to be thrown
 
 ## 0.4.0 (May 7, 2024)
 

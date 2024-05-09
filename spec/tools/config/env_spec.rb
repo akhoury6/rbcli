@@ -139,8 +139,12 @@ RSpec.describe 'Config module' do
     it "saves variables to the environment when given no prefix" do
       config = Rbcli::Config.new(type: :env)
       config[:foobar_barbaz_bazinga] = 'bar'
+      config[:foo] = { bar: { baz: 'zinga' } }
       config.save!
       expect(ENV.keys).to include('FOOBAR_BARBAZ_BAZINGA')
+      expect(ENV['FOOBAR_BARBAZ_BAZINGA']).to eq('bar')
+      expect(ENV.keys).to include('FOO_BAR_BAZ')
+      expect(ENV['FOO_BAR_BAZ']).to eq('zinga')
     end
 
     it "overrides envvars correctly when specified as a default and given a prefix" do

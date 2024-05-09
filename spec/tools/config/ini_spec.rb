@@ -98,6 +98,7 @@ RSpec.describe 'Config module' do
       expect(config[:boolean_false]).to eq(@data[:boolean_false])
       expect(config[:array]).to eq(@data[:array])
       expect(config[:hash]).to eq(@data[:hash])
+      expect(config).to eq(@data)
     end
 
     it "skips saving changes when no changes are made" do
@@ -133,10 +134,7 @@ RSpec.describe 'Config module' do
     it "merges missing defaults on load" do
       config = Rbcli::Config.new(location: @datafile.path)
       populate_ini
-      config.add_default :foo, helptext: "this is a default setting", default: 'bar'
-      config.add_group :supergroup, helptext: "Some info"
-      config.add_default :bar, group_path: :supergroup, helptext: "another option", default: 'baz'
-      config.add_default :string, default: 'default_string'
+      config.defaults = { foo: "bar", string: "default_string", supergroup: { bar: 'baz' } }
       expect(config.defaults).to eq({ foo: "bar", string: "default_string", supergroup: { bar: 'baz' } })
       config.load!
       expect(config).to eq(@data.merge({ foo: "bar", string: @data[:string], supergroup: { bar: 'baz' } }))

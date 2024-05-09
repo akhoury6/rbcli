@@ -60,8 +60,4 @@ class Rbcli::UserConf::Env < Rbcli::UserConf::Backend
   def exist?
     true
   end
-
-  def annotate! _defaults = nil
-    true
-  end
 end

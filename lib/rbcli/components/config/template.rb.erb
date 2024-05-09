@@ -24,13 +24,11 @@ Rbcli::Configurate.config do
     Tell the user a bit about what they're doing here.
   BANNER
   <%- if @showdocs -%>
-  ## Config Structure & Defaults (Optional)
+  ##### Defaults (Optional) #####
   # Set defaults for your config values.
   #
   # Defaults set here will be provided to your application if the values are missing in the config.
-  # They will also be used to create new config files when the flag `create_if_not_exists` is set above.
-  # will be written to a config file, along with the helptext and/or short descriptions.
+  # They will also be used to create new config files when the flag `create_if_not_exists` is set to true.
   <%- end -%>
-  group :group1
-  setting :enable_logins, default: true
+  defaults({ setting_one: true, setting_two: false })
 end

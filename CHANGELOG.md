@@ -2,6 +2,11 @@
 
 ## 0.4.2 (XXXXXX)
 
+### Improvements
+
+* Config file declaration now uses simpler syntax
+* Component plugin format has been given hooks to make them easier to develop
+
 ### Bugfixes
 
 * Compatibility list in helptext did not display commas in line with correct grammar

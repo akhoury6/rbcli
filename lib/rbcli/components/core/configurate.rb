@@ -32,12 +32,15 @@ module Rbcli::Configurable
       end
     end
 
+
     # This will dynamically create the configurate block based on the class name.
     # For example, if the class name is 'Me', then the resulting block is `Configurate.me`
     name = klass.name.split('::')[-1]
     Rbcli::Configurate.singleton_class.class_eval do
       define_method name.downcase.to_sym do |&block|
         mod = self.const_get name
+        on_declare = mod.instance_variable_get('@on_declare')
+        on_declare.call if on_declare.is_a?(Proc)
         begin
           mod.rbcli_private_running_method &block
         rescue Rbcli::ConfigurateError => e

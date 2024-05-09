@@ -1,5 +1,11 @@
 # Rbcli Changelog
 
+## 0.4.2 (XXXXXX)
+
+### Bugfixes
+
+* Compatibility list in helptext did not display commas in line with correct grammar
+
 ## 0.4.1 (May 10, 2024)
 
 ### Features

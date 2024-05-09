@@ -23,6 +23,7 @@ module Rbcli::Parser
       bannerstr += " <#{appinfo[:email]}>" unless appinfo[:author].nil? || appinfo[:email].nil?
       bannerstr += "\n"
     end
+    bannerstr += "Compatiblity: " + appinfo[:compatibility].join(', ').reverse.sub(' ,', ' dna ,').reverse + "\n" unless appinfo[:compatibility].nil? || appinfo[:compatibility].empty?
     bannerstr += "License: #{appinfo[:license]}\n" unless appinfo[:license].nil?
     bannerstr += "\n"
     bannerstr += appinfo[:helptext].chomp + "\n\n" unless appinfo[:helptext].nil?

@@ -1,5 +1,11 @@
 # Rbcli Changelog
 
+## 0.4.1 (XXXX XX, XXXX)
+
+### Features
+
+* A "compatibility" field has been added to the CLI helptext configuration
+
 ## 0.4.0 (May 7, 2024)
 
 This release is a major refactor! Nearly all of the codebase has been rewritten from the ground up. This brought lots of features and improvements, with a heavy focus on making the framework easier to understand and use. It's memory footprint has been reduced, and execution time has sped up too.

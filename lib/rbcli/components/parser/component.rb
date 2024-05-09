@@ -13,6 +13,7 @@ module Rbcli::Configurate::Cli
       author: nil,
       email: nil,
       copyright_year: nil,
+      compatibility: nil,
       license: nil,
       helptext: nil
     }

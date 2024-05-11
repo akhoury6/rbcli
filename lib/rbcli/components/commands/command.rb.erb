@@ -46,10 +46,14 @@ Rbcli.command "<%= @command_name || 'example' %>" do
     Rbcli.log.unknown "Example Unknown Message", "MYAPP"
     Rbcli.log.info ""
 
+    config.add_default :foo, 'bar'
+    config.create!
+    config.load!
     config[:davey] = 'Davey Jones'.compress
     Rbcli.log.info "Compressed String: " + config[:davey]
     Rbcli.log.info "Decompressed String: " + config[:davey].decompress
     config.save!
+    Rbcli.log.info config
     <%- end -%>
   end
 end

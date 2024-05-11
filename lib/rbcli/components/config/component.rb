@@ -25,13 +25,20 @@ module Rbcli::Configurate::Config
     @params[:type] = type
   end
 
-  def self.schema_location path
+  def self.schema_file path
     raise Rbcli::ConfigurateError.new "Config schema file location must be a path" unless path.nil? || path.is_a?(String)
-    @params[:schema_location] = path
+    raise Rbcli::ConfigurateError.new "May not define both a schema_hash and schema_file together." if @params[:schema_hash] && !path.nil?
+    @params[:schema_file] = path
   end
 
-  def self.save_on_exit
-    Rbcli::Engine.register_operation Proc.new { Rbcli::Warehouse.get(:config, :parsedopts).save! }, name: :save_config, priority: 160
+  def self.schema_hash hash
+    raise Rbcli::ConfigurateError.new "Config schema hash must be a hash" unless hash.nil? || hash.is_a?(Hash)
+    raise Rbcli::ConfigurateError.new "May not define both a schema_hash and schema_file together." if @params[:schema_file] && !hash.nil?
+    @params[:schema_hash] = hash
+  end
+
+  def self.save_on_exit soe
+    Rbcli::Engine.register_operation Proc.new { Rbcli::Warehouse.get(:config, :parsedopts).save! }, name: :save_config, priority: 160 if soe
   end
 
   def self.create_if_not_exists cne
@@ -52,5 +59,10 @@ module Rbcli::Configurate::Config
   def self.defaults hash
     raise Rbcli::ConfigurateError.new "The default configuration must be a hash." unless hash.is_a?(Hash)
     @params[:defaults] = hash
+  end
+
+  def self.skeleton text
+    raise Rbcli::ConfigurateError.new "The skeleton data must be set to a string." unless text.is_a?(String)
+    @params[:skeleton] = text
   end
 end

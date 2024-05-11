@@ -8,7 +8,7 @@ require 'json-schema'
 require_relative 'backend'
 
 class Rbcli::Config < Hash
-  def initialize location: nil, type: nil, schema_location: nil, create_if_not_exists: false, suppress_errors: false, banner: nil, defaults: {}
+  def initialize location: nil, type: nil, schema_file: nil, schema_hash: nil, create_if_not_exists: false, suppress_errors: false, banner: nil, defaults: {}, skeleton: nil
     location = [location] unless location.is_a?(Array)
     locations = location.map { |path| [path, Rbcli::UserConf::Backend.create(path, type: type)] }.reject { |path, storage| !(path.nil? || path == :null) && storage.type == 'NULL' }
     existing_location = locations.select { |_path, storage| storage.exist? }.first
@@ -30,20 +30,21 @@ class Rbcli::Config < Hash
     @suppress_errors = suppress_errors
     @original_hash = {}
     @defaults = defaults
+    @skeleton = skeleton
     @banner = banner
-    if schema_location
-      @schema = self.class.new(location: schema_location)
+    if schema_hash
+      @schema = self.class.new
+      schema_hash.each_key { |key| @schema[key] = schema_hash[key] }
+      @schema.is_schema = true
+    elsif schema_file
+      @schema = self.class.new(location: schema_file)
       @schema.is_schema = true
     end
   end
 
   attr_accessor :is_schema, :defaults
 
-  def set_banner text
-    @banner = text
-  end
-
-  def add_default slug, default: nil
+  def add_default slug, default = nil
     @defaults[slug] = default
   end
 
@@ -54,20 +55,23 @@ class Rbcli::Config < Hash
   def load!
     if @should_create
       Rbcli.log.add (@suppress_errors ? :debug : :info), "Config file #{@location} does not exist. Creating with default values.", "CONF"
-      self.deep_merge!(@storage.respond_to?(:parse_defaults) ? @storage.parse_defaults(@defaults) : @defaults)
-      self.save!
-    else
-      Rbcli.log.debug "Loading #{@is_schema ? 'schema' : 'config'} file", "CONF"
-      @original_hash = @storage.load(defaults: @defaults)
-      if !@storage.loaded?
-        Rbcli.log.add (@suppress_errors ? :debug : :warn), "Could not load #{@is_schema ? 'schema' : 'config'} file", "CONF"
-        Rbcli.log.add (@suppress_errors ? :debug : :warn), "Using defaults", "CONF" unless @defaults.empty?
-        return false
-      else
-        self.deep_merge!(@storage.respond_to?(:parse_defaults) ? @storage.parse_defaults(@defaults) : @defaults)
-        self.deep_merge!(@original_hash.deep_symbolize!) if @original_hash.is_a?(Hash)
-      end
+      return self.create!(force: true)
     end
+    Rbcli.log.debug "Loading #{@is_schema ? 'schema' : 'config'} file", "CONF"
+    begin
+      @original_hash = @storage.load(@defaults)
+    rescue Rbcli::ParseError => e
+      Rbcli.log.add (@suppress_errors ? :debug : :fatal), e.message, "CONF"
+      Rbcli.exit 3 unless @suppress_errors
+      @original_hash = {}
+    end
+    unless @storage.loaded?
+      Rbcli.log.add (@suppress_errors ? :debug : :warn), "Could not load #{@is_schema ? 'schema' : 'config'} file", "CONF"
+      Rbcli.log.add (@suppress_errors ? :debug : :warn), "Using defaults", "CONF" unless @defaults.empty?
+    end
+    self.clear
+    self.deep_merge!(@storage.respond_to?(:parse_defaults) ? @storage.parse_defaults(@defaults) : @defaults)
+    self.deep_merge!(@original_hash.deep_symbolize!) if @original_hash.is_a?(Hash)
   end
 
   def validate!
@@ -79,7 +83,7 @@ class Rbcli::Config < Hash
     rescue JSON::Schema::ValidationError => e
       Rbcli.log.send (@suppress_errors ? :debug : :error), "There are errors in the config. Please fix these errors and try again."
       Rbcli.log.send (@suppress_errors ? :debug : :error), JSON::Validator.fully_validate(@schema, self).join("\n")
-      Rbcli::exit 3 unless @suppress_errors
+      Rbcli::exit 4 unless @suppress_errors
       return false
     end
     Rbcli.log.debug "Validated config against schema successfully", "CONF"
@@ -101,6 +105,22 @@ class Rbcli::Config < Hash
       @should_create = false
     end
     self
+  end
+
+  def create! force: false
+    return false unless @location.is_a?(String)
+    if File.exist?(@location) && !force
+      Rbcli.log.add (@suppress_errors ? :debug : :error), "Config file already exists; can not overwrite.", "CONF"
+      Rbcli::exit 4 unless @suppress_errors
+      return false
+    end
+    if @skeleton
+      @storage.save_raw @skeleton
+    else
+      self.deep_merge!(@storage.respond_to?(:parse_defaults) ? @storage.parse_defaults(@defaults) : @defaults)
+      self.save!
+    end
+    @storage.annotate!(@banner) if @banner
   end
 
   def annotate!

@@ -45,7 +45,7 @@ class Rbcli::UserConf::Backend
   alias_method :loaded?, :loaded
 
   # The `defaults` parameter is used on some backends which override this method
-  def load defaults: nil
+  def load _defaults = nil
     begin
       text = File.read(@path)
     rescue Errno::ENOENT => _
@@ -66,6 +66,19 @@ class Rbcli::UserConf::Backend
       false
     else
       hash
+    end
+  end
+
+  def save_raw text
+    Rbcli.log.debug "Saving #{@type} config file at '#{@path}' using raw text", "CONF"
+    begin
+      File.write(@path, text)
+    rescue Errno => err
+      Rbcli.log.error "Could not save config to file at '#{@path}'", "CONF"
+      Rbcli.log.error "Error: #{err.message}", "CONF"
+      false
+    else
+      true
     end
   end
 

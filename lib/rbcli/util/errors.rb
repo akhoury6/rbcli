@@ -9,4 +9,6 @@ module Rbcli
   class ConfigurateError < Rbcli::Error; end
 
   class CommandError < Rbcli::Error; end
+
+  class ParseError < Rbcli::Error; end
 end

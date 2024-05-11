@@ -22,8 +22,7 @@ class Rbcli::UserConf::Ini < Rbcli::UserConf::Backend
         key, value = line.split('=').map { |part| part.strip }
         deep_assign(ini, nest + [key], translate_value(value))
       else
-        Rbcli.log.warn "Invalid #{@type} syntax found on line #{i} at '#{@path}'. Offending syntax: #{line}", "CONF"
-        return Hash.new
+        raise Rbcli::ParseError.new "Invalid #{@type} syntax found on line #{i} at '#{@path}'. Offending syntax: #{line}"
       end
     end
     @loaded = true

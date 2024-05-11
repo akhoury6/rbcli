@@ -16,6 +16,7 @@
 ### Bugfixes
 
 * Compatibility list in helptext did not display commas in line with correct grammar
+* Fixed a bug that prevented declaring a command the "default" unless it was the first command declared
 
 ## 0.4.1 (May 10, 2024)
 

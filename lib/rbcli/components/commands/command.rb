@@ -92,7 +92,7 @@ module Rbcli
     unless command.has_function?
       raise Rbcli::CommandError.new "Command #{command.name} does not have a function. An action, inline script, or external script must be defined."
     end
-    if command.default? && Rbcli::Warehouse.get(:commands).any? { |cmd| cmd.default? }
+    if command.default? && Rbcli::Warehouse.get(:commands).any? { |_k, cmd| cmd.default? }
       raise Rbcli::CommandError.new "Only one command may be assigned as default"
     end
     Rbcli::Warehouse.get(:commands)[name] = command

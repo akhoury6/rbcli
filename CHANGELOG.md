@@ -6,7 +6,7 @@
 
 * Config can load schema directly from a hash instead of a file
 * Config can use a skeleton (prepared text) for creating missing config files instead of defaults
-* Config 
+* Config create! can now be given a path to save the config file at
 
 ### Improvements
 

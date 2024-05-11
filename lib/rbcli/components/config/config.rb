@@ -39,10 +39,13 @@ class Rbcli::Config < Hash
     elsif schema_file
       @schema = self.class.new(location: schema_file)
       @schema.is_schema = true
+    else
+      @schema = nil
     end
   end
 
   attr_accessor :is_schema, :defaults
+  attr_reader :location, :schema, :skeleton, :banner, :suppress_errors
 
   def add_default slug, default = nil
     @defaults[slug] = default
@@ -77,10 +80,10 @@ class Rbcli::Config < Hash
   def validate!
     return true if @schema.nil?
     Rbcli.log.debug "Validating config against schema", "CONF"
-    @schema.load!
+    @schema.load! unless @schema.location.nil?
     begin
       JSON::Validator.validate!(@schema, self)
-    rescue JSON::Schema::ValidationError => e
+    rescue JSON::Schema::ValidationError => _e
       Rbcli.log.send (@suppress_errors ? :debug : :error), "There are errors in the config. Please fix these errors and try again."
       Rbcli.log.send (@suppress_errors ? :debug : :error), JSON::Validator.fully_validate(@schema, self).join("\n")
       Rbcli::exit 4 unless @suppress_errors

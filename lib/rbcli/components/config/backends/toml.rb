@@ -12,9 +12,7 @@ class Rbcli::UserConf::Toml < Rbcli::UserConf::Backend
     begin
       parsed_str = TOML.load(str).deep_symbolize!
     rescue => e
-      Rbcli.log.warn "Error when parsing TOML file", "CONF"
-      Rbcli.log.warn e.message, "CONF"
-      Hash.new
+      raise Rbcli::ParseError.new "Invalid #{@type} syntax found at '#{@path}': #{e.message}"
     else
       @loaded = true
       parsed_str

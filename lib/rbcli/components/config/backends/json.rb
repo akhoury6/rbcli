@@ -12,9 +12,7 @@ class Rbcli::UserConf::Json < Rbcli::UserConf::Backend
     begin
       parsed_str = JSON.parse(str)
     rescue JSON::JSONError => e
-      Rbcli.log.warn "Invalid #{@type} syntax found at '#{@path}'", "CONF"
-      Rbcli.log.warn e.message, "CONF"
-      Hash.new
+      raise Rbcli::ParseError.new "Invalid #{@type} syntax found at '#{@path}': #{e.message}"
     else
       @loaded = true
       parsed_str

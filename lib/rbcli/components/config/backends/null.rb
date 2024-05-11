@@ -9,13 +9,17 @@ class Rbcli::UserConf::Null < Rbcli::UserConf::Backend
     @loaded = false
   end
 
-  def load defaults: nil
+  def load _defaults = nil
     @loaded = true
     {}
   end
 
   def save hash
     hash
+  end
+
+  def save_raw text
+    true
   end
 
   def savable?

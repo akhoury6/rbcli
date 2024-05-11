@@ -2,6 +2,12 @@
 
 ## 0.4.2 (XXXXXX)
 
+### Features
+
+* Config can load schema directly from a hash instead of a file
+* Config can use a skeleton (prepared text) for creating missing config files instead of defaults
+* Config 
+
 ### Improvements
 
 * Config file declaration now uses simpler syntax

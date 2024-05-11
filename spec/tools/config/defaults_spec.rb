@@ -9,13 +9,13 @@ RSpec.describe 'Config module' do
   context 'defaults' do
     it "allows setting a single default" do
       config = Rbcli::Config.new
-      config.add_default(:foo, default: 'bar')
+      config.add_default(:foo, 'bar')
       expect(config.defaults).to eq({foo: 'bar'})
     end
 
     it "allows setting single default values without affecting the data" do
       config = Rbcli::Config.new
-      config.add_default(:foo, default: 'bar')
+      config.add_default(:foo, 'bar')
       expect(config).to eq({})
     end
 
@@ -33,7 +33,7 @@ RSpec.describe 'Config module' do
 
     it "assigns single defaults on load" do
       config = Rbcli::Config.new
-      config.add_default(:foo, default: 'bar')
+      config.add_default(:foo, 'bar')
       expect(config.defaults).to eq({foo: 'bar'})
       expect(config).to eq({})
       config.load!

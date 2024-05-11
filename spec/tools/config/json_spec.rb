@@ -122,9 +122,8 @@ RSpec.describe 'Config module' do
     end
 
     it "does not save banner to top of file because json spec does not allow it" do
-      config = Rbcli::Config.new(location: @datafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, banner: @banner)
       populate_json
-      config.set_banner @banner
       config.load!
       config.save!
       config.annotate!

@@ -58,21 +58,28 @@ RSpec.describe 'Config module' do
     end
 
     it "correctly validates with a matching schema" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path)
+      config.load!
+      expect(config.validate!).to eq(true)
+      expect(Rbcli.exit_code).to eq(nil)
+    end
+
+    it "correctly loads and validates with a schema hash" do
+      config = Rbcli::Config.new(location: @datafile.path, schema_hash: @schema)
       config.load!
       expect(config.validate!).to eq(true)
       expect(Rbcli.exit_code).to eq(nil)
     end
 
     it "returns false on failure" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path)
       populate_schema
       config[:string] = 1234
       expect(config.validate!).to eq(false)
     end
 
     it "shows a descriptive message on failure" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path)
       populate_schema
       config[:string] = 1234
       Rbcli.logstream.reopen
@@ -81,7 +88,7 @@ RSpec.describe 'Config module' do
     end
 
     it "attempts to quit on failure" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path)
       populate_schema
       config[:string] = 1234
       config.validate!
@@ -89,14 +96,14 @@ RSpec.describe 'Config module' do
     end
 
     it "still returns false on failure when suppress_errors is true" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path, suppress_errors: true)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path, suppress_errors: true)
       populate_schema
       config[:string] = 1234
       expect(config.validate!).to eq(false)
     end
 
     it "does not show a message on failure when suppress_errors is true" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path)
       populate_schema
       config[:string] = 1234
       Rbcli.logstream.reopen
@@ -105,7 +112,7 @@ RSpec.describe 'Config module' do
     end
 
     it "does not attempt to exit on failure when suppress_errors is true" do
-      config = Rbcli::Config.new(location: @datafile.path, schema_location: @schemafile.path, suppress_errors: true)
+      config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path, suppress_errors: true)
       populate_schema
       config[:string] = 1234
       config.validate!

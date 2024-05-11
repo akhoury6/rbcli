@@ -234,16 +234,19 @@ Rbcli::Configurate.config do
   #
   #   file:                 <string> or <array>            (Required) Provide either a specific config file location or a hierarchy to search. If creating a :null type of config this can be omitted.
   #   type:                 (:yaml|:json|:ini|:toml|:null) (Optional) Select which backend/file format to use. If the file has an associated extension (i.e. '.yaml') then this can be omitted.
-  #   schema_location:      <string>                       (Optional) The file location of a JSON Schema (https://json-schema.org). If provided, the config will automatically be validated. (default: nil)
+  #   schema_file:          <string>                       (Optional) The file location of a JSON Schema (https://json-schema.org). If provided, the config will automatically be validated. (default: nil)
+  #   schema_hash:          <string>                       (Optional) If you'd like to provide a JSON schema hash directly instead, do it here. May not use `schema_hash` and `schema_file` together. (default: nil)
   #   save_on_exit:         (true|false)                   (Optional) Save changes to the config file on exit (default: false)
   #   create_if_not_exists: (true|false)                   (Optional) Create the file using default values if it is not found on the system (default: false)
   #   suppress_errors:      (true|false)                   (Optional) If set to false, the application will halt on any errors in loading the config. If set to true, defaults will be provided (default: true)
   #   banner:               <string>                       (Optional) Define a banner to be placed at the top of the config file on disk. Note that it will only be written to backends that support comments
   #   defaults:             <hash>                         (Optional) Defaults set here will be provided to your application if any values are missing in the config.
-  #                                                                  They will also be used to create new config files when the flag `create_if_not_exists` is set to true.
+  #   skeleton:             <string>                       (Optional) If a skeleton is provided, it will be used as the data source when creating new config files on disk instead of the defaults. (default: nil)`
+  #                                                                     Please provide the text exactly as you want the user to see it in the config file. The banner provided here will not be added.
   file ['./tester.yaml', '~/.tester.yaml', '/etc/tester.yaml']
   type :yaml
-  schema_location nil
+  schema_file nil
+  schema_hash nil
   save_on_exit
   create_if_not_exists false
   suppress_errors true
@@ -252,6 +255,7 @@ Rbcli::Configurate.config do
     Tell the user a bit about what they're doing here.
   BANNER
   defaults({ setting_one: true, setting_two: false })
+  skeleton "eJzT1dXlSsvPt1JISiziAhFWSYlVAD1hBjs=".decompress
 end
 ```
 
@@ -261,6 +265,18 @@ end
 Rbcli.command "mycmd" do
   action do |_opts, _params, _args, config, _env|
     Rbcli.log.info "Config: " + config.to_s
+  end
+end
+
+Rbcli.command "configstuffs" do
+  action do |_opts, _params, _args, config, _env|
+    # These are automatically handled for you normally, but are available if you want to do more with your config
+    # For example you can create an "init" command that creates a config file for your user
+    config.add_default :foo, 'bar' # Add a new default
+    config.defaults                # Get or set the list of defaults
+    config.create!                 # Creates a new config on disk using the skeleton or defaults
+    config.load!                   # Loads the config file from disk
+    config.save!                   # Saves any changes made to disk
   end
 end
 ```

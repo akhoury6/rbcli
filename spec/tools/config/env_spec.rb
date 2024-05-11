@@ -43,7 +43,7 @@ RSpec.describe 'Config module' do
 
     it "uses default values when envvars are not available" do
       config = Rbcli::Config.new(location: 'RBCLI', type: :env)
-      config.add_default :foo, default: 'bar'
+      config.add_default(:foo, 'bar')
       expect(config).to eq({})
       config.load!
       expect(config).to eq({ foo: 'bar' })
@@ -149,7 +149,7 @@ RSpec.describe 'Config module' do
 
     it "overrides envvars correctly when specified as a default and given a prefix" do
       config = Rbcli::Config.new(location: 'RBCLI', type: :env)
-      config.add_default :foo, default: 'foo'
+      config.add_default(:foo, 'foo')
       ENV['RBCLI_FOO'] = 'baz'
       ENV['FOO'] = 'not this one'
       config.load!
@@ -158,7 +158,7 @@ RSpec.describe 'Config module' do
 
     it "overrides envvars correctly when specified as a default and not given a prefix" do
       config = Rbcli::Config.new(type: :env)
-      config.add_default :foo, default: 'bar'
+      config.add_default(:foo, 'bar')
       ENV['FOO'] = 'baz'
       config.load!
       expect(config).to eq({ foo: 'baz' })
@@ -166,8 +166,8 @@ RSpec.describe 'Config module' do
 
     it "overrides defaults with non-string values and non-symbol keys" do
       config = Rbcli::Config.new(location: 'RBCLI', type: :env)
-      config.add_default 'TERM_WIDTH', default: 320
-      config.add_default 'TERM_HEIGHT', default: 240
+      config.add_default('TERM_WIDTH', 320)
+      config.add_default('TERM_HEIGHT', 240)
       ENV['RBCLI_TERM_WIDTH'] = '640'
       ENV['RBCLI_TERM_HEIGHT'] = '480'
       config.load!
@@ -176,15 +176,14 @@ RSpec.describe 'Config module' do
 
     it "overrides defaults when the prefix is repeated in the default setting" do
       config = Rbcli::Config.new(location: 'RBCLI', type: :env)
-      config.add_default 'RBCLI_FOO', default: 'bar'
+      config.add_default('RBCLI_FOO', 'bar')
       ENV['RBCLI_FOO'] = 'baz'
       config.load!
       expect(config).to eq({ foo: 'baz' })
     end
 
     it "does not crash when asked to annotate banner" do
-      config = Rbcli::Config.new(location: 'RBCLI', type: :env)
-      config.set_banner @banner
+      config = Rbcli::Config.new(location: 'RBCLI', type: :env, banner: @banner)
       config[:foo] = :bar
       config.save!
       config.annotate!

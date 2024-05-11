@@ -79,8 +79,7 @@ RSpec.describe 'Config module' do
     end
 
     it "does not crash when asked to annotate banner" do
-      config = Rbcli::Config.new
-      config.set_banner @banner
+      config = Rbcli::Config.new(banner: @banner)
       config[:foo] = :bar
       config.save!
       config.annotate!

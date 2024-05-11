@@ -122,9 +122,8 @@ RSpec.describe 'Config module' do
     end
 
     it "saves banner to top of file as a valid comment" do
-      config = Rbcli::Config.new(location: @datafile.path)
+      config = Rbcli::Config.new(location: @datafile.path, banner: @banner)
       populate_toml
-      config.set_banner @banner
       config.load!
       config.save!
       config.annotate!

@@ -15,6 +15,6 @@ module Rbcli::Configurate::Envvars
 
   def self.envvar envvar, default
     raise Rbcli::ConfigurateError.new "Environment variables must be a string" unless envvar.is_a?(String)
-    Rbcli::Warehouse.get(:env, :parsedopts).add_default(envvar, default: default)
+    Rbcli::Warehouse.get(:env, :parsedopts).add_default(envvar, default)
   end
 end

@@ -14,7 +14,7 @@ class Rbcli::UserConf::Env < Rbcli::UserConf::Backend
     @loaded = false
   end
 
-  def load defaults: nil
+  def load defaults = nil
     vars = ENV.select { |k, v| k.match(/^#{@prefix}_.+/i) && !k.match(/^_/) }
     if @prefix.nil? && !defaults.nil? && !defaults.empty?
       lowercase_default_keys = defaults.keys.map { |k| k.downcase.to_sym }
@@ -24,10 +24,6 @@ class Rbcli::UserConf::Env < Rbcli::UserConf::Backend
     final_vars = Hash.new
     vars.each do |key, value|
       deep_assign(final_vars, key.split('_').map { |k| k.to_sym }, translate_value(value))
-    end
-    if @prefix.nil? && !defaults.nil? && !defaults.empty?
-      lowercase_default_keys = defaults.keys.map { |k| k.downcase.to_sym }
-      vars = ENV.select { |k, v| lowercase_default_keys.include?(k.downcase.to_sym) }.map { |k, v| [k.downcase.to_sym, v] }.to_h
     end
     @loaded = true
     final_vars
@@ -41,6 +37,10 @@ class Rbcli::UserConf::Env < Rbcli::UserConf::Backend
         save value, path + [key.upcase]
       end
     end
+  end
+
+  def save_raw text
+    true
   end
 
   def parse_defaults defaults

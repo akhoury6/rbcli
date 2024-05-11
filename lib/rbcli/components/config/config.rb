@@ -110,15 +110,15 @@ class Rbcli::Config < Hash
     self
   end
 
-  def create! force: false
+  def create! path: nil, force: false
     return false unless @location.is_a?(String)
-    if File.exist?(@location) && !force
+    if File.exist?(path || @location) && !force
       Rbcli.log.add (@suppress_errors ? :debug : :error), "Config file already exists; can not overwrite.", "CONF"
       Rbcli::exit 4 unless @suppress_errors
       return false
     end
     if @skeleton
-      @storage.save_raw @skeleton
+      (path.nil? ? @storage : Rbcli::UserConf::Backend.create(path, type: self.type)).save_raw @skeleton
     else
       self.deep_merge!(@storage.respond_to?(:parse_defaults) ? @storage.parse_defaults(@defaults) : @defaults)
       self.save!

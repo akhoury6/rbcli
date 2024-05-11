@@ -78,6 +78,13 @@ RSpec.describe 'Config module' do
       expect(config.validate!).to eq(false)
     end
 
+    it "returns false on failure with schema hash" do
+      config = Rbcli::Config.new(location: @datafile.path, schema_hash: @schema)
+      populate_schema
+      config[:string] = 1234
+      expect(config.validate!).to eq(false)
+    end
+
     it "shows a descriptive message on failure" do
       config = Rbcli::Config.new(location: @datafile.path, schema_file: @schemafile.path)
       populate_schema

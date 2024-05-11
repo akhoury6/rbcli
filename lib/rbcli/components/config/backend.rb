@@ -30,7 +30,6 @@ class Rbcli::UserConf::Backend
     type ||= self.types.map { |slug, check| [slug, check.call(filename)] }.select { |slug, match| match }.first.first
     type = type.to_s.downcase.to_sym
     require_relative "backends/#{type.to_s}"
-    Rbcli.log.debug "Creating backend of type #{type} at #{filename}", "CONF"
     @registered_types[type].new(filename, type)
   end
 

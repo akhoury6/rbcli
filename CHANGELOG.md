@@ -1,6 +1,6 @@
 # Rbcli Changelog
 
-## 0.4.2 (XXXXXX)
+## 0.4.2 (May 1, 2025)
 
 ### Features
 

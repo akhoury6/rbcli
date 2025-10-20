@@ -6,5 +6,5 @@
 require 'base64'
 require 'zlib'
 
-String.instance_eval { define_method(:compress) { Base64.encode64(Zlib::Deflate.deflate(self)).chomp } }
-String.instance_eval { define_method(:decompress) { Zlib::Inflate.inflate(Base64.decode64(self)) } }
+String.instance_eval { define_method(:compress) { Base64.strict_encode64(Zlib::Deflate.deflate(self)) } }
+String.instance_eval { define_method(:decompress) { Zlib::Inflate.inflate(Base64.strict_decode64(self)) } }

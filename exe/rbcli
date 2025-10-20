@@ -35,7 +35,7 @@ end
 
 Rbcli.command "portable" do
   description 'Creates a portable Rbcli executable'
-  usage "(--(d)ocs|--use-(b)undler|--(f)orce) <application_name>"
+  usage "(--(a)nnotate|--use-(b)undler|--(f)orce) <application_name>"
   helptext <<~HELPTEXT
     This will initialize a portable Rbcli project in the current directory.
 
@@ -72,7 +72,7 @@ end
 
 Rbcli.command "gem" do
   description 'Creates an full Rbcli-based gem project'
-  usage "(--(f)orce) <application_name>"
+  usage "(--(a)nnotate|--(f)orce) <application_name>"
   helptext <<~HELPTEXT
     This will initialize an complete Rbcli project in the current directory.
 
@@ -84,6 +84,7 @@ Rbcli.command "gem" do
     If you'd prefer a single-file executable script, run `rbcli portable --help` for more information. 
   HELPTEXT
 
+  parameter :annotate, "Add annotations and examples for a more guided build"
   parameter :force, "Overwrite files without prompting"
 
   action do |opts, params, args, config, env|
@@ -94,9 +95,9 @@ Rbcli.command "gem" do
     end
     vars = {
       appname: args.first,
-      use_bundler: params[:use_bundler],
+      use_bundler: false,
       development: env[:development],
-      showdocs: params[:docs]
+      showdocs: params[:annotate]
     }
     project_dir = File.join(Dir.getwd, vars[:appname])
     config_dir = File.join(project_dir, 'lib', 'config')

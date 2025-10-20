@@ -121,7 +121,7 @@ Rbcli.command "gem" do
     Rbcli.log.info "Running bundler gem", 'TOOL'
     `bundle gem --exe --coc #{vars[:appname]}`
     Rbcli.log.debug "Creating Rbcli project identifier", 'TOOL'
-    FileUtils.touch(File.join(project_dir), '.rbcli')
+    FileUtils.touch(File.join(project_dir, '.rbcli'))
     Rbcli.log.debug "Creating additional directories", 'TOOL'
     [config_dir, command_dir, scripts_dir].each { |dir| FileUtils.mkdir_p(dir) }
     FileUtils.touch(File.join(scripts_dir, '.keep'))

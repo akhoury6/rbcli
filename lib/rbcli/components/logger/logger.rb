@@ -89,8 +89,9 @@ class Rbcli::Logger
     self.add(Logger::ERROR, message, progname, &block)
   end
 
-  def fatal message, progname = nil, &block
+  def fatal message, progname = nil, exit_status: nil, &block
     self.add(Logger::FATAL, message, progname, &block)
+    Rbcli.exit(exit_status) unless exit_status.nil?
   end
 
   def unknown message, progname = nil, &block

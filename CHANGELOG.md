@@ -1,5 +1,17 @@
 # Rbcli Changelog
 
+## 0.4.3 (Oct 22, 2025)
+
+### Improvements
+
+* Improved efficiency of string compression by using `Base64.strict_encode64`
+* Added an option to write annotations to skeleton rbcli gems
+* Added an option to exit when using Logger.fatal
+
+### Bugfixes
+
+* Fixed an error which caused the rbcli initializer not to generate skeleton projects
+
 ## 0.4.2 (May 1, 2025)
 
 ### Features

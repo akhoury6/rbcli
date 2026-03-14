@@ -24,7 +24,7 @@ module Rbcli::Parser
       bannerstr += "\n"
     end
     unless appinfo[:compatibility].nil? || appinfo[:compatibility].empty?
-      bannerstr += "Compatiblity: "
+      bannerstr += "Compatibility: "
       if appinfo[:compatibility].length == 2
         bannerstr += appinfo[:compatibility].join(' and ') + "\n"
       else

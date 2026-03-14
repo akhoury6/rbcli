@@ -148,7 +148,7 @@ module Rbcli::Parser
         prompt_string += ' (' + (param_value ? 'Y' : 'y') + '/' + (param_value ? 'n' : 'N') + ')'
         opt[:default] = param_value if opt[:default].nil?
       elsif !opt[:default].nil?
-        prompt_string != " (default: #{opt[:default]})"
+        prompt_string += " (default: #{opt[:default]})"
       end
       prompt_string += ':' unless %w(. ? ! :).include?(opt[:prompt][-1])
       prompt_string += ' '

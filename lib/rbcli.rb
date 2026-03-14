@@ -3,8 +3,8 @@
 #     Rbcli -- A framework for developing command line applications in Ruby      #
 #     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
 ##################################################################################
-RBCLI_LIBDIR = File.join(File.expand_path(File.dirname(__FILE__)), 'rbcli')
-RBCLI_TOOLDIR = File.join(File.expand_path(File.dirname(__FILE__)), 'rbcli-tool')
+RBCLI_LIBDIR = File.join(__dir__, 'rbcli')
+RBCLI_TOOLDIR = File.join(__dir__, 'rbcli-tool')
 EXECUTABLE = File.basename($0).gsub(/\.[^.]+$/, '')
 
 # Prerequisites for anything else to run

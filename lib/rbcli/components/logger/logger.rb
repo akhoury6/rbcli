@@ -98,12 +98,6 @@ class Rbcli::Logger
     self.add(Logger::UNKNOWN, message, progname, &block)
   end
 
-  %w(debug, info, warn, error, fatal, unknown).each do |l|
-    self.define_method(l.to_sym) do |message, progname = nil, &block|
-      self.send(:add, l.to_sym, message, progname, &block)
-    end
-  end
-
   private
 
   def self.colorlevel level

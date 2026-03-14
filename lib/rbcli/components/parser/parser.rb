@@ -46,7 +46,7 @@ module Rbcli::Parser
 
     @parser.synopsis bannerstr
     (Rbcli::Warehouse.get(:opts, :unparsedopts) || []).each { |args| @parser.opt *args }
-    @parser.stop_on(non_default_commands.select { |_name, cmd| !cmd.default? }.keys)
+    @parser.stop_on(non_default_commands.keys)
 
     begin
       opts = @parser.parse

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##################################################################################
 #     Rbcli -- A framework for developing command line applications in Ruby      #
 #     Copyright (C) 2024 Andrew Khoury <akhoury@live.com>                        #
@@ -24,7 +25,7 @@ module Rbcli::Parser
       bannerstr += "\n"
     end
     unless appinfo[:compatibility].nil? || appinfo[:compatibility].empty?
-      bannerstr += "Compatiblity: "
+      bannerstr += "Compatibility: "
       if appinfo[:compatibility].length == 2
         bannerstr += appinfo[:compatibility].join(' and ') + "\n"
       else
@@ -46,7 +47,7 @@ module Rbcli::Parser
 
     @parser.synopsis bannerstr
     (Rbcli::Warehouse.get(:opts, :unparsedopts) || []).each { |args| @parser.opt *args }
-    @parser.stop_on(non_default_commands.select { |_name, cmd| !cmd.default? }.keys)
+    @parser.stop_on(non_default_commands.keys)
 
     begin
       opts = @parser.parse
@@ -148,7 +149,7 @@ module Rbcli::Parser
         prompt_string += ' (' + (param_value ? 'Y' : 'y') + '/' + (param_value ? 'n' : 'N') + ')'
         opt[:default] = param_value if opt[:default].nil?
       elsif !opt[:default].nil?
-        prompt_string != " (default: #{opt[:default]})"
+        prompt_string += " (default: #{opt[:default]})"
       end
       prompt_string += ':' unless %w(. ? ! :).include?(opt[:prompt][-1])
       prompt_string += ' '

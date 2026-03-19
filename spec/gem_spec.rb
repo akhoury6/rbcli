@@ -13,6 +13,6 @@ RSpec.describe "Rbcli project" do
 
   it "pulls the version number from a file" do
     version = File.read("VERSION")
-    expect(Rbcli::VERSION).equal? version
+    expect(Rbcli::VERSION).to eq(version.chomp.strip)
   end
 end

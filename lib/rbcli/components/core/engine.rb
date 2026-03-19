@@ -7,8 +7,9 @@ module Rbcli::Engine
   @operations = []
 
   def self.register_operation operation, name: nil, priority: nil
-    if @operations.select { |op| op[:priority] == priority }.count != 0
-      raise Rbcli::Error.new "The Rbcli engine can not have two operations defined with the same priority: #{name}, #{@operations.select { |op| op[:priority] == priority }.join(", ")}"
+    conflicts = @operations.select { |op| op[:priority] == priority }
+    unless conflicts.empty?
+      raise Rbcli::Error, "The Rbcli engine can not have two operations defined with the same priority: #{name}, #{conflicts.join(", ")}"
     end
     @operations << { operation: operation, name: name, priority: priority }
   end

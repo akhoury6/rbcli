@@ -5,7 +5,7 @@
 ##################################################################################
 class Rbcli::Command
   def initialize name
-    raise Rbcli::CommandError.new "Command name can only contain the characters [A-Za-z0-9_]+" unless /[A-Za-z0-9_]+/.match?(name)
+    raise Rbcli::CommandError.new "Command name can only contain the characters [A-Za-z0-9_]+" unless /\A[A-Za-z0-9_]+\z/.match?(name.to_s)
     @name = name.to_s.downcase
     @default = false
     @description = nil

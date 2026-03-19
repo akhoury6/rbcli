@@ -34,22 +34,23 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.6.10"
+  spec.required_ruby_version = ">= 3.4.0"
 
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rake", '~> 13.3'
+  spec.add_development_dependency "rspec", '~> 3.13'
 
-  spec.add_dependency "colorize", "~> 1.1"
-  spec.add_dependency "octokit", "~> 8.1"
-  spec.add_dependency "faraday-retry", "~> 2.2" # Required for octokit
-  spec.add_dependency "json-schema", "~> 4.3"
-  spec.add_dependency "bigdecimal", "~> 3.1" # Required for json-schema
-  spec.add_dependency "erb", "~> 4.0"
-  spec.add_dependency "deep_merge", "~> 1.2"
-  spec.add_dependency "paint", "~> 2.3"
-  spec.add_dependency "erubis", "~> 2.7"
-  spec.add_dependency "rest-client", "~> 2.1"
-  spec.add_dependency "toml", "~> 0.3"
+  spec.add_dependency "colorize", '>= 1.1'
+  spec.add_dependency "octokit", '>= 8.1'
+  spec.add_dependency "faraday-retry", '>= 2.4' # Required for octokit
+  spec.add_dependency "json-schema", '>= 4.3'
+  spec.add_dependency "bigdecimal", '>= 3.3' # Required for json-schema
+  spec.add_dependency "erb", '>= 4.0'
+  spec.add_dependency "deep_merge", '>= 1.2'
+  spec.add_dependency "paint", '>= 2.3'
+  spec.add_dependency "erubis", '>= 2.7'
+  spec.add_dependency "rest-client", '>= 2.1'
+  spec.add_dependency "toml", '>= 0.3'
+  spec.add_dependency "base64", '>= 0.3'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

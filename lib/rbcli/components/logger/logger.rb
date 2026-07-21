@@ -41,10 +41,11 @@ class Rbcli::Logger
     @@formatters.keys
   end
 
-  def initialize(target: STDOUT, level: :info, format: :display)
+  def initialize(target: STDOUT, level: :info, format: :display, progname: nil)
     self.target(target)
     self.level(level)
     self.format(format)
+    self.progname(progname)
   end
 
   def target target
@@ -65,12 +66,17 @@ class Rbcli::Logger
     @format = slug if @@formatters.key?(slug)
   end
 
+  def progname name = nil
+    return @progname if name.nil?
+    @progname = name
+  end
+
   def add_format slug, prok
     @@formatters[slug] = prok
   end
 
   def add level, message, progname = nil, &block
-    @logger.add(logger_level(level), message, progname, &block)
+    @logger.add(logger_level(level), message, progname || @progname, &block)
   end
 
   def debug message, progname = nil, &block
@@ -139,8 +145,8 @@ end
 module Rbcli
   @logger = nil
 
-  def self.start_logger target: STDOUT, level: :info, format: :display
-    @logger = Rbcli::Logger.new(target: target, level: level, format: format)
+  def self.start_logger target: STDOUT, level: :info, format: :display, progname: nil
+    @logger = Rbcli::Logger.new(target: target, level: level, format: format, progname: nil)
   end
 
   def self.log
